@@ -1,0 +1,419 @@
+% call TexNewMathZone("D","align*",1)
+\documentclass{article}
+\usepackage[british]{babel}
+\usepackage[a4paper]{geometry}
+\usepackage{sectsty}
+\parindent 0pt
+\allsectionsfont{\normalfont\sffamily\bfseries}
+
+\author{Qi Ji\\\small A0167793L}
+\title{MA2101S Homework 1}
+\date{31st January 2018}
+
+\usepackage{amsthm, amsmath, amssymb}
+\usepackage{enumitem}
+
+%\newtheorem{thm}{Theorem}
+%\newtheorem*{proposition}{Proposition}
+%\newtheorem{lemma}[thm]{Lemma}
+%\newtheorem{corollary}[thm]{Corollary}
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem*{definition}{Definition}
+\newtheorem*{notation}{Notation}
+
+\numberwithin{equation}{problem}
+\newenvironment{solusionssolusionssolution}{
+    \renewcommand{\qedsymbol}{$\blacksquare$}
+    \begin{proof}[Solution]
+    }
+    {
+    \end{proof}
+}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\set}[1]{\left\{\,#1\,\right\}}
+\renewcommand{\vec}[1]{\mathit{#1}_V}
+\newcommand{\conj}[1]{\overline{#1}}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Qi Ji -- A0167793L}
+\rhead{MA2101S -- Homework $1$}
+
+\begin{document}
+% uncomment if desired
+\maketitle
+
+% P 1
+\begin{problem}
+    Let $\alpha \in \Q$ be a rational number such that the polynomial
+    $T^2 - \alpha = 0$ has no solutions in $\Q$.
+
+    Show that $\Q(\sqrt{\alpha}) := \set{ a + b\sqrt{\alpha} \in \C: a,b\in \Q}$,
+    where $\sqrt{\alpha}\in\C$ is a square root of $\alpha$,
+    is a field under the usual arithmetic operations in $\C$ (is a subfield of $\C$).
+\end{problem}
+\begin{proof}
+    To prove $\Q(\sqrt{\alpha})$ is a subfield of $\C$,
+    it suffices to just check for closure under addition, multiplication, negation, reciprociation,
+    and the existence of $0$ and $1$.
+
+    \paragraph{Presence of $0$ and $1$.}
+    $0,1\in \Q$, and since $0 = 0 + 0\sqrt{\alpha}$ and $1 = 1 + 0\sqrt{\alpha}$, $0,1\in \Q(\sqrt{\alpha})$.
+
+    \paragraph{Closure under $+$.} For any pair $p,q \in \Q(\sqrt{\alpha})$,
+    $\exists x, y, w, z\in \Q$ such that
+    \begin{align*}
+        p &= x + y\sqrt{\alpha}  \\
+        q &= w + z\sqrt{\alpha}
+    \end{align*}
+    Then by associativity of $+$ and distributivity of $\cdot$ over $+$ in $\C$,
+    \begin{align*}
+        p + q &= x + y\sqrt{\alpha} + w + z\sqrt{\alpha}    \\
+        &= (x + w) + (y + z)\sqrt{\alpha}
+    \end{align*}
+    Because $\Q$ is a field, $x + w$ and $y + z$ are in $\Q$, thus $p+q\in \Q(\sqrt{\alpha})$.
+
+    \paragraph{Closure under $\cdot$.} For any pair $p,q \in \Q(\sqrt{\alpha})$,
+    $\exists x, y, w, z\in \Q$ such that
+    \begin{align*}
+        p &= x + y\sqrt{\alpha}  \\
+        q &= w + z\sqrt{\alpha}
+    \end{align*}
+    Then by associativity of $\cdot$ and distributivity,
+    \begin{align*}
+        p\cdot q &= (x + y\sqrt{\alpha}) \cdot (w + z\sqrt{\alpha}) \\
+        &= x(w + z\sqrt{\alpha}) + y\sqrt{\alpha}(w + z\sqrt{\alpha})   \\
+        &= x w + x z \sqrt{\alpha} + y w \sqrt{\alpha} + y z \sqrt{\alpha} \sqrt{\alpha}    \\
+        &= (x w + y z \alpha) + (x z + y w) \sqrt{\alpha}
+    \end{align*}
+    Again because $\Q$ is a field, $x w + y z \alpha$ and $x z + y w$ are in $\Q$,
+    thus $p\cdot q\in \Q(\sqrt{\alpha})$.
+
+    \paragraph{Closure under $-$.} For any $p \in \Q(\sqrt{\alpha})$,
+    $\exists x, y \in \Q$ such that $p = x + y\sqrt{\alpha}$.
+    Then
+    \[-p = -(x + y\sqrt{\alpha}) = -x + (-y)\sqrt{\alpha}.\]
+    $-p \in \Q(\sqrt{\alpha})$ because $-x, -y$ in $\Q$ due to $\Q$ being a field.
+
+    \paragraph{Closure under $(-)^{-1}$.} For any $p \in \Q(\sqrt{\alpha})\setminus \set{0}$,
+    $\exists x, y \in \Q$ such that $p = x + y\sqrt{\alpha}$.
+    Then compute $p^{-1}$ in $\C$ as follows,
+    \begin{align*}
+        p^{-1} &= \frac{1}{p} = \frac{1}{x + y\sqrt{\alpha}}    \\
+        &= \frac{x - y\sqrt{\alpha}}{x^2 - y^2 \alpha}
+    \end{align*}
+    \textbf{Claim.} $x^2 - y^2 \alpha \ne 0$.\\
+    Case $y=0$, then because $p\ne 0, x\ne 0$, so $x^2 - y^2 \alpha \ne 0$.
+    Case $y\ne 0$, then $\exists y^{-1} \in \Q$. Suppose for a contradiction $x^2 - y^2\alpha = 0$, then we have
+    \begin{align*}
+        (y^{-1})^2 (x^2 - y^2\alpha) &= 0 \\
+        \left(\frac{x}{y}\right)^2 - \alpha &= 0
+    \end{align*}
+    but since $\Q$ is a field and $y \ne 0$ by assumption, $(\frac{x}{y})^2 \in \Q$,
+    contradicting with fact that $T^2 - \alpha = 0$ has no solution in $\Q$.
+    Hence $x^2 - y^2 \alpha \ne 0$ and its reciprocal exists in $\Q$.
+
+    Therefore $p^{-1} = \dfrac{x}{x^2 - y^2 \alpha} - \dfrac{y}{x^2 - y^2 \alpha} \sqrt{\alpha}$,
+    and because $x,y,\alpha \in \Q$, $p^{-1} \in \Q(\sqrt{\alpha})$.
+\end{proof}
+
+% P 2
+\begin{problem}
+    Define $V := \C^\C$, consider the following subsets of $V$.
+    Which are $\R$-vector spaces? Which are $\C$-vector spaces? Justify.
+\end{problem}
+
+\begin{notation}
+    Let $\vec{0} : \C \to \C, z \mapsto 0$ denote the zero vector which is the constant function of $0_\C$.
+    For each part, let the subset be called $W$.
+\end{notation}
+Due to the sets below being subsets of $V$ under the same operations,
+it suffices to check if $W$ in each part is a subspace
+having $\vec{0}$, closure under addition and scalar multiplication.
+
+\begin{enumerate}[label=(\roman*)]
+% part i
+    \item all $f\in V$ such that $f(0) = 1$;
+
+        Because $\vec{0}(0) = 0 \ne 1$, $W$ is not a vector space due to absense of $\vec{0}$.
+        \hfill$\blacksquare$
+% part ii
+    \item all $f\in V$ such that $f(0) = f(1)$;
+
+        $\vec{0}(0) = \vec{0}(1) = 0$, so the zero vector is in $W$.
+
+        Take any pair $f,g \in W$, then
+        \begin{align*}
+            (f+g)(0) &= f(0) + g(0) \\
+            &= f(1) + g(1)  \\
+            &= (f+g)(1)
+        \end{align*}
+        closure under vector addition holds.
+
+        Take any $f \in W$, then for any $k\in\C$ and $k \in\R$,
+        \begin{align*}
+            (kf)(0) &= k\cdot f(0)  \\
+            &= k\cdot f(1)  \\
+            &= (kf)(1)
+        \end{align*}
+        $W$ is both a $\R$ and $\C$-vector space.
+        \hfill$\blacksquare$
+% part iii
+    \item all $f\in V$ such that for every $z\in \C$, one has $\conj{f(z)} = f(z)$;
+
+        $\forall z\in \C.~ \conj{\vec{0}(z)} = \conj{0} = 0$, so $\vec{0}$ is in $W$.
+
+        For any $z\in \C$, $\conj{z} = z \iff z \in \R$.\\
+        Take any pair $f,g \in W$,
+        then for any $z\in\C, (f+g)(z) = f(z) + g(z)$,
+        since $f(z), g(z) \in \R$ and $\R$ is a subfield of $\C$,
+        $(f+g)(z) \in \R$ and thus closure under vector addition holds.
+
+        Take any non-zero $f$ from $W$, take any $k\in \C$ where $k = a + bi, a,b\in \R, b\ne 0$,
+        then for any $z\in \C$ where $f(z) \ne 0$,
+        \begin{align*}
+            (kf)(z) &= k\cdot f(z) \\
+            &= (a+bi)\cdot f(z) \\
+            &= a\cdot f(z) + (b\cdot f(z))i
+        \end{align*}
+        Since $\exists k\in \C, f\in W$ where $\operatorname{Im}((kf)(z)) \ne 0 \iff (kf)(z)\not\in \R$,
+        closure under scalar multiplication is broken and this set is not a $\C$-vector space.
+
+        However, for any $f\in V$ where for every $z\in \C$, $f(z) \in \R$. For any $k\in \R, z\in \C$,
+        because $\R$ is a subfield, $(kf)(z) = k\cdot f(z) \in \R$. Hence $W$ is a $\R$-vector space.
+        \hfill$\blacksquare$
+% part iv
+    \item all $f\in V$ such that for every $z\in \C$, one has $f(\conj{z}) = f(z)$;\\
+        $\vec{0}$ is a constant function and ignores its parameter, satisfying the condition, thus $\vec{0} \in W$.
+
+        For any pair $f,g \in W$, then for any $z\in \C$,
+        \begin{align*}
+            (f+g)(\conj{z}) &= f(\conj{z}) + g(\conj{z}) \\
+            &= f(z) + g(z) \\
+            &= (f+g)(z)
+        \end{align*}
+        Thus closure under vector addition holds.
+
+        For any $f \in W, k\in \C$, for all $z\in \C$,
+        \begin{align*}
+            (kf)(\conj{z}) &= k\cdot f(\conj{z})    \\
+            &= k\cdot f(z)  \\
+            &= (kf)(z)
+        \end{align*}
+        Closure under scalar multiplication holds (also holds for $k\in \R$).
+        $W$ is both a $\R$ and $\C$-vector space.
+        \hfill$\blacksquare$
+% part v
+    \item all $f\in V$ such that for every $z\in \C$, one has $f(z^2) = f(z)^2$;\\
+        Take $f = g = \text{id}_\C$, clear that property above holds.
+        Take $z = 2 \in \C$,
+        \begin{align*}
+            (f+g)(2^2) &= f(4) + g(4)   \\
+            &= 8    \\
+            (f+g)(2)^2 &= (f(2) + g(2))^2   \\
+            &= 4^2 = 16
+        \end{align*}
+        We can see that $(f+g)(2^2) \ne (f+g)(2)^2$,
+        thus $f + g \notin W$,
+        closure under vector addition is broken and $W$ is not a $\R$ or $\C$-vector space.
+        \hfill$\blacksquare$
+\end{enumerate}
+
+\begin{definition}
+    Let $K$ be a field, $V$ a $K$-vector space. For any $K$-subspaces $U, W \subseteq V$, define
+    \[
+        U + W := \set{ v\in V: \exists u\in U, w\in W.~ v = u + w }.
+    \]
+\end{definition}
+% P 3
+\begin{problem}
+    Let $V:=\R^\R$. Consider $V_\text{even}$ (resp. $V_\text{odd}$) as subsets of all even (resp. odd) functions.
+\end{problem}
+\begin{notation}
+    Let $\vec{0} : \R \to \R, x \mapsto 0$ denote the zero vector which is the constant function of $0_\R$.
+\end{notation}
+\begin{enumerate}[label=(\alph*)]
+    \item Show that $V_\text{even}$ and $V_\text{odd}$ are $\R$-subspaces of $V$.
+        \begin{proof}
+            Firstly, $\forall x \in \R.~ \vec{0}(x) = 0$, trivially $\vec{0} \in V_\text{odd}$ and $\vec{0} \in V_\text{even}$.
+
+            Consider $f,g\in V_\text{even}$, then $\forall x\in \R$,
+            \begin{align*}
+                (f+g)(-x) &= f(-x) + g(-x)  \\
+                &= f(x) + g(x) \\
+                &= (f+g)(x)
+            \end{align*}
+            Thus $f+g \in V_\text{even}$.
+            Consider any $f\in V_\text{even}, k\in \R$, then $\forall x\in \R$,
+            \begin{align*}
+                (kf)(-x) &= k\cdot f(-x)    \\
+                &= k\cdot f(x)  \\
+                &= (kf)(x)
+            \end{align*}
+            Thus $kf \in V_\text{even}$.
+            Therefore $V_\text{even}$ is a subspace of $V$.
+
+            Now consider $f,g \in V_\text{odd}$, then $\forall x\in \R$,
+            \begin{align*}
+                (f+g)(-x) &= f(-x) + g(-x)  \\
+                &= -f(x) -g(x)      \\
+                &= -(f(x) + g(x))    \\
+                &= -(f+g)(x)
+            \end{align*}
+            Thus $f+g \in V_\text{odd}$.
+            Consider any $f\in V_\text{odd}, k\in \R$, then $\forall x\in \R$,
+            \begin{align*}
+                (kf)(-x) &= k\cdot f(-x)    \\
+                &= k\cdot (-f(x))   \\
+                &= -k\cdot f(x) \\
+                &= -(k\cdot f(x)) = -(kf)(x)
+            \end{align*}
+            Thus $kf \in V_\text{odd}$.
+            Therefore $V_\text{odd}$ is a subspace of $V$.
+        \end{proof}
+    \item Show that $V_\text{even} \cap V_\text{odd} = \set{\vec{0}}$ and $V_\text{even} + V_\text{odd} = V$.
+        \begin{proof}
+            Take $f\in V_\text{even} \cap V_\text{odd}$, $f$ is both even and odd, so $\forall x\in \R$,
+            $$f(-x) = f(x) \text{ and } f(-x) = -f(x).$$
+            So $f(x) = -f(x)$ for all $x\in \R$, which is the case if and only if for all $x\in \R$, $f(x) = 0$.
+            This means $f$ is the constant function of $0$, that is $\vec{0}$, this implies $V_\text{even} \cap V_\text{odd} = \set{\vec{0}}$.
+
+            Consider any $h \in V_\text{even} + V_\text{odd}$, by definition, $\exists f \in V_\text{even}, g \in V_\text{odd}.~ h = f + g$.
+            Since $V_\text{even}$ and $V_\text{odd}$ are subspaces of $V$, $h = f + g \in V$,
+            so $V_\text{even} + V_\text{odd} \subseteq V$.
+
+            Conversely take $f\in V$. For all $x\in \R$,
+            \begin{align*}
+                f(x) &= f(x) + \vec{0}(x) \\
+                &= \frac{1}{2} f(x) + \frac{1}{2} f(x) + \frac{1}{2} f(-x) - \frac{1}{2} f(-x)\\
+                &= \frac{1}{2} (f(x) + f(-x)) + \frac{1}{2} (f(x) - f(-x))
+            \end{align*}
+            Define $g,h : \R \to \R$ as
+            \begin{align*}
+                g: x &\mapsto \frac{1}{2} (f(x) + f(-x)) \\
+                h: x &\mapsto \frac{1}{2}  (f(x) - f(-x))
+            \end{align*}
+            Verify that $g\in V_\text{even}$ and $h\in V_\text{odd}$.
+            \begin{align*}
+                g(-x) &= \frac{1}{2}(f(-x) + f(-(-x)))  \\
+                &= \frac{1}{2}(f(x) + f(-x))    \\
+                h(-x) &= \frac{1}{2}(f(-x) - f(-(-x)))  \\
+                &= -\frac{1}{2}(f(x) - f(-x))
+            \end{align*}
+            Because $f = g + h$, $f \in V_\text{even} + V_\text{odd}$.
+            So $V \subseteq V_\text{even} + V_\text{odd}$ and this completes the proof that $V_\text{even} + V_\text{odd} = V$.
+        \end{proof}
+\end{enumerate}
+
+% P 4
+\begin{problem}
+    Let $K$ be any field, let $V$ be a $K$-vector space,
+    and let $V_1, V_2\subseteq V$ be $K$-subspaces of $V$.
+    Suppose $V_1 \cap V_2 = \set{\vec{0}}$ and $V_1 + V_2 = V$.
+    Show that for any $v \in V$, there exist unique vectors
+    $v_1 \in V_1$ and $v_2 \in V_2$ such that $v = v_1 + v_2$ in V.
+\end{problem}
+\begin{proof}
+    Take any arbitary $v\in V$, since $V_1 + V_2 = V$,
+    by definition of $V_1 + V_2$, there exists $v_1 \in V_1, v_2 \in V_2$ such that $v = v_1 + v_2$.
+
+    Suppose $\exists v_1' \in V_1, v_2' \in V_2$ where $v = v_1' + v_2'$.
+    \begin{align*}
+        v = v_1 + v_2 &= v_1' + v_2'    \\
+        v_1 - v_1' &= v_2' - v_2
+    \end{align*}
+    Clearly $LHS \in V_1$ and $RHS \in V_2$ due to closure under vector addition.
+    This implies $LHS = RHS = \vec{0}$ since $V_1 \cap V_2 = \set{\vec{0}}$, thus we have
+    $v_1 = v_1'$ and $v_2 = v_2'$, completing the uniqueness proof.
+\end{proof}
+
+% P 5
+\begin{problem}
+    Let $K$ be any field, let $V$ be a $K$-vector space,
+    and let $V_1, V_2\subseteq V$ be $K$-subspaces of $V$.
+    Suppose the set-theoretic union $V_1 \cup V_2$ is also a $K$-subspace of $V$.
+    Show that one of the subspaces $V_1$ or $V_2$ is contained in the other.
+\end{problem}
+\begin{proof}
+    $V_1\cup V_2$ is also a $K$-subspace of $V$,
+    Suppose for a contradiction neither $V_1$ nor $V_2$ is contained in the other.
+    Means that $V_1 \setminus (V_1 \cap V_2)$ and $V_2 \setminus (V_1 \cap V_2)$ are both non-empty,
+    namely there exists $v_1 \in V_1, v_2 \in V_2$ where $v_1, v_2\not \in V_1 \cap V_2$.
+    Clearly $v_1, v_2 \in V_1 \cup V_2$.
+    By closure property of vector addition in a subspace, $v_1 + v_2 \in V_1 \cup V_2$.
+    Case $v_1 + v_2 \in V_1$, then $v_1 + v_2 - v_1 = v_2 \in V_1$, contradicting fact that $v_2 \not \in V_1\cap V_2$.
+    A symmetric argument shows that $v_1 + v_2$ cannot be in $V_2$, thus a contradiction.
+\end{proof}
+
+% P 6
+\begin{problem}
+    Let $K$ be an infinite field, let $V$ be a vector space over $K$,
+    and let $V_1, \dots V_n \subset V$ be a finite list of proper $K$-subspaces over V.
+    Show that $V \neq \displaystyle\bigcup_{j=1}^n V_j$.
+\end{problem}
+\begin{proof}
+    Let $n\in \N$, $V_1, \dots, V_n \subset V$ be a finite list of proper $K$-subspaces over $V$.
+    Suppose for a contradiction that $V = \displaystyle\bigcup_{i=1}^n V_i$.
+    Trivially, $n$ cannot be $0$ or $1$, result of Q5 implies $n \ne 2$, so $n \ge 3$.
+
+    Using an algorithm, we can remove subspaces in the list as such,
+    \begin{enumerate}
+        \item For each $x \in \set{1,2,\dots,n}$,
+        \item If $\displaystyle\bigcup_{i\ne x} V_i = V$,
+            remove $V_x$ from the list.
+    \end{enumerate}
+    Since list is finite, algorithm halts.
+    Therefore, without loss of generality, we can assume that for any $x \in \set{1,\dots,n}$,
+    \begin{align*}
+        V = \bigcup_{i=1}^n V_i \ne &\bigcup_{i\ne x} V_i, \text{ and}   \\
+        V_x \setminus &\bigcup_{i \ne x} V_i \ne \emptyset.
+    \end{align*}
+
+    Now take vectors
+    $$ u \in V_1 \setminus \bigcup_{i\ne 1} V_i \text{ and } w \in V_2\setminus \bigcup_{i\ne 2} V_i $$
+    For any $a\in K \setminus \set{0_K}$, define
+    $$v_a := u + aw.$$
+    It is clear that $v_a \in V = \displaystyle\bigcup_{i=1}^n V_i$.
+%
+    Suppose $v_a \in V_1$, then $a^{-1}(v_a - u) = w \in V_1$, contradicting $w \notin V_i$ for any $i \ne 2$.
+    So $v_a \notin V_1$.
+    Suppose $v_a \in V_2$, then $v_a - aw = u \in V_2$, contradicting $u \not\in V_i$ for any $i \ne 1$.
+    So $v_a \in \displaystyle\bigcup_{i=3}^n V_i$.
+
+    $|K \setminus\set{0_K} | = \infty$ while $|\set{V_3, \dots, V_n}| = n- 2$.
+    Since $|K \setminus\set{0_K} | > |\set{V_3, \dots, V_n}|$, there does not exist an injective map
+    $K \setminus\set{0_K} \to \set{V_3, \dots, V_n}$.
+    Now consider the following maps,
+    \begin{align*}
+        f: K\setminus\set{0_K} &\to \bigcup_{i=3}^n V_i    \\
+            a &\mapsto v_a = u + aw; \\
+        g: \bigcup_{i=3}^n V_i &\to \set{V_3, \dots, V_n}   \\
+            v &\mapsto V_j
+    \end{align*}
+    where $V_j$ is the lowest-indexed subspace fulfilling $v \in V_j$.
+
+    We have $g \circ f: K \setminus\set{0_K} \to \set{V_3, \dots, V_n}$, which as shown, cannot be injective.
+    This means that $\exists a,b \in K \setminus\set{0_K}, V_j \in \set{V_3, \dots, V_n}.~ a \ne b \land (g\circ f)(a) = (g\circ f)(b)$. So we can conclude that 
+%    Consider all vectors of the form $v_a = u + aw$,
+%    $$\forall a\in K\setminus\set{0_K}, \exists j\in \set{3,4,\dots,n}.~  v_a \in V_j.$$
+%    Since there are infinitely many distinct values of $a$ but only finitely many subspaces for $v_a$ to be in,
+%    by a cardinality argument we can conclude that
+    $$\exists V_j\in\set{V_3, \dots, V_n},~ a,b\in K\setminus\set{0_K}.~ a\ne b \text{ and } v_a, v_b\in V_j.$$
+
+    Then $v_a - v_b \in V_j$ due to closure property of subspace,
+    \begin{align*}
+        v_a - v_b &= (u + aw) - (u + bw)    \\
+        &= (a-b)w
+    \end{align*}
+    Since $a\ne b$, $a-b \ne 0_K$, by closure property this implies $(a-b)^{-1} \cdot (a-b)w \in V_j \implies w \in V_j$,
+    contradicting fact that $\forall i \ne 2.~ w \notin V_i $.
+
+    Therefore $V$ cannot be a union of a finite list of proper $K$-subspaces.
+\end{proof}
+
+\end{document}

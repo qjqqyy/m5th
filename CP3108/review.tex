@@ -1,0 +1,324 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor}
+%
+\documentclass[british,a4paper,]{scrartcl}
+\usepackage[british]{babel}
+\title{CP3208 Literature Review -- Automaticity of Algebraic Structures}
+\author{Qi Ji}
+\date{March 2019}
+\makeatletter
+\let\thetitle\@title
+\let\theauthor\@author
+\let\thedate\@date
+\makeatother
+
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+\usepackage{fancyhdr}
+\usepackage{tabu}
+\usepackage[tablewithin=section]{caption}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{
+            pdftitle={\thetitle},
+            pdfauthor={\theauthor},
+            colorlinks=true,
+            linkcolor=Violet,
+            citecolor=PineGreen,
+            urlcolor=MidnightBlue,
+            breaklinks=true}
+\usepackage{cleveref}
+
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\usepackage{csquotes}
+%% load polyglossia as late as possible as it *could* call bidi if RTL lang (e.g. Hebrew or Arabic)
+%\usepackage{polyglossia}
+%\setmainlanguage[variant=british]{english}
+\usepackage[
+    style=alphabetic,
+    maxalphanames=6,
+    maxnames=6,
+    doi=false,isbn=false,url=false,
+]{biblatex}
+\addbibresource{\jobname.bib}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{question}[theorem]{Question}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\set}[1]{\left\{\, #1 \,\right\}}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\sq}[1]{\left[ #1 \right]}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\pagestyle{fancy}
+\lhead{CP3208 Literature Review}
+\chead{}
+\rhead{\thedate}
+\lfoot{\theauthor}
+\cfoot{}
+\rfoot{\thepage}
+\renewcommand{\footrulewidth}{\headrulewidth}
+
+\begin{document}
+\maketitle
+
+There are numerous connections between group theory and automata theory.
+Algebraic structures like groups could be described using automata theory, while
+concepts from algebra also come in useful in automata theory.
+
+\section{Semigroups, Monoids and Groups}
+
+We will first introduce some relevant concepts regarding common algebraic structures.
+
+Let \(G\) be a set and let \(\circ : G\times G \to G\).
+\begin{definition}
+    The structure \((G,\circ)\) is called a \textbf{semigroup} iff \(\circ\) is associative,
+    that is for all \(x,y,z,\in G\), \(x\circ(y\circ z) = (x\circ y)\circ z\).
+\end{definition}
+\begin{definition}
+    The structure \((G, \circ, e)\) is called a \textbf{monoid} iff \((G, \circ)\) is a semigroup
+    and for all \(x\in G\), \(x\circ e = e \circ x = x\).
+\end{definition}
+\begin{definition}
+    The structure \((G, \circ, e)\) is called a \textbf{group} iff \((G, \circ, e)\) is a monoid
+    and for all \(x\in G\), there exists \(y \in G\) satisfying \(x\circ y = e\).
+\end{definition}
+\begin{example} \label{example:integers}
+    The structure \((\set{1,2,\dots}, +)\) is a semigroup.
+    Adding \(0\) to it gives us the monoid of natural numbers \((\N, +, 0)\).
+    Considering its closure gives us the additive group of integers \((\Z, +, 0)\).
+\end{example}
+\begin{definition} \label{def:finitelygenerated}
+    A semigroup \((G, \circ)\) is called \textbf{finitely-generated} iff
+    there exists finite subset \(F \subseteq G\) where
+    for each \(x \in G\), there exists \(y_1, y_2,\dots, y_n\in A\) satisfying
+    \(x = y_1\circ y_2 \circ \dots \circ y_n\).
+    The set \(F\) is set of generators for \(G\).
+\end{definition}
+
+\begin{remark}
+    \Cref{def:finitelygenerated} generalises to monoids and groups in the obvious way.
+    Also note that the structures in \Cref{example:integers} are finitely-generated,
+    with the generator \(1\).
+\end{remark}
+
+Groups have been studied by mathematicians for centuries in their own right,
+but only recently have the connection between group theory and automata theory been made.\autocite{Ho76,Ho83,KN,Epstein}
+
+\section{Notions of Automaticity for Groups and Monoids}
+
+The low complexity of automata motivates the search for automatic presentations of various algebraic structures.
+For example,
+the word problem for groups in general is well-known to be undecidable.
+However, most reasonable formalisations of automatic groups will have their word problem solvable with a
+quadratic time complexity.\autocite{Epstein,KKM}
+
+We first introduce the framework proposed by Hodgson\autocite{Ho76, Ho83} and
+Khoussainov and Nerode\autocite{KN}.
+\begin{definition} \label{defn:fullyauto}
+     A semigroup \((G,\circ)\) is called \textbf{fully automatic} iff
+     \begin{itemize}
+         \item \(G\) is regular over \(\Sigma^*\) with \(\Sigma\) being a finite alphabet,
+         \item \(\circ: G\times G \to G\) is an automatic function.
+     \end{itemize}
+     Fully automatic monoids and groups are defined analogously.
+\end{definition}
+\begin{remark}
+    In the original literature the authors referred to their definition as just `automatic''.
+    We follow the convention in \autocite{fullautomatatheory} and use the term ``fully automatic''
+    in the sense that the \emph{full} semigroup operation is automatic.
+    At the same time, we also disambiguate it from the following more popular definition,
+    attributed to Epstein, Cannon, Holt, Levy, Paterson and Thurston\autocite{Epstein}.
+\end{remark}
+
+\begin{definition} \label{defn:epsteinauto}
+    Let \((G, \circ)\) be a semigroup generated by a finite subset \(F \subseteq G\).
+    \((G, \circ)\) is \textbf{automatic} iff
+    \begin{itemize}
+        \item \(G\) is a regular subset of \(F^*\),
+        \item each \(x\in G\) has exactly a unique representative in \(F^*\), and
+        \item for each \(y \in G\), the multiplication map \((\circ y) : G \to G\) defined
+            as \(x \mapsto x\circ y\) is automatic.
+    \end{itemize}
+    The notion of having exactly 1 representative is equivalent to allowing multiple representatives but
+    with equality being automatic.
+    To see why, consider how we can unambiguously choose the
+    lexiographically smallest element as the unique representative.
+\end{definition}
+
+We can make some observations to
+highlight the differences between \Cref{defn:fullyauto} and \Cref{defn:epsteinauto}.
+\begin{theorem}
+    There exists a semigroup which is automatic but not fully automatic.
+\end{theorem}
+\begin{proof}
+    Theorem 12.22 in \autocite{fullautomatatheory} provides an explicit construction.
+\end{proof}
+
+Kharlampovich, Khoussainov and Miasnikov were the first to formally consider the related concept of a Cayley automatic group \autocite{KKM}.
+It is sometimes also called graph automatic because it considers the Cayley graph of a group as the automatic structure.
+\begin{definition} \label{defn:cayleyauto}
+    A finitely generated group \(G\) generated by \(F\) is \textbf{Cayley automatic} iff
+    the following conditions hold for some finite alphabet \(\Sigma\),
+    \begin{itemize}
+        \item representatives of \(G\) is regular in \(\Sigma^*\),
+        \item each \(x\in G\) has a unique representative in \(\Sigma^*\),
+        \item for each \(y\in F\), the right multiplication by \(y\) map is automatic.
+    \end{itemize}
+\end{definition}
+
+\begin{remark}
+    We note that \Cref{defn:epsteinauto} is a special case of this,
+    with the extra condition that natural representatives are chosen,
+    that is \(\Sigma = F\) the generating set.
+    As a result \Cref{defn:cayleyauto} defines a strictly bigger class of automatic groups.
+\end{remark}
+
+\begin{example}
+    The Heisenberg group \(\mathcal{H}_3(\Z)\) defined as
+    \[\set{\begin{pmatrix}1&a&b\\0&1&c\\0&0&1\end{pmatrix}: a,b,c\in\Z}\]
+    is Cayley automatic (6.6 in \autocite{KKM}), but not automatic (8.1.1 in \autocite{Epstein}).
+\end{example}
+
+\begin{definition} \label{defn:cayleybiauto}
+    \(G\) is \textbf{Cayley biautomatic} if
+    the third condition in \Cref{defn:cayleyauto} also holds for left multiplication.
+\end{definition}
+
+It is interesting to note that there exists a Cayley automatic group that is not Cayley biautomatic.
+\autocite{MS}
+
+\section{General Automatic Structures}
+
+For general structures we consider the more general framework of
+Hodgson\autocite{Ho76, Ho83} and Khoussainov and Nerode\autocite{KN}.
+
+\begin{definition} \label{defn:automaticstructure}
+    A structure \((A, R_1, R_2, \dots, R_k, f_1, f_2,\dots, f_h)\) is automatic iff
+    \begin{itemize}
+        \item the set \(A\) is regular in \(\Sigma^*\) where \(\Sigma\) is some finite alphabet,
+        \item all the relations \(R_1, R_2, \dots, R_k\) are automatic, and
+        \item all the functions \(f_1, f_2, \dots, f_h\) are automatic.
+    \end{itemize}
+    We do not distinguish between structures that are automatic and structures
+    that are merely isomorphic to an automatic structure.
+\end{definition}
+
+\begin{example}
+    A fully automatic group \((G,\circ)\) satisfying \Cref{defn:fullyauto} is an automatic structure.
+\end{example}
+
+\begin{definition}[Ordinals]
+    A set \(\alpha\) is an ordinal iff every \(\beta\in\alpha\) is a subset of \(\alpha\) and
+    \((\alpha, \in)\) is a well-order.
+\end{definition}
+Ordinals can be thought of as equivalence classes of well-ordered sets in set theory.
+They naturally describe how many times a process is iterated, possibly transfinitely many times, and are commonly encountered in model theory and recursion Theory.
+It is hence expected for there to be a suitable characterisation of ordinals in automata theory.\autocite{delhomme}
+\begin{theorem}[Delhomm\'e] \label{thm:delhomme}
+    Let \(\alpha\) be an ordinal, \((\alpha, +, \in)\) is automatic iff \(\alpha < \omega^\omega\).
+\end{theorem}
+\begin{proof}
+    Theorem 13.10 in \autocite{fullautomatatheory} provides a proof in English.
+\end{proof}
+
+\section{Semiautomatic Structures and Groups}
+
+Seeking more general ways to utilise finite automata for representing non-automatic structures,
+Jain, Khoussainov, Stephan, Teng and Zou
+proposed semiautomatic structures as a generalisation of \Cref{defn:automaticstructure}\autocite{semiauto}.
+\begin{definition}
+    Let \(f: R^n \to R\) be a function.
+    \(f\) is \textbf{semiautomatic} iff fixing \(n-1\) inputs, the resultant \(R\to R\) function is automatic.
+    The definition of a semiautomatic relation is analogous since we can view it as a \(\set{0,1}\)-valued function.
+\end{definition}
+
+\begin{definition}
+    A structure \((A, f_1, f_2, \dots, f_k; g_1, g_2, g_h)\) is \textbf{semiautomatic} iff
+    \begin{itemize}
+        \item the set \(A\) is regular in \(\Sigma^*\) where \(\Sigma\) is some finite alphabet,
+        \item all the functions \(f_1, f_2, \dots, f_k\) are automatic, and
+        \item all the functions \(g_1, g_2, \dots, g_h\) are semiautomatic
+    \end{itemize}
+    where without loss of generality we treat relations as functions.
+\end{definition}
+
+Jain, Khoussainov and Stephan used semiautomaticity to describe group-like structures.\autocite{finitelysanjay}
+They cited a related result by Tsankov.\autocite{tsankov}
+\begin{theorem}
+    The structure \((\Q, +, =)\) has no automatic presentation.
+\end{theorem}
+\begin{theorem}[21 in \autocite{semiauto}]
+    The ordered group \((\Q,<,=;+)\) of rationals is semiautomatic.
+\end{theorem}
+
+We note that \(\Q\) is not finitely generated, which leads on to this still open question.
+\begin{question}
+    Are all finitely generated semiautomatic groups Cayley automatic?
+\end{question}
+
+Several important results presented in \autocite{semiauto} concern the automatic and semiautomatic presentations
+of naturally-occuring algebraic structures.
+\begin{theorem} \label{sqrtring}
+    The ordered rings
+    \begin{itemize}
+        \item \((\Z[\phi], +, <, =; \cdot)\) where \(\phi = \frac{1+\sqrt{5}}2\) is the golden ratio, and
+        \item \((\Z(\sqrt{n}), \Z, +, <, =; \cdot)\) for every natural number \(n\)
+    \end{itemize}
+    admit semiautomatic presentations.
+\end{theorem}
+
+\section{Future Directions}
+
+We can possibly gain more insights in the automaticity of various algebraic structures.
+A good place to start would be to consider a natural generalisation of \Cref{sqrtring}
+\begin{question}
+    Let \(n\) be a natural number.
+    Consider the ordered ring \((\Z(\sqrt[3]{n}), +, \cdot, <)\).
+    What can be made semiautomatic? What can be made automatic?
+\end{question}
+This could be generalised further.
+\begin{question}
+    Let \(n,p\) be a natural numbers.
+    What about \((\Z(\sqrt[p]{n}), +, \cdot, <)\)?
+\end{question}
+
+We could also explore the structures of ordinals and
+consider some generalisations to \Cref{thm:delhomme}.
+\begin{question}
+    Let \(\alpha \geq \omega^\omega\) be an ordinal.
+    Consider the structure \((\alpha, \in, +, \cdot)\).
+    What relations admit semiautomatic representations?
+\end{question}
+
+\printbibliography
+\end{document}

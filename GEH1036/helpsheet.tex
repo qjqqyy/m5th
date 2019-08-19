@@ -1,0 +1,222 @@
+\documentclass[11pt,twocolumn]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[british]{babel}
+\usepackage[a4paper,landscape,top=1cm,bottom=1cm,left=1cm,right=1cm]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+
+\usepackage{tikz,wrapfig}
+\usetikzlibrary{shapes}
+
+\usepackage{titlesec}
+\titlespacing*{\subsection}
+{0pt}{2ex}{2ex}
+\titlespacing*{\paragraph}
+{0pt}{1ex}{1ex}
+
+\setlength\parindent{0pt}
+\setitemize{noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt}
+\setenumerate{noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt}
+
+\begin{document}
+%\setlength{\abovedisplayskip}{6pt}
+%\setlength{\belowdisplayskip}{6pt}
+%\setlength{\abovedisplayshortskip}{6pt}
+%\setlength{\belowdisplayshortskip}{6pt}
+
+\subsection*{1 Counting}
+\paragraph{Useful formulas.}
+\begin{align*}
+    a + ar + ar^2 + \dots + ar^n &= \frac{a(r^{n+1} - 1)}{r - 1} \\
+    a + (a+d) + \dots + (a+nd) &= \frac{(n+1)(a+a+nd)}{2} 	\\
+    ^nP_k &= \frac{n!}{(n-k)!}		\\
+    \binom{n}{k} = {}^nC_k &= \frac{n!}{k!(n-k)!}	\\
+    \left(a+b\right)^n &= \sum_{k=0}^n \binom{n}{k} a^{n-k}b^k
+\end{align*}
+
+\subsection*{2 Graphing}
+\paragraph{Definitions.}\hfill\\
+\textbf{Tree.} graph with no cycle,
+    \textbf{Leaf.} vertex with degree 1. \\
+\textbf{Weight of graph.} sum of weights of all its edges.  \\
+\textbf{Spanning tree.} subgraph that is a tree and contains \emph{all} vertices of original graph.
+
+\paragraph{Theorems.}\hfill\\
+\textbf{Degree Theorem.}In any graph, sum of degrees $= 2\times$ no. edges.   \\
+\textbf{Leaf Lemma.} Every tree with $\geq 2$ vertices has $\geq 2$ leaves (deg1 vertices).\\
+\textbf{Tree Theorem.} Every tree with $n$ vertices has exactly $n-1$ edges.    \\
+\textbf{Euler Walk Theorem I.} A connected graph contains a closed Euler walk iff every vertex has an even degree.\\
+\underline{directed version.} iff for every vertex the no. arrows in = no. arrows out.   \\
+\textbf{Euler Walk Theorem II.} A connected graph contains an open Euler walk iff
+\begin{enumerate}[label=(\roman*)]
+    \item start/end vertices have odd degree; and
+    \item all other vertices have even degree.
+\end{enumerate}
+\underline{directed version.} iff
+\begin{enumerate}[label=(\roman*)]
+    \item for start vertex, no. arrows out exactly one more than no. arrows in;
+    \item for end vertex, no. arrows in exactly one more than no. arrows out;
+    \item for all other vertices no. arrows in = no. arrows out.
+\end{enumerate}
+
+\paragraph{Prim's Algorithm}
+\begin{enumerate}
+    \item Choose any vertex to initalise tree.
+    \item Grow the tree by one edge: of all edges that connect to vertices not yet in tree, find one with minimum-weight and add it in tree.
+    \item Repeat step 2 until tree spans.
+\end{enumerate}
+
+\paragraph{Finding Euler circuit.}
+\begin{enumerate}
+    \item Check all vertices are even.
+    \item Construct any cycle.
+    \item If there's still remaining unused edges, construct cycle with those and combine the cycles.
+    \item Repeat step 3 until all edges used.
+\end{enumerate}
+
+\paragraph{Chinese Postman Problem (Choosing edges to repeat)}
+\begin{enumerate}
+    \item Enumerate all pairings of odd vertices.
+    \item For each pair, find paths that join the vertices with minimum weight.
+    \item Use the set of pairings which sum of weights is minimised.
+    \item Walk the edges found above twice.
+\end{enumerate}
+
+\paragraph{Vertex colouring}
+If graph $G$ contains a complete graph on $n$ vertices, then $\chi(G) \ge n$.\\
+Upper bound. Arrange degrees in decreasing order, place integers $1,2,3,\dots$ below the degrees until you reach integer $k$ such that $k+1 > d_{k+1}$, then $\chi(G) \le k+1$.
+
+\subsection*{3 Clocking}
+\paragraph{Congruence properties} If $a\equiv b\pmod{m}$, then I can
+\begin{itemize}
+    \item add multiples of modulo $m$ to any side
+    \item multiply by integers
+    \item exponentiate both sides with positive powers only
+    \item two congruences with the same modulo can be added/multiplied with each other
+\end{itemize}
+\paragraph{Calendrical Knowledge} \hfill\\
+YYYY is a leap year iff
+\begin{itemize}
+    \item it is not a century year and divisible by 4 (1996); or
+    \item it is a century year and divisible by 400 (2000).
+\end{itemize}
+Calendar (mod 7)\\
+\begin{tabular}{| c | c | c | c | c | c | c | c | c | c | c | c |}
+    \hline
+    Jan & Feb & Mar & Apr & May & Jun & Jul & Aug & Sep & Oct & Nov & Dec\\
+    31 & 28/29& 31  & 30  & 31  & 30  & 31  & 31  & 30  & 31  & 30  & 31 \\
+    %\hline
+    3  & 0/1  & 3   & 2   & 3   & 2   & 3   & 3   & 2   & 3   & 2   & 3 \\
+    \hline
+\end{tabular}
+
+\newpage
+\subsection*{4 Coding}
+\paragraph{Binary representation.} Divide by 2 and write it \textbf{right-to-left}.
+
+\begin{tabular}{| r | c | c || r | c |}
+    \hline
+    bin & oct & hex & bin & hex\\
+    \hline
+    0   & 0     & 0 &1000 & 8 \\
+    1   & 1     & 1 &1001 & 9 \\
+    10  & 2     & 2 &1010 & A \\
+    11  & 3     & 3 &1011 & B \\
+    100 & 4     & 4 &1100 & C \\
+    101 & 5     & 5 &1101 & D \\
+    110 & 6     & 6 &1110 & E \\
+    111 & 7     & 7 &1111 & F \\
+    \hline
+\end{tabular}
+
+\paragraph{Modulo 37 encoding and ECC.} 0-9 becomes 0-9 and \verb|_|(space) is 36, and
+
+\begin{tabular}{r || c c c c c c c c c c c c c}
+    sym & A & B & C & D & E & F & G & H & I & J & K & L & M\\
+    num & 10& 11& 12& 13& 14& 15& 16& 17& 18& 19& 20& 21& 22\\
+    \hline\hline
+    sym & N & O & P & Q & R & S & T & U & V & W & X & Y & Z\\
+    num & 23& 24& 25& 26& 27& 28& 29& 30& 31& 32& 33& 34& 35\\
+    \hline\hline
+\end{tabular}
+\begin{wrapfigure}{r}{0pt}
+\def\firstcircle{(0,0) circle (1cm)}
+\def\secondcircle{(0:1.2cm) circle (1cm)}
+\def\thirdcircle{(300:1.2cm) circle (1cm)}
+\begin{tikzpicture}
+    \begin{scope}[shift={(3cm,-5cm)}]
+%        \fill[red] \firstcircle;
+%        \fill[green] \secondcircle;
+%        \fill[blue] \thirdcircle;
+        \draw \firstcircle  node[above,left]{$s_5$};
+        \draw {(120:1.3cm)} node{$A$};
+        \draw {(25:0.7cm)} node{$s_4$};
+        \draw {(-25:0.7cm)} node{$s_1$};
+        \draw {(280:0.7cm)} node{$s_3$};
+        \draw \secondcircle node[above,right]{$s_6$};
+        \draw {(0:1.2cm)+(60:1.3cm)} node{$B$};
+        \draw {(0:1.2cm)+(270:0.7cm)} node{$s_2$};
+        \draw \thirdcircle  node[below]{$s_7$};
+        \draw {(300:1.2cm)+(-30:1.3cm)} node{$C$};
+    \end{scope}
+\end{tikzpicture}
+\end{wrapfigure}
+
+\paragraph{Weighted sum} $w = 1(\text{last char}) + 2(\text{second last char}) + \dots + n(\text{first char})$,
+and for modulo 37 encoding, append a checksum char such that $w \equiv 0 \pmod{37}$.
+
+\paragraph{ISBN.}
+10 digits, X in last digit means 10, and a valid ISBN will have $w \equiv 0 \pmod{11}$.
+
+\paragraph{Hamming $(7,4)$ and $(8,4)$ Codes.}
+
+Every circle has even parity. In $(8,4), s_8$ keeps total parity even.
+
+\hfill\\
+\subsection*{5 Cryptography}
+\paragraph{Affine Cryptosystems} with modulo $n$, $(a,b)$ is the encryption key\\
+encrypt: $y \equiv ax + b \pmod{n}$\\
+decrypt: $y \equiv a'x - a'b \pmod{n}$ where $a'$ is $a$ inverse modulo $n$.
+
+\paragraph{Finding modulo Inverse.} Use Euclid $a = qd + r$, $\gcd(a,d) = \gcd(d,r)$.
+
+\paragraph{Modular exponentiation.} Finding $a^n \pmod{m}$.
+Express $n$ as multiples(usually binary), then split $a^n$ and find remainder for each term.
+
+\newpage
+\paragraph{RSA.}
+$p,q$ are $2$ primes, $n = pq$, $k$ is an integer that has an inverse $\pmod{(p-1)(q-1)}$.
+\begin{itemize}
+    \item Let $P$ be a chunk of plaintext such that $0\leq P < n$.
+    \item $j$ is inverse of $k$ mod $(p-1)(q-1)$, $kj \equiv 1 \pmod{(p-1)(q-1)}$
+    \item Public key is $(n,k)$. Private key is $(j)$.
+    \item Procedure encrypt: $C \equiv P^k \pmod{n}$.
+    \item Procedure decrypt: $P \equiv C^j \pmod{n}$.
+\end{itemize}
+
+\subsection*{6 Chancing}
+\paragraph{Probability.}
+With event $E$ and sample space $S$,
+$\mathbb{P}(E) = \displaystyle\frac{|E|}{|S|}$.
+
+\paragraph{Independence.} characterising property: $\mathbb{P}(A\cap B) = \mathbb{P}(A)\mathbb{P}(B)$ where $A,B$ are events.
+
+\paragraph{Conditional Probability.} $\mathbb{P}(A\mid B) = \displaystyle\frac{\mathbb{P}(A\cap B)}{\mathbb{P}(B)}$.
+
+\paragraph{Binomial distribution.}
+For $n$ independent events each with probability $p$,
+\[
+	X\sim B(n,p) \iff \mathbb{P}(X=k) = \binom{n}{k}p^k(1-p)^{n-k}
+	\text{ and } \mathbb{E}[X] = np
+\]
+\paragraph{Expectation.} $\mathbb{E}[X] = \displaystyle\sum_x x\cdot\mathbb{P}(X = x)$ iterated through all possible values for $x$.\\
+Expectation is linear so suppose total winnings $X = X_1 + \dots + X_k$, then
+$$\mathbb{E}[X] = \mathbb{E}[X_1] + \dots + \mathbb{E}[X_k].$$
+
+\paragraph{Poisson Distribution} For Binomial distribution with large $N$ and moderate $\mathbb{E}[X] = c = Np$, then
+$$\mathbb{P}(X = k) \approx \frac{e^{-c}c^k}{k!}$$
+
+%\subsection*{Misc}
+\end{document}

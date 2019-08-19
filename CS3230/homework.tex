@@ -1,0 +1,208 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor}
+%
+\documentclass[british,a4paper,]{article}
+\title{CS3230 Homework 1}
+\author{Qi Ji}
+\date{26th October 2018}
+\makeatletter
+\let\thetitle\@title
+\let\theauthor\@author
+\let\thedate\@date
+\makeatother
+
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{
+            pdftitle={CS3230 Homework 1},
+            pdfauthor={Qi Ji},
+            colorlinks=true,
+            linkcolor=Maroon,
+            citecolor=Blue,
+            urlcolor=Blue,
+            breaklinks=true}
+\usepackage{fancyhdr}
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage{cleveref}
+\usepackage{ifxetex,ifluatex}
+\usepackage{unicode-math}
+\usepackage[vlined,algoruled,linesnumbered]{algorithm2e}
+
+\defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+%\usepackage{xeCJK}
+%\setCJKmainfont[]{IPAexMincho}
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\urlstyle{same}  % don't use monospace font for urls
+\newcommand{\passthrough}[1]{#1}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+% load polyglossia as late as possible as it *could* call bidi if RTL lang (e.g. Hebrew or Arabic)
+\usepackage{polyglossia}
+\setmainlanguage[variant=british]{english}
+
+\theoremstyle{definition}
+\newtheorem{statement}{Statement}[subsection]
+
+\newcommand{\set}[1]{\left\{\, #1 \,\right\}}
+\newenvironment{soln}{
+    \begin{proof}[Solution]
+    \renewcommand*{\qedsymbol}{\(\blacksquare\)}
+} {
+    \end{proof}
+}
+
+
+\pagestyle{fancy}
+\lhead{\thetitle}
+\chead{}
+\rhead{\thedate}
+\lfoot{\theauthor}
+\cfoot{}
+\rfoot{\thepage}
+\renewcommand{\footrulewidth}{\headrulewidth}
+
+\begin{document}
+\maketitle
+
+\section{K-sorted Array}
+\subsection{}
+\begin{statement} \label{q1claim}
+    Fix \(j\), suppose for any \(i \in \set{1,\dots,j-k-1}\),
+    \(B[i]\) contains the \(i\)-th smallest element of \(A\).
+    Then the value extracted from the heap will be the \((j-k)\)-th smallest element of \(A\).
+\end{statement}
+
+\subsection{}
+For any \(i \in \set{1,\dots,n}\), we let \(M(i)\) denote the \(i\)-th smallest element of \(A\).
+
+\begin{proof}
+    We first observe that the elements
+    \[ X := \set{ A[1], \dots, A[k], \dots, A[\max(j,n)] } \]
+    have been added to the heap \(S\) in previous (if any) and current iterations of the \textbf{for} loop.
+    Since \(A\) is \(k\)-sorted, \(M(j-k) \in \set{A[1],\dots,A[\max(j-k+k,n)]} = X\).
+    By our assumption that \(B[i]\) contains the \(i\)-th smallest element of \(A\) for each \(i\in\set{1,\dots, j-k-1}\).
+    We see that the elements
+    \[ Y := \set{ M(1), \dots, M(j-k-1) } \]
+    have already been extracted from \(S\) in previous iterations.
+    As \(A\) contains distinct integers, we see that \(M(j-k)\notin Y\).
+    Now we see that the heap \(S\) contains precisely \(X \smallsetminus Y\).
+    All elements less than \(M(j-k)\) are not in \(S\), so
+    \(M(j-k)\) is minimal in \(S\), and it will be the extracted value.
+\end{proof}
+
+\subsection{}
+\begin{proof}
+    Proceed by induction on \(j-k\).
+    Applying \Cref{q1claim} with \(j = k+1\) proves the base case that \(B[1]\) will contain the smallest element of \(A\).
+    Similarly, \Cref{q1claim} proves the inductive case.
+    This means for every \(i\in\set{1,\dots,n}\), \(B[i] = M(i)\) so in particular, \(B\) contains the elements of \(A\) in sorted order.
+\end{proof}
+
+\section{Inversions}
+
+\subsection{}
+
+\begin{soln}
+    Given the array \(\left\langle 2,3,8,6,1 \right\rangle\).
+    The inversions are
+    \( (1,5), (2,5), (3,4),\) \((3,5), (4,5) \).
+\end{soln}
+
+\subsection{}
+
+\begin{soln}
+    The array given by
+    \( \left\langle n, n-1, \dots, 1 \right\rangle \)
+    has inversion count
+    \( \binom{n}{2} \).
+\end{soln}
+
+\subsection{}
+
+\begin{algorithm}
+    \caption{Counting inversions with modified mergesort.}
+    \DontPrintSemicolon
+    \SetKwProg{Sub}{subroutine}{ is}{end}
+    \SetKwProg{Fn}{function}{ is}{end}
+    \SetKwFunction{Merge}{modified-merge}
+    \SetKwFunction{Mergesort}{mergesort}
+    \SetKwData{Inversions}{inversions}
+    \SetKwData{Left}{left}
+    \SetKwData{Mid}{mid}
+    \SetKwData{Right}{right}
+
+    \KwData{an array \(A[1,\dots,n]\) containing a permutation of the \(n\) elements}
+    \KwResult{the number of inversions in \(A\)}
+
+    \(\Inversions \leftarrow 0\)
+
+    \Sub{\Merge(\Left, \Mid, \Right)}{
+        \KwData{indices of start of left subarray, start of right subarray and end of right subarray, where both subarrays sorted}
+        \KwResult{two subarrays merged, \Inversions incremented}
+
+        Initialise array $B[\Left,\dots,\Right]$\;
+        $i \leftarrow \Left$; $j \leftarrow \Mid$\;
+        $k \leftarrow \Left$\;
+        \While{$k \leq \Right$}{
+            \uIf{$i < \Mid \land \left( j > \Right \lor A[i] < A[j] \right)$}{
+                $B[k] \leftarrow A[i]$\;
+                $i \leftarrow i + 1$\;
+            }
+            \Else{
+                $B[k] \leftarrow A[j]$\;
+                $j \leftarrow j + 1$\;
+                $\Inversions \leftarrow \Inversions + (\Mid - i)$\;
+            }
+            $k \leftarrow k + 1$\;
+        }
+        copy $B[\Left,\dots,\Right]$ into $A[\Left,\dots,\Right]$\;
+    } % end sub
+
+    \Fn{\Mergesort(L, R)}{
+        \KwData{start $L$ and end $R$ indices of subarray to mergesort}
+        \If{$L = R$}{
+            \Return\;
+        }
+        $M \leftarrow \left\lfloor\frac{L + R}{2}\right\rfloor + 1$\;
+        $\Mergesort(L, M-1)$\;
+        $\Mergesort(M, R)$\;
+        $\Merge(L,M,R)$\;
+    }
+
+    \Mergesort(1, n)\;
+    output \Inversions\;
+\end{algorithm}
+
+
+\end{document}

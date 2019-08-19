@@ -1,0 +1,187 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor}
+%
+\documentclass[british,a4paper,]{article}
+%\usepackage{setspace}
+%\doublespacing
+\usepackage[british]{babel}
+\title{GEQ1000 Final Reflection Paper}
+\author{Qi Ji (A0167793L) [D33]}
+\date{19th November 2018}
+\makeatletter
+\let\thetitle\@title
+\let\theauthor\@author
+\let\thedate\@date
+\makeatother
+
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{siunitx}
+\usepackage{cleveref}
+%\usepackage{tabu}
+%\usepackage[tablewithin=section]{caption}
+
+\hypersetup{
+            pdftitle={GEQ1000 Final Reflection Paper},
+            pdfauthor={Qi Ji},
+            colorlinks=true,
+            linkcolor=Violet,
+            citecolor=PineGreen,
+            urlcolor=MidnightBlue,
+            breaklinks=true}
+
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\usepackage{csquotes}
+%% load polyglossia as late as possible as it *could* call bidi if RTL lang (e.g. Hebrew or Arabic)
+%\usepackage{polyglossia}
+%\setmainlanguage[variant=british]{english}
+\usepackage{biblatex}
+\addbibresource{\jobname.bib}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{axiom}[theorem]{Axiom}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{question}[theorem]{Question}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\set}[1]{\left\{\, #1 \,\right\}}
+
+\pagestyle{fancy}
+\lhead{GEQ1000}
+\chead{}
+\rhead{\thedate}
+\lfoot{Qi Ji}
+\cfoot{}
+\rfoot{\thepage}
+%\renewcommand{\footrulewidth}{\headrulewidth}
+
+%--------------------------------------------------------------------------------------------------
+\begin{document}
+\maketitle
+
+\begin{abstract}
+    In this paper I show that questioning is similar across disciplines.
+%    Even with my limited knowledge, the links between disciplines are too strong to disregard.
+\end{abstract}
+
+At a shallow level, there are dialectic changes depending on the context of the discipline.
+What topics in question varies greatly, and so appears the methods of questioning.
+We discuss classic questions from physics and economics.
+
+\begin{question}[Quantum Mechanics] \label{particleinabox}
+    Given a particle in a box, in what ways can it behave?
+\end{question}
+
+\begin{question}[Prisoner's dilemma] \label{prisoner}
+    In a game similar to the prisoner's dilemma, how are players likely to behave?
+\end{question}
+
+Most would agree that physics and economics are not closely-related disciplines, and
+the two questions raised are extensionally very different,
+\Cref{particleinabox} asks about the behaviour of physical particles, while
+\Cref{prisoner} asks about economic behaviour of people in society.
+
+What we need to expose the similarity of these two questions is a tool mainly used in computer science -- abstraction.
+Zoom out far enough and the underlying processes become increasingly similar.
+The present way to answer \Cref{particleinabox} is to basically ask,
+\begin{quote}
+    What are the logical consequences of the Dirac-von Neumann axioms of quantum mechanics\autocite{vonNeumannQM}
+    together with a statement saying ``I have a particle in a box''?
+\end{quote}
+How we deal with \Cref{prisoner} nowadays uses a similar approach,
+\begin{quote}
+    Consider a suitable formalism of game theory, for example in \autocite{vonNeumannGame},
+    express the prisoner's dilemma in said formalism.
+    What are the logical consequences?
+\end{quote}
+These approaches are attributed to polymath John von Neumann, who devised rigorous formalism to both disciplines,
+providing concrete logical foundations that enable others to experiment with and apply the model.
+Modelling abstracts a problem away, only keeping its logical essence, then by logic, we can
+reduce a complicated theory to a simpler set of underlying assumptions.
+
+In the lectures, we have seen how modelling plays a role in physics, computing, engineering and economics.
+This is not a coincidence, sensible modelling provides us an indispensable tool for testing our assumptions.
+The Wason selection task in philosophy tells us how to proceed from here.
+For example in quantum mechanics, we can start from the Dirac-von Neumann axioms and check if particles indeed obey our predictions.
+Conversely, we can look for objects whose existence or behaviour contradicts our assumptions.
+
+To me, modelling is the act of reducing a theory to its logical foundations, and its applicability shows the power of raw logic.
+This process could be further generalised, according to philosophers Ramsey and Lewis\autocite{lewis1970}.
+However, this foundational approach might not always produce intuitive results, which can be illustrated by an example from mathematics.
+Starting from a commonly accepted postulate.
+\begin{axiom}[Axiom of Choice (rephrased)] \label{AC}
+    Given arbitrarily many bags of socks, each non-empty, I can \emph{always}
+    choose one sock from each.
+\end{axiom}
+In the case where I only have finitely many bags of socks, \Cref{AC} is obviously true,
+so its full statement is a mere generalisation to arbitrarily many bags, possibly infinite.
+However, this innocent generalisation logically entails this counter intuitive result in geometry.
+\begin{theorem}[Banach-Tarski paradox \autocite{banachtarski}]
+    Take a solid hypothetical ball in 3-dimensional space,
+    there is a way to cut the ball into finitely many pieces,
+    and reassemble them into two identical copies of the ball you started with.
+\end{theorem}
+
+As the examples illustrate, the study of logical consequences is a recurring theme in questioning.
+Fortunately, there is an entire field devoted to this -- model theory.
+With the power of the axiomatic approach, as exemplified by von Neumann, Hilbert and Ramsey,
+model theory provides us powerful tools to reason about truth and consequence.
+
+Again we use the example of quantum mechanics,
+physicists have long argued over differing \emph{interpretations} of quantum mechanics, specifically the Dirac-von Neumann axioms.
+\begin{definition}
+    An \textbf{interpretation} is any abstract structure that fulfills the model we started with.
+\end{definition}
+\begin{example}[Computational Thinking Lectures]
+    A road network tagged with travel times interprets a weighted graph.
+\end{example}
+Similarly in physics and economics, an interpretation is a way to use the theory to explain reality.
+As described in physics videos, scientific theories merely approximate the truth,
+even in the purely theoretical context of model theory, a set of statements could be satisfied by many different structures.
+The differing interpretations of quantum mechanics all satisfy the basic conditions, but each of them extends it in a different way.
+
+In fact, during the philosophy video on poetry, where Professor Holbo gave an interpretation to his wife's poem,
+I was reminded of a well-known result related to model theory.
+\begin{theorem}[Completeness Theorem -- Gödel, Henkin] \label{complete}
+    In a standard deductive system of logic, any logical consequence could be deduced (via formal proof).
+\end{theorem}
+One is more technical than the other, but zooming out really far back, the essence of both are the same.
+Actually, the proof of \Cref{complete} by Henkin\autocite{henkin} does exactly what Professor Holbo did,
+assigning meaning to symbols such that everything turns out to be consistent in the end.
+
+With enough abstraction, the similarity of questioning across seemingly unrelated disciplines is unavoidable.
+As long as one is willing to think abstractly and generalise their thoughts to see the common patterns,
+learning a few disciplines is enough to unlock the subject of questioning.
+
+\printbibliography
+\end{document}

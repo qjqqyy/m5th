@@ -1,0 +1,325 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[a4paper,top=2.2cm,bottom=2.2cm,left=2.2cm,right=2.2cm]{geometry}
+\usepackage{geometry}
+%\geometry{paperwidth=210mm, paperheight=16383pt, left=2.2cm, top=2.2cm, right=2.2cm, marginparsep=20pt, marginparwidth=100pt, textheight=16263pt, footskip=40pt}
+%\geometry{paperwidth=210mm, paperheight=9638pt, left=2.2cm, top=2.2cm, right=2.2cm, marginparsep=20pt, marginparwidth=100pt, textheight=9626pt, footskip=40pt}
+%\geometry{paperwidth=210mm, paperheight=4638pt, left=2.2cm, top=2.2cm, right=2.2cm, marginparsep=20pt, marginparwidth=100pt, textheight=4626pt, footskip=40pt}
+\setlength\parindent{0pt}
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{braket}
+\usepackage{color}
+
+%\renewcommand{\qedsymbol}{}
+\newenvironment{prf}
+{
+    \begin{proof}
+        \hfill
+        \begin{enumerate}[label*=\arabic*.]
+                }
+                {
+                \hfill\qedsymbol
+        \end{enumerate}
+    \renewcommand{\qedsymbol}{}
+    \end{proof}
+}
+\newcounter{dummy} \numberwithin{dummy}{section}
+\newtheorem{theorem}[dummy]{Theorem}
+\newtheorem{lemma}[dummy]{Lemma}
+\theoremstyle{definition}
+\newtheorem{axiom}[dummy]{Axiom}
+\newtheorem{defn}[dummy]{Definition}
+\newcommand{\nat}{\mathbb{N}}
+\newcommand{\bigC}{\mathcal{C}}
+\newcommand{\power}{\mathcal{P}}
+\newcommand{\downuparr}{\mathbin\Big\downarrow\hspace{-.4em}\Big\uparrow}
+\let\oldphi\phi
+\let\phi\varphi
+
+\begin{document}
+\setcounter{section}{12}
+\section{Axiom of Infinity and Natural Numbers}
+\begin{axiom}[Zermelo's Axiom of Infinity]
+     There exists a set $X$ such that $\emptyset \in X$ and $\forall x \in X.~ \set{x} \in X$.
+\end{axiom}
+\begin{defn} \label{defn:inductive}
+    A set $X$ is inductive iff $\emptyset \in X$ and $\forall x\in X.~ \set{x} \in X$. \emph{(Axiom of Infinity specifies the existence of a inductive set.)}
+\end{defn}
+\begin{defn}
+    A sequential system consists of:
+    \begin{itemize}
+        \item a set $X$
+        \item an element $x_0 \in X$
+        \item a map $T:X\to X$. In set $X$: $x_0 \rightarrow T(x_0) \rightarrow T(T(x_0)) \rightarrow \dots$
+    \end{itemize}
+\end{defn}
+\begin{axiom}[Peano Axioms]    \label{axiom:peano}
+    A system of natural numbers is a sequential system:
+    \begin{enumerate}
+        \item a set $\nat$
+        \item an element $0 \in \nat$
+        \item a map $S:\nat \to \nat$ \emph{(succ function)}\\
+            satisfying:
+        \begin{enumerate}[label=(\roman*)]
+            \item $\forall n \in \nat.~ 0 \neq S(n)$        \hfill \emph{(0 is not a succ to any $\nat$)}
+            \item $S$ is injective, $\forall n,m \in \nat.~ n \neq m \implies S(n) \neq S(m)$.
+            \item for any subset $M \subseteq \nat$         \hfill \emph{(induction property)}\\
+                if $M$ has the properties
+                \begin{itemize}
+                    \item $0 \in M$
+                    \item $\forall n \in M.~ S(n) \in M$
+                \end{itemize}
+                then $M = \nat$.
+        \end{enumerate}
+    \end{enumerate}
+\end{axiom}
+
+\hfill\\
+% main proofs!
+\begin{lemma} \label{lemma:0}
+    If $\bigC$ is any non-empty collection of inductive sets, then $\bigcap \bigC$ is also a inductive set.
+\end{lemma}
+\emph{Reminder}: Inductive set $X$ means $\emptyset \in X$ and $\forall x \in X.~ \set{x} \in X$.\hfill \emph{(Definition \ref{defn:inductive})}
+\begin{prf}
+\item $\forall X \in \bigC.~ X$ is inductive.
+\item $\forall X \in \bigC.~ \emptyset \in X$.
+\item Take an arbitary $x \in \bigcap\bigC$, then $\forall X \in\bigC.~ x \in X$
+\item $X$ is inductive, so $x \in X \implies \set{x} \in X$.
+\item then $\forall X \in\bigC.~ \set{x} \in X$, so $\set{x} \in \bigcap\bigC$.
+\item $\bigcap\bigC$ is inductive is shown.
+\end{prf}
+
+\begin{defn} \label{def:setN}
+    $\nat$ is the intersection of all subsets from $A$ which are inductive.
+\end{defn}
+\begin{enumerate}
+    \item Take the inductive set $A$ given by Axiom of Infinity
+    \item Let $\bigC := \set{ X \in \power(A) : X ~\text{is inductive} }$. $\bigC$ consists of all subsets of $A$ which are inductive.
+    \item Since $A$ itself is inductive, and $A \in \power(A)$, so $A \in \bigC.$
+    \item Hence $\mathcal{C}$ is non-empty.
+    \item By Lemma \ref{lemma:0}, define $\nat := \bigcap \mathcal{C}$ and $\nat$ is an inductive set. (satisfies Axiom \ref{axiom:peano}.1)
+\end{enumerate}
+\hfill\\
+
+\begin{lemma} \label{lemma:1}
+    For any inductive set $X$, one has $\nat \subseteq X$.
+\end{lemma}
+\begin{prf}
+\item $X$ and $A$ are inductive sets, by Lemma \ref{lemma:0}, $\bigcap\set{X, A}$ is an inductive set
+    \begin{align*}
+        X \cap A &\subseteq A\\
+        X \cap A &\in \power(A)\\
+        X \cap A &\in \bigC
+    \end{align*}
+\item So $\nat$, being $\cap\bigC$, is the subset of any element in $\bigC$, so $\nat \subseteq X \cap A$.\\
+    (by $\forall F \in \mathcal{F}.~ a \in \cap\mathcal{F} \implies a \in F$)
+\end{prf}
+
+\begin{lemma} \label{lemma:2}
+    $\nat$ is the \underline{unique} inductive set such that $\forall$ inductive set $X$, one has $\nat \subseteq X$.
+\end{lemma}
+\begin{prf}
+\item $\nat$ is inductive. \hfill\emph{(by Definition \ref{def:setN})}
+\item for all inductive set $X$, $\nat \subseteq X$. \hfill\emph{(by Lemma \ref{lemma:1})}
+\item Take a competitor set $\nat'$ is also inductive($1'$) and for all inductive set $X$, $\nat' \subseteq X$($2'$).
+\item Apply ($1$) to ($2'$), for inductive set $\nat, \nat' \subseteq \nat$.
+\item Apply ($1'$) to ($2$), for inductive set $\nat', \nat \subseteq \nat'$.
+\item Any set with properties (1) and (2) $\nat' = \nat$, uniqueness proven.
+\end{prf}
+
+\begin{defn} $0$ and succ function for $\nat$
+    \begin{enumerate}
+        \item $0 := \emptyset \in \nat$ \hfill\emph{($\because \nat$ is inductive, by Definition \ref{defn:inductive})}
+        \item[] (satisfies Axiom \ref{axiom:peano}.2)
+        \item $S:\nat \to \nat$ is defined as $\forall x \in \nat.~ S(x) := \set{x}$.
+            \begin{itemize}
+                \item $S$ is defined for all $x \in \nat$, $S$ is totally-defined.
+                \item $S(x) = \set{x} \neq x$, $S$ is well-defined.
+                \item Given $x \in \nat$, $\set{x} \in \nat$.
+                    \hfill\emph{($\because \nat$ is inductive, by Definition \ref{defn:inductive})}
+            \end{itemize}
+    \end{enumerate}
+\end{defn}
+\hfill\\
+
+\begin{theorem}
+    The sequential system $\nat$ and $S$ we defined satisfies property (i), (ii), (iii) in \emph{Axiom \ref{axiom:peano}.3}.
+\end{theorem}
+Property (i): $\forall n \in \nat.~0 \neq S(n)$
+\begin{prf}
+\item take an arbitary $n \in \nat$, then $S(n) = \set{n}$
+\item $0 = \emptyset$ by definition, and for all $n$, $n \not\in \emptyset$,
+\item so $\emptyset \neq \set{n}$
+\end{prf}
+Property (ii): $S$ is injective, $\forall m,n \in \nat.~ S(m) = S(n) \implies m = n.$
+\begin{prf}
+\item take $m,n \in \nat$, if $S(m) = S(n)$, then
+\item $\set{m} = \set{n}$
+\item by Axiom of Extentionality: $m \in \set{m} \implies m \in \set{n}$, so $m=n$
+\item $S$ is injective.
+\end{prf}
+Property (iii): For any subset $M \subseteq \nat$, if
+\begin{itemize}
+    \item $0 \in M$
+    \item $\forall n \in M.~ S(n) \in M$
+\end{itemize}
+then $M = \nat$.
+\begin{prf}
+\item Let $M \subseteq \nat$,
+\item Then $M$ is an inductive set \emph{(by properties above)}.
+\item Then by Lemma \ref{lemma:2}, $\nat \subseteq M$.
+\item Assumed $M \subseteq \nat$, therefore $M = \nat$.
+\end{prf}
+\textbf{Conclusion.} \emph{The sequential system $\nat$ and successor function $S$ we defined above satisfies }Axiom \ref{axiom:peano}.
+\hfill\\
+\section{Axiom of Infinity}
+\textbf{Principle of Induction.} Suppose $P(-)$ is a statement about natural numbers. $\forall n \in \nat$, $P(n)$ is a proposition with truth value.\\
+By axiom of specification, define $M:= \set{ n \in \nat : P(n)~\text{is true}}$
+Suppose we show
+\begin{enumerate}[label=(\arabic*)]
+    \item Base case: $P(0)$ is true
+    \item Induction step: $\forall k \in \nat, P(k) \implies P(k+1)$
+\end{enumerate}
+Then we know $0 \in M$ and $\forall k \in \nat, k \in M \implies S(k) \in M$.
+Then by property (iii) of Peano Axiom \ref{axiom:peano}.3, $M = \nat$. \hfill\emph{(induction property)}
+\hfil\\
+
+\begin{defn}
+    If $f:A\to B$ is a map, then the \emph{$f$-image of $A$} (or the range of $f$) is
+    $$f(A) := \set{b \in B : \exists a \in A.~ b = f(a)}$$
+\end{defn}
+Example: $S(\nat) = \set{n \in \nat : \exists k \in N.~ n = S(k)}$
+\begin{lemma}
+    $S(\nat) = \nat\setminus \set{0}$
+\end{lemma}
+\begin{prf}
+\item Let $P(n) := (n=0) \lor (\exists k \in \nat.~ n = S(k))$.
+\item $P(0)$ is trivially true.
+\item Suppose $n \in \nat$ such that $P(n)$ is true, either $n=0$ or $\exists k \in \nat.~ n = S(k)$
+    \begin{itemize}
+        \item case $n=0$, then $S(n) = S(0)$ which is $\in S(\nat)$
+        \item case $\exists k \in \nat.~ n = S(k)$, then
+            $S(n) = S(S(k))$ which is $\in S(\nat)$
+    \end{itemize}
+\item so $P(S(n))$ is true.
+\item By Principle of Induction, $\forall n \in \nat.~ P(n)$ is true.
+\item[] $n$ is either $0$ or a successor of some $k \in \nat$.
+\end{prf}
+
+\newpage
+\begin{theorem}[Recursion Theorem (universal property of $\nat$)]
+    Let $(X,x_0,T)$ be any sequential system where
+    \begin{itemize}
+        \item $X$ is a set.
+        \item $x_0 \in X$ is a given element.
+        \item $T: X\to X$ is a map.
+    \end{itemize}
+    Then \underline{there exists a unique map}
+    $$\phi:\nat\to X$$
+    such that
+    \begin{enumerate}
+        \item $\phi(0) = x_0 \in X$
+        \item The diagram commutes
+            $$ \begin{matrix*}[l]
+                &\phantom{S}\nat       &\xrightarrow{\ \phi\ }   &X\\
+                &S{\Big\downarrow} &               &{\Big\downarrow}T\\
+                &\phantom{S}\nat       &\xrightarrow{\ \phi\ }   &X
+            \end{matrix*} $$
+            ie. $T \circ \phi = \phi \circ S: \nat\to X$,\\
+            \phantom{ie. }$\forall n \in \nat.~ T(\phi(n)) = \phi(S(n))$
+    \end{enumerate}
+\end{theorem}
+Intuitively:\\
+\setcounter{MaxMatrixCols}{12}
+$ \begin{matrix}
+    &\phantom{\phi}\nat   : &0    &\xrightarrow{~S~} &1       &\xrightarrow{~S~} &2        &\xrightarrow{~S~} &3 &\xrightarrow{~S~}  &\dots \\
+    &\phi\Big\downarrow &\Big\downarrow &&\Big\downarrow &&\Big\downarrow &&\Big\downarrow \\
+    &\phantom{\phi}T      : &x_0  &\xrightarrow{~T~} &T(x_0)  &\xrightarrow{~T~} &T^2(x_0) &\xrightarrow{~T~} &T^3(x_0) &\xrightarrow{~T~}  &\dots
+\end{matrix} $
+\begin{proof}\renewcommand{\qedsymbol}{} later \end{proof}
+\subsection*{Consequence of Recursion Theorem}
+\begin{theorem}[Uniqueness of Natural Number System]
+    Let $(\nat, 0, S)$ be our natural number system. Suppose $(\nat', 0', S')$ is another natural number system satisfying Peano Axioms \ref{axiom:peano}. Then there exists maps
+    $$\phi:\nat\to\nat' ~\text{and}~ \phi':\nat'\to\nat$$
+    such that
+    \begin{enumerate}[label=(\roman*)]
+        \item $\phi(0) = 0'$ and $\phi'(0') = 0$.
+        \item this diagram commutes,
+            $$ \begin{matrix*}[l]
+                &\phantom{S}\nat &\xrightarrow{\ \phi\ } &\nat' &&\phantom{S'}\nat' &\xrightarrow{\ \phi'\ } &\nat  \\
+                &S\Big\downarrow & &\Big\downarrow S' &\qquad &S'\Big\downarrow &&\Big\downarrow S  \\
+                &\phantom{S}\nat &\xrightarrow{\ \phi\ } &\nat' &&\phantom{S'}\nat' &\xrightarrow{\ \phi'\ } &\nat
+            \end{matrix*} $$
+        \item $\phi'\circ\phi = \text{id}_\nat$ and $\phi\circ\phi' = \text{id}_{\nat'}$.
+    \end{enumerate}
+\end{theorem}
+Concretely:\\
+$ \begin{matrix}
+    &\phantom{\phi}\nat : &0  &\xrightarrow{~S~} &1  &\xrightarrow{~S~} &2  &\xrightarrow{~S~} &3 &\xrightarrow{~S~}  &\dots \\
+    &\phi{\downuparr}\phi'  &\downuparr &&\downuparr &&\downuparr &&\downuparr \\
+    &\phantom{\phi}\nat': &0' &\xrightarrow{~S'~} &1'&\xrightarrow{~S'~} &2'&\xrightarrow{~S'~}&3'&\xrightarrow{~S'~}  &\dots
+\end{matrix} $
+\begin{prf}
+\item We have our natural number system $(\nat, 0, S)$.
+\item Given sequential system $(\nat', 0', S')$, by recursion theorem, there exists a map
+    $$\phi: \nat \to \nat'$$ such that
+    \begin{enumerate}[label=(\roman*)]
+        \item $\phi(0) = 0'$, and
+        \item this diagram commutes
+            $$ \begin{matrix*}[l]
+                &\phantom{S}\nat &\xrightarrow{\ \phi\ } &\nat' \\
+                &S\Big\downarrow & &\Big\downarrow S'         \\
+                &\phantom{S}\nat &\xrightarrow{\ \phi\ } &\nat'
+            \end{matrix*} $$
+    \end{enumerate}
+\item Now we have natural number system $(\nat', 0', S')$,
+\item Given sequential system $(\nat, 0, S)$, by recursion theorem, there exists a map
+    $$\phi': \nat' \to \nat$$ such that
+    \begin{enumerate}[label=(\roman*)]
+        \item $\phi'(0') = 0$, and
+        \item this diagram commutes
+            $$ \begin{matrix*}[l]
+                &\phantom{S'}\nat' &\xrightarrow{\ \phi'\ } &\nat  \\
+                &S'\Big\downarrow &&\Big\downarrow S  \\
+                &\phantom{S'}\nat' &\xrightarrow{\ \phi'\ } &\nat
+            \end{matrix*} $$
+    \end{enumerate}
+%\item[] still to show: $\phi'\circ\phi = \text{id}_\nat$ and $\phi\circ\phi' = \text{id}_{\nat'}$
+\item for $\phi'\circ\phi: \nat\to\nat$, \label{thm:uniqnatnum_step_symmetry}
+    \begin{itemize}
+        \item note $(\phi'\circ\phi)(0) = \phi'(\phi(0)) = \phi'(0') = 0$
+        \item and this commutes
+            $$ \begin{matrix*}[l]
+                &\phantom{S}\nat &\xrightarrow{\ \phi\ } &\nat' &\xrightarrow{\ \phi'\ } &\nat  \\
+                &S\Big\downarrow & &\Big\downarrow S' &&\Big\downarrow S  \\
+                &\phantom{S}\nat &\xrightarrow{\ \phi\ } &\nat' &\xrightarrow{\ \phi'\ } &\nat
+            \end{matrix*} $$
+            ie. $S\circ(\phi'\circ\phi) = (\phi'\circ\phi)\circ S$
+    \end{itemize}
+\item But $\text{id}_\nat: \nat\to\nat$ also enjoys properties
+    \begin{itemize}
+        \item $\text{id}_\nat(0) = 0$
+        \item $S\circ\text{id}_\nat = \text{id}_\nat\circ S$
+    \end{itemize}
+\item By applying Recursion Theorem of natural number system $(\nat,0,S)$ to the sequential system $(\nat,0,S)$ (itself), there exists a \underline{unique map}
+    $$f:\nat\to\nat$$ such that
+    \begin{itemize}
+        \item $f(0) = 0$, and
+        \item this diagram commutes
+            $$ \begin{matrix*}[l]
+                &\phantom{S}\nat &\xrightarrow{\ f\ } &\nat  \\
+                &S\Big\downarrow &&\Big\downarrow S  \\
+                &\phantom{S}\nat &\xrightarrow{\ f\ } &\nat
+            \end{matrix*} $$
+    \end{itemize}
+\item We just showed that $\text{id}_\nat$ is unique and has the same properties as $\phi'\circ\phi$, so $\phi'\circ\phi = \text{id}_\nat$.
+\item Repeating from (\ref{thm:uniqnatnum_step_symmetry}), symmetrically, $\phi\circ\phi' = \text{id}_{\nat'}$
+\end{prf}
+
+\end{document}

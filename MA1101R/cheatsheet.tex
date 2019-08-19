@@ -1,0 +1,413 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Cheatsheet
+% LaTeX Template
+% Version 1.0 (12/12/15)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Michael Müller (https://github.com/cmichi/latex-template-collection) with
+% extensive modifications by Vel (vel@LaTeXTemplates.com)
+%
+% License:
+% The MIT License (see included LICENSE file)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[11pt]{scrartcl} % 11pt font size
+
+\usepackage[utf8]{inputenc} % Required for inputting international characters
+%\usepackage[T1]{fontenc} % Output font encoding for international characters
+
+\usepackage[margin=0pt, landscape]{geometry} % Page margins and orientation
+
+\usepackage{graphicx} % Required for including images
+
+\usepackage{amsmath, amssymb, mathtools}
+\usepackage{enumitem}
+\usepackage{tikz-cd}
+\setitemize{noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt}
+\setenumerate{noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt}
+
+\setlength{\unitlength}{1mm} % Set the length that numerical units are measured in
+\setlength{\parindent}{0pt} % Stop paragraph indentation
+
+\newcommand{\sectiontitle}[1]{\paragraph{#1} \ } % Custom command for subsection titles
+\newcommand{\mtx}[1]{\mathbf{#1}}
+\newcommand{\vc}[1]{\boldsymbol{#1}}
+\newcommand{\mA}{\mathbf{A}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+% transpose
+\newcommand{\T}{^\intercal}
+\renewcommand{\implies}{\Rightarrow}
+%\renewcommand{\iff}{\Leftrightarrow}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator{\Span}{span}
+\newcommand{\real}{\mathbb{R}}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+\pagestyle{empty}
+\setlength{\abovedisplayskip}{6pt}
+\setlength{\belowdisplayskip}{6pt}
+\setlength{\abovedisplayshortskip}{6pt}
+\setlength{\belowdisplayshortskip}{6pt}
+
+\begin{picture}(297,210) % Create a container for the page content
+
+%----------------------------------------------------------------------------------------
+%	FIRST COLUMN SPECIFICATION
+%----------------------------------------------------------------------------------------
+
+\put(10,197){ % Divide the page
+\begin{minipage}[t]{85mm} % Create a box to house text
+
+%----------------------------------------------------------------------------------------
+%	HEADING ONE
+%----------------------------------------------------------------------------------------
+
+\sectiontitle{Matrices}
+\hfill\\
+$\mtx{A} = (a_{ij})_{m\times p}$ and $\mtx{B} = (b_{ij})_{p\times n}$, then\\
+$\mtx{AB} = (ab_{ij})_{m\times n} = \sum\limits_{k=1}^{p} a_{ik}b_{kj}$.\\
+    Matrix Multiplication is associative and distributive (left and right) over addition.\\
+    For square matrix $\mA$, $\mA^m\mA^n = \mA^{(m+n)}$\\
+    (if $\mA$ invertible, also works for negative $m,n$)
+\begin{align*}
+    \mA^{\intercal\intercal} &= \mA         \\
+    (\mA + \mtx{B})\T &= \mA\T + \mtx{B}\T  \\
+    (\mtx{AB})\T &= \mtx{B}\T\mA\T          \\
+    \shortintertext{for invertible $\mA, \mtx{B}$:}
+    \mA\mA^{-1} &= \mtx{I} = \mA^{-1}\mA    \\
+    (c\mA)^{-1} &= \frac{1}{c}\mA^{-1}      \\
+    (\mtx{AB})^{-1} &= \mtx{B}^{-1}\mA^{-1}
+\end{align*}
+
+\sectiontitle{Elementary Row Operations}
+\begin{align*}
+    \mtx{E}_k\dots\mtx{E}_2\mtx{E}_1\mA &= \mtx{B}   \\
+    \mA &= (\mtx{E}_k\dots\mtx{E}_2\mtx{E}_1)^{-1}\mtx{B}   \\
+    \mA &= \mtx{E}_1^{-1}\mtx{E}_2^{-1}\dots\mtx{E}_k^{-1}\mtx{B}
+\end{align*}
+Using row-reduction to find inverse:
+\[ (\mA\mid\mtx{I}) \xrightarrow{\ \text{Gauss-Jordan}\ } (\mtx{I}\mid\mA^{-1}) \]
+$\mA^{-1} = \mtx{E}_k\dots\mtx{E}_2\mtx{E}_1 \implies \mA = \mtx{E}_1^{-1}\mtx{E}_2^{-1}\dots\mtx{E}_k^{-1}$
+\hfill\\
+\sectiontitle{Determinants}\\
+    $A_{ij} = (-1)^{i+j} \det(\left<\text{cover row $i$ col $j$ in }\mA\right>)$
+    \begin{align*}
+        \det(\mtx{E}_{add}) &=1\\
+        \det(\mtx{E}_{swap}) &= -1\\
+        \det(\mtx{E}_{mult}) &= c \\
+        \det(\mtx{A}_{\Delta}) &= a_{11}a_{22}\cdots a_{nn}\\
+        \det(\mtx{AB}) &= \det(\mtx{A})\det(\mtx{B})    \\
+        \det(c\mtx{A}) &= c^n\mtx{A}
+    \end{align*}
+%----------------------------------------------------------------------------------------
+
+\end{minipage} % End the first column of text
+} % End the first division of the page
+
+%----------------------------------------------------------------------------------------
+%	SECOND COLUMN SPECIFICATION
+%----------------------------------------------------------------------------------------
+
+\put(105,197){ % Divide the page
+\begin{minipage}[t]{85mm} % Create a box to house text
+
+%----------------------------------------------------------------------------------------
+%	HEADING FOUR
+%----------------------------------------------------------------------------------------
+
+$\mA\ \text{adj}(\mA) = \det(\mA)\ \mtx{I} \implies \mA^{-1} = \dfrac{1}{\det(\mA)}\text{adj}(\mA)$
+\[
+    \text{adj}(\mA) =
+    \begin{bmatrix}
+            A_{11} & A_{21} & \dots  & A_{n1} \\
+            A_{12} & A_{22} & \dots  & A_{n2} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            A_{1n} & A_{2n} & \dots  & A_{nn}
+    \end{bmatrix}
+\]
+    Cramer's rule: for $\mA \vc{x} = \vc{b}$,
+    $$x_n = \frac{\det(\left<\mA:\text{replace $n$-th col with }\vc{b}\right>)}{\det(\mA)}$$
+
+\sectiontitle{Spaces}\\
+    Space notation:
+    \begin{itemize}
+        \item $\{(a,a-b,2b+c) \mid a,b,c\in\real \}$ (explicit)
+        \item $\{(x,y,z) \mid x + y + z = 0\}$ (implicit)
+    \end{itemize}
+
+\sectiontitle{Spans \& Containment}\\
+    Take $U := \{\vc{u}_1,\vc{u}_2,\dots,\vc{u}_k\}$                    \\
+    $\Span(U)$ = set of all linear combinations of $U$                  \\
+    $\begin{bmatrix} \vc{u}_1 &\vc{u}_2 &\dots &\vc{u}_k &\vc{v} \end{bmatrix}$
+        consistent $\implies v\in\Span(U)$.                             \\
+    ref $\begin{bmatrix} \vc{u}_1 &\dots &\vc{u}_k\end{bmatrix}$ no zero-row
+        $\implies \Span(U) = \real^k$.                                  \\
+    Take $V := \{\vc{v}_1,\vc{v}_2,\dots,\vc{v}_k\}$                         \\
+    each $\vc{u}_i \in \Span(V) \iff \Span(U)\subseteq\Span(V)$
+
+\sectiontitle{Subspaces, Linear Independence}\\
+    Definition of subspace $V$: $\vc{0} \in V$, and                          \\
+    $\forall \vc{u},\vc{v} \in V.~ \forall c,d\in\real .~ c\vc{u}+d\vc{v} \in V$  \\
+    $U$ is LI means only trivial solution for                           \\
+        $c_1\vc{u}_1 + c_2\vc{u}_2 + \dots + c_k\vc{u}_k = \vc{0}$.
+
+\sectiontitle{Basis and Coordinate systems}\\
+    A set of vectors $S$ is a basis for vector space $V$ iff
+    \begin{itemize}
+        \item $S$ is linearly independent
+        \item $S$ spans $V$
+    \end{itemize}
+    Given basis $S$, and $\vc{v} \in V$
+    \begin{align*}
+        \vc{v} &= c_1\vc{s}_1 + c_2\vc{s}_2 + \dots + c_k\vc{s}_k       \\
+        (\vc{v})_S &= (c_1, c_2, \dots, c_k) \in \real^k                \\
+    \end{align*}
+%----------------------------------------------------------------------------------------
+
+\end{minipage} % End the second column of text
+} % End the second division of the page
+
+%----------------------------------------------------------------------------------------
+%	THIRD COLUMN SPECIFICATION
+%----------------------------------------------------------------------------------------
+
+\put(200,197){ % Divide the page
+\begin{minipage}[t]{85mm} % Create a box to house tex
+\sectiontitle{Coordinate Systems}\\
+    $\forall \vc{u},\vc{v} \in V.~ \vc{u}=\vc{v} \iff (\vc{u})_S=(\vc{v})_S$ (uniq.) \\
+    $\forall \vc{u},\vc{v} \in V.c,d\in\real.~ (c\vc{u}+d\vc{v})_S=c(\vc{u})_S+d(\vc{v})_S$\\
+    Let $k = |S|$.\\
+    $\vc{v}_1,\vc{v}_2,\dots\in V$, are linear independent $\iff$
+    $(\vc{v}_1)_S,(\vc{v}_2)_S,\dots\in \real^k$ are linear independent.    \\
+    $\Span\{\vc{v}_1,\vc{v}_2,\dots\} = V \iff\\ \Span\{(\vc{v}_1)_S,(\vc{v}_2)_S,\dots\} = \real^k$.\\
+
+\sectiontitle{Dimensions}\\
+    $\dim(V) := |S|$ where $S$ is a basis for $V$, is unique.
+    \begin{itemize}
+        \item $S$ is linearly independent
+        \item $\Span(S) = V$
+        \item $|S| = \dim(V)$
+    \end{itemize}
+    2 of above true $\implies$ all true.
+
+\sectiontitle{Transition Matrices}\\
+$S$ and $T$ are bases for $V$, for $v\in V$.
+    \begin{align*}
+        \mtx{P}_{S,T} &=
+        \begin{bmatrix}
+            [\vc{s}_1]_T & [\vc{s}_2]_T &
+            \dots & [\vc{s}_k]_T
+        \end{bmatrix}\\
+        \shortintertext{is transition matrix from basis $S$ to $T$. ie}
+        [\vc{v}]_T &= P_{S,T} [\vc{v}]_S\\
+        [\vc{v}]_S &= P_{S,T}^{-1} [\vc{v}]_T
+    \end{align*}
+
+\sectiontitle{Rowsp and Range(Colsp)}\\
+    Take $\mtx{R} := \text{ref}(\mtx{A})$ is $m\times n$.
+    \begin{itemize}
+        \item Row operations preserve rowsp.
+        \item Rows in $\mtx{R}$ form basis for rowsp.
+        \item Pivot columns in $\mtx{R}$ correspond to
+            linearly independent columns in $\mtx{A}$
+        \item[] \textbf{Note:} row operations preserve linear (in)-dependence of columns
+            but could destroy other information like colsp.
+    \end{itemize}
+    Column space of $\mtx{A} = \{\mtx{A}\vc{u} \mid \vc{u}\in\real^n \}$.\\
+    So $\mtx{A}\vc{x} = \vc{b}$ consistent $\iff \vc{b} \in \text{colsp}(\mtx{A})$.
+
+%----------------------------------------------------------------------------------------
+
+\end{minipage} % End the third column of text
+} % End the third division of the page
+\end{picture} % End the container for the entire page
+
+%----------------------------------------------------------------------------------------
+\begin{picture}(297,210) % Create a container for the page content
+
+%----------------------------------------------------------------------------------------
+%	FIRST COLUMN SPECIFICATION
+%----------------------------------------------------------------------------------------
+
+\put(10,197){ % Divide the page
+\begin{minipage}[t]{85mm} % Create a box to house text
+
+%----------------------------------------------------------------------------------------
+%	HEADING ONE
+%----------------------------------------------------------------------------------------
+
+\sectiontitle{Rank Nullity}
+\begin{align*}
+    \rank(\mtx{0}) &= 0         \\
+    \rank(\mtx{I}_n) &= n       \\
+    \rank(\mA) &\leq \min\{m,n\}    \label{rank}\tag{$\ddagger$}\\
+    \rank(\mtx{AB}) &\leq \min\{\rank(\mA), \rank(\mtx{B})\}
+    \shortintertext{If equality holds in \eqref{rank}, $\mA$ has \textbf{full rank}.}
+    \rank(\mtx{A}) &= \rank(\mtx{A}\T)    \\
+    \rank(\mtx{A}) + \nullity(\mtx{A}) &= \text{no. columns}
+\end{align*}
+\sectiontitle{Kernel/Nullspace}
+    $$\text{null}(\mtx{A}) := \{\vc{u} \in\real^n \mid \mtx{A}\vc{u} = \vc{0}\}$$
+    Suppose $\mtx{A}\vc{v} = \vc{b}$, then general solution of $\mtx{A}\vc{x} = \vc{b}$
+    $$\vc{x} \in \{\vc{u} + \vc{v} \mid \vc{u}\in\text{null}(\mtx{A})\}$$
+
+\sectiontitle{Vectors}\\
+    Inner product: $\vc{u}\cdot\vc{v} := \mtx{u}\T\mtx{v}$
+    \begin{align*}
+        \norm{\vc{u}} &= \sqrt{\vc{u}\cdot\vc{u}}  \\
+        \norm{c\vc{u}} &= \left|c\right|\norm{\vc{u}}\\
+        d(\vc{u},\vc{v}) &= \norm{\vc{u} - \vc{v}}  \\
+        \cos \angle(\vc{u},\vc{v}) &= \frac{\vc{u}\cdot\vc{v}}{\norm{\vc{u}}\norm{\vc{v}}}\\
+        \norm{\vc{u}+\vc{v}} &\leq \norm{\vc{u}} + \norm{\vc{v}} \tag{$\bigtriangleup$ ineq.}
+    \end{align*}
+
+\sectiontitle{Orthogonal}\\
+    $\vc{u}\cdot\vc{v} = 0 \iff \vc{u} \perp \vc{v}$\\
+    orthogonal $\implies$ linear independence.\\
+    orthonormal $:=$ orthogonal $\land$ norm 1.\\
+    To check if $S$ is orthogonal basis for $V$:
+    \begin{enumerate}[label=(\roman*)]
+        \item $S$ is orthogonal
+        \item $|S| = \dim(V)$ or $\Span(S) = V$ (ref: dim)
+    \end{enumerate}
+
+\sectiontitle{Projections}\\
+    Let $S$ be an orthogonal basis for $V$, then $\forall \vc{w}\in\real^n$,
+    \[\vc{p} =
+        \frac{\vc{w}\cdot\vc{s}_1}{\vc{s}_1\cdot\vc{s}_1}\vc{s}_1 +
+        \frac{\vc{w}\cdot\vc{s}_2}{\vc{s}_2\cdot\vc{s}_2}\vc{s}_2 +
+        \dots +
+        \frac{\vc{w}\cdot\vc{s}_k}{\vc{s}_k\cdot\vc{s}_k}\vc{s}_k
+    \] is projection of $\vc{w}$ on $V$. (existence of projections)
+\end{minipage} % End the first column of text
+} % End the first division of the page
+
+%----------------------------------------------------------------------------------------
+%	SECOND COLUMN SPECIFICATION
+%----------------------------------------------------------------------------------------
+
+\put(105,197){ % Divide the page
+\begin{minipage}[t]{85mm} % Create a box to house text
+    Case $\vc{w} \in V$, then $\vc{p} = \vc{w}$.
+    For orthonormal basis, simplify expr as denominator becomes 1.
+
+\sectiontitle{Gram-Schmidt Algorithm}\\
+    Basis $U := \{ \vc{u}_1, \vc{u}_2,\dots, \vc{u}_k \}$ for $V$.
+    \begin{align*}
+        \vc{v}_1 &= \vc{u}_1    \\
+        \shortintertext{for $i\in\{2,3,\dots,k\}$}
+        \vc{v}_i &= \vc{u}_i
+        - \sum_{j=1}^{i-1} \frac{\vc{u}_i\cdot\vc{v}_j}{\vc{v}_j\cdot\vc{v}_j}\  \vc{v}_j
+    \end{align*}
+    $\{\vc{v}_1, \vc{v}_2,\dots,\vc{v}_k\}$ form orthogonal basis for $V$.
+
+%\sectiontitle{Best Approximations}\\
+%    Just project the damn vector.
+%    Alternatively find least square solution $\vc{u}$, then $\mtx{A}\vc{u} = \vc{p}$.
+%    (If they ask for distance just find $\norm{\vc{v} - \vc{p}}$.
+%
+%\sectiontitle{Least Square Solution}\\
+%    Literally solve $\mtx{A}\T \mtx{A}\vc{x} = \mtx{A}\T\vc{b}$.
+%
+\sectiontitle{Orthogonal matrices}\\
+    iff $\mtx{A}\T = \mtx{A}^{-1}$. rows and cols form orthonormal basis for $\real^n$.\\
+    Note: Transition matrix between two orthonormal bases is orthogonal.
+    So $\mtx{P}_{T, S} = (\mtx{P}_{S, T})^{-1} = (\mtx{P}_{S, T})\T$
+
+\sectiontitle{Eigenvalues}\\
+    $\lambda$ is an eigenvalue of $A$ iff
+    $\exists \vc{v}\ne \vc{0}.~ \mtx{A}\vc{v} = \lambda\vc{v}$.\\
+    Characteristic polynomial is $\det(\mtx{A} - \lambda\mtx{I}) = 0$\\
+    Eigenspace $E_\lambda :=$ nullspace of $(\mtx{A} - \lambda\mtx{I})$.\\
+    To diagonalise $n\times n$ matrix $\mtx{A}$,
+    \begin{enumerate}
+        \item Find all distinct $\lambda_1,\lambda_2,\dots,\lambda_k$,
+        \item For each $\lambda_i$, find basis $S_{\lambda i}$ for eigenspace $E_{\lambda i}$
+        \item[] (If $|S_{\lambda i}| < p_i$ where $p_i$ is power of $(\lambda - \lambda_i)$ in polynomial,
+            then not diagonalisable, abort.)
+        \item Set $S = \bigcup_{i\in\{1,\dots,k\}} S_{\lambda i} = \{\vc{u}_1,\vc{u}_2,\dots,\vc{u}_n\}$ 
+            (union the eigenbases).
+        \item[] $\mtx{A}$ is diagonalisable if $|S| = n$.
+    \end{enumerate}
+    $\mtx{P} = \begin{bmatrix} \vc{u}_1 & \vc{u}_2 & \dots & \vc{u}_n \end{bmatrix}$ st.
+        $\mtx{A} = \mtx{PDP}^{-1}$.\\
+
+    For orthogonally diagonalisable (symmetric) matrix $\mtx{A}$,
+    Gram-Schmidt and normalise the bases in step 2,
+    then $\mtx{A} = \mtx{PDP}\T$.
+
+\end{minipage} % End the second column of text
+} % End the second division of the page
+
+%----------------------------------------------------------------------------------------
+%	THIRD COLUMN SPECIFICATION
+%----------------------------------------------------------------------------------------
+
+\put(200,197){ % Divide the page
+\begin{minipage}[t]{85mm} % Create a box to house tex
+\sectiontitle{Linear Transformations}\\
+    Suppose $T: V \to W$ is a linear transformation and $S = \left\{\,\vc{u}_1, \vc{u}_2, \dots, \vc{u}_n\,\right\}$ is a basis for $V$.\\
+    If $T(S)$ is known, and $\mtx{P}_{E,S}$ is the transition matrix from basis $E$ to $S$,\\
+    $\mtx{B} = \begin{bmatrix} T(\vc{u}_1) & T(\vc{u}_2) & \cdots & T(\vc{u}_n) \end{bmatrix}$.
+    \[
+        \begin{tikzcd}[ampersand replacement=\&]
+            V \arrow[r, "\mtx{P}_{E,S}"] \arrow[d, "T"] \& \arrow[ld, "\mtx{B}"] [V]_S  \\
+            W
+        \end{tikzcd}
+    \]
+    (generalisable).
+\hfill\\
+
+\sectiontitle{Corner case matrices}\\
+Standard non-diagonalisable matrix: $\begin{bmatrix} a & 1 \\ 0 & a \end{bmatrix}$.\\
+$\mtx{A} = \begin{bmatrix}1&1\\0&0\end{bmatrix};
+\mtx{B} = \begin{bmatrix}1&1\\-1&-1\end{bmatrix}$ then
+$$\mA\mtx{B}=\mtx{0}\text{ but }\mtx{B}\mA\ne \mtx{0}$$
+$
+\mtx{A} = \begin{bmatrix}1&2\\0&-1\end{bmatrix};
+\mtx{B} = \begin{bmatrix}1&3\\0&-1\end{bmatrix}
+$ then
+$$\mtx{A}^2 = \mtx{B}^2 = \mtx{I}\text{ but }\mtx{A} \not= \mtx{B}, (\mtx{AB})^2 \not= \mtx{I}$$
+$
+\mtx{A} = \begin{bmatrix}2&1\\3&2\end{bmatrix};
+\mtx{B} = \begin{bmatrix}1&-1\\1&1\end{bmatrix}
+$ then
+$$(\mtx{AB})^k \not= \mtx{A}^k\mtx{B}^k, (\mtx{AB})\T \not= \mtx{A}\T\mtx{B}\T,
+(\mtx{AB})^{-1} \not= \mtx{A}^{-1}\mtx{B}^{-1}$$
+
+    \line(1,0){30}
+\sectiontitle{Theorem. Invertible Square Matrix}\\
+For any square matrix $\mA$:
+    \begin{itemize}[label=$\iff$]
+        \item[] $\mtx{A}$ is invertible,
+        \item $\mA\vc{x} = \vc{0}$ only has trivial solution,
+        \item rref$(\mA) = \mtx{I}$,
+        \item $\mA = \mtx{E}_k\dots\mtx{E}_2\mtx{E}_1$,
+        \item $\det(\mA) \ne 0$,
+        \item rows/cols in $\mA$ form basis for $\real^n$,
+        \item $\mA$ has full rank,
+        \item $0$ is not an eigenvalue of $\mtx{A}$.
+    \end{itemize}
+
+
+
+\end{minipage} % End the third column of text
+} % End the third division of the page
+\end{picture} % End the container for the entire page
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

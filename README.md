@@ -1,0 +1,24 @@
+This repo contains all of my school-related LaTeX/markdown manuscripts, since uni started in fall 2017.
+
+With effort, everything is generated with with [Hakyll](https://jaspervdj.be/hakyll/index.html).
+
+Also, every single markdown file in here except for this one liberally uses pandoc extensions,
+and probably will not preview nicely.
+
+# Quick (docker) dev setup
+
+1. `docker run --rm -p 8000:8000 -it -v $(pwd):/site qjqqyy/hakyll-latex`
+    * noobtip: `--tmpfs` might or might not come in useful here
+    * you might or might not wanna alias the above
+2. open <http://localhost:8000> (if Docker is running on `localhost` that is)
+
+See: [hakyll-latex](https://github.com/qjqqyy/hakyll-latex)
+
+# Routes
+
+* Pandoc markdown to HTML
+* Pandoc markdown to PDF
+* LaTeX to PDF
+    * refer to bib files using `\jobname.bib` so `latexmk` picks up the link
+    * oh and they also get renamed in the compilation process anyway (so better do it)
+* Pandoc markdown to Beamer

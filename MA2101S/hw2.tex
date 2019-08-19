@@ -1,0 +1,522 @@
+% call TexNewMathZone("D","align*",1)
+\documentclass[11pt]{article}
+\usepackage[british]{babel}
+\usepackage[a4paper]{geometry}
+\usepackage{sectsty}
+\parindent 0pt
+\allsectionsfont{\normalfont\sffamily\bfseries}
+
+\author{Qi Ji\\\small A0167793L}
+\title{MA2101S Homework 2}
+\date{5th February 2018}
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+
+%\newtheorem{thm}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{lemma}{Exercise}
+%\newtheorem{corollary}[thm]{Corollary}
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+\newtheorem*{definition}{Definition}
+\newtheorem*{notation}{Notation}
+
+\numberwithin{lemma}{problem}
+\numberwithin{equation}{problem}
+\newenvironment{solution}{
+    \renewcommand{\qedsymbol}{$\blacksquare$}
+    \begin{proof}[Solution]
+    }
+    {
+    \end{proof}
+}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\set}[1]{\left\{\,#1\,\right\}}
+\DeclareMathOperator{\Maps}{Maps}
+\DeclareMathOperator{\Hom}{Hom}
+\let\Im\relax
+\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\spn}{span}
+%slanted inequalities
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Qi Ji -- A0167793L}
+\rhead{MA2101S -- Homework $2$}
+
+\begin{document}
+% uncomment if desired
+\maketitle
+
+% P 1
+\begin{problem}
+    Let $K$ be any field, let $V$ be a $K$-vector space, and let
+    $T: V\to V$ be a $K$-linear endomorphism.
+    Suppose $v\in V$ and $n \in \N_{>0}$ such that
+    $$T^n v = 0 \text{\quad but\quad } T^{n-1}V\ne 0 \text{\quad in }V.$$
+    Show that the $n$ vectors $v, Tv, \dots, T^{n-1}v$ in $V$
+    are linearly independent over $K$.
+\end{problem}
+\begin{proof}
+    Consider the equation
+    \begin{equation} \label{q1_main}
+        c_1v + c_2Tv + \dots + c_{n-1}T^{n-1}v = 0
+    \end{equation}
+    where $c_1, c_2, \dots, c_{n-1} \in K$.
+
+    Then applying $T^{n-1}$ to both sides, we get, by linearity of $T$,
+    \begin{align*}
+        T^{n-1}\left( c_1v + c_2Tv + \dots + c_{n-1}T^{n-1}v \right)    &= T^{n-1} 0    \\
+        T^{n-1}(c_1v) + T^{n-1}(c_2Tv) + \dots + T^{n-1}(c_{n-1}T^{n-1}v) &= 0  \\
+        c_1T^{n-1}v + \underbrace{c_2T^nv + \dots + c_{n-1}T^{2n-2}v}_0 &= 0  \\
+        c_1T^{n-1}v &= 0
+    \end{align*}
+    and because $T^{n-1}v \ne 0$, we have $c_1 = 0$.
+    Now rewrite \eqref{q1_main} and apply $T^{n-2}$ to both sides, again by linearity of $T$,
+    \begin{align*}
+        T^{n-2}\left( c_2Tv + \dots + c_{n-1}T^{n-1}v \right)    &= T^{n-2} 0    \\
+        T^{n-2}(c_2Tv) + \dots + T^{n-2}(c_{n-1}T^{n-1}v) &= 0  \\
+        c_2T^{n-1}v + \underbrace{c_3T^nv + \dots + c_{n-1}T^{2n-3}v}_0 &= 0  \\
+        c_2T^{n-1}v &= 0
+    \end{align*}
+    we have $c_1 = c_2 = 0$.
+
+    The other $n-3$ cases are analogous. So $c_1 = c_2 = \dots = c_{n-1} = 0$, linear independence shown.
+\end{proof}
+
+\newpage
+% P 2
+\begin{problem}
+    Let $V := \Maps(\R, \R)$ denote the $\R$-vector space of $\R$-valued functions on $\R$.
+    Show that for any $n\in \N$ and for any pairwise distinct real numbers
+    $\alpha_1,\dots,\alpha_n \in \R$, the $n$ exponential functions in the variable
+    $t \in \R$ given by
+    $$e^{\alpha_1 t}, \dots, e^{\alpha_n t} \in V$$
+    are linearly independent over $\R$.
+\end{problem}
+\begin{proof}
+    Consider the equation
+    \begin{equation} \label{q2_main}
+        f: t\mapsto c_1 e^{\alpha_1 t} + c_2 e^{\alpha_2 t} + \dots + c_n e^{\alpha_n t} = 0_V
+    \end{equation}
+    where $c_1, c_2, \dots, c_n \in \R$.
+    $\alpha_1,\dots,\alpha_n$ are pairwise distinct.
+    By reordering terms, we can assume $\alpha_1 < \alpha_2 < \dots < \alpha_n$.
+    Then rewrite as follows
+    \begin{align*}
+        \alpha_2 &= \alpha_1 + d_2    \\
+        &\dots  \\
+        \alpha_n &= \alpha_1 + d_n
+    \end{align*}
+    and because $\alpha_1 < \dots < \alpha_n$ by assumption, $d_2< \dots< d_n$ and they are all strictly positive in $\R$.
+    Then for any $t\in \R$, from \eqref{q2_main}
+    \begin{align*}
+        c_1 e^{\alpha_1 t} + c_2 e^{\alpha_2 t} + \dots + c_n e^{\alpha_n t} &= 0   \\
+        c_1 e^{\alpha_1 t} + c_2 e^{(\alpha_1 + d_2) t} + \dots + c_n e^{(\alpha_1 + d_n) t} &= 0  \\
+        c_1 e^{\alpha_1 t} + c_2 e^{\alpha_1t} e^{d_2t} + \dots + c_n e^{\alpha_1t} e^{d_n t} &= 0 \\
+        e^{\alpha_1t} \left(
+            c_1 + c_2 e^{d_2t} + \dots + c_n e^{d_n t}
+        \right) &= 0
+    \end{align*}
+    because $e^t \ne 0$ for all $t\in \R$,
+    \begin{equation}    \label{q2_reduced}
+        c_1 + c_2 e^{d_2t} + \dots + c_n e^{d_n t} = 0
+    \end{equation}
+    Now take limit as $t\to -\infty$, it is known that $\lim_{t\to -\infty} e^t = 0$,
+    \begin{align*}
+        \lim_{t\to -\infty} \left( c_1 + c_2 e^{d_2t} + \dots + c_n e^{d_n t} \right)&= 0   \\
+        \lim_{t\to -\infty} c_1 + \lim_{t\to -\infty} \left( c_2 e^{d_2t} + \dots + c_n e^{d_n t} \right)&= 0   \\
+        c_1 + 0 &= 0
+    \end{align*}
+    so $c_1 = 0$.
+
+    As $d_2 < \dots < d_n$, from \eqref{q2_reduced} we can repeat the same process and
+    factor out $e^{d_2 t}$, then take the limit as $t\to -\infty$ again to get $c_2 = 0$.
+
+    The other $n-2$ cases are analogous. So $c_1 = c_2 = \dots = c_n = 0$, linear independence shown.
+\end{proof}
+
+\newpage
+% P 3
+\begin{problem}
+    Let $K$ be a field, and let $V$ and $W$ be $K$-vector spaces.
+    Let $T,U \in \Hom_K(V,W)$ be $K$-linear maps $V\to W$.
+    Suppose $\Im(T) \cap \Im(U) = \set{0_W}$ and $T,U$ are non-zero.
+    Show that $T$ and $U$ are linearly independent in $\Hom_K(V,W)$.
+\end{problem}
+\begin{proof}
+    Consider the equation
+    \begin{equation} \label{q3_main}
+        c T + d U = 0_{\Hom_K(V,W)}
+    \end{equation}
+    where $c,d\in K$.
+    Suppose for a contradiction $T,U$ are linearly dependent, so $c,d$ nonzero,
+    then take any $v\in V$ where $U(v) \ne 0$,
+    \begin{align*}
+        (c T + d U)(v) &= 0_{\Hom_K(V,W)}(v) \\
+        c T(v) + d U(v) &= 0_W   \\
+        T(v) &= - c^{-1} d U(v)
+    \end{align*}
+    So we have $-c^{-1} d U(v) \in \Im(T)$, by subspace property of the image of a linear map,
+    $$(-d^{-1} c)(-c^{-1} d U(v)) \in \Im(T) \implies U(v) \in \Im(T).$$
+    Clearly $U(v) \in \Im(U)$, this means $U(v) \in \Im(T) \cap \Im(U) \implies U(v) = 0_W$, which is a contradiction.
+\end{proof}
+
+\newpage
+% P 4a
+\begin{problem}
+    Let $K$ be a field, and let $X$ be a $K$-vector space.
+    \begin{enumerate}[label=(\alph*)]
+        \item Let $V$ and $W$ be finite dimensional $K$-subspaces of $X$. Show that
+            $$\dim_K(V) + \dim_K(W) = \dim_K(V + W) + \dim_K(V \cap W)$$
+    \end{enumerate}
+\end{problem}
+%\paragraph{Part (a)}
+\begin{proof}
+    Let $\alpha = \set{u_1, \dots, u_r}$ be a basis for $V \cap W$.
+    First expand $\alpha$ to be a basis for $V$, similar to the proof of existence of basis (for finite-dimensional vector spaces).
+
+    Set $\beta := \emptyset$,
+    while $\spn(\alpha\cup\beta) \ne V$,
+    choose vector $v\in V, v\notin \spn(\alpha\cup\beta)$,
+    and set $\beta := \beta \cup \set{v}$.
+    $\alpha\cup\beta$ is now a basis for $V$.
+
+    Set $\gamma := \emptyset$,
+    while $\spn(\alpha\cup\gamma) \ne W$,
+    choose vector $v\in W, v\notin \spn(\alpha\cup\gamma)$,
+    and set $\gamma := \gamma \cup \set{v}$.
+    $\alpha\cup\gamma$ is now a basis for $W$. The algorithms halt due as $V,W$ are finite-dimensional.
+    \paragraph{Claim.} $\alpha\cup\beta\cup\gamma = \set{u_1, \dots, u_r, v_1,\dots, v_m, w_1, \dots, w_n}$ is a basis for $V + W$.
+
+    Take any arbitary vector in $x\in V+W$, by definition, $\exists v\in V, w\in W.~ x = v + w$.
+
+    $\alpha\cup\beta$ is a basis for $V$ so $\exists c_1, \dots, c_{r+m}\in K$,
+    \[
+%        v = c_1u_1 + \dots + c_ru_r + c_{r+1} v_1 + \dots + c_{r+m} v_m.
+        v = \sum_{i=1}^r c_iu_i + \sum_{i=1}^m c_{r+i} v_i.
+    \]
+    Also, $\alpha\cup\gamma$ is a basis for $W$ so $\exists d_1, \dots, d_{r+n}\in K$,
+    \[
+%        w = d_1u_1 + \dots + d_ru_r + d_{r+1} w_1 + \dots + d_{r+n} w_n.
+        v = \sum_{i=1}^r d_iu_i + \sum_{i=1}^n d_{r+i} w_i.
+    \]
+
+    Then because $x = u + w$,
+    \begin{align*}
+        x &= \sum_{i=1}^r c_iu_i + \sum_{i=1}^m c_{r+i} v_i + \sum_{i=1}^r d_iu_i + \sum_{i=1}^n d_{r+i} w_i    \\
+        &= \sum_{i=1}^r (c_i+d_i)u_i + \sum_{i=1}^m c_{r+i} v_i + \sum_{i=1}^n d_{r+i} w_i
+    \end{align*}
+    Therefore $\alpha\cup\beta\cup\gamma$ generates $V+W$.
+
+    \newpage
+    To show linear independence, consider the equation
+    \begin{equation} \label{q4a_indep}
+        \sum_{i=1}^r c_iu_i + \sum_{i=1}^m d_iv_i + \sum_{i=1}^n e_iw_i = 0
+    \end{equation}
+    where $c_1,\dots,c_r,d_1,\dots,d_m,e_1,\dots,e_n \in K$. Then
+    \begin{equation} \label{q4a_almost}
+        \underbrace{\sum_{i=1}^r c_iu_i + \sum_{i=1}^m d_iv_i}_{\text{in }V}
+        = \underbrace{- \sum_{i=1}^n e_iw_i}_{\text{in }W} \\
+    \end{equation}
+    so $-\sum_{i=1}^n e_iw_i \in V\cap W$, since $V\cap W$ has basis $\alpha$, exist scalars $b_1,\dots,b_r$ such that
+    \begin{align*}
+        -\sum_{i=1}^n e_iw_i &= \sum_{i=1}^r b_iu_i  \\
+        0 &= \sum_{i=1}^r b_iu_i + \sum_{i=1}^n e_iw_i
+    \end{align*}
+    from linear independence of $\alpha\cup\gamma$, $b_1 = \dots = b_r = e_1 = \dots = e_n = 0$.
+    Then RHS of \eqref{q4a_almost} is zero, and by linear independence of $\alpha\cup\beta$,
+    we have $c_1 = \dots = c_r = d_1 = \dots = d_m = 0$.
+    This completes the proof of the claim.
+
+    Then by counting the sizes of $\alpha, \beta, \gamma$, we get
+    \begin{align*}
+        \dim_K(V) + \dim_K(W) &= |\alpha\cup\beta| + |\alpha\cup\gamma| \\
+        &= r+m+r+n = r+m+n +r   \\
+        &= |\alpha\cup\beta\cup\gamma| + |\alpha|   \\
+        &= \dim_K(V+W) + \dim_K(V\cap W)
+    \end{align*}
+    which completes the proof.
+\end{proof}
+
+\newpage
+% P 4b
+\begin{enumerate}[label=(\alph*)] \setcounter{enumi}{1}
+    \item Let $U, V$ and $W$ be finite dimensional $K$-subspaces of $X$. Show that
+        \begin{align*}
+            \dim_K(U) + \dim_K(V) + \dim_K(W) - \dim_K(U + V + W)   \\
+            \geq \max\left(
+                \dim_K(U\cap V), \dim_K(V\cap W), \dim_K(W\cap U)
+            \right)
+        \end{align*}
+\end{enumerate}
+\begin{proof}
+    Firstly, subspace addition is commutative and associative, a property inherited from vector addition.
+    Then by applying result of part (a), compute $\dim_K(U+V+W)$ in 3 different ways.
+    Firstly,
+    \begin{align*}
+        &\phantom{=\ }\dim_K(U+V+W)   \\
+        &= \dim_K((U+V)+W)    \\
+        &= \dim_K(U+V) + \dim_K(W) -\dim_K((U+V)\cap W) \\
+        &= \dim_K(U) + \dim_K(V) - \dim_K(U\cap V)
+            + \dim_K(W) -\dim_K((U+V)\cap W)
+    \end{align*}
+    Rearranging terms,
+    \begin{multline*}
+        \dim_K(U) + \dim_K(V) + \dim_K(W) - \dim_K(U+V+W) \\ =
+        \dim_K(U\cap V) + \dim_K((U+V)\cap W).
+    \end{multline*}
+    In particular, $\dim_K((U+V)\cap W) \geq 0$, so
+    \begin{equation}    \label{q4b_1st}
+        \dim_K(U) + \dim_K(V) + \dim_K(W) - \dim_K(U+V+W) \geq \dim_K(U\cap V).
+    \end{equation}
+
+    Similarly,
+    \begin{align}
+        \dim_K(U+V+W) &= \dim_K(U+(V+W))   \nonumber\\
+        &= \dim_K(U) + \dim_K(V+W) - \dim_K(U\cap(V+W)) \nonumber\\
+        \dim_K(U+V+W) &\leq \dim_K(U) + \dim_K(V+W) \nonumber \\
+        \dim_K(U+V+W) &\leq \dim_K(U) + \dim_K(V) + \dim_K(W) - \dim_K(V\cap W) \nonumber \\
+        \dim_K(V\cap W) &\leq \dim_K(U) + \dim_K(V) + \dim_K(W) - \dim_K(U+V+W)    \label{q4b_2nd}
+    \end{align}
+    Finally,
+    \begin{align}
+        \dim_K(U+V+W) &= \dim_K(V+(U+W))   \nonumber\\
+        &= \dim_K(V) + \dim_K(U+W) - \dim_K(V\cap(U+W)) \nonumber\\
+        \dim_K(U+V+W) &\leq \dim_K(V) + \dim_K(U+W) \nonumber \\
+        \dim_K(U+V+W) &\leq \dim_K(U) + \dim_K(V) + \dim_K(W) - \dim_K(U\cap W) \nonumber \\
+        \dim_K(U\cap W) &\leq \dim_K(U) + \dim_K(V) + \dim_K(W) - \dim_K(U+V+W)    \label{q4b_3rd}
+    \end{align}
+    \eqref{q4b_1st}, \eqref{q4b_2nd} and \eqref{q4b_3rd} all hold true, therefore
+    combining inequalities,
+    \begin{align*}
+        \dim_K(U) + \dim_K(V) + \dim_K(W) - \dim_K(U + V + W)   \\
+        \geq \max\left(
+            \dim_K(U\cap V), \dim_K(V\cap W), \dim_K(W\cap U)
+        \right)\tag*{\qedhere}
+    \end{align*}
+\end{proof}
+
+\newpage
+% P 5a
+\begin{problem}
+    Let $V:=\Maps(\N,\R)$ denote the $\R$-vector space of all sequences in $\R$ indexed by $\N$,
+    and let $W\subseteq V$ denote the subset of sequences
+    $\left( x_0, x_1, \dots, x_n, \dots \right)\in V$ satisfying
+    \[
+        x_n = x_{n-1} + x_{n-2} \quad\text{for all }n \in \N_{\geq 2}.
+    \]
+    \begin{notation}
+        Let $K_0:\N \to \R$ denote the zero sequence, where $\forall n\in \N.~ K_0(n) = 0_\R$.
+        Also throughout Questions 5 and 6, functional notation instead of subscripts
+        will be used to access members of a sequence.
+    \end{notation}
+    \begin{enumerate}[label=(\alph*)]
+        \item Show that $W$ is an $\R$-subspace of $V$.
+    \end{enumerate}
+\end{problem}
+\begin{proof}
+    $0_V \in V$ is the zero sequence, $K_0$.
+    For any $n\in\N_{\geq 2}$, $K_0(n) = 0$ and $K_0(n-1) + K_0(n-2) = 0 + 0 = 0$.
+    Therefore $0_V\in W$.
+
+    To show closure under vector addition, take any $f, g\in W$,
+    then for any $n\in \N_{\geq 2}$,
+    \begin{align*}
+        (f+g)(n) &= f(n) + g(n) \\
+        &= f(n-1) + f(n-2) + g(n-1) + g(n-2)    \\
+        &= f(n-1) + g(n-1) + f(n-2) + g(n-2)    \\
+        &= (f+g)(n-1) + (f+g)(n-2)
+    \end{align*}
+    so $f+g\in W$.
+    To show closure under scalar multiplication, take any $f\in W, x\in \R$, and
+    for any $n\in \N_{\geq 2}$,
+    \begin{align*}
+        (xf)(n) &= x\cdot f(n)  \\
+        &= x\cdot\left( f(n-1) + f(n-2) \right) \\
+        &= x\cdot f(n-1) + x\cdot f(n-2) \\
+        &= (xf)(n-1) + (xf)(n-2)
+    \end{align*}
+    so $xf \in W$. Therefore $W$ is a subspace of $V$.
+\end{proof}
+
+\newpage
+% P 5b
+\begin{enumerate}[label=(\alph*)] \setcounter{enumi}{1}
+    \item Show that an $\R$-basis of $W$ is given by the two sequences
+        \[ (a_0, a_1, \dots) \quad\text{and}\quad (a_1, a_2, \dots) \]
+        where $a_0, a_1, a_2, \dots$ are the \emph{Fibonacci numbers} defined inductively by:
+        \[ a_0 := 0,\quad a_1:=1,\quad a_n:= a_{n-1} + a_{n-2} \quad\text{ for all } n\in\N_{\geq 2}. \]
+\end{enumerate}
+%\begin{lemma}
+%    For any pair of sequences in $f,g\in W$,
+%    if $f(0) = g(0)$ and $f(1) = g(1)$, then $f = g$.
+%\end{lemma}
+%\begin{proof}
+%    By characterising property of $W$, $f(2) = g(2)$, because
+%    $$f(2) = f(0) + f(1) = g(0) + g(1) = g(2).$$
+%    Suppose $\forall i \in \N_{\leq n}.~ f(i) = g(i)$, then
+%    \begin{align*}
+%        f(n+1) &= f(n) + f(n-1) \tag*{(by property of $W$)}  \\
+%        &= g(n) + g(n-1)    \tag*{(by IH)}   \\
+%        &= g(n+1)   \tag*{(by property of $W$)}
+%    \end{align*}
+%    Shown by strong induction.
+%    Note that the converse is trivial.
+%\end{proof}
+\begin{lemma} \label{q5_isomeme}
+    The map $T: W \to \R^2$ as defined by $f \mapsto \left( f(0), f(1) \right)$ is a $\R$-linear isomorphism.
+\end{lemma}
+\begin{proof}
+    To show linearity, for any $f,g\in W$, $a,b\in \R$.
+    Consider $T(af + bg)$,
+    \begin{align*}
+        T(af + bg) &= \left( (af+bg)(0), (af+bg)(1) \right) \\
+        &= \left( af(0)+bg(0), af(1)+bg(1) \right) \\
+        &= \left( af(0), af(1)\right) + \left( bg(0), bg(1) \right)\\
+        &= a\left( f(0), f(1)\right) + b\left( g(0), g(1) \right)\\
+        &= aT(f) + bT(g)
+    \end{align*}
+    Next, consider the kernel of $T$, so suppose $f\in W,~ T(f) = (0,0)\in \R^2$,
+    then from definition of $T$, $f(0) = 0$ and $f(1) = 0$, using characterising property of $W$,
+    it means $f$ has to be the zero sequence $K_0$, therefore $T$ has a trivial kernel ($T$ injects).
+
+    Now consider the range of $T$, for any $(x_0, x_1)\in \R^2$,
+    define a sequence $f:\N \to \R$ inductively as follows,
+    $$ f(0) := x_0,\quad f(1) := x_1,\quad f(n) = f(n-1) + f(n-2)\quad \text{for all }n \in \N_{\geq 2}. $$
+    By construction, $f\in W$, and it is clear that $T(f) = (x_0, x_1)$, therefore $T$ maps onto $\R^2$.
+
+    Hence $T$ is an $\R$-linear isomorphism.
+\end{proof}
+\begin{proposition}
+    An $\R$-basis of $W$ is given by the two sequences
+        \[ f := (a_0, a_1, \dots) \quad\text{and}\quad g := (a_1, a_2, \dots) \]
+    where $a_i$ denotes the $i$-th Fibonacci number.
+\end{proposition}
+\begin{proof}
+    $T(f) = (0,1)$ and $T(g) = (1,1)$.
+    From MA1101R, an easy computation gives us that
+    $\set{(0,1),(1,1)}$ is a basis for $\R^2$.
+    Therefore as isomorphisms preserve structure,
+    $\set{ T^{-1}(0,1), T^{-1}(1,1) } = \set{f,g}$ is a basis for $W$.
+\end{proof}
+
+\newpage
+% P 6a
+\begin{problem}
+    Preserving the notation as in the previous question.
+    \begin{enumerate}[label=(\alph*)]
+        \item Determine (distinct) real numbers $\alpha,\beta \in \R$ such that the two sequences
+            \[
+                (\alpha^0,\alpha^1,\alpha^2,\dots)\quad \text{and}\quad
+                (\beta^0,\beta^1,\beta^2,\dots)
+            \]
+            also form an $\R$-basis of $W$.
+    \end{enumerate}
+\end{problem}
+\begin{solution}
+    Firstly, the two sequences must be in $W$.
+    So we have to solve for a geometric sequence $f = (x^0, x^1, x^2, \dots)$
+    satisfying the property that for all $n\in\N_{\geq 2}$,
+    \begin{equation} \label{q6a_meme1}
+        x^n = x^{n-1} + x^{n-2}.
+    \end{equation}
+    Since we want $f$ to be part of an $\R$-basis of $W$, $f$ should not be the zero sequence,
+    so take $x\ne 0$. Then \eqref{q6a_meme1} reduces to the following
+    \begin{align}
+        x^2 &= x^0 + x^1    \nonumber \\
+        x^2 - x - 1 &= 0    \label{q6a_meme2}
+    \end{align}
+    Solving for roots in \eqref{q6a_meme2}, we can see that setting
+    \[
+        \alpha = \frac{1+\sqrt{5}}{2},\quad
+        \beta=\frac{1-\sqrt{5}}{2}
+    \] we obtain the only two nonzero values for $\alpha,\beta\in\R$ such that
+    the sequences $(\alpha^0,\alpha^1,\alpha^2,\dots)$ and
+    $(\beta^0,\beta^1,\beta^2,\dots)$ lie in $W$.
+\end{solution}
+\textbf{Claim.} The sequences form a $\R$-basis for $W$.
+\begin{proof}
+    By Exercise \ref{q5_isomeme}, it suffices to check if
+    $\set{(\alpha^0, \alpha^1),(\beta^0, \beta^1)}$ form a basis for $\R^2$,
+    \[
+        \begin{bmatrix}
+            1 & 1   \\
+            \frac{1+\sqrt{5}}{2} & \frac{1-\sqrt{5}}{2}
+        \end{bmatrix}
+        \xrightarrow[\text{Elimination}]{\quad \text{Gaussian} \quad}
+        \begin{bmatrix}
+            1 & 1   \\
+%           0 & \frac{-2\sqrt{5}}{1+\sqrt{5}}
+            0 & 1
+        \end{bmatrix}
+    \]
+    and we're done.
+\end{proof}
+
+\newpage
+% P 6b
+\begin{enumerate}[label=(\alph*)] \setcounter{enumi}{1}
+    \item Show that the Fibonacci numbers are given by the closed formula
+        \[
+            a_n = \frac{1}{\sqrt{5}}\left[
+                \left( \frac{1+\sqrt{5}}{2} \right)^n   -
+                \left( \frac{1-\sqrt{5}}{2} \right)^n
+                \right]
+        \]
+\end{enumerate}
+\begin{proof}
+    Define $a, f, g\in W$ as
+    \begin{align*}
+        a &= (a_0, a_1, \dots)  \\
+        f &= (\alpha^0,\alpha^1,\alpha^2,\dots) \\
+        g &= (\beta^0,\beta^1,\beta^2,\dots)
+    \end{align*}
+    where again $a_i$ denotes the $i$-th Fibonacci number, keeping $\alpha, \beta$ from part (a).
+    Let $T$ be the isomorphism $W\to \R^2$ defined in \ref{q5_isomeme}.
+
+    Since $a\in W$ and $\set{f,g}$ is a basis for $W$ (part (a)),
+    then there exists unique $c,d\in \R$ where $a = cf + dg$, so solving for $c,d$.
+    \begin{align*}
+        a &= cf + dg    \\
+        T(a) &= T(cf + dg)    \\
+        T(a) &= cT(f) + dT(g)    \\
+        (0,1) &= c(1,\alpha) + d(1,\beta)
+    \end{align*}
+    \[
+        \left[
+            \begin{array}{cc|c}
+                1 & 1 & 0   \\
+                \frac{1+\sqrt{5}}{2} & \frac{1-\sqrt{5}}{2} & 1
+            \end{array}
+            \right]
+        \xrightarrow[\text{Elimination}]{\quad \text{Gauss-Jordan}\quad }
+        \left[
+            \begin{array}{cc|c}
+                1 & 0 & \frac{1}{\sqrt{5}}   \\
+                0 & 1 & -\frac{1}{\sqrt{5}}
+            \end{array}
+            \right]
+    \]
+    $$c = \frac{1}{\sqrt{5}},\quad d = -\frac{1}{\sqrt{5}}.$$
+    Since $a = cf + dg$, applying this equation pointwise, for any $n \in \N$,
+    \begin{align*}
+        a(n) &= cf(n) + dg(n)    \\
+        a_n &= \frac{1}{\sqrt{5}} \alpha^n - \frac{1}{\sqrt{5}} \beta^n    \\
+        &= \frac{1}{\sqrt{5}} \left[
+            \left( \frac{1+\sqrt{5}}{2} \right)^n   -
+            \left( \frac{1-\sqrt{5}}{2} \right)^n
+            \right]
+    \end{align*}
+    obtaining the closed formula for the Fibonacci numbers.
+\end{proof}
+\end{document}

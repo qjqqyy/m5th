@@ -1,0 +1,488 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[british]{babel}
+\usepackage[a4paper,top=2.2cm,bottom=2.4cm,left=2.2cm,right=2.2cm]{geometry}
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\mathtoolsset{showonlyrefs}
+%\usepackage{braket}
+\newcommand{\set}[1]{\left\{\,#1\,\right\}}
+\setlength{\parindent}{0pt} % Stop paragraph indentation
+
+\newtheorem*{lemma}{Lemma}
+\theoremstyle{definition}
+\newtheorem{qn}{Q}
+\newtheorem*{defn}{Definition}
+\numberwithin{equation}{qn}
+\newcommand{\nat}{\mathbb{N}}
+\newenvironment{prf}
+{
+    \begin{proof}
+        \hfill
+        \begin{enumerate}[label*=\arabic*.]
+                }
+                {
+                \hfill\qedsymbol
+        \end{enumerate}
+    \renewcommand{\qedsymbol}{}
+    \end{proof}
+}
+
+\title{MA1100 Homework 4}
+\author{Qi Ji\\
+    \small A0167793L\\
+    \footnotesize T04}
+\date{3rd November 2017}
+\begin{document}
+\maketitle
+
+% Q1
+\begin{qn}
+\textbf{(a)}
+Show that for any $a,b,c,d\in\nat$, if $a\mid b$ and $c\mid d$, then $ac\mid bd$.
+\end{qn}
+\begin{prf}
+\item For any $a,b,c,d\in\nat$ with $a\mid b$ and $c\mid d$, then the following holds,
+    $$\exists k_1\in\nat.~ a\cdot k_1 = b$$
+    $$\exists k_2\in\nat.~ c\cdot k_2 = d$$
+\item then $bd = (ak_1)\cdot (ck_2) = (ac)\cdot(k_1k_2)$, so $ac\mid bd$.
+\end{prf}
+\textbf{\phantom{Q 1. }(b)}
+Show that for any $a,b,c\in\nat$ with $c>0$, if $ac\mid bc$, then $a\mid b$.
+\begin{prf}
+\item For any $a,b,c \in\nat$ where $c> 0$, if $ac\mid bc$, then
+    $$\exists k\in\nat.~ ac\cdot k = bc$$
+\item Since $c\ne 0$, by cancellation property of $\cdot$, $ak = b$, so $a\mid b$.
+\end{prf}
+
+% Q2
+\begin{qn}
+    Show that for all $n\in\nat$, the product $n(n^2 + 5)$ is divisible by 6.
+\end{qn}
+\begin{prf}
+\item Consider the following subset of $\nat$,
+    $$S := \set{n \in\nat: 6 \mid n(n^2 +5)}$$
+\item Then $0\in S$, because $6\cdot 0 = 0 = 0(0^2 + 5)$ so $6 \mid 0(0^2 + 5)$.
+\item For any $n \in S$, $6 \mid n(n^2 + 5)$
+    so $\exists k\in \nat.~ 6\cdot k = n(n^2 + 5)$, then
+    \begin{align}
+        (n+1)\left((n+1)^2 + 5)\right)
+        &= (n+1)(n^2 + 2n + 6)              \\
+        &= n^3 + 2n^2 + 6n + n^2 + 2n + 6   \\
+        &= n^3 + 3n^2 + 8n + 6              \\
+        &= n^3 + 5n + 3n^2 + 3n + 6         \\
+        &= n(n^2 + 5) + 3\cdot n(n + 1) + 6 \\
+        (n+1)\left((n+1)^2 + 5)\right)
+        &= 6k + 3\cdot n(n+1) + 6           \label{eqn:q2_1}
+    \end{align}
+\item[] \textbf{Known Result.} $n \in S \subseteq \nat$ is even or odd.
+    \begin{enumerate}[label=(\arabic*).]
+        \item Case $n$ is even, so $\exists l_1\in \nat.~ n = 2l_1$,
+            then \eqref{eqn:q2_1} can be rewritten as
+            \begin{align*}
+                (n+1)\left((n+1)^2 +5\right)
+                &= 6k + 3\cdot(2l_1)(n+1) + 6 \\
+                &= 6k + 6\cdot l_1(n+1) + 6   \\
+                &= 6(k + l_1(n+1) + 1)
+            \end{align*}
+            Hence $6 \mid (n+1)\left((n+1)^2 +5\right)$ and $n + 1 \in S$.
+        \item Case $n$ is odd, so $\exists l_2\in \nat.~ n = 2l_2 + 1$,
+            then \eqref{eqn:q2_1} can be rewritten as
+            \begin{align*}
+                (n+1)\left((n+1)^2 +5\right)
+                &= 6k + 3\cdot n(2l_2 + 1 +1) + 6 \\
+                &= 6k + 6\cdot n(l_2 + 1) + 6   \\
+                &= 6(k + n(l_2 + 1) + 1)
+            \end{align*}
+            Hence $6 \mid (n+1)\left((n+1)^2 +5\right)$ and $n + 1 \in S$.
+    \end{enumerate}
+\item Therefore by induction, $S = \nat$, for all $n\in\nat$, $n(n^2 + 5)$ is divisible by $6$.
+\end{prf}
+
+% Q3
+\begin{qn}
+    Show that for all $n\in\nat$, the number $3n^7 + 7n^3 + 11n$ is divisible by 21.
+\end{qn}
+\begin{prf}
+\item Consider the subset $S\subseteq\nat$,
+    $$S := \set{n\in\nat: 21\mid 3n^7+7n^3+11n}$$
+\item Then $0\in S$, because $21\cdot 0 = 0 = 3\cdot0^7 + 7\cdot0^3 + 11\cdot 0$,
+    which means $21 \mid 3\cdot0^7 + 7\cdot0^3 + 11\cdot 0$.
+\item For any $n\in S$, $21\mid 3n^7+7n^3+11n$, so $\exists k\in\nat.~ 21\cdot k=3n^7+7n^3+11n$, then
+    \begin{align*}
+        &\phantom{=}\ \,3(n+1)^7 + 7(n+1)^3 + 11(n+1)     \\
+        &= 3\left(n^7+7n^6+21n^5+35n^4+35n^3+21n^2+7n+1\right)  \\
+        &\quad+7\left(n^3+3n^2+3n+1\right) + 11n + 11       \\
+        &= 3n^7+21n^6+63n^5+105n^4+105n^3+63n^2+21n+3  \\
+        &\quad+7n^3+21n^2+21n+7 + 11n + 11       \\
+        &= 3n^7+21n^6+63n^5+105n^4+105n^3+84n^2+42n+21 + 7n^3 + 11n \\
+        &= 21k + 21n^6+(21\cdot3)n^5+(21\cdot5)n^4+(21\cdot5)n^3+(21\cdot4)n^2+(21\cdot2)n+21     \\
+        &= 21(k+n^6+3n^5+5n^4+5n^3+4n^2+2n+1)
+    \end{align*}
+    Hence $21\mid 3(n+1)^7+7(n+1)^3+11(n+1)$, $n+1\in S$.
+\item Therefore by induction, $S = \nat$, for all $n\in\nat$, $3n^7 + 7n^3 + 11n$ is divisible by 21.
+\end{prf}
+
+% Q4
+\newpage
+\begin{qn}
+    Show that for any $n \in\nat$, $n^2 + 2$ is not divisible by 4.
+\end{qn}
+\begin{prf}
+\item \emph{Base cases.}
+    \begin{align*}
+        0^2 + 2 = 2 = 4\cdot0 + 2&\implies 4 \nmid 2 \\
+        1^2 + 2 = 3 = 4\cdot0 + 3&\implies 4 \nmid 3
+%        2^2 + 2 = 6 = 4\cdot1 + 2&\implies 4 \nmid 6 \\
+%        3^2 + 2 = 11= 4\cdot2 + 3&\implies 4 \nmid 11 % \\
+        %4^2 + 2 = 18,& 4 \nmid 18
+    \end{align*}
+\item \emph{Induction step.} For any $n\in\nat$ where $4 \nmid n^2 + 2$,
+    $$\exists q\in\nat, r\in\set{1,2,3}.~ n^2 + 2 = 4\cdot q + r$$
+    then $4\nmid (n+2)^2 + 2$, because
+    \begin{align*}
+        (n+2)^2 + 2 &= n^2 + 4n + 4 + 2     \\
+                    &= 4q + r + 4n + 4      \\
+                    &= 4q + 4n + 4 + r      \\
+                    &= 4(q + n + 1) + r
+    \end{align*}
+\item Since $q + n + 1 \in\nat$ and $r\in\set{1,2,3}$, by division algorithm $4\nmid (n+2)^2 + 2$.
+\item Therefore by induction, $n^2 + 2$ is not divisible by $4$ for all $n\in\nat$.
+\end{prf}
+
+% Q5
+\begin{qn}
+    Show that if $m,n\in\nat$ are \underline{odd} natural numbers,
+    then $m^2 + n^2$ is even but not divisible by 4.
+\end{qn}
+\begin{prf}
+\item $m,n \in\nat$ are odd, so $\exists k, l\in\nat.~ m=2k+1, n=2l+1$, then
+    \begin{align}
+        m^2 + n^2 &= (2k+1)^2 + (2l+1)^2    \\
+        &= 4k^2 + 4k + 1 + 4l^2 + 4l + 1    \\
+        &= 2(2k^2 + 2l^2 + 2k + 2l + 1)     \label{eq:q5.1} \\
+        &= 4(k^2 + l^2 + k + l) + 2         \label{eq:q5.2}
+    \end{align}
+\item From \eqref{eq:q5.1}, since $k^2 + l^2 + 2k + 2l + 1 \in\nat$, $m^2 + n^2$ is even.
+\item By division algorithm on $m^2 + n^2$ with $d=4$, from \eqref{eq:q5.2}, we see that the
+    (uniquely determined) $q = k^2 + l^2 + k + l \in\nat$ and $r=2$, in particular, $r\ne 0$,
+    so $4\nmid m^2 + n^2$.
+\end{prf}
+\newpage
+
+% Q6
+\begin{qn}
+    Determine how many natural numbers $n\in\nat$ with $100\leq n\leq1000$ are divisible by $7$.
+\end{qn}
+%\begin{enumerate}
+%    \item Consider the sets
+%        \begin{align*}
+%            A &:= \set{n\in\nat: 15\leq n\leq 142}          \\
+%            B &:= \set{n\in\nat: 7\mid n \land 100 \leq n\leq 1000}
+%        \end{align*}
+%    \item Constructing the bijection $f: A \rightarrow B$, defined as
+%        $$f := (7\cdot)$$
+%        \begin{itemize}
+%            \item $\forall n\in A.~ f(15) \leq f(n) \leq f(142)$, $105 \leq f(n) \leq 994$
+%            \item by definition of $f$, $7\mid f(n)$ for all $n\in A$.
+%            \item So $f$ is totally-defined.
+%            \item By definition of $(7\cdot)$, $f$ is well-defined and injective.
+%            \item Since $\forall b\in B.~ \exists a\in A.~ f(a) = b$, $f$ is also surjective.
+%        \end{itemize}
+%    \item Since $f:A\rightarrow B$ is a bijection, $A \cong B$.
+%    \item By counting, $A \cong \set{n\in\nat: 0+15 \leq n \leq 127+15} \cong \nat_{<128}$
+%    \item Hence there are $128$ natural numbers $n\in\nat$ with $100\leq n\leq 1000$ where $7\mid n$.
+%        \hfill\qedsymbol
+%\end{enumerate}
+\begin{enumerate}
+    \item The set of all natural numbers $n\in\nat$ in $100\leq n\leq 1000$ where $7\mid n$ is
+        $$S := \left\{
+        \begin{aligned}
+            &105,112,119,126,133,140,147,154,161,168,175,182,189,196,\\
+            &203,210,217,224,231,238,245,252,259,266,273,280,287,294,\\
+            &301,308,315,322,329,336,343,350,357,364,371,378,385,392,399,\\
+            &406,413,420,427,434,441,448,455,462,469,476,483,490,497,\\
+            &504,511,518,525,532,539,546,553,560,567,574,581,588,595,\\
+            &602,609,616,623,630,637,644,651,658,665,672,679,686,693,\\
+            &700,707,714,721,728,735,742,749,756,763,770,777,784,791,798,\\
+            &805,812,819,826,833,840,847,854,861,868,875,882,889,896,\\
+            &903,910,917,924,931,938,945,952,959,966,973,980,987,994
+        \end{aligned}
+        \right\}
+        $$
+    \item It can be verified that
+        $$
+        \begin{matrix}
+            7 \cdot 15 &= 105 \\ 7 \cdot 16 &= 112 \\ 7 \cdot 17 &= 119 \\
+            7 \cdot 18 &= 126 \\ 7 \cdot 19 &= 133 \\ 7 \cdot 20 &= 140 \\
+            7 \cdot 21 &= 147 \\ 7 \cdot 22 &= 154 \\ 7 \cdot 23 &= 161 \\
+            7 \cdot 24 &= 168 \\ 7 \cdot 25 &= 175 \\ 7 \cdot 26 &= 182 \\
+            7 \cdot 27 &= 189 \\ 7 \cdot 28 &= 196 \\ 7 \cdot 29 &= 203 \\
+            7 \cdot 30 &= 210 \\ 7 \cdot 31 &= 217 \\ 7 \cdot 32 &= 224 \\
+            7 \cdot 33 &= 231 \\ 7 \cdot 34 &= 238 \\ 7 \cdot 35 &= 245 \\
+            7 \cdot 36 &= 252 \\ 7 \cdot 37 &= 259 \\ 7 \cdot 38 &= 266 \\
+            7 \cdot 39 &= 273 \\ 7 \cdot 40 &= 280 \\ 7 \cdot 41 &= 287 \\
+        \end{matrix} \quad \begin{matrix}
+            7 \cdot 42 &= 294 \\ 7 \cdot 43 &= 301 \\ 7 \cdot 44 &= 308 \\
+            7 \cdot 45 &= 315 \\ 7 \cdot 46 &= 322 \\ 7 \cdot 47 &= 329 \\
+            7 \cdot 48 &= 336 \\ 7 \cdot 49 &= 343 \\ 7 \cdot 50 &= 350 \\
+            7 \cdot 51 &= 357 \\ 7 \cdot 52 &= 364 \\ 7 \cdot 53 &= 371 \\
+            7 \cdot 54 &= 378 \\ 7 \cdot 55 &= 385 \\ 7 \cdot 56 &= 392 \\
+            7 \cdot 57 &= 399 \\ 7 \cdot 58 &= 406 \\ 7 \cdot 59 &= 413 \\
+            7 \cdot 60 &= 420 \\ 7 \cdot 61 &= 427 \\ 7 \cdot 62 &= 434 \\
+            7 \cdot 63 &= 441 \\ 7 \cdot 64 &= 448 \\ 7 \cdot 65 &= 455 \\
+            7 \cdot 66 &= 462 \\ 7 \cdot 67 &= 469 \\ 7 \cdot 68 &= 476 \\
+        \end{matrix} \quad \begin{matrix}
+            7 \cdot 69 &= 483 \\ 7 \cdot 70 &= 490 \\ 7 \cdot 71 &= 497 \\
+            7 \cdot 72 &= 504 \\ 7 \cdot 73 &= 511 \\ 7 \cdot 74 &= 518 \\
+            7 \cdot 75 &= 525 \\ 7 \cdot 76 &= 532 \\ 7 \cdot 77 &= 539 \\
+            7 \cdot 78 &= 546 \\ 7 \cdot 79 &= 553 \\ 7 \cdot 80 &= 560 \\
+            7 \cdot 81 &= 567 \\ 7 \cdot 82 &= 574 \\ 7 \cdot 83 &= 581 \\
+            7 \cdot 84 &= 588 \\ 7 \cdot 85 &= 595 \\ 7 \cdot 86 &= 602 \\
+            7 \cdot 87 &= 609 \\ 7 \cdot 88 &= 616 \\ 7 \cdot 89 &= 623 \\
+            7 \cdot 90 &= 630 \\ 7 \cdot 91 &= 637 \\ 7 \cdot 92 &= 644 \\
+            7 \cdot 93 &= 651 \\ 7 \cdot 94 &= 658 \\ 7 \cdot 95 &= 665 \\
+        \end{matrix} \quad \begin{matrix}
+            7 \cdot 96 &= 672 \\ 7 \cdot 97 &= 679 \\ 7 \cdot 98 &= 686 \\
+            7 \cdot 99 &= 693 \\ 7 \cdot 100 &= 700 \\ 7 \cdot 101 &= 707 \\
+            7 \cdot 102 &= 714 \\ 7 \cdot 103 &= 721 \\ 7 \cdot 104 &= 728 \\
+            7 \cdot 105 &= 735 \\ 7 \cdot 106 &= 742 \\ 7 \cdot 107 &= 749 \\
+            7 \cdot 108 &= 756 \\ 7 \cdot 109 &= 763 \\ 7 \cdot 110 &= 770 \\
+            7 \cdot 111 &= 777 \\ 7 \cdot 112 &= 784 \\ 7 \cdot 113 &= 791 \\
+            7 \cdot 114 &= 798 \\ 7 \cdot 115 &= 805 \\ 7 \cdot 116 &= 812 \\
+            7 \cdot 117 &= 819 \\ 7 \cdot 118 &= 826 \\ 7 \cdot 119 &= 833 \\
+            7 \cdot 120 &= 840 \\ 7 \cdot 121 &= 847 \\ 7 \cdot 122 &= 854 \\
+        \end{matrix} \quad \begin{matrix}
+            7 \cdot 123 &= 861 \\ 7 \cdot 124 &= 868 \\ 7 \cdot 125 &= 875 \\
+            7 \cdot 126 &= 882 \\ 7 \cdot 127 &= 889 \\ 7 \cdot 128 &= 896 \\
+            7 \cdot 129 &= 903 \\ 7 \cdot 130 &= 910 \\ 7 \cdot 131 &= 917 \\
+            7 \cdot 132 &= 924 \\ 7 \cdot 133 &= 931 \\ 7 \cdot 134 &= 938 \\
+            7 \cdot 135 &= 945 \\ 7 \cdot 136 &= 952 \\ 7 \cdot 137 &= 959 \\
+            7 \cdot 138 &= 966 \\ 7 \cdot 139 &= 973 \\ 7 \cdot 140 &= 980 \\
+            7 \cdot 141 &= 987 \\ 7 \cdot 142 &= 994 \end{matrix}
+        $$ \item By counting, $|S| = 128$.
+            \hfill\qedsymbol
+\end{enumerate}
+
+\newpage
+\begin{defn}
+    A \emph{perfect square} is a natural number $n\in\nat$ such that there exists $k\in\nat$ for which $n = k^2$.
+\end{defn}
+% Q7
+\begin{qn}
+    Show that if $m,n\in\nat$ are \underline{odd} natural numbers, then  $m^2 + n^2$ is not a perfect square.
+\end{qn}
+\begin{prf}
+\item Given 2 odd natural numbers $m,n\in\nat$, $\exists a,b\in\nat.~ m=2a+1, n=2b+1$, then
+    \begin{align}
+        m^2 + n^2 &= (2a+1)^2 + (2b + 1)^2  \\
+        &= 4a^2 + 4a + 1 + 4b^2 + 4b + 1    \\
+        &= 4a^2 + 4b^2 + 4a + 4b + 2 \\
+        m^2 + n^2 &= 2(2a^2 + 2b^2 + 2a + 2b + 1) \label{eq:q7_1}\\
+        m^2 + n^2 &= 4(a^2 + a + b^2 + b) + 2 \label{eq:q7_2}
+    \end{align}
+\item Suppose for a contradiction $\exists k\in\nat.~ k^2 = m^2 + n^2$, from \eqref{eq:q7_1}
+    $$k^2 = 2(2a^2 + 2b^2 + 2a + 2b + 1)$$
+    in particular, $k^2 > 0$ and $k^2$ is even.
+\item[] \textbf{Claim.} $k$ is even.
+    \begin{itemize}
+        \item If not, $\exists l\in\nat.~ k = 2l + 1$, then
+            \begin{align*}
+                k^2 &= (2l+1)^2  \\
+                    &= 4l^2 + 4l + 1\\
+                    &= 2(2l^2 + 2l) + 1
+            \end{align*}
+        \item implying $k^2$ is odd, a contradiction
+    \end{itemize}
+\item So $k$ is even, then $\exists c\in\nat.~ k = 2c$, which implies $k^2 = 4c^2$, in particular, $4\mid k^2$.
+\item But from \eqref{eq:q7_2},
+    $$k^2 = 4(a^2 + a + b^2 + b) + 2$$
+    by division algorithm applied on $k^2$ with $d=4$, get $q = a^2 + a + b^2 + b\in\nat$ and $r=2$, which means in particular, $4\nmid k^2$, a contradiction.
+\item Therefore, for any odd $m,n\in\nat$, there does not exist $k\in\nat$ where $k^2 = m^2 + n^2$, and $m^2 + n^2$ is not a perfect square.
+\end{prf}
+
+\newpage
+% Q8
+\begin{qn}
+    Show that if $m,n\in\nat$ are natural numbers not divisible by $3$, then $m^2 + n^2$ is not a perfect square.
+\end{qn}
+\begin{prf}
+\item Given $m,n\in\nat$, suppose for a contradiction $m^2 + n^2$ is a perfect square,
+    where $\exists k\in\nat$ such that $m^2 + n^2 = k^2$.
+\item Apply division algorithm on $k$ with $d = 3$, we have
+    $$k = 3q_k + r_k$$
+    where $q_k\in\nat$ and $r_k\in\set{0,1,2}$ are uniquely determined by $k$.
+\item Since $3\nmid m$ and $3\nmid n$, repeating the division algorithm,
+    \begin{align*}
+        m &= 3q_m + r_m  \\
+        n &= 3q_n + r_n
+    \end{align*}
+    where $q_m, q_n\in\nat$ and $r_m,r_n\in\set{1,2}$ are uniquely determined by $m,n$ respectively.
+\item Since $m^2 + n^2$ is a perfect square,
+    \begin{align}
+        m^2 + n^2 &= k^2 \\
+        (3q_m + r_m)^2 + (3q_n + r_n)^2 &= (3q_k + r_k)^2    \\
+        9q_m^2 + 6q_mr_m + r_m^2 + 9q_n^2 + 6q_nr_n + r_n^2 &= 9q_k^2 + 6q_kr_k + r_k^2 \\
+        3(3q_m^2 + 2q_mr_m + 3q_n^2 + 2q_nr_n) + r_m^2 + r_n^2 &= 3(3q_k^2 + 2q_kr_k) + r_k^2   \label{eq:q8_1}
+    \end{align}
+\item For readability, define $e_1, e_2\in\nat$ and rewrite \eqref{eq:q8_1}
+    \begin{align}
+        e_1 &:= 3q_m^2 + 2q_mr_m + 3q_n^2 + 2q_nr_n  \\
+        e_2 &:= 3q_k^2 + 2q_kr_k    \\
+        3e_1 &+ r_m^2 + r_n^2 = 3e_2 + r_k^2    \label{eq:q8_1fix}
+    \end{align}
+\item By enumerating possible values, $r_m^2 + r_n^2 \in \set{2,5,8}$, $r_k^2 \in\set{0,1,4}$
+\item When applying division algorithm on LHS of \eqref{eq:q8_1fix} with $d=3$,
+    \begin{align*}
+        m^2 + n^2 &= 3e_1 + 2 \text{ or}\\
+        m^2 + n^2 &= 3e_1 + 5 = 3(e_1 + 1) + 2 \text{ or}\\
+        m^2 + n^2 &= 3e_1 + 8 = 3(e_1 + 2) + 2
+    \end{align*}
+    In any case, LHS has $r=2$ when applied division algorithm with $d=3$
+\item However, when applying division algorithm on RHS of \eqref{eq:q8_1fix} with $d=3$,
+    \begin{align*}
+        k^2 &= 3e_2 \text{ or}\\
+        k^2 &= 3e_2 + 1 \text{ or}\\
+        k^2 &= 3e_2 + 4 = 3(e_2 + 1) + 1
+    \end{align*}
+    In no case does RHS have $r=2$, a contradiction.
+\item Hence for any $m,n\in\nat$ not divisible by 3, $m^2 + n^2$ is not a perfect square.
+%consider all mod3 possibilities of square numbers.
+\end{prf}
+
+\newpage
+% Q9a
+\begin{qn}
+\textbf{(a)}
+    Let $n\in\nat$. Prove or disprove: if there exists a prime number $p$ such that $2^n = p+1$, then $n$ is prime.
+\end{qn}
+\begin{prf}
+\item If prime number $p$ exists, such that $2^n = p + 1$ where $n\in\nat$.
+\item Since $2^0 = 0 + 1$ and $0$ is not prime, $n\ne 0$.
+\item Suppose for contradiction $n$ is not prime, so $\exists a,b\in\nat.~ n = a(b+1), a > 1, b > 0$,
+    then
+    $$2^n = 2^{a(b+1)} = p + 1$$
+    take $d\in\nat$ to be the number where $d+1 = 2^a$.
+\item Consider the sum
+    \begin{align}
+        \sum_{i=0}^{b+1} 2^{ai} &= 1 + \sum_{i=1}^{b+1} 2^{ai}
+        \shortintertext{LHS: expand by definition; RHS: factor $2^a$ from every term in the summation}
+        2^{a(b+1)} + \sum_{i=0}^b 2^{ai} &= 1 + 2^a \sum_{i=0}^b 2^{ai} \\
+        p + 1 + \sum_{i=0}^b 2^{ai} &= 1 + (d+1) \sum_{i=0}^b 2^{ai}    \\
+        p + \sum_{i=0}^b 2^{ai} &= (d+1) \sum_{i=0}^b 2^{ai}    \\
+        p + \sum_{i=0}^b 2^{ai} &= d \sum_{i=0}^b 2^{ai} + \sum_{i=0}^b 2^{ai}   \\
+        p &= d \sum_{i=0}^b 2^{ai}
+    \end{align}
+\item so $d\mid p$, but because $a>1$,
+    \begin{align*}
+        2^a &> 2\\
+        d &> 1
+        \shortintertext{and because $b > 0$}
+        \sum_{i=0}^b 2^{ai} &\geq 1 + 2^a > 1
+    \end{align*}
+\item Contradicting primality of $p$.
+\end{prf}
+
+% Q9b
+\textbf{\phantom{Q 9. }(b)}
+Let $n\in\nat$. Prove or disprove: if $n$ is prime, then there exists a prime number $p$ such that $2^n = p+1$.
+
+\textbf{False.}
+%Take $n=11$ which is prime, then
+%$$2^{11} = 2048 = 2047 + 1 = (23\cdot 89) + 1$$
+Take $n=109$ which is prime, then
+\begin{align*}
+    2^{109} &= 649037107316853453566312041152512    \\
+    &= 649037107316853453566312041152511 + 1        \\
+    &= (745988807 \cdot 870035986098720987332873) + 1
+\end{align*}
+
+% Q10.(a)
+\begin{qn}
+\textbf{(a)}
+    Let $n\in\nat$. Prove or disprove: if $2^n + 1$ is prime,
+    then there exists $k \in\nat$ such that $n = 2^k$.
+\end{qn}
+
+\textbf{False.}
+Take $n = 0\in\nat$, $$2^0 + 1 = 1 + 1 = 2$$ is prime,
+but there does not exists $k\in\nat$ where $2^k = 0$.\\
+
+% Q10.(b)
+\textbf{\phantom{Q 10. }(b)}
+Let $n\in\nat$. Prove or disprove: if there exists $k \in\nat$ such that $n = 2^k$,
+then $2^n + 1$ is prime.
+
+\textbf{False.}
+%Take $n = 2^5 = 32$, then $$2^{32} + 1 = 4294967297 = 641 \cdot 6700417.$$
+%Take $n = 2^6 = 64$, then
+%$$2^{64} + 1 = 18446744073709551617 = 274177 \cdot 67280421310721.$$
+Take $n = 2^7 = 128$, then
+\begin{align*}
+    2^{128} + 1 &= 340282366920938463463374607431768211456 + 1   \\
+    &= 340282366920938463463374607431768211457   \\
+    &= 59649589127497217 \cdot 5704689200685129054721
+\end{align*}
+
+% Q11
+\begin{qn}
+    Let $p$ be a prime number. Show that if there exists $k\in\nat$ such that $p=3k+1$,
+    then there exists $n\in\nat$ such that $p=6n+1$.
+\end{qn}
+\begin{prf}
+\item Let $p$ be a prime number, suppose there exists $k\in\nat$ such that
+    $p = 3k + 1$.
+\item Consider the case $k$ is odd, so $\exists l\in\nat.~ 2l + 1 = k$, then
+    $$p = 3(2l+1) + 1 = 6l + 4 = 2(3l + 2)$$
+    have $2\mid p$ and $p\geq 4\implies p \ne 2$, contradicting primality of $p$. So $k$ cannot be odd.
+\item Hence $k$ is even, $\exists n\in\nat.~ 2n = k$, then
+    $$p = 3(2n) + 1 = 6n + 1.$$
+    So $n\in\nat$ exists.
+\end{prf}
+
+\newpage
+% Q12
+\begin{qn}
+    Show that for any $n\in\nat$ such that there exists $k\in\nat$ such that $n=3k+2$,
+    there exists \underline{a prime number} $d\in\nat$ such that $d\mid n$ and there exists $k'\in\nat$ such that $d=3k'+2$.
+\end{qn}
+\begin{prf}
+\item For any $n\in\nat$, suppose there exists $k\in\nat$ such that $n=3k+2$.
+\item Consider the subset $D\subseteq \nat$,
+    $$D :=\set{d\in\nat: d\mid n \land (\exists k'\in\nat.~ d=3k'+2)}$$
+\item Clearly $n\in D$, as $n\mid n$ and $n = 3k + 2$, so in particular, $D\ne\emptyset$.
+\item By well-ordering principle, $D$ has smallest element $d_0 = 3k_0 + 2$.
+\item[] \textbf{Claim.} $d_0$ is prime.
+    \begin{enumerate}[label=(\arabic*).]
+        \item If not, $\exists a,b\in\nat.~ a\ne1, b\ne1, d_0 = ab$,
+            \begin{equation}    \label{eq:q12_1}
+                d_0 = ab = 3k_0 + 2
+            \end{equation}
+        \item Apply division algorithm on $a$ and $b$ with divisor $3$,
+            \begin{align*}
+                a &= \alpha\cdot 3 + \beta  \\
+                b &= \gamma\cdot 3 + \delta
+            \end{align*}
+            where $\alpha,\gamma\in\nat$ and $\beta,\delta\in\set{0,1,2}$ are
+            uniquely determined by $a,b$ respectively.
+        \item rewrite \eqref{eq:q12_1}
+            \begin{align}
+                d_0 = 3k_0 + 2 &= (3\alpha + \beta)(3\gamma + \delta)    \\
+                &= 9\alpha\gamma + 3\alpha\delta + 3\beta\gamma + \beta\delta \\
+                \label{eq:q12_2}
+                3k_0 + 2 &= 3(3\alpha\gamma + \alpha\delta + \beta\gamma) + \beta\delta
+            \end{align}
+        \item By enumeration of possibilities, $\beta\delta \in \set{0,1,2,4}$, then for \eqref{eq:q12_2} to be consistent when applied division algorithm with divisor $3$, $\beta\delta = 2$.
+        \item Without loss of generality, assume $\beta = 2, \delta = 1$, then
+            $$a = 3\alpha + 2, \alpha\in\nat$$
+            also notice that $a\mid d_0$ and $d_0\mid n$, so $a\mid n$ and as a result $a\in D$.
+        \item However, from \eqref{eq:q12_1}, $a\mid d_0\implies a\leq d_0$,
+            but $b\ne 1$ so we have $a \ne d_0$, then $a < d_0$, contradicting with $d_0$ being smallest in $D$.
+    \end{enumerate}
+\item Hence $d_0 \in\nat$ is a prime satisfying $d_0\mid n$ and $\exists k'\in\nat.~ d_0=3k'+2$.
+\end{prf}
+\end{document}

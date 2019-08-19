@@ -1,0 +1,351 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[british]{babel}
+\usepackage[a4paper,top=2.2cm,bottom=2.4cm,left=2.2cm,right=2.2cm]{geometry}
+
+\usepackage{amsthm, amsmath, amssymb, mathtools}
+\mathtoolsset{showonlyrefs}
+\usepackage{enumitem}
+%\usepackage{braket}
+\newcommand{\set}[1]{\left\{\,#1\,\right\}}
+\setlength{\parindent}{0pt} % Stop paragraph indentation
+
+\newtheorem{lemma}{Lemma}
+\newtheorem*{prop}{Proposition}
+\theoremstyle{definition}
+\newtheorem{qn}{Q}
+\newtheorem*{defn}{Definition}
+\numberwithin{equation}{qn}
+\numberwithin{lemma}{qn}
+
+\newcommand{\nat}{\mathbb{N}}
+\newcommand{\Int}{\mathbb{Z}}
+\usepackage[mathscr]{euscript}
+\let\euscr\mathscr \let\mathscr\relax% just so we can load this and rsfs
+\newcommand{\power}{\euscr{P}}
+\newcommand{\idmap}{\mathrm{id}}
+\renewcommand{\preceq}{\preccurlyeq}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+
+\DeclareMathOperator{\Maps}{Maps}
+
+\begin{document}
+12th November 2017\hfill T04
+{
+    \center\large\textbf{
+        MA1100 Fundamental Concepts of Mathematics\\
+        AY2017/18 Sem 1\\
+        Homework 5
+    }
+}\\
+By: Qi Ji\\
+\phantom{By: }A0167793L
+
+% Q1
+\begin{qn}
+    Let $A$ be a finite set of size $m$ where $m\geq 1$, and let $a$ be an element of $A$.
+    Prove that one has $|A\setminus\{a\}| + 1 = m$.
+\end{qn}
+\begin{proof}
+    $A$ is finite, so $\{a\} \subseteq A$ is also finite, by complement principle,
+    $|A\setminus\{a\}| + |\{a\}| = |A|$, so $|A\setminus\{a\}| + 1 = m$.
+\end{proof}
+
+%\newpage
+% Q2
+\begin{qn}
+    Let $S$ be a finite set and let $f:S\rightarrow S$ be a function.
+    Prove that $f$ is injective iff $f$ is surjective.
+\end{qn}
+\begin{proof}
+    Suppose $f: S\rightarrow S$ is injective.
+    For any subset $X\subseteq S$, let $f(X) \subseteq S$ be the $X$-image of $f$,
+    $$f(X) := \set{y\in S: \exists x\in X.~ f(x) = y}.$$
+    Clearly $|f(S)| \leq |S|$ and $|f(S)|$ is finite.
+    Since $f$ is injective, by injection principle,
+    $|S| \leq |f(S)|$, so $|f(S)| = |S|$.
+    By corollary of complement principle, $f(S) = S$ and $f$ is surjective.
+
+    Conversely suppose $f$ is surjective. For any subset $Y\subseteq S$,
+    let $f^*(Y) \subseteq S$ denote the $Y$-pre-image of $f$
+    $$f^*(Y) := \set{x\in S : f(x) \in Y}.$$
+    Clearly $|f^*(S)| \leq |S|$, and since $f$ is surjective,
+    for every $y\in S$, $f^*(\{y\})$ is non-empty.
+    $$\forall y\in S.~ |f^*(\{y\})| \geq 1$$
+    Because $f$ is well-defined, for any distinct pair of elements in $S$,
+    the $f$-preimage of their singletons are disjoint.
+    $$\forall y_1, y_2\in S.~ y_1\ne y_2 \implies f^*(\{y_1\}) \cap f^*(\{y_2\}) = \emptyset$$
+    Because $f$ is totally-defined,
+    the union of $f$-preimages of every element in its range will cover the domain $S$,
+    so let $|S|$ be $n$, and for $i\in\set{1,2,\dots,n}$, let $y_i$ denote each element in $S$,
+    \begin{align*}
+        \bigcup_{i=1}^{n} f^*(\{y_i\}) &= S\\
+        \left| \bigcup_{i=1}^{n} f^*(\{y\}) \right| &= |S|\\
+        \sum_{i=1}^{n} \left| f^*(\{y_i\}) \right| &= n\\
+        \shortintertext{for each $y_i$, $f^*(\{y_i\})$ is non-empty}
+        1\cdot n \leq \sum_{i=1}^{n} \left| f^*(\{y_i\}) \right| &= n
+    \end{align*}
+    this means that for each $y_i\in S$, $|f^*(\{y_i\})| = 1$, therefore $f$ is injective.
+\end{proof}
+
+% Q3
+\begin{qn}
+    Let $m,n\in\nat$ be so that $n > m$.
+    Prove that there is no injective function $f$ from $\set{1,\dots,n}$ to $\set{1,\dots,m}$.
+    (\emph{Pigeonhole Principle})
+\end{qn}
+\begin{proof}
+    First note that $\set{1,\dots,n}\cong \nat_{<n}$ and $\set{1,\dots,m}\cong \nat_{<m}$ are finite,
+    \begin{align*}
+        n &> m\\
+        \left|\set{1,\dots,n}\right| &> \left|\set{1,\dots,m}\right|
+    \end{align*}
+    Then by (contrapositive of) injection principle,
+    there does not exist injective map $f$ from $\set{1,\dots,n}$ to $\set{1,\dots,m}$.
+\end{proof}
+
+%\newpage
+% Q4
+\begin{qn}
+    Prove that the function $f:\nat \rightarrow \Int$ defined by
+    $f(n) :=
+    \begin{cases}
+        \frac{n-1}{2};  &\mbox{if } n \text{ is odd},\\
+        \frac{-n}{2};  &\mbox{if } n \text{ is even},
+    \end{cases}
+    $ is bijective.
+    (\emph{$\nat$ starts from 1 in this question.})
+\end{qn}
+\begin{proof}
+Define $g:\Int \rightarrow \nat,
+    z \mapsto
+    \begin{cases}
+        -2z; &\mbox{if } z < 0,\\
+        2z + 1; &\mbox{if } z \geq 0.
+    \end{cases}$
+
+    For any odd $n\in\nat$,
+    \[
+        (g\circ f)(n) = g\left(\frac{n-1}{2}\right)
+                      = 2\left(\frac{n-1}{2}\right) + 1 = n,
+    \]
+    and for any even $n\in\nat$,
+    \[
+        (g\circ f)(n) = g\left(\frac{-n}{2}\right)
+                      = -2\left(\frac{-n}{2}\right)    = n.
+    \]
+    So $g\circ f = \idmap_{\nat}$.
+
+    For any $z \in \Int, z < 0$, $-2z > 0$ and is even,
+    \[
+        (f\circ g)(z) = f(-2z)
+                      = \frac{-(-2z)}{2} = z,
+    \]
+    and when $z \geq 0$, $2z+1 > 0$ and is odd,
+    \[
+        (f\circ g)(z) = f(2z + 1)
+                      = \frac{(2z + 1) - 1}{2} = z.
+    \]
+\item So $f\circ g = \idmap_{\Int}$. Since $f$ is invertible, $f$ is bijective.
+\end{proof}
+
+% Q5
+\begin{qn}
+    Let $F$ be a finite set and let $I$ be an infinite set.
+    Prove that $I\setminus F$ is infinite.
+\end{qn}
+\begin{proof}
+    Without loss of generality, suppose $F\subseteq I$, then $I = F \cup(I\setminus F)$.
+    (Otherwise consider the intersection of $F$ and $I$.)
+    Suppose for a contradiction $I\setminus F$ is finite,
+    since $I\setminus F$ and $F$ are finite and disjoint, by addition principle,
+    $$|F| + \left|I\setminus F\right| = \left|F\cup (I\setminus F)\right|$$
+    and $F\cup(I\setminus F)$ is also finite.
+    But $F\cup(I\setminus F) = I$, so $\idmap_I$ is a bijective map
+    from an infinite set to a finite set, a contradiction.
+\end{proof}
+
+\newpage
+% Q6
+\begin{qn}
+    Let $S$ be a set.
+    Prove that $S$ is countable iff there is an injective function $f:S\rightarrow \nat$.
+\end{qn}
+\begin{proof}
+If $S$ is countable, $S \preceq \nat$
+$\iff$ exists injective function $f: S\rightarrow \nat$.
+\end{proof}
+
+% Q7
+\begin{qn}
+    Let $S$ be a non-empty set.
+    Prove that $S$ is countable iff there is a surjective map $f:\nat\rightarrow S$.
+\end{qn}
+\begin{proof}
+    If $S$ is countable, $S\preceq \nat \iff$ exists injective map $g:S\rightarrow \nat$
+    $\iff$ exists surjective map $f:\nat\rightarrow S$
+    (consequence of Axiom of Choice, because $S \ne \emptyset$).
+\end{proof}
+
+%\newpage
+% Q8
+\begin{qn}
+    Prove that if $C_1,\dots,C_n$ is countable, then $C_1\times C_2\times\dots\times C_n$ is countable.
+\end{qn}
+\begin{lemma}
+    $\nat\times\nat \cong \nat$. (Another proof in Q11)
+\end{lemma}
+\begin{proof}
+    Consider this visual representation of $\nat\times\nat$
+    \[
+    \begin{matrix}
+        \nat &  0   & 1     & 2     & 3     & \dots    \\
+        0   & (0,0) & (0,1) & (0,2) & (0,3) & \dots    \\
+        1   & (1,0) & (1,1) & (1,2) & (1,3) & \dots    \\
+        2   & (2,0) & (2,1) & (2,2) & (2,3) & \dots    \\
+        3   & (3,0) & (3,1) & (3,2) & (3,3) & \dots    \\
+        \vdots & \vdots & \vdots & \vdots & \vdots & \ddots    \\
+    \end{matrix}
+    \]
+    Define a bijection $f:\nat\rightarrow \nat\times\nat$
+    by diagonally tracing the diagram above, ie
+    $f(0) := (0,0), f(1) := (0,1), f(2) := (1,0),
+    f(3) := (0,2), f(4) := (1,1), f(5) := (2,0), \dots$.
+\end{proof}
+\begin{lemma}
+    Product of two countable sets is countable.
+\end{lemma}
+\begin{proof}
+    Suppose $C_1, C_2$ are countable sets, $C_1 \preceq \nat$ and $C_2 \preceq \nat$,
+    so there exists injective maps
+    $f: C_1\rightarrow \nat$ and $g: C_2 \rightarrow \nat$, then
+    define $h$ as
+    \begin{align*}
+        h: C_1\times C_2 &\rightarrow \nat\times\nat,\\
+        (c_1, c_2) &\mapsto (f(c_1), g(c_2)).
+    \end{align*}
+    Suppose $c_1, c_1'\in C_1$ and $c_2, c_2'\in C_2$ such that
+    $h(c_1, c_2) = h(c_1', c_2')$, then $(f(c_1), g(c_2)) = (f(c_1'),g(c_2'))$
+    which means $f(c_1) = f(c_1')$ and $g(c_2) = g(c_2')$, and because $f$ and $g$ are injective,
+    $c_1 = c_1'$ and $c_2 = c_2'$, so $(c_1, c_2) = (c_1', c_2')$ and $h$ is injective.
+    This means $C_1\times C_2\preceq \nat\times\nat$, and because $\nat\times\nat\cong\nat$ (from Lemma 8.1), $C_1\times C_2\preceq \nat$.
+\end{proof}
+\begin{prop}
+    Product of finitely many countable sets is countable.
+\end{prop}
+\begin{proof}
+    Product of $2$ countable sets is countable. Now
+    suppose the product of $n$ countable sets, $C_1\times C_2\times \dots \times C_n$, is countable,
+    $C_1\times C_2\times\dots \times C_n \preceq \nat$, and $C_{n+1}$ is also countable.
+    Then by Lemma 8.2, $(C_1\times C_2\times\dots \times C_n)\times C_{n+1} \preceq \nat$.
+    Therefore by induction, for any $n\in\nat$, $n\geq 2$, $C_1\times C_2\times\dots\times C_n$ is countable.
+\end{proof}
+
+\newpage
+% Q9
+\begin{qn}
+    Let $X$ and $Y$ be any two sets. Suppose $|X| = |Y|$. Show that $|\power(X)| = |\power(Y)|$.
+\end{qn}
+\begin{proof}
+    Suppose $X$ and $Y$ are any two sets where $|X| = |Y|$, then there exists a bijective map
+    $f: X \rightarrow Y$.
+    For any $C \subseteq X$, the $f$-image of $C$ is a subset of $Y$ where
+    \[ f(C) := \set{y\in Y: \exists c\in C.~ f(c) = y} \]
+    and because $f$ is bijective, $f(C)$ is uniquely determined by $C$.
+
+    Similarly, for any $D \subseteq Y$, the $f$-preimage of $D$ is a subset of $X$ where
+    \[ f^*(D) := \set{x\in X: f(x)\in D} \]
+    which is also uniquely determined by $D$ because $f$ is bijective.
+
+    We can define the bijective map $\psi$
+    \[ \psi: \power(X) \rightarrow \power(Y),\quad C \mapsto f(C).  \]
+    For any $C, C'\in\power(X)$, if $C \ne C'$, then because $f$ is bijective, $f(C)\ne f(C')$,
+    so $\psi$ is injective.
+    For any $D\in\power(Y)$, because $f$ is surjective, $f^*(D)\subseteq X$,
+    so in particular, there exists $C\in\power(X)$ where $f(C) = D$, so $\psi$ is surjective.
+
+    Hence $\psi$ is bijective, and as a result $|\power(X)| = |\power(Y)|$
+\end{proof}
+
+\begin{defn}
+    For any sets $A$ and $B$, let $\Maps(A,B)$ denote the subset of $A\times B$ defined by
+    $$\Maps(A,B) := \left\{\,
+        \begin{array}{ll}
+            \varphi\in\power(A\times B): & \mbox{$\varphi$ as a relation from $A$ to $B$} \\
+                                         & \mbox{is totally defined and well-defined}
+        \end{array}
+    \,\right\}$$
+\end{defn}
+% Q10
+\begin{qn}
+    Let $X$ and $Y$ be any two sets, and consider the set $\Maps(X,Y)$ of all maps from $X$ to $Y$.
+    Show that $|\Maps(X,Y)| \leq  |\power(X\times Y)|$.
+\end{qn}
+\begin{proof}
+    Since by definition, $\Maps(X,Y)\subseteq \power(X\times Y)$, define the map
+    \begin{align*}
+        \Phi: \Maps(X,Y) &\rightarrow \power(X\times Y)     \\
+                 \varphi &\mapsto     \varphi
+    \end{align*}
+    which is almost the identity map, and is clearly injective.
+    So $|\Maps(X,Y)| \leq  |\power(X\times Y)|$.
+\end{proof}
+
+% Q11
+\begin{qn}
+    Use the unique prime factorisation property of $\Int$ (fundamental theorem of arithmetic)
+    and the Schröder-Bernstein theorem to show that $|\nat| = |\nat\times\nat|$.
+\end{qn}
+\begin{proof}
+    The map $\varphi: \nat\rightarrow\nat\times\nat, n\mapsto (12,n)$ is clearly an injective map
+    from $\nat$ to $\nat\times\nat$, so $\nat\preceq \nat\times\nat$.
+    Now consider the map $\psi$,
+    \begin{align*}
+        \psi: \nat\times\nat &\rightarrow \nat,\\
+        (a,b) &\mapsto 2^a\cdot3^b
+    \end{align*}
+    For any $a,b,c,d\in\nat$ where $\psi(a,b) = \psi(c,d)$, $2^a3^b = 2^c3^d$.
+    Then by uniqueness of prime factors, $a = c$ and $b = d$, so $(a,b)=(c,d)$, and
+    $\psi$ is injective. Therefore $\nat\times\nat \preceq\nat$.
+
+    By Schröder-Bernstein theorem, $|\nat| = |\nat\times\nat|$.
+\end{proof}
+
+\newpage
+% Q12
+\begin{qn}
+    Show that $$|\power(\nat)| \leq |\Maps(\nat,\nat)|.$$
+    Use this and the above results to deduce that $$|\power(\nat)| = |\Maps(\nat,\nat)|.$$
+\end{qn}
+\begin{proof}
+    For any $S\subseteq \nat$, define $\Psi$,
+    \begin{align*}
+        \Psi: \power(\nat) &\rightarrow \Maps(\nat,\nat),\\
+                         S &\mapsto \lambda_S,           \\
+        \text{where } \lambda_S: \nat &\rightarrow\nat,  \\
+        n &\mapsto
+        \begin{cases}
+            1   &\mbox{if } n \in S,\\
+            0   &\mbox{otherwise.}
+        \end{cases}
+    \end{align*}
+%    Examples: $\forall n\in\nat.~ \Psi(\emptyset)(n) = 0, t := \Psi(\set{1,2}), t(0) = 0, t(1) = 1, t(2) = 1, t(3) = 0.$
+    For any two subsets of $\nat$, $S_1, S_2\in\power(\nat)$, if $S_1 \ne S_2$,
+    without loss of generality, $\exists u \in S_1.~ u \not\in S_2$.
+    Then $\Psi(S_1)(u) = 1 \ne 0 = \Psi(S_2)(u)$.
+    So in particular, $\Psi(S_1) \ne \Psi(S_2).$
+    Hence $\Psi$ is injective and $|\power(\nat)| \leq |\Maps(\nat,\nat)|$.
+
+    \begin{flalign}
+        \mbox{From Q11,} &&\nat             &\cong \nat\times\nat           &&\\
+        \mbox{from Q9,}  &&\power(\nat)     &\cong \power(\nat\times\nat)   &&\\
+        \mbox{from Q10,} &&\Maps(\nat,\nat) &\preceq \power(\nat\times\nat) &&\\
+        \mbox{therefore} &&\Maps(\nat,\nat) &\preceq \power(\nat)           &&
+    \end{flalign}
+    Then because
+    $\power(\nat) \preceq \Maps(\nat,\nat)$ and $\Maps(\nat,\nat) \preceq \power(\nat)$,
+    by Schröder-Bernstein theorem,
+    $\power(\nat) \cong \Maps(\nat,\nat)$.
+\end{proof}
+\end{document}

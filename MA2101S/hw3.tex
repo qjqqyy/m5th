@@ -1,0 +1,606 @@
+\documentclass{article}
+\usepackage[british]{babel}
+\usepackage[a4paper]{geometry}
+\usepackage{sectsty}
+\parindent 0pt
+\allsectionsfont{\normalfont\sffamily\bfseries}
+
+\author{Qi Ji\\\small A0167793L}
+\title{MA2101S Homework 3}
+\date{12th February 2018}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Qi Ji -- A0167793L}
+\rhead{MA2101S -- Homework $3$}
+
+\usepackage{amsthm, amsmath, amssymb}
+\usepackage{enumitem}
+\usepackage[mathcal]{eucal}
+
+%\newtheorem{thm}{Theorem}
+%\newtheorem*{proposition}{Proposition}
+\newtheorem{lemma}{Exercise}
+%\newtheorem{corollary}[thm]{Corollary}
+\theoremstyle{definition}
+\newtheorem{problem}{}
+\newtheorem*{definition}{Definition}
+\newtheorem*{notation}{Notation}
+
+\numberwithin{lemma}{problem}
+\numberwithin{equation}{problem}
+\newenvironment{solution}{
+    \renewcommand{\qedsymbol}{$\blacksquare$}
+    \begin{proof}[Solution]
+    }
+    {
+    \end{proof}
+}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\M}{\mathbb{M}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\set}[1]{\left\{\,#1\,\right\}}
+\newcommand{\conj}[1]{\overline{#1}}
+\newcommand{\abs}[1]{\left\lvert #1\right\rvert}
+\DeclareMathOperator{\Maps}{Maps}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+\let\imag\Im
+\let\Im\relax
+\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator\Arg{Arg}
+%slanted inequalities
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+
+
+\begin{document}
+% uncomment if desired
+\maketitle
+
+% P 1
+\begin{problem}
+    Let $K$ be a \emph{finite} field, and let $q:=|K|$ denote the number of elements in $K$.
+    Let $V$ be a $K$-vector space of dimension $n\geq 1$.
+\end{problem}
+\begin{enumerate}[label=(\alph*)]
+    \item Show that the number of ordered $K$-bases of $V$ is
+        $(q^n-1)(q^n-q)\cdots(q^n-q^{n-1})$.
+\end{enumerate}
+% P 1a
+\textbf{Claim.} Let $A=\set{v_1,\dots,v_r}\subseteq V$ be a linearly-independent set,
+    then $|\spn(A)| = q^r$.
+\begin{proof}[Proof of claim]
+    $\spn(A)$ is a $r$-dimensional $K$-subspace of $V$,
+    so $\spn(A) \cong K^r$.
+    Since $|K^r| = q^r$, $|\spn(A)| = q^r$.
+\end{proof}
+
+\begin{proof}
+    Since $\dim_K V = n$, $V \cong K^n$.
+    Therefore $|V| = |K^n| = q^n$.
+    Now count the number of ways to choose ordered $K$-bases of $V$,
+    by constructing a linearly independent array, similarly to
+    the proof of existence of basis (for finite-dimensional vector spaces).
+    \begin{itemize}
+        \item Start by choosing any vector $v_1 \in V\setminus\set{0_V}$,
+            by claim, $|\set{0_V}| = |\spn(\emptyset)| = q^0 = 1$,
+            so
+            $|V\setminus\set{0_V}| = q^n - 1$,
+            we have $(q^n - 1)$ ways to choose $v_1$.
+        \item Then choose $v_2 \in V\setminus\spn(\set{v_1})$.
+            Since $\spn(\set{v_1}) \subseteq V$ and $|\spn(\set{v_1})| = q^1$,
+            $|V\setminus\spn(\set{v_1})| = q^n- q$.
+            There are $(q^n-q)$ ways to choose $v_2$.
+        \item Generally, for $i\in\set{1,\dots,n}$,
+            we choose $v_i \in V\setminus\spn(\set{v_1,\dots,v_{i-1}})$,
+            from claim,
+            $$|\spn(\set{v_1,\dots,v_{i-1}})| = q^{i-1},$$
+            and as $\spn(\set{v_1,\dots,v_{i-1}}) \subseteq V$,
+            $|V\setminus\spn(\set{v_1,\dots,v_{i-1}})| = q^n - q^{i-1}$,
+            and we have $(q^n - q^{i-1})$ ways to choose the $i$-th vector.
+    \end{itemize}
+    When algorithm halts after $n$ iterations, by construction, we obtain
+    $n$ linearly-independent vectors in $V$, by well-definedness of dimension,
+    $(v_1,\dots,v_n)$ is an ordered basis for $V$.
+    Then re-examining the algorithm, by multiplication principle of counting, there are
+    $$ \prod_{i=1}^n (q^n - q^{i-1}) $$
+    ways to choose an ordered $K$-basis for $V$, which evaluates to the expression given.
+\end{proof}
+% P 1b
+\begin{enumerate}[label=(\alph*)] \setcounter{enumi}{1}
+    \item Deduce that $(q^n-1)(q^n-q)\cdots(q^n-q^{n-1})$ is divisible by $n!$
+        by determining the number of (unordered) $K$-bases of $V$.
+\end{enumerate}
+\begin{proof}
+    Let $a\in \N$ be the number of (unordered) $K$-bases for $V$.
+    Given an arbitrary unordered basis of $V$, there are $(\dim_K V)!= n!$ ways to arrange them to get ordered bases of $V$.
+    Then by multiplication principle, $a\cdot n! = |\set{\text{ordered $K$-bases for $V$}}|$,
+    therefore $n! \mid (q^n-1)(q^n-q)\cdots(q^n-q^{n-1})$
+\end{proof}
+
+\newpage
+% P 2
+\begin{problem}
+    Consider the field $\R$ as a vector space over $\Q$.
+    Show that $\dim_\Q \R$ is not finite.
+\end{problem}
+\begin{proof}
+    Suppose (for a contradiction) $\R$ as a $\Q$-vector space is finite dimensional,
+    that is $\exists n\in \N.~ \dim_\Q \R = n$,
+    then we have the isomorphism that $\R \cong \Q^n$.
+    From elementary set theory, we know $\Q \cong \N$ and that
+    a finite product of countable sets is countable.
+    We can hence conclude that $|\Q^n| = \aleph_0$,
+    but we have $|\R| = |\Q^n| = \aleph_0$, which contradicts Cantor's Theorem.
+\end{proof}
+
+\newpage
+% P 3
+\begin{problem}
+    Consider $\C$ as a $2$-dimensional $\R$-vector space, and
+    let $T\in \End_\R(\C)$ be an $\R$-linear operator on $\C$.
+    %
+    ($T$ is an $\R$-linear map $\C \to \C$.)
+\end{problem}
+\begin{enumerate}[label=(\alph*)]
+    \item Let $[T]_\B = \begin{pmatrix} a&b\\c&d \end{pmatrix} \in \M_2(\R)$
+        denote the matrix over $\R$ associated to $T$
+        with respect to the ordered basis $\B = (1,i)$ of $\C$.
+        Show that $T$ is $\C$-linear if and only if
+        one has $d = a$ and $c = -b$ in the entries of $[T]_\B$.
+\end{enumerate}
+\begin{proof}
+    From definition of $[T]_\B$, $T$ is an $\R$-linear map defined on the basis $\B$ as
+    \begin{align*}
+        T: \C &\to \C;      \\
+        1 &\mapsto a + ci;  \\
+        i &\mapsto b + di.
+    \end{align*}
+    Suppose $T$ is $\C$-linear, then in particular take $i \in \C$,
+    \begin{align*}
+        i\cdot T(1) &= T(1\cdot i)  \\
+        i(a+ci) &= b + di   \\
+        -c + ai &= b + di
+    \end{align*}
+    Since $\B=(1,i)$ is an $\R$-basis for $\C$, by uniqueness of vector representation,
+    we have $b = -c$ and $a = d$ in $\R$.
+
+    Conversely suppose $a = d$ and $c = -b$ in $[T]_\B$, then
+    \[ [T]_\B = \begin{pmatrix} a & b\\ -b & a \end{pmatrix} \]
+    which means $T$ is the $\R$-linear map defined on the ordered basis $\B$ as
+    \begin{align*}
+        T: \C &\to \C;      \\
+        1 &\mapsto a - bi;  \\
+        i &\mapsto b + ai.
+    \end{align*}
+    Since $T$ is $\R$-linear, then for $v,w\in \C$, $T(v+w) = T(v) + T(w)$ (linear under vector additon).
+    To show $T$ is $\C$-linear, it remains to show $T$ is $\C$-linear under scalar multiplication,
+    that is for $v\in \C, r\in \C$, show that $r\cdot T(v) = T(r\cdot v)$.
+    Let $x_1, x_2, y_1, y_2 \in \R$ such that $v = x_1 + y_1i$ and $r = x_2 + y_2i$.
+    Using $\R$-linearity of $T$, compute $r\cdot T(v)$,
+    \begin{align*}
+        r\cdot T(v) &= r\left( x_1 T(1) + y_1 T(i) \right)\\
+        &= r\left( x_1(a-bi) + y_1(b+ai) \right)\\
+        &= (x_2 + y_2i)\left( (ax_1 +by_1) + (ay_1 - bx_1)i \right)\\
+        &= (ax_1x_2 - ay_1y_2 + bx_1y_2 + by_1x_2)  \\
+        &\qquad + (ax_1y_2 + ay_1x_2 - bx_1 x_2 + by_1y_2)i
+    \end{align*}
+    Now compute $T(r\cdot v)$,
+    \begin{align*}
+        r\cdot v &= (x_2 + y_2i)(x_1 + y_1i)    \\
+        &= (x_1x_2 - y_1y_2) + (x_1y_2 + x_2y_1)i\\
+        T(r\cdot v) &= (x_1x_2 - y_1y_2)T(1) + (x_1y_2 + x_2y_1)T(i)\\
+        &= (x_1x_2 - y_1y_2)(a-bi) + (x_1y_2 + x_2y_1)(b+ai)\\
+        &= ax_1x_2 - ay_1y_2 + bx_1y_2 + bx_2y_1 \\
+        &\qquad + (-bx_1x_2 + by_1y_2 + ax_2y_1 + ax_1y_2)i
+    \end{align*}
+    It can be verified that $r\cdot T(v) = T(r\cdot v)$.
+    Hence $T$ is $\C$-linear.
+\end{proof}
+
+% P 3 b
+\begin{enumerate}[label=(\alph*)] \setcounter{enumi}{1}
+    \item Show that there exist complex numbers $\lambda,\mu \in \C$ such that
+        for any $z\in \C$, one has
+        $$T(z) = \lambda z + \mu \conj{z} \quad \text{ in }\C,$$ and
+        give explicit expressions of $\lambda$ and $\mu$ in terms of $T(1)$ and $T(i)$.
+        Deduce that $T$ is $\C$-linear if and only if $\mu = 0$.
+\end{enumerate}
+\begin{solution}
+    $T(1)$ and $T(i)$ are vectors in $\C$ determined by $T$.
+    Firstly, we solve for $\lambda,\mu \in \C$ satisfying the following linear system,
+    \begin{equation}    \label{q3b:system}
+        \left.
+        \begin{aligned}
+            \lambda   + \mu   &= T(1)    \\
+            \lambda i - \mu i &= T(i)
+        \end{aligned}
+        \right\}
+    \end{equation}
+    Solving this system in $\C$,
+    \[
+        \left(\begin{array}{cc|c}
+            1 & 1 & T(1)\\
+            i & -i & T(i)
+        \end{array}\right)
+        \xrightarrow[\text{Elimination}]{\quad\text{Gauss-Jordan}\quad}
+        \left(\begin{array}{cc|c}
+            1 & 0 & \frac{T(1)-iT(i)}{2}   \\
+            0 & 1 & \frac{T(1)+iT(i)}{2}
+        \end{array}\right)
+    \]
+    So we have now a solution to \eqref{q3b:system}
+    $$ \lambda = \frac{T(1)-iT(i)}{2}; \quad \mu=\frac{T(1)+iT(i)}{2}. $$
+    Since $T(1), T(i) \in \C$, we have the existence of $\lambda, \mu \in \C$
+    satisfying the system of equations in \eqref{q3b:system}.
+    Then for any $z\in\C$, by $\R$-linearity of $T$,
+    let $a,b\in \R$ such that $z=a+bi$,
+    \begin{align*}
+        T(z) &= T(a+bi) \\
+        &= aT(1) + bT(i)\\
+        &= a(\lambda + \mu) + b(\lambda - \mu)i\\
+        &= \lambda(a+bi) + \mu(a-bi)\\
+        &= \lambda z + \mu \conj{z} \tag*{\qedhere}
+    \end{align*}
+\end{solution}
+Deduce that $T$ is $\C$-linear if and only if $\mu = 0$.
+\begin{proof}
+    Suppose $T$ is $\C$-linear, then
+    \begin{align*}
+        i\cdot T(i) &= T(i\cdot i) \\
+        i(\lambda i - \mu i)  &= T(-1) = - T(1) \\
+        -\lambda + \mu  &= -\lambda - \mu \\
+        \mu  &= -\mu \\
+        \mu  &= 0
+    \end{align*}
+    Conversely suppose $\mu = 0$, then we have $T(z) = \lambda z$.
+    Since $T$ is already $\R$-linear, it is linear under vector addition.
+    To show $\C$-linearity, it remains to show linearity under scalar multiplication.
+    For any $y,z\in \C$,
+    \begin{align*}
+        y\cdot T(z) &= y\cdot \lambda z    \\
+        &= \lambda \cdot(yz)    \\
+        &= T(yz)
+    \end{align*}
+    This completes the proof.
+\end{proof}
+
+\newpage
+% P 4
+\begin{problem}
+    Keep the notation as in the previous problem.
+    \begin{enumerate}[label=(\alph*)]
+        \item Show that $T$ is an $\R$-isomorphism if and only if
+            $\lambda \conj{\lambda} \ne \mu\conj{\mu}$.
+    \end{enumerate}
+\end{problem}
+\begin{proof}
+    Suppose $T$ is an $\R$-isomorphism, and
+    suppose (for a contradiction) $\lambda\conj\lambda = \mu\conj\mu$, then
+    \begin{align*}
+        T(\conj\lambda) &= \lambda\conj\lambda + \mu\lambda\\
+        T(\mu) &= \lambda\mu + \mu\conj\mu \\
+        T(\conj\lambda - \mu) &= 0
+    \end{align*}
+    By injectivity of $T$, $\conj\lambda = \mu$.
+    Let $a,b \in \R$ such that
+    \begin{align*}
+        \lambda &= a + bi    \\
+        \mu &= a - bi
+    \end{align*}
+    Then from 3 (b), $T$ sends the basis vectors in $\B = (1,i)$ to
+    \begin{align*}
+        T(1) &= \lambda + \mu   \\
+        &= a + bi + a - bi      \\
+        &= 2a \\
+        T(i) &= (\lambda - \mu)i\\
+        &= (a + bi - a + bi)i   \\
+        &= -2b
+    \end{align*}
+    This contradicts with $T$ being an $\R$-isomorphism, as $T(1)$ and $T(i)$ are $\R$-linearly dependent in $\C$.
+    Hence if $T$ is an $\R$-isomorphism, $\lambda\conj\lambda \ne \mu\conj\mu$.
+
+    To prove the converse implication, I shall prove the contrapositive.
+    Suppose $T: \C \to \C$ is \emph{not} an $\R$-isomorphism, then $\rank(T) < \dim_\R \C = 2$.
+    Then consider the matrix representation of $T$ with respect to the ordered basis $\B = (1,i)$ of $\C$.
+    Let $a,b,c,d\in \R$ such that
+    $$ [T]_\B = \begin{pmatrix} a & b \\ c & d \end{pmatrix} \in \M_2(\R). $$
+    As $\rank(T) \leq 1$, $T(1)$ and $T(i)$ are linearly dependent,
+    so $\exists \alpha,\beta \in \R$, not all $0$, such that
+    \begin{equation}    \label{q4a:lincomb}
+        \alpha(a + ci) = \beta(b + di)
+    \end{equation}
+    Then by uniqueness of vector representation with respect to basis $\B$,
+    we have $\alpha a = \beta b$ and $\alpha c = \beta d$, so
+    $ \alpha\beta a d = \alpha\beta b c. $ Then either
+    \begin{equation}    \label{q4a:singular}
+        \alpha\beta = 0 \text{ or } ad = bc.
+    \end{equation}
+    From 3 (b), we have explicit expressions for $\lambda$ and $\mu$ in terms of $T(1)$ and $T(i)$,
+    \begin{align*}
+        \lambda &= \frac{T(1) - iT(i)}{2}\\
+        &= \frac{(a + ci) - (bi - d)}{2}\\
+        &= \frac{(a + d) + (c - b)i}{2}\\
+        \mu &= \frac{T(1) + iT(i)}{2}\\
+        &= \frac{(a + ci) + (bi - d)}{2}\\
+        &= \frac{(a - d) + (c + b)i}{2}
+    \end{align*}
+    Case $\alpha = 0$, then from \eqref{q4a:lincomb},
+    as $\beta \ne 0$, $T(i) = b + di = 0$,
+    so $\lambda = \mu = \frac{T(1)}{2}$,
+    which gives the equality $\lambda\conj\lambda = \mu\conj\mu$.
+    Case $\beta = 0$, then similarly from \eqref{q4a:lincomb},
+    because $\alpha \ne 0$, $T(1) = a + ci = 0$,
+    then we have $\lambda = -\mu$, which gives the equality $\lambda\conj\lambda = \mu\conj\mu$.
+
+    Case $ad = bc$, proceed to compute $\lambda\conj\lambda$ and $\mu\conj\mu$, we obtain
+    \begin{align*}
+        \lambda\conj\lambda &= \frac{1}{4} \left( (a+d)^2 + (c-b)^2 \right)\\
+        &= \frac{1}{4} \left( a^2 + 2ad + d^2 + b^2 - 2bc + c^2 \right)\\
+        \mu\conj\mu &= \frac{1}{4} \left( (a-d)^2 + (c+b)^2 \right)\\
+        &= \frac{1}{4} \left( a^2 - 2ad + d^2 + b^2 + 2bc + c^2 \right)
+    \end{align*}
+    Substituting \eqref{q4a:singular} into the expressions above gives us that $\lambda\conj\lambda = \mu\conj\mu$.
+    Taking the contrapositive, we get the implication that that if $\lambda\conj\lambda \ne \mu\conj\mu$, $T$ is an $\R$-isomorphism.
+\end{proof}
+
+\newpage
+% P 4 b
+\begin{enumerate}[label=(\alph*)] \setcounter{enumi}{1}
+    \item Show that $\abs{T(z)} = \abs{z}$ for any $z\in \C$
+        (i.e. $T$ is an isometric isomorphism of normed $\R$-vector spaces)
+        if and only if $\lambda \mu = 0$ and $\abs{\lambda + \mu} = 1$
+\end{enumerate}
+\begin{proof}
+    Suppose $\abs{T(z)} = \abs{z}$,
+    then because of isometric property, $T$ has a trivial kernel.
+    Recall that $T$ has property for any $z\in \C,~ T(z) = \lambda z + \mu\conj{z}$.
+    In addition, because $T$ is an endomorphism with a trivial kernel, and $\C$ is finite-dimensional,
+    by rank-nullity theorem, $T$ is an isomorphism.
+%    Then by part (a),
+%    \begin{equation}
+%        \lambda\conj\lambda \ne \mu\conj\mu \implies \abs\lambda \ne \abs\mu.
+%    \end{equation}
+    Using the isometric property, evaluate $T(1)$,
+    $$ 1 = \abs{T(1)} = \abs{\lambda + \mu}. $$
+    It remains to show that $\lambda\mu = 0$.
+
+    Now suppose for a contradiction $\lambda\mu \ne 0$, that is, both $\lambda \ne 0$ and $\mu \ne 0$.
+    Let $\alpha, \beta \in (-\pi, \pi]$ such that
+    \begin{align*}
+        \lambda &= \abs\lambda e^{i\alpha}\\
+        \mu &= \abs\mu e^{i\beta}
+    \end{align*}
+%    When adding angles, let $+,-$ denote addition and subtraction modulo $2\pi$ respectively.
+    Let $z\in \C$ such that $z = e^{i\theta}$ where $\theta = \frac{\beta - \alpha}{2}$
+    (i.e. $z$ is the number on the unit circle with argument $\frac{\beta - \alpha}{2}$),
+    clear that $\abs{z} = 1$, now compute $T(z)$,
+    \begin{align*}
+        T(z) &= T(e^{i\theta})  \\
+        &= \abs\lambda e^{i\alpha} e^{i\theta} + \abs\mu e^{i\beta} e^{-i\theta}    \\
+        &= \abs\lambda e^{i(\alpha + \theta)} + \abs\mu e^{i(\beta -\theta)}    \\
+        &= \abs\lambda e^{i(\alpha + \beta)/2} + \abs\mu e^{i(\beta +\alpha)/2}
+    \end{align*}
+    In triangle inequality, for both numbers non-zero,
+    equality holds if and only if the two numbers have the same argument.
+    Now make use of this result while measuring distance,
+    \begin{align*}
+        \abs{T(z)} &= \bigl\lvert \abs\lambda e^{i(\alpha + \beta)/2} + \abs\mu e^{i(\beta +\alpha)/2} \bigr\rvert  \\
+        1 &= \bigl\lvert \abs\lambda e^{i(\alpha + \beta)/2} \bigr\rvert
+            +\bigl\lvert \abs\mu e^{i(\beta +\alpha)/2} \bigr\rvert  \\
+        &= \abs\lambda + \abs\mu
+    \end{align*}
+    We have $\abs{\lambda + \mu} = \abs\lambda + \abs\mu = 1$,
+    which means $\Arg(\lambda) = \Arg(\mu) = \alpha = \beta$.
+    Now take any $z' = e^{i\phi} \in \C$ where $\phi$ is not a multiple of $\pi$,
+    clear that $\abs{z'} = 1$,
+    \begin{align*}
+        T(z') &= T(e^{i\phi})   \\
+        &= \abs\lambda e^{i\alpha}e^{i\phi} + \abs\mu e^{i\alpha}e^{-i\phi} \\
+        &= \abs\lambda e^{i(\alpha+\phi)} + \abs\mu e^{i(\alpha-\phi)}
+    \end{align*}
+    Now due to our selection of $z'$,
+    $$\alpha + \phi \ne \alpha - \phi \pmod{(-\pi,\pi]},$$
+    so $\Arg(e^{i(\alpha+\phi)}) \ne \Arg(e^{i(\alpha-\phi)})$,
+    then equality does not hold in triangle inequality, so we have
+    \begin{align*}
+        \abs{T(z')} = 1 = \bigl\lvert \abs\lambda e^{i(\alpha+\phi)} + \abs\mu e^{i(\alpha-\phi)} \bigr\rvert
+        &< \bigl\lvert \abs\lambda e^{i(\alpha+\phi)} \bigr\rvert +
+        \bigl\lvert \abs\mu e^{i(\alpha-\phi)} \bigr\rvert  \\
+        1 = \bigl\lvert \abs\lambda e^{i(\alpha+\phi)} + \abs\mu e^{i(\alpha-\phi)} \bigr\rvert
+        &< \abs\lambda + \abs\mu = 1
+    \end{align*}
+    which is a contradiction.
+    Hence $\lambda\mu = 0$.
+% If needed, triangle inequality result at
+% https://math.stackexchange.com/questions/652303/equality-of-triangle-inequality-in-complex-numbers
+%
+%    \newpage
+%        &= \abs\lambda \left( \cos(\alpha+\theta) + i\sin(\alpha+\theta) \right)
+%           + \abs\mu \left( \cos(\beta-\theta) + i\sin(\beta-\theta) \right)    \\
+%        &= \abs\lambda \cos(\alpha+\theta)
+%           + \abs\mu \cos(\beta-\theta)
+%           + i\left( \abs\lambda \sin(\alpha+\theta)
+%           + \abs\mu \sin(\beta-\theta) \right)
+%    \end{align*}
+%    Now taking norm, as $\abs{T(z)} = \abs{z} = 1 = \abs{T(z)}^2$,
+%    \begin{align*}
+%        \abs{T(z)}^2
+%        &= \Bigl\lvert
+%            \abs{\lambda} \cos(\alpha+\theta)
+%            + \abs{\mu} \cos(\beta-\theta)
+%            + i\left( \abs{\lambda} \sin(\alpha+\theta)
+%            + \abs{\mu} \sin(\beta-\theta) \right)
+%        \Bigr\rvert^2   \\
+%        1
+%        &= \bigl( \abs{\lambda} \cos(\alpha+\theta) + \abs{\mu} \cos(\beta-\theta) \bigr)^2
+%          +\bigl( \abs{\lambda} \sin(\alpha+\theta) + \abs{\mu} \sin(\beta-\theta) \bigr)^2 \\
+%        &= \abs{\lambda}^2 \cos^2(\alpha+\theta) + \abs{\mu}^2 \cos^2(\beta-\theta)
+%          +2\abs{\lambda}\abs{\mu}\cos(\alpha+\theta)\cos(\beta-\theta)\\
+%        &\quad
+%          +\abs{\lambda}^2 \sin^2(\alpha+\theta) + \abs{\mu}^2 \sin^2(\beta-\theta)
+%          +2\abs{\lambda}\abs{\mu}\sin(\alpha+\theta)\sin(\beta-\theta)\\
+%        &= \abs{\lambda}^2 + \abs{\mu}^2
+%          +2\abs{\lambda}\abs{\mu} \Bigl(
+%            \cos(\alpha+\theta)\cos(\beta-\theta) + \sin(\alpha+\theta)\sin(\beta-\theta)
+%          \Bigr)    \\
+%        &= \abs{\lambda}^2 + \abs{\mu}^2
+%          +2\abs{\lambda}\abs{\mu} \cos\bigl((\alpha+\theta)-(\beta-\theta)\bigr)   \\
+%        &= \abs{\lambda}^2 + \abs{\mu}^2
+%          +2\abs{\lambda}\abs{\mu} \cos\bigl((\alpha-\beta + 2\theta)\bigr)
+%    \end{align*}
+%    Going back to examine our choice of $z$, we have $\cos\bigl((\alpha-\beta + 2\theta)\bigr) = \cos(0) = 1$,
+%    then because $\abs\lambda + \abs\mu > 0$,
+%    \begin{align*}
+%        1 &= \abs{\lambda}^2 + \abs{\mu}^2 + 2\abs{\lambda}\abs{\mu}    \\
+%        1 &= (\abs\lambda + \abs\mu)^2  \\
+%        1 &= \abs\lambda + \abs\mu
+%    \end{align*}
+
+    Conversely suppose $\lambda\mu = 0$ and $\abs{\lambda + \mu} = 1$,
+    then $\lambda = 0$ or $\mu = 0$.
+
+    Case $\lambda = 0$, $\abs\mu = 1$, then
+    \begin{align*}
+        T(z) &= \mu \conj{z} \\
+        \abs{T(z)} &= \abs{\mu \conj{z}} = \abs{z}
+    \end{align*}
+    Case $\mu = 0$, $\abs\lambda = 1$, then similarly
+    \begin{align*}
+        T(z) &= \lambda z \\
+        \abs{T(z)} &= \abs{\lambda z} = \abs{z}
+    \end{align*}
+    Which completes the proof.
+\end{proof}
+
+\newpage
+% P 5
+\begin{problem}
+    Let $K$ be a field and let $V$ be a $K$-vector space.
+    Let $T\in \End_K(V)$ be a $K$-linear endomorphism of $V$.
+    Recall that $T^2 = T \circ T \in \End_K(V)$ denotes the composite of $T$ with itself.
+    \begin{enumerate}[label=(\alph*)]
+        \item Show that $\Ker(T) = \Ker(T^2)$ if and only if
+            $\Ker(T) \cap \Im(T) = \set{0}$.
+    \end{enumerate}
+\end{problem}
+\begin{proof}
+    Suppose $\Ker(T) = \Ker(T^2)$, then
+    take any $y\in \Ker(T) \cap \Im(T)$, then
+    $\exists x\in V.~ T(x) = y$ and $T(y) = 0$,
+    therefore $(T\circ T)(x) = 0$ which means $x\in \Ker(T^2)$,
+    then by assumption, $x\in \Ker(T)$ which means $y=T(x) = 0$.
+    Therefore $\Ker(T) \cap \Im(T) \subseteq \set{0}$.
+    As the reverse containment is trivial ($T(0) = 0$), $\Ker(T) \cap \Im(T) = \set{0}$.
+
+    Conversely suppose $\Ker(T) \cap \Im(T) = \set{0}$.
+    Trivially, take $x\in\Ker(T)$, since $T(x) = 0$, $T^2(x) = T(T(x)) = T(0) = 0$ which gives us
+    $\Ker(T) \subseteq \Ker(T^2)$.
+    On the other hand, take $x\in \Ker(T^2)$, so $T(T(x)) = 0$.
+    We can now see that $T(x)\in\Ker(T)$ and $T(x)\in\Im(T)$,
+    then $T(x) \in \Ker(T) \cap \Im(T)$ and by hypothesis, $T(x) = 0$,
+    this means $x\in\Ker(T)$, therefore $\Ker(T) \supseteq \Ker(T^2)$.
+    This completes the proof that $\Ker(T) = \Ker(T^2)$.
+\end{proof}
+
+% P 5b
+\begin{enumerate}[label=(\alph*)] \setcounter{enumi}{1}
+    \item Show that $\Im(T) = \Im(T^2)$ if and only if
+        $V = \Ker(T) + \Im(T)$.
+\end{enumerate}
+\begin{proof}
+    Suppose $\Im(T) = \Im(T^2)$,
+    take any arbitrary $v\in V$,
+    then clearly $T(v) \in \Im(T) = \Im(T^2)$.
+    So $\exists a\in V.~ T^2(a) = T(v)$.
+    Now by linearity
+    \begin{align*}
+        T(T(a)) &= T(v)\\
+        T(v) - T(T(a)) &= 0\\
+        T(v - T(a)) &= 0    \\
+        v - T(a) &\in \Ker(T)
+    \end{align*}
+    Then $\exists k\in\Ker(T).~ v - T(a) = k$, so $v = k + T(a)$.
+    Since for any arbitrary $v\in V$, there exists $k\in \Ker(T)$, $T(a)\in \Im(T)$,
+    such that $v = k + T(a)$, $V = \Ker(T) + \Im(T)$.
+
+    Conversely suppose $V = \Ker(T) + \Im(T)$.
+    Trivially, $\Im(T) \supseteq \Im(T^2)$, as
+    take $y\in \Im(T^2)$, then $\exists x\in V.~ T^2(x) = y$, then as $T(x)\in V$ such that $T(T(x)) = y$, $y\in \Im(T)$.
+
+    Now take any $y\in \Im(T)$, then $\exists x\in V.~ T(x) = y$.
+    As $V = \Ker(T) + \Im(T)$, $\exists k\in \Ker(T), v\in V.~ x = k + T(v)$.
+    Then
+    \begin{align*}
+        y = T(x)&= T(k+T(v))\\
+        &= T^2(v)
+    \end{align*}
+    which implies $y\in \Im(T^2)$, so $\Im(T) \subseteq \Im(T^2)$.
+    Therefore $\Im(T) = \Im(T^2)$.
+\end{proof}
+
+\newpage
+% P 6
+\begin{problem}
+    Let $K$ be a field and let $V$ be a $K$-vector space,
+    of finite dimension $n:=\dim_K(V)$ over $K$.
+    Let $T \in \End_K(V)$ be a $K$-linear endomorphism of $V$.
+    Suppose there exists a vector $v \in V$ such that
+    \[ T(v), T^2(v),\dots, T^n(v)\quad\text{ is a basis for $V$.} \]
+    Show that
+    \[ v,T(v), \dots, T^{n-1}(v)\quad\text{ is also a basis for $V$,} \]
+    and that $T$ is invertible as a $K$-linear endomorphism on $V$.
+\end{problem}
+\begin{proof}
+    Let $\mathcal{B} := \left(T(v), T^2(v),\dots, T^n(V)\right)$,
+    be an ordered basis for $V$.
+    Then consider the equation
+    \begin{equation}
+        d_1 v + d_2 T(v) + \dots + d_{n} T^{n-1}(v) = 0
+    \end{equation}
+    where $d_1, \dots, d_n \in K$. Then by linearity of $T$.
+    \begin{align*}
+        T\left(d_1 v + d_2 T(v) + \dots + d_n T^{n-1}(v)\right) &= T(0)    \\
+        d_1T(v) + d_2 T^2(v) + \dots + d_n T^n(v) &= 0
+    \end{align*}
+    and as $\B$ is a basis for $V$, we have $d_1 = \dots = d_n = 0$, so
+    $\mathcal{C} := \left(v, T(v),\dots, T^{n-1}(v)\right)$ is a linearly-independent list.
+    Then as $\text{length}(\mathcal{C}) = \dim_K(V) = n$, by well-definedness of dimension,
+    $\mathcal{C}$ is also a (ordered) basis for $V$.
+
+    To show that $T$ is invertible, it suffices to define a linear map $U\in\End_K(V)$ such that
+    $TU = UT = \text{id}_V$.
+    Proceed by defining a linear map $U: V \to V$ on the basis $\B$ as
+    \begin{align*}
+        T(v) &\mapsto v\\
+        T^2(v) &\mapsto T(v)\\
+        &\dots\\
+        T^n(v) &\mapsto T^{n-1}(v)
+    \end{align*}
+    Then for any $w\in V$, as $\mathcal{C}$ is a basis for $V$, $\exists c_1,\dots,c_{n} \in K$ such that
+    \begin{align*}
+        w &= \sum_{i=1}^{n} c_{i} T^{i-1}(v)  \\
+%        T(w) &= \sum_{i=1}^{n} c_{i} T\left( T^{i-1}(v) \right) \\
+        T(w) &= \sum_{i=1}^{n} c_{i} T^{i}(v) \\
+        (UT)(w) &= \sum_{i=1}^{n} c_{i} T^{i-1}(v)
+    \end{align*}
+    so $UT = \text{id}_V$.
+    Similarly for any $w \in V$, as $\mathcal{B}$ is also a basis for $V$, $\exists c_0, \dots, c_{n-1} \in K$ such that
+    \begin{align*}
+        w &= \sum_{i=0}^{n-1} c_i T^{i+1}(v)    \\
+        U(w) &= \sum_{i=0}^{n-1} c_i T^{i}(v)    \\
+        (TU)(w) &= \sum_{i=0}^{n-1} c_i T^{i+1}(v)
+    \end{align*}
+    so $TU = \text{id}_V$.
+    Therefore $T$ is invertible.
+\end{proof}
+
+\end{document}

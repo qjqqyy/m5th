@@ -1,0 +1,581 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor}
+%
+\documentclass[british,a4paper,]{scrartcl}
+\usepackage[british]{babel}
+\title{CP3208 Progress Report}
+\author{Qi Ji}
+\date{April 2019}
+\makeatletter
+\let\thetitle\@title
+\let\theauthor\@author
+\let\thedate\@date
+\makeatother
+
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+\usepackage{fancyhdr}
+\usepackage{tabu}
+\usepackage[tablewithin=section]{caption}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{
+            pdftitle={\thetitle},
+            pdfauthor={\theauthor},
+            colorlinks=true,
+            linkcolor=Violet,
+            citecolor=PineGreen,
+            urlcolor=MidnightBlue,
+            breaklinks=true}
+\usepackage{cleveref}
+
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\usepackage{csquotes}
+%% load polyglossia as late as possible as it *could* call bidi if RTL lang (e.g. Hebrew or Arabic)
+%\usepackage{polyglossia}
+%\setmainlanguage[variant=british]{english}
+\usepackage[
+    style=alphabetic,
+    maxalphanames=6,
+    maxnames=6,
+    doi=false,isbn=false,url=false,
+]{biblatex}
+\addbibresource{\jobname.bib}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{question}[theorem]{Question}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{descr}[theorem]{Description}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\let\epsilon\varepsilon
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\sq}[1]{\left[ #1 \right]}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\pagestyle{fancy}
+\lhead{CP3208 Progress Report}
+\chead{}
+\rhead{\thedate}
+\lfoot{\theauthor}
+\cfoot{}
+\rfoot{\thepage}
+\renewcommand{\footrulewidth}{\headrulewidth}
+
+\begin{document}
+\maketitle
+
+\section{Project description}
+
+For this UROP project, I intend to investigate automatic and semiautomatic structures.
+
+\section{Progress}
+
+\subsection{Initial direction -- recursion theory}
+
+At the start of the project, I initially wanted to focus on recursion theory, possibly gaining some insights in learning theory from the perspective of recursion theory.
+
+Along the way, over discussions with my supervisor, I became acquainted with the recently-invented notion of semiautomatic structures \autocite{semiauto}.
+Having found this topic more interesting, I began investigating automatic and semiautomatic structures.
+
+\subsection{Regularity and finite automata}
+
+We skip the discussion of the characterisations of regular sets.
+
+Relations over a base set \(A \subset \Sigma^*\) are usually encoded as subsets of \(A^n\),
+where \(n\) is the a-rity of our relation.
+Since there are several inputs, we use the standard method of encoding several strings synchronously.
+Given \(a = a_0a_1a_2\dots a_n\) and \(b = b_0b_1\dots b_m\) in \(A\),
+the convolution \(conv(a,b)\) is defined as \(c_0c_1\dots c_{\max(m,n)}\) where
+\begin{itemize}
+    \item \(c_k = \binom{a_k}{b_k}\) if \(k\leq m, k\leq n\),
+    \item \(c_k = \binom{a_k}{\#}\) if \(m < k \leq n\), and
+    \item \(c_k = \binom{\#}{b_k}\) if \(n < k \leq m\).
+\end{itemize}
+where \(\#\) is a fixed padding character outside \(\Sigma\).
+This process naturally identifies the set \(A\times A\) with the set of all convolutions \(\set{conv(x,y) : x,y\in A}\).
+This process is generalisable to higher arities.
+Since the alphabet is still finite, notions of regularity are preserved and we call a \(n\)-ary relation \(R\subseteq A^n\) over \(A\) automatic if its representation is regular.
+Similarly a function is automatic if its graph is regular.
+
+
+\subsection{Group-like structures}
+
+Group-like algebraic structures are characterised by having a binary operation.
+
+\begin{definition}
+    Let \(G\) be a set and let \(\circ : G\times G \to G\).
+
+    The structure \((G,\circ)\) is called a \textbf{semigroup} iff \(\circ\) is associative,
+    that is for all \(x,y,z,\in G\), \(x\circ(y\circ z) = (x\circ y)\circ z\).
+
+    The structure \((G, \circ, e)\) is called a \textbf{monoid} iff \((G, \circ)\) is a semigroup
+    and for all \(x\in G\), \(x\circ e = e \circ x = x\).
+
+    The structure \((G, \circ, e)\) is called a \textbf{group} iff \((G, \circ, e)\) is a monoid
+    and for all \(x\in G\), there exists \(y \in G\) satisfying \(x\circ y = e\).
+\end{definition}
+\begin{example} \label{example:integers}
+    The structure \((\set{1,2,\dots}, +)\) is a semigroup.
+    Adding \(0\) to it gives us the monoid of natural numbers \((\N, +, 0)\).
+    Considering its closure gives us the additive group of integers \((\Z, +, 0)\).
+\end{example}
+\begin{definition} \label{def:finitelygenerated}
+    A semigroup \((G, \circ)\) is called \textbf{finitely-generated} iff
+    there exists finite subset \(F \subseteq G\) where
+    for each \(x \in G\), there exists \(y_1, y_2,\dots, y_n\in F\) satisfying
+    \(x = y_1\circ y_2 \circ \cdots \circ y_n\).
+    The set \(F\) is set of generators for \(G\).
+    In the case where \((G, \circ, e)\) is actually a group,
+    for convenience we require that \(F\) is closed under inversion.
+\end{definition}
+
+\begin{remark}
+    \Cref{def:finitelygenerated} generalises to monoids and groups in the obvious way.
+    Also since every element is expressible as a product of elements from \(F\),
+    we sometimes think of the finitely generated semigroup as words over \(F\), and we can identify \(y\in G\) with words in \(F^*\).
+    Also note that the structures in \Cref{example:integers} are finitely-generated,
+    with the generator \(1\).
+\end{remark}
+
+Groups have been studied by mathematicians for centuries in their own right,
+but only recently have the connection between group theory and automata theory been made. \autocite{Ho76,Ho83,KN,Epstein}
+
+\subsection{Automatic Groups and Monoids}
+
+The low complexity of automata motivates the search for automatic presentations of various algebraic structures.
+For example,
+the word problem for groups in general is well-known to be undecidable.
+However, most reasonable formalisations of automatic groups will have their word problem solvable with a
+quadratic time complexity. \autocite{Epstein,KKM}
+
+We first introduce the framework proposed by Hodgson \autocite{Ho76, Ho83} and
+Khoussainov and Nerode \autocite{KN}.
+\begin{definition} \label{defn:fullyauto}
+     A semigroup \((G,\circ)\) is called \textbf{fully automatic} iff
+     \begin{itemize}
+         \item \(G\) is regular over \(\Sigma^*\) with \(\Sigma\) being a finite alphabet,
+         \item \(\circ: G\times G \to G\) is an automatic function.
+     \end{itemize}
+     Fully automatic monoids and groups are defined analogously.
+\end{definition}
+\begin{remark}
+    In the original literature the authors referred to their definition as just ``automatic''.
+    We follow the convention in \autocite{fullautomatatheory} and use the term ``fully automatic''
+    in the sense that the \emph{full} semigroup operation is automatic.
+    At the same time, we also disambiguate it from the following more popular definition,
+    attributed to Epstein, Cannon, Holt, Levy, Paterson and Thurston. \autocite{Epstein}
+\end{remark}
+
+\begin{definition} \label{defn:epsteinauto}
+    Let \((G, \circ)\) be a semigroup generated by a finite subset \(F \subseteq G\).
+    The semigroup \((G, \circ)\) is \textbf{automatic} iff
+    \begin{itemize}
+        \item \(G\) is a regular subset of \(F^*\),
+        \item each \(x\in G\) has exactly a unique representative in \(F^*\), and
+        \item for each \(y \in G\), the multiplication map \((\circ y) : G \to G\) defined
+            as \(x \mapsto x\circ y\) is automatic.
+    \end{itemize}
+    The notion of having exactly 1 representative is equivalent to allowing multiple representatives but
+    with equality being automatic.
+    To see why, consider how we can unambiguously choose the
+    lexicographically smallest element as the unique representative.
+\end{definition}
+
+\begin{example}
+    Consider the semigroup of \((\Delta^*, \circ)\) where \(2 \leq \abs{\Delta} < \infty\).
+    We can verify how this semigroup is automatic  as the for each \(y \in \Delta^*\)
+    the concatenation map \(x \mapsto xy\) is automatic.
+    This group itself is not fully automatic, as in order to recognise the set
+    \(\set{conv(x,y,z) : xy = z}\) with a synchronous finite automata,
+    we have to store \(y\) as we are reading in \(x\) and comparing it with \(z\).
+    The problem is that length of \(y\) is unbounded, so the graph of \(\circ\) cannot be recognised with finitely many states.
+    In fact this group has no fully automatic representation.
+\end{example}
+This example illustrates how being fully automatic, as in \Cref{defn:fullyauto} is
+strictly stronger than being automatic, as in \Cref{defn:epsteinauto}.
+
+Kharlampovich, Khoussainov and Miasnikov were the first to formally consider the related concept of a Cayley automatic group \autocite{KKM}.
+It is sometimes also called graph automatic because it considers the Cayley graph of a group as the automatic structure.
+\begin{definition} \label{defn:cayleyauto}
+    A finitely generated group \(G\) generated by \(F\) is \textbf{Cayley automatic} iff
+    the following conditions hold for some finite alphabet \(\Sigma\),
+    \begin{itemize}
+        \item representatives of \(G\) form a regular subset \(H\) of \(\Sigma^*\),
+        \item each \(x\in G\) has a unique representative in \(H\),
+        \item for each \(y\in F\), the right multiplication by \(y\) map is an automatic map \(H\to H\).
+    \end{itemize}
+\end{definition}
+
+\begin{remark}
+    We note that \Cref{defn:epsteinauto} is a special case of this,
+    with the extra condition that natural representatives are chosen,
+    that is \(\Sigma = F\) the generating set.
+    As a result \Cref{defn:cayleyauto} defines a strictly bigger class of automatic groups.
+\end{remark}
+
+\begin{example}
+    The Heisenberg group \(\mathcal{H}_3(\Z)\) defined as
+    \[\set{\begin{pmatrix}1&a&b\\0&1&c\\0&0&1\end{pmatrix}: a,b,c\in\Z}\]
+    is Cayley automatic (6.6 in \autocite{KKM}), but not automatic (8.1.1 in \autocite{Epstein}).
+\end{example}
+
+\begin{definition} \label{defn:cayleybiauto}
+    \(G\) is \textbf{Cayley biautomatic} if
+    the third condition in \Cref{defn:cayleyauto} also holds for left multiplication.
+\end{definition}
+
+It is interesting to note that there exists a Cayley automatic group that is not Cayley biautomatic.
+\autocite{MS}
+
+\subsection{Ordinals}
+
+\begin{definition}[Ordinals]
+    A set \(\alpha\) is an ordinal iff every \(\beta\in\alpha\) is a subset of \(\alpha\) and
+    \((\alpha, \in)\) is a well-order.
+\end{definition}
+Ordinals can be thought of as equivalence classes of well-ordered sets in set theory.
+They naturally describe how many times a process is iterated, possibly transfinitely many times.
+The class of all ordinals are well-ordered by \(\in\), so if \(\alpha, \beta\) are ordinals, \(\alpha < \beta\) denotes \(\alpha \in \beta\).
+
+\begin{descr}[Ordinal arithmetic]
+    The sum of two ordinals \(\alpha + \beta\)
+    expresses the order type of \(\alpha\) placed before \(\beta\),
+    which is defined as the ordinal order-isomorphic to
+    the ordered set \((\set{0}\times \alpha \cup \set{1}\times \beta, \prec)\)
+    where \((0,\gamma) \prec (0,\gamma')\) iff \(\gamma < \gamma'\) in \(\alpha\),
+    \((1,\delta) \prec (1,\delta')\) iff \(\delta < \delta'\) in \(\beta\), and
+    \((0,\xi) \prec (1,\xi')\) for all \(\xi\in\alpha, \xi'\in\beta\).
+
+    The product of two ordinals \(\alpha\cdot \beta\) can be thought of as
+    \(\beta\) copies of \(\alpha\), which is defined as the ordinal order-isomorphic to the set \(\beta\times \alpha\) equipped with dictionary ordering.
+
+    We note that the initial segment containing the first \(\omega\) many ordinals is exactly the natural numbers, which add and multiply just like natural numbers.
+\end{descr}
+
+\subsection{General Automatic Structures}
+
+For general structures we consider the more general framework of
+Hodgson \autocite{Ho76, Ho83} and Khoussainov and Nerode \autocite{KN}.
+
+\begin{definition} \label{defn:automaticstructure}
+    A structure \((A, R_1, R_2, \dots, R_k, f_1, f_2,\dots, f_h)\) is automatic iff
+    \begin{itemize}
+        \item the set \(A\) is regular in \(\Sigma^*\) where \(\Sigma\) is some finite alphabet,
+        \item all the relations \(R_1, R_2, \dots, R_k\) are automatic, and
+        \item all the functions \(f_1, f_2, \dots, f_h\) are automatic.
+    \end{itemize}
+    We do not distinguish between structures that are automatic and structures
+    that are merely isomorphic to an automatic structure.
+\end{definition}
+
+This useful fact demonstrates the closure properties of automatic structures.
+\begin{theorem}
+    Any functions and relations that are definable
+    using a formula of first-order in terms of automatic functions and relations is again automatic.
+    Furthermore there is an effective procedure to construct the resultant automata
+    from that used in the parameters to define the function or relation.
+\end{theorem}
+
+\begin{example}
+    A fully automatic group \((G,\circ)\) satisfying \Cref{defn:fullyauto} is an automatic structure.
+\end{example}
+
+\begin{example} \label{ex:omegacubeautomatic}
+    The structure \((\omega^3, +, <)\) is automatic. Any ordinal below \(\omega^3\) is of the form
+    \(\omega^2\cdot c_2 + \omega\cdot c_1 + c_0\) with \(c_0,c_1,c_2 \in \N\).
+    We can express any ordinal \(\alpha = \omega^2\cdot a_2 + \omega\cdot a_1 + a_0 < \omega^3\) as \(conv(a_0, a_1, a_2)\).
+    Consider \(\alpha,\beta \in \omega^3\), where
+    \(\alpha = \omega^2\cdot a_2 + \omega\cdot a_1 + a_0\) and
+    \(\beta = \omega^2\cdot b_2 + \omega\cdot b_1 + b_0\).
+    The sum \(\alpha + \beta\) can be given by
+    \[
+        \alpha + \beta = \begin{cases}
+            \omega^2\cdot(a_2 + b_2) + \omega\cdot b_1 + b_0 &\text{if } b_2>0\\
+            \omega^2\cdot a_2 + \omega\cdot(a_1 + b_1) + b_0 &\text{if } b_2=0, b_1>0\\
+            \omega^2\cdot a_2 + \omega\cdot a_1 + (a_0 + b_0) &\text{if } b_2=0, b_1=0
+        \end{cases}
+    \]
+    because for any \(n,m\in\N\) with \(n>m\), we have \(\omega^m + \omega^n = \omega^{n}\).
+    This means we can define addition on our representatives using the expression given above as
+    \[
+        conv(a_0,a_1,a_2) + conv(b_0,b_1,b_2) = \begin{cases}
+            conv(b_0, b_1, a_2 + b_2)
+            &\text{if } b_2>0\\
+            conv(b_0, a_1+b_1, a_2)
+            &\text{if } b_2=0, b_1>0\\
+            conv(a_0+b_0, a_1, a_2)
+            &\text{if } b_2=0, b_1=0
+        \end{cases}
+    \]
+    and since there exists an automatic representation of \((\N, +, <)\),
+    the addition function is in fact automatic,
+    as it only performs checks that are automatic in our presentation of \(\N\).
+    Because comparison of ordinals below \(\omega^3\) is first-order definable in terms of addition, \(<\) is an automatic relation.
+\end{example}
+
+We prove half of Delhomm\'e's characterisation of automatic ordinals.
+\autocite{delhomme}
+\begin{theorem}[Delhomm\'e] \label{thm:delhomme}
+    Let \(\alpha\) be an ordinal, \((\alpha, +, <)\) is automatic iff \(\alpha < \omega^\omega\).
+    Here the domain of \(+\) is the set of all pairs \((\beta,\gamma)\) with \(\beta + \gamma < \alpha\).
+\end{theorem}
+\begin{proof}
+    We only prove the easier half, that if \(\alpha < \omega^\omega\), then \((\alpha, +, <)\) is automatic.
+    First observe that \Cref{ex:omegacubeautomatic} generalises to all \(n\in \N\).
+    Now any \(\alpha < \omega^\omega\) is bounded above by \(\omega^n\) for some natural number \(n\), so \((\alpha, +, <)\) embeds in \((\omega^n, +, <)\) in a natural way.
+\end{proof}
+
+\subsection{Semiautomatic Structures}
+
+Seeking more general ways to utilise finite automata for representing non-automatic structures,
+Jain, Khoussainov, Stephan, Teng and Zou
+proposed semiautomatic structures as a generalisation of \Cref{defn:automaticstructure} \autocite{semiauto}.
+\begin{definition}
+    Let \(f: R^n \to R\) be a function.
+    \(f\) is \textbf{semiautomatic} iff fixing \(n-1\) inputs, the resultant \(R\to R\) function is automatic.
+    The definition of a semiautomatic relation is analogous since we can view it as a \(\set{0,1}\)-valued function.
+\end{definition}
+
+\begin{definition}
+    A structure \((A, f_1, f_2, \dots, f_k; g_1, g_2, g_h)\) is \textbf{semiautomatic} iff
+    \begin{itemize}
+        \item the set \(A\) is regular in \(\Sigma^*\) where \(\Sigma\) is some finite alphabet,
+        \item all the functions \(f_1, f_2, \dots, f_k\) are automatic, and
+        \item all the functions \(g_1, g_2, \dots, g_h\) are semiautomatic
+    \end{itemize}
+    where without loss of generality we treat relations as functions.
+\end{definition}
+
+\subsection{Semiautomatic Groups}
+Jain, Khoussainov and Stephan used semiautomaticity to describe group-like structures \autocite{finitelysanjay}.
+They cited a related result by Tsankov \autocite{tsankov}.
+\begin{theorem}
+    The structure \((\Q, +, =)\) has no automatic presentation.
+\end{theorem}
+\begin{theorem}[21 in \autocite{semiauto}]
+    The ordered group \((\Q,<,=;+)\) of rationals is semiautomatic.
+\end{theorem}
+
+We note that \(\Q\) is not finitely generated, which leads on to this still open question.
+\begin{question}
+    Are all finitely generated semiautomatic groups Cayley automatic?
+\end{question}
+
+\subsection{Semiautomatic Rings and Fields}
+\begin{theorem} \label{sqrtring}
+    The ordered rings
+    \begin{itemize}
+        \item \((\Z[\phi], +, <, =; \cdot)\) where \(\phi = \frac{1+\sqrt{5}}2\) is the golden ratio, and
+        \item \((\Z(\sqrt{n}), \Z, +, <, =; \cdot)\) for every natural number \(n\)
+    \end{itemize}
+    admit semiautomatic presentations.
+\end{theorem}
+
+The following result was only sketched in \autocite{semiauto}. In fact the authors sketched a more general construction.
+\begin{theorem} \label{thm:semiautonatpoly}
+    The polynomial ring \((\N[x]; +, \cdot, =)\) is semiautomatic.
+\end{theorem}
+\begin{proof}
+    The construction is similar to that of Theorem 37 in \autocite{semiauto}.
+    We let \(A \subseteq \Sigma^*\) be an semiautomatic representation of \((\N, +, <;\cdot)\)
+    and let \(\oplus, \otimes, \bullet\) be symbols outside \(\Sigma\).
+
+    We represent elements of \(\N[x]\) as strings in \(B = \set{\epsilon}\cup \left(\left(A\cdot \set{\bullet}\right)^*\cdot A\right)\),
+    where we encode nonzero polynomials like
+    \(c_nx^n + \dots + c_1x + c_0\) as \(c_0\bullet c_1\bullet\dots\bullet c_n\),
+    where \(c_n \ne 0\).
+
+    For each string \(w \in C = \set{\epsilon}\cup\left( \left(B\cdot \set{\oplus,\otimes} \right)^*\cdot B \right)\)
+    we assign a value \(val(w)\) in \(B\) as follows
+    \begin{itemize}
+        \item \(val(\epsilon)\) is \(0\) which is represented by \(\epsilon\);
+        \item For \(w \in B\),
+            \(val(w)\) is the base element with trailing zeroes stripped;
+        \item \(val(w\oplus\epsilon) = val(w)\);
+        \item \(val(w\otimes\epsilon)\) is \(0\) which is represented by \(\epsilon\);
+        \item \(val(w\oplus v) = val(w) + val(v)\) when \(v\in B\);
+        \item \(val(w\otimes v) = val(w)\cdot val(v)\) when \(v\in B\) and \(v\) does not represent \(0\).
+    \end{itemize}
+    Note that \(val\) is not automatic, however its graph is a directed union of automatic functions.
+    For each natural number \(n\), \(w\in C\), define
+    \(val_n(w) = val(w)\) if \(w\) represents a polynomial of degree \(n\) or less
+    and all coefficients are below \(n\).
+    In the other case \(val_n(w) = @\) if the degree of \(w\) is above \(n\) or
+    some coefficient greater or equal to \(n\) is encountered.
+    Notice that \(val_n\) is automatic as whenever its value goes to \(@\), it remains at \(@\) until a multiplication with zero occurs.
+    In any other case the automaton only has to handle finitely many possible values.
+    The finiteness property in here still holds because arithmetic in \(\N\) has neither additive inverses nor zero divisors.
+
+    For \(v = \sum_{i \leq \deg(v)} c_i x^i\) we define \(d(v) = \max(\deg(v), c_i)\).
+    The rest of the argument is similar to that of Theorem 37 in \autocite{semiauto}.
+    We can check if
+    \(w\in C\) is equal to a fixed value \(v\) by comparing \(val_{d(w)}(w)\) with \(v\).
+    We can also do addition with a fixed \(v\) as follows.
+    If \(val_{d(v)}(w) \ne @\) then we represent \(v+w\) using the result, else we use \(v\oplus w\).
+    If \(v\ne \epsilon\) the product \(v\cdot w\) are represented by \(\epsilon\), otherwise we represent the product with \(v\otimes w\).
+\end{proof}
+
+\subsection{Semiautomatic Ordinals}
+
+We begin by pointing out that \((\N,\cdot,=)\) has no automatic representation, which means that for any infinite ordinal \(\alpha\), there also cannot be any automatic representations of \((\alpha, \cdot, =)\).
+
+I initially tried to directly apply the technique of \Cref{thm:semiautonatpoly} on \((\omega^\omega; +, \cdot, =)\),
+but the finiteness property in that proof was too strong, since for ordinals large coefficients could disappear, for instance
+\(n + \omega = \omega\) and \(\omega\cdot n\cdot\omega = \omega\cdot\omega\) for arbitrarily large \(n\in\N\).
+After having some difficulty extending the result of \Cref{thm:semiautonatpoly},
+I tried another approach, incorporating semiautomaticity to \Cref{thm:delhomme}.
+
+\begin{lemma} \label{lemma:rightmultiply}
+    Fix \(n\in\N\), consider the automatic representation of \((\omega^n, +, <)\) similar to that in \Cref{ex:omegacubeautomatic}, also fix \(d<\omega\), the following functions are automatic:
+    \begin{itemize}
+        \item \(\beta \mapsto \beta\cdot d\) the right-multiply by \(d\) map;
+        \item the map that sends \(\beta\) to \(\beta\cdot\omega\) if \(\beta\cdot\omega <\omega^n\), \(@\) otherwise.
+    \end{itemize}
+\end{lemma}
+\begin{proof}
+    Since \(d\) is fixed, right-multiplying by \(d\) can easily be accomplished by repeated addition, since addition in this representation is automatic by \Cref{thm:delhomme}.
+
+    To multiply by \(\omega\) on the right, for simplicity we demonstrate with the case \(n=4\).
+    We denote the map needed as \(f\),
+    for any \(\beta\in \omega^n\) represented as convolution of its coefficients \(conv(a_0,a_1,a_2,a_3)\),
+    we obtain using rules of ordinal multiplication
+    \begin{align*}
+        f(\beta) &=
+        \begin{cases}
+            \left(\omega^3\cdot a_3 + \omega^2\cdot a_2 + \omega\cdot a_1 + a_0\right)\cdot\omega
+            &\text{if } \beta\cdot\omega < \omega^4 \\
+            @ &\text{otherwise}
+        \end{cases}
+        \\
+        &= \begin{cases}
+            @ &\text{if } a_3>0 \\
+            \omega^3 &\text{if } a_3=0, a_2>0 \\
+            \omega^2 &\text{if } a_3=0, a_2=0, a_1>0 \\
+            \omega &\text{if } a_3=0, a_2=0, a_1=0, a_0>0 \\
+            0 &\text{otherwise }
+        \end{cases}
+    \end{align*}
+    The \(@\) case is only for error handling due to our assumptions on the domain of multiplication.
+    So we can define a notion of right-multiplying by \(\omega\) on our representatives as
+    \[
+        f(conv(a_0,a_1,a_2,a_3)) =
+        \begin{cases}
+            @ &\text{if } a_3>0 \\
+            conv(0,0,0,1) &\text{if } a_3=0, a_2>0 \\
+            conv(0,0,1,0) &\text{if } a_3=0, a_2=0, a_1>0 \\
+            conv(0,1,0,0) &\text{if } a_3=0, a_2=0, a_1=0, a_0>0 \\
+            conv(0,0,0,0) &\text{otherwise }
+        \end{cases}
+    \]
+    we can easily see that only automatic checks on the input are needed and therefore \(f\) is automatic.
+    To complete the proof we just have to observe that this construction works for any \(n\in\N\).
+\end{proof}
+
+\begin{lemma} \label{lemma:leftmultiply}
+    Using the same automatic representation of \((\omega^n, +, <)\), for any \(\beta\in\omega^n\) the map
+    that sends \(\gamma\) to \(\beta\cdot\gamma\) defined for all \(\gamma\) satisfying \(\beta\cdot\gamma<\omega^n\) is automatic.
+\end{lemma}
+\begin{proof}
+    First express the ordinals in normal form
+    \begin{align*}
+        \beta  &= \omega^k\cdot b_k + \omega^{k-1}\cdot b_{k-1} + \dots + \omega\cdot b_1 + b_0 \\
+        \gamma &= \omega^l\cdot c_l + \omega^{l-1}\cdot c_{l-1} + \dots + \omega\cdot c_1 + c_0
+    \end{align*}
+    where \(b_k, c_l > 0\). We then make the following general observation that
+    \begin{align*}
+        \beta\cdot\gamma &= \beta\cdot\omega^l\cdot c_l + \beta\cdot\omega^{l-1}\cdot c_{l-1} + \dots + \beta\cdot\omega\cdot c_1 + \beta\cdot c_0 \\
+        &= \left( \omega^k\cdot b_k + \omega^{k-1}\cdot b_{k-1} + \dots + \omega\cdot b_1 + b_0 \right)\cdot\omega^l\cdot c_l \\
+        &\quad + \left( \omega^k\cdot b_k + \omega^{k-1}\cdot b_{k-1} + \dots + \omega\cdot b_1 + b_0 \right)\cdot\omega^{l-1}\cdot c_{l-1} \\
+        &\quad + \dots\\
+        &\quad + \left( \omega^k\cdot b_k + \omega^{k-1}\cdot b_{k-1} + \dots + \omega\cdot b_1 + b_0 \right)\cdot\omega\cdot c_1 \\
+        &\quad + \left( \omega^k\cdot b_k + \omega^{k-1}\cdot b_{k-1} + \dots + \omega\cdot b_1 + b_0 \right)\cdot c_0 \\
+        &= \omega^{k+l}\cdot c_l + \omega^{k+l-1}\cdot c_{l-1} + \dots + \omega^{k+1}\cdot c_1 \\
+        &\quad + \left(\omega^k\cdot (b_k\cdot c_0) + \omega^{k-1}\cdot b_{k-1} + \dots + \omega^{b_1} + b_0\right)\cdot 1_{c_0 \ne 0}
+    \end{align*}
+    where \(1_{c_0 \ne 0}\) is \(1\) is \(c_0 \ne 0\) and \(0\) otherwise.
+
+    If our assumptions on the domain of \(\gamma\) holds, then \(k+l < n\). We have
+    \begin{align*}
+         &\beta\cdot conv(c_0,c_1,\dots,c_l,0,\dots,0) \\
+        =\; &conv(\overbrace{0,\dots,0}^{k+1\text{ many}}, c_1, c_2, \dots, c_l, 0, \dots, 0) \\
+        &\; + \begin{cases}
+            0 &\text{if } c_0 = 0 \\
+            conv(b_0,b_1,\dots,b_k-1,b_k\cdot c_0,0,\dots,0) &\text{otherwise}
+        \end{cases}
+    \end{align*}
+    We see that this function is automatic as \(\beta\) is already fixed so each \(b_i\) constant,
+    therefore computing \(b_k\cdot c_0\) given \(c_0\) is automatic, in addition the checks are also automatic and
+    the final addition is also automatic due to \Cref{thm:delhomme}.
+\end{proof}
+
+\begin{theorem}
+    For any \(\alpha < \omega^\omega\), the structure \((\alpha, +, <, =; \cdot)\) is semiautomatic.
+    Similar to \Cref{thm:delhomme} we only consider
+    the domain of \(+\) to be the set of all pairs \((\beta,\gamma)\) with \(\beta + \gamma < \alpha\) and
+    the domain of \(\cdot\) to be the set of all pairs \((\beta,\gamma)\) with \(\beta \cdot \gamma < \alpha\).
+\end{theorem}
+\begin{proof}
+    Similarly to proof of \Cref{thm:delhomme} without loss of generality we consider \(\alpha = \omega^n\) for some natural number \(n\).
+    We also use the same representation.
+    Fix \(\gamma<\omega^n\) and we want to show that for all \(\beta\) such that \(\beta\cdot\gamma < \omega^n\),
+    the map \(\beta \mapsto \beta\cdot\gamma\) is automatic.
+    We can express \(\gamma\) in normal form as
+    \[ \gamma = \omega^n\cdot c_n + \dots + \omega\cdot c_1 + c_0, \]
+    then applying left-distributivity we have
+    \begin{align*}
+        \beta\cdot\gamma
+        &= \beta\cdot\left( \omega^n\cdot c_n + \dots + \omega\cdot c_1 + c_0  \right) \\
+        &= \beta\cdot \omega^n\cdot c_n + \dots + \beta\cdot \omega\cdot c_1 + \beta\cdot c_0.
+    \end{align*}
+    This expresses right-multiplication by \(\gamma\) as a composition of functions that are proven to be automatic in
+    \Cref{lemma:rightmultiply} and \Cref{thm:delhomme}, which is still automatic.
+    Additionally by our assumptions on the domain the \(@\) case will not happen.
+    This completes the proof for right-multiplication.
+    The proof for left-multiplication was completed in \Cref{lemma:leftmultiply}.
+\end{proof}
+
+\section{Future Directions}
+
+Even at \(\omega^\omega\), we can still try to find additional interesting presentations of the multiplication structure of ordinals.
+If successful, we can move on to larger ordinals such as \(\epsilon_0\).
+
+Another topic to investigate would be to consider a natural generalisation of \Cref{sqrtring}
+\begin{question}
+    Let \(n\) be a natural number.
+    Consider the ordered ring \((\Z(\sqrt[3]{n}), +, \cdot, <)\).
+    What can be made semiautomatic? What can be made automatic?
+\end{question}
+If successful, we can explore generalisations to possibly all \(m\)-th roots.
+
+\printbibliography
+\end{document}

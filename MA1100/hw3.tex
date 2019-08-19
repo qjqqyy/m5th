@@ -1,0 +1,539 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[british]{babel}
+\usepackage[a4paper,top=2.2cm,bottom=2.4cm,left=2.2cm,right=2.2cm]{geometry}
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+
+\newtheorem*{stmt}{Statement}
+\newtheorem*{negstmt}{Negation}
+\newtheorem*{claim}{Claim}
+
+\title{MA1100 Homework 3}
+\author{Qi Ji\\
+    \small A0167793L\\
+    \footnotesize T04}
+\date{1st October 2017}
+\begin{document}
+\maketitle
+
+\section*{Q1}
+\begin{stmt}
+    For any sets $X,Y,Z$ and any maps $f:X\mapsto Y$ and $g:Y\mapsto Z$,
+    if $f$ is injective and $g$ is injective, then $g\circ f$ is injective.
+\end{stmt}
+Statement is \textbf{true}.
+\begin{proof}
+    If $f$ is injective, by definition,
+    $$\forall x_1,x_2 \in X.~ f(x_1) = f(x_2) \implies x_1 = x_2.$$
+    If $g$ is injective, by definition,
+    $$\forall y_1,y_2 \in Y.~ g(y_1) = g(y_2) \implies y_1 = y_2.$$
+    $g\circ f$ is defined as
+    $$\forall x \in X.~ (g\circ f)(x) := g(f(x)).$$
+    Then given $a,b \in X,$
+    \begin{itemize}[label={}]
+        \item if $(g \circ f)(a) = (g \circ f)(b)$, then
+        \item by definition of the composite map $g \circ f$, $g(f(a)) = g(f(b))$.
+        \item Since $g$ is injective and $f(a), f(b) \in Y$, this implies $f(a) = f(b)$.
+        \item Since $f$ is injective and $a, b \in X$, this implies $a = b$.
+    \end{itemize}
+    Therefore, we can conclude that given $f$ is injective and $g$ is injective,
+    $$\forall a, b \in X.~ (g\circ f)(a) = (g\circ f)(b) \implies a = b,$$
+    $g\circ f$ is injective.
+\end{proof}
+\newpage
+
+\section*{Q2}
+\begin{stmt}
+    For any sets $X,Y,Z$ and any maps $f:X\mapsto Y$ and $g:Y\mapsto Z$,
+    if $f$ is injective and $g$ is surjective, then $g\circ f$ is injective.
+\end{stmt}
+Statement is \textbf{false}.
+\begin{negstmt}
+    There exists sets $X,Y,Z$ and maps $f:X\mapsto Y$ and $g:Y\mapsto Z$ such that,
+    $f$ is injective and $g$ is surjective, but $g\circ f$ is not injective.
+\end{negstmt}
+\begin{proof}
+    Let
+    \begin{align*}
+        X &:= \{1, 2, 3\},\\
+        Y &:=\{4, 5, 6, 7\},\\
+        Z &:=\{10, 11\},\\
+        \Gamma f \subseteq X\times Y &:=\{(1,4),(2,5),(3,6)\},\\
+        \Gamma g \subseteq Y\times Z &:=\{(4,10), (5,10), (6,11), (7,11)\}.
+    \end{align*}
+    Trivially, it can be visually verified that $f$ and $g$ are totally-defined and well-defined.\\
+%    $f$ is totally-defined, because
+%        $\forall x \in X.~ \exists y \in Y.~ (x, y) \in \Gamma f$.\\
+%    $f$ is well-defined, because
+%        $\forall x \in X.~ \forall y_1, y_2 \in Y.~ (x, y_1), (x, y_2) \in \Gamma f \implies y_1 = y_2$.\\
+    $f$ is injective, because
+        $$\forall x_1,x_2 \in X.~ x_1 \neq x_2 \implies f(x_1) \neq f(x_2).$$
+%    $g$ is totally-defined, because
+%        $\forall y \in Y.~ \exists z \in Z.~ (y, z) \in \Gamma g$.\\
+%    $g$ is well-defined, because
+%        $\forall y \in Y.~ \forall z_1, z_2 \in Z.~ (y, z_1), (y, z_2) \in \Gamma g \implies z_1 = z_2$.\\
+    $g$ is surjective, because
+        $$\forall z \in Z.~ \exists y \in Y.~ g(y) = z.$$
+    $g\circ f$ is defined as $$\forall x \in X.~ (g\circ f)(x) := g(f(x)).$$
+    In this example,
+    \begin{itemize}[label={}]
+        \item $\Gamma (g \circ f) \subseteq X \times Z := \{(1,10),(2,10),(3,11)\}$.
+        \item Take $a,b \in X$ to be $1$ and $2$ respectively,
+            $$(g \circ f)(1) = (g \circ f)(2) = 10.$$
+        \item Since there exists $a,b \in X$ such that $(g\circ f)(a) = (g \circ f)(b)$ and $a \neq b$,
+        \item $g \circ f$ is not injective.
+    \end{itemize}
+    Therefore, we can conclude that there exists sets $X,Y,Z$ and maps $f:X\mapsto Y$ and $g:Y\mapsto Z$ such that $f$ is injective and $g$ is surjective, but $g\circ f$ is not injective.
+\end{proof}
+\newpage
+
+\section*{Q3}
+\begin{stmt}
+    For any sets $X,Y,Z$ and any maps $f:X\mapsto Y$ and $g:Y\mapsto Z$,
+    if $f$ is surjective and $g$ is injective, then $g\circ f$ is injective.
+\end{stmt}
+Statement is \textbf{false}.
+\begin{negstmt}
+    There exists sets $X,Y,Z$ and maps $f:X\mapsto Y$ and $g:Y\mapsto Z$ such that,
+    $f$ is surjective and $g$ is injective, but $g\circ f$ is not injective.
+\end{negstmt}
+\begin{proof}
+    Let
+    \begin{align*}
+        X &:= \{1, 2, 3\},\\
+        Y &:=\{4, 5\},\\
+        Z &:=\{10, 11\},\\
+        \Gamma f \subseteq X\times Y &:=\{(1,4),(2,5),(3,4)\},\\
+        \Gamma g \subseteq Y\times Z &:=\{(4,10), (5,11)\}.
+    \end{align*}
+    Trivially, it can be visually verified that $f$ and $g$ are totally-defined and well-defined.\\
+%    $f$ is totally-defined,
+%        because $\forall x \in X, \exists y \in Y, (x, y) \in \Gamma f$.\\
+%    $f$ is well-defined, because
+%        $\forall x \in X, \forall y_1, y_2 \in Y, (x, y_1), (x, y_2) \in \Gamma f \implies y_1 = y_2$.\\
+%    $g$ is totally-defined, because
+%        $\forall y \in Y, \exists z \in Z, (y, z) \in \Gamma g$.\\
+%    $g$ is well-defined, because
+%        $\forall y \in Y, \forall z_1, z_2 \in Z, (y, z_1), (y, z_2) \in \Gamma g \implies z_1 = z_2$.\\
+    $f$ is surjective, because
+        $$\forall y \in Y.~ \exists x \in X.~ f(x) = y.$$
+    $g$ is injective, because
+        $$\forall y_1,y_2 \in Y.~ y_1 \neq y_2 \implies g(y_1) \neq g(y_2).$$
+    $g\circ f$ is defined as $$\forall x \in X.~ (g\circ f)(x) := g(f(x)).$$
+    In this example,
+    \begin{itemize}[label={}]
+        \item $\Gamma (g \circ f) \subseteq X \times Z := \{(1,10),(2,11),(3,10)\}$.
+        \item Take $a,b \in X$ to be $1$ and $3$ respectively,
+            $$(g \circ f)(1) = (g \circ f)(3) = 10.$$
+        \item Since there exists $a,b \in X$ such that $(g\circ f)(a) = (g \circ f)(b)$ and $a \neq b$,
+        \item $(g \circ f)$ is not injective.
+    \end{itemize}
+    Therefore, we can conclude that there exists sets $X,Y,Z$ and maps $f:X\mapsto Y$ and $g:Y\mapsto Z$ such that $f$ is surjective and $g$ is injective, but $g\circ f$ is not injective.
+\end{proof}
+\newpage
+
+\section*{Q4}
+\begin{stmt}
+    For any sets $X,Y,Z$ and any maps $f:X\mapsto Y$ and $g:Y\mapsto Z$,
+    if $f$ is injective and $g$ is surjective, then $g\circ f$ is surjective.
+\end{stmt}
+Statement is \textbf{false}.
+\begin{negstmt}
+    There exists sets $X,Y,Z$ and maps $f:X\mapsto Y$ and $g:Y\mapsto Z$ such that,
+    $f$ is injective and $g$ is surjective, but $g \circ f$ is not surjective.
+\end{negstmt}
+\begin{proof}
+    Let
+    \begin{align*}
+        X &:= \{1, 2\},\\
+        Y &:=\{4, 5, 6\},\\
+        Z &:=\{10, 11, 12\},\\
+        \Gamma f \subseteq X\times Y &:=\{(1,4),(2,5)\},\\
+        \Gamma g \subseteq Y\times Z &:=\{(4,10), (5,11), (6,12)\}.
+    \end{align*}
+    Trivially, it can be visually verified that $f$ and $g$ are totally-defined and well-defined.\\
+%    $f$ is totally-defined,
+%        because $\forall x \in X, \exists y \in Y, (x, y) \in \Gamma f$.\\
+%    $f$ is well-defined, because
+%        $\forall x \in X, \forall y_1, y_2 \in Y, (x, y_1), (x, y_2) \in \Gamma f \implies y_1 = y_2$.\\
+%    $g$ is totally-defined, because
+%        $\forall y \in Y, \exists z \in Z, (y, z) \in \Gamma g$.\\
+%    $g$ is well-defined, because
+%        $\forall y \in Y, \forall z_1, z_2 \in Z, (y, z_1), (y, z_2) \in \Gamma g \implies z_1 = z_2$.\\
+    $f$ is injective, because
+        $$\forall x_1,x_2 \in X.~ f(x_1) = f(x_2) \implies x_1 = x_2.$$
+    $g$ is surjective, because
+        $$\forall z \in Z.~ \exists y \in Y.~ g(y) = z.$$
+    $g\circ f$ is defined as $$\forall x \in X.~ (g\circ f)(x) := g(f(x)).$$
+    In this example,
+    \begin{itemize}[label={}]
+        \item $\Gamma (g \circ f) \subseteq X \times Z := \{(1,10),(2,11)\}$.
+        \item Take $12 \in Z$,
+            $$\forall x \in X.~ (g \circ f)(x) \neq 12.$$
+        \item Since $\exists z \in Z.~ \forall x \in X.~ (g \circ f)(x) \neq z$,
+        \item $g \circ f$ is not surjective.
+    \end{itemize}
+    Therefore, we can conclude that there exists sets $X,Y,Z$ and maps $f:X\mapsto Y$ and $g:Y\mapsto Z$ such that $f$ is injective and $g$ is surjective, but $g \circ f$ is not surjective.
+\end{proof}
+\newpage
+
+\section*{Q5}
+\begin{stmt}
+    For any sets $X,Y,Z$ and any maps $f:X\mapsto Y$ and $g:Y\mapsto Z$,
+    if $f$ is surjective and $g$ is injective, then $g\circ f$ is surjective.
+\end{stmt}
+Statement is \textbf{false}.
+\begin{negstmt}
+    There exists sets $X,Y,Z$ and maps $f:X\mapsto Y$ and $g:Y\mapsto Z$ such that,
+    $f$ is surjective and $g$ is injective, but $g \circ f$ is not surjective.
+\end{negstmt}
+\begin{proof}
+    Let
+    \begin{align*}
+        X &:= \{1, 2, 3\},\\
+        Y &:=\{4, 5\},\\
+        Z &:=\{10, 11, 12\},\\
+        \Gamma f \subseteq X\times Y &:=\{(1,4),(2,5),(3,4)\},\\
+        \Gamma g \subseteq Y\times Z &:=\{(4,10), (5,11)\}.
+    \end{align*}
+    Trivially, it can be visually verified that $f$ and $g$ are totally-defined and well-defined.\\
+%    $f$ is totally-defined,
+%        because $\forall x \in X, \exists y \in Y, (x, y) \in \Gamma f$.\\
+%    $f$ is well-defined, because
+%        $\forall x \in X, \forall y_1, y_2 \in Y, (x, y_1), (x, y_2) \in \Gamma f \implies y_1 = y_2$.\\
+%    $g$ is totally-defined, because
+%        $\forall y \in Y, \exists z \in Z, (y, z) \in \Gamma g$.\\
+%    $g$ is well-defined, because
+%        $\forall y \in Y, \forall z_1, z_2 \in Z, (y, z_1), (y, z_2) \in \Gamma g \implies z_1 = z_2$.\\
+    $f$ is surjective, because
+        $$\forall y \in Y.~ \exists x \in X.~ f(x) = y.$$
+    $g$ is injective, because
+        $$\forall y_1,y_2 \in Y.~ y_1 \neq y_2 \implies g(y_1) \neq g(y_2).$$
+    $g\circ f$ is defined as $$\forall x \in X.~ (g\circ f)(x) := g(f(x)).$$
+    In this example,
+    \begin{itemize}[label={}]
+        \item $\Gamma (g \circ f) \subseteq X \times Z := \{(1,10),(2,11),(3,10)\}$.
+        \item Take $12 \in Z$,
+            $$\forall x \in X.~ (g \circ f)(x) \neq 12.$$
+        \item Since $\exists z \in Z.~ \forall x \in X.~ (g \circ f)(x) \neq z$,
+            $g \circ f$ is not surjective.
+    \end{itemize}
+    Therefore, we can conclude that there exists sets $X,Y,Z$ and maps $f:X\mapsto Y$ and $g:Y\mapsto Z$ such that $f$ is surjective and $g$ is injective, but $g \circ f$ is not surjective.
+\end{proof}
+\newpage
+
+\section*{Q6}
+\begin{stmt}
+    For any sets $X,Y,Z$ and any maps $f:X\mapsto Y$ and $g:Y\mapsto Z$,
+    if $f$ is surjective and $g$ is surjective, then $g\circ f$ is surjective.
+\end{stmt}
+Statement is \textbf{true}.
+\begin{proof}
+    If $f$ is surjective, by definition,
+        $$\forall y \in Y.~ \exists x \in X.~ f(x) = y.$$
+    If $g$ is surjective, by definition,
+        $$\forall z \in Z.~ \exists y \in Y.~ g(y) = z.$$
+    $g \circ f$ is defined as
+        $$\forall x \in X.~ (g \circ f)(x) := g(f(x)).$$
+    Then given $c \in Z$,
+    \begin{itemize}[label={}]
+        \item Since $g$ is surjective, $\exists b \in Y.~ g(b) = c.$
+        \item $f$ is also surjective, so given $b \in Y,~ \exists a \in X.~ f(a) = b.$
+        \item Therefore, $\exists a \in X.~ g(f(a)) = c.$
+    \end{itemize}
+    Therefore, we can conclude that given $f$ is surjective and $g$ is surjective,
+        $$\forall c \in Z.~ \exists a \in X.~ (g \circ f)(a) = c,$$
+        $g \circ f$ is surjective.
+\end{proof}
+\newpage
+
+\section*{Q7}
+\subsubsection*{(a)}
+\begin{claim}
+    Given sets $A, B$, $A \subseteq B$ iff $A \cup B = B$.
+\end{claim}
+\begin{proof}
+    Assume $A \subseteq B$, then $\forall x.~ x \in A \implies x \in B.$
+        \hfill$(\implies)$\\
+    Let $x \in A \cup B$ be arbitary, but fixed, then,
+        $$(x \in A) \lor (x \in B).$$
+        \begin{itemize}[label={}]
+            \item Case $x \in A$, since $A \subseteq B, x \in B.$
+            \item Case $x \in B$, trivially, $x \in B$.
+        \end{itemize}
+    Because for any arbitary $x$,
+        $x \in A \cup B \implies x \in B$, we have $A \cup B \subseteq B$.\\
+    Conversely let $x \in B$ be arbitary, but fixed, then trivially,
+    \begin{align*}
+        x &\in B\\
+        (x &\in A) \lor (x \in B)\\
+        x &\in A \cup B
+    \end{align*}
+    Since for any arbitary $x$,
+        $x \in B \implies x \in A \cup B$, we have $B \subseteq A \cup B$.
+    Now because $A \cup B \subseteq B$ and $B \subseteq A \cup B$, we conclude that
+        if $A \subseteq B$, then $A \cup B = B$.\\
+    Assume $A \cup B = B$, then by axiom of extentionality,
+        \hfill$(\impliedby)$
+        \begin{align*}
+            \forall x&.~ x \in A \cup B \iff x \in B\\
+            \forall x&.~ (x \in A) \lor (x \in B) \iff x \in B
+        \end{align*}
+    Let $x \in A$ be arbitary, but fixed, then by above statement, $x \in B.$
+    Because for any arbitary $x$, $x \in A \implies x \in B$, we conclude that
+        if $A \cup B = B$, then $A \subseteq B$.\\
+    We have $A \subseteq B \implies A \cup B = B$ and $A \cup B = B \implies A \subseteq B$,
+    so $A \subseteq B$ iff $A \cup B = B$.
+\end{proof}
+\newpage
+
+\subsubsection*{(b)}
+\begin{claim}
+    Given sets $A, B$, $A \cap B = A$ iff $A \cup B = B$.
+\end{claim}
+\begin{proof}
+    Assume $A \cap B = A$, then by axiom of extentionality,
+        \hfill$(\implies)$
+        \begin{align}
+            \forall x&.~ x \in A \cap B \iff x \in A \nonumber \\
+            \forall x&.~ (x \in A) \land (x \in B) \iff x \in A \label{eq:7b1}
+        \end{align}
+    Let $x \in A \cup B$ be arbitary, but fixed, then,
+        $$(x \in A) \lor (x \in B).$$
+        \begin{itemize}[label={}]
+            \item Case $x \in A$, by \eqref{eq:7b1}, $(x \in A) \land (x \in B)$, so $x \in B$.
+            \item Case $x \in B$, trivially, $x \in B$.
+        \end{itemize}
+    Because for any arbitary $x$,
+        $x \in A \cup B \implies x \in B$, we have $A \cup B \subseteq B$.\\
+    Conversely let $x \in B$ be arbitary, but fixed, then trivially,
+    \begin{align*}
+        x &\in B\\
+        (x &\in A) \lor (x \in B)\\
+        x &\in A \cup B
+    \end{align*}
+    Since for any arbitary $x$,
+        $x \in B \implies x \in A \cup B$, we have $B \subseteq A \cup B$.
+    Because $A \cup B \subseteq B$ and $B \subseteq A \cup B$, we conclude that
+        if $A \cap B = A$, then $A \cup B = B$.\\
+    Now assume $A \cup B = B$, then by axiom of extentionality,
+        \hfill$(\impliedby)$
+        \begin{align}
+            \forall x&.~ x \in A \cup B \iff x \in B \nonumber \\
+            \forall x&.~ (x \in A) \lor (x \in B) \iff x \in B \label{eq:7b2}
+        \end{align}
+    Let $x \in A \cap B$ be arbitary, but fixed, then,
+        \begin{align*}
+            (&x \in A) \land (x \in B)\\
+            &x \in A
+        \end{align*}
+    Because for any arbitary $x$,
+        $x \in A \cap B \implies x \in A$, we have $A \cap B \subseteq A$.\\
+    Conversely let $x \in A$ be arbitary, but fixed, then by \eqref{eq:7b2}, $x \in B$.\\
+    Since $x \in A$ to begin with, we have
+        \begin{align*}
+            (&x \in A) \land (x \in B)\\
+            &x \in A \cap B
+        \end{align*}
+    Since for any arbitary $x$,
+        $x \in A \implies x \in A \cap B$, we have $A \subseteq A \cap B$.
+    Because $A \cap B \subseteq A$ and $A \subseteq A \cap B$, we conclude that
+        if $A \cup B = B$, then $A \cap B = A$.\\
+    We have $A \cap B = A \implies A \cup B = B$ and $A \cup B = B \implies A \cap B = A$,
+    so $A \cap B = A$ iff $A \cup B = B$.
+\end{proof}
+\newpage
+
+\section*{Q8}
+\begin{claim}
+    Let $A, B$ and $U$ be sets so that $A \subseteq U$ and $B \subseteq U$.
+    $A = \emptyset$ iff the equality $((U \setminus A) \cap B) \cup (A \cap (U \setminus B)) = B$ holds.
+\end{claim}
+\begin{proof}
+    Assume $A = \emptyset$, then $\forall x.~ x \not\in A$. Since $B \subseteq U$, so $\forall x.~ x \in B \implies x \in U.$
+        \hfill$(\implies)$
+    \begin{flalign*}
+        && &((U \setminus A) \cap B) \cup (A \cap (U \setminus B)) &&\\
+        &&=~ &\{\; x \in U : (x \in (U \setminus A) \cap B) \lor (x \in A \cap (U \setminus B)) \;\} &&\\
+        &&=~ &\{\; x \in U : ((x \in U \setminus A) \land (x \in B)) \lor ((x \in A) \land (x \in U \setminus B)) \;\} &&\\
+        &&=~ &\{\; x \in U : (x \in U \setminus A) \land (x \in B) \;\} && \text{by}~ x \not \in A\\
+        &&=~ &\{\; x \in U : (x \in U) \land \lnot(x \in A) \land (x \in B) \;\} &&\\
+        &&=~ &\{\; x \in U : (x \in U) \land (x \in B) \;\} &&\\
+        &&=~ &\{\; x \in U : x \in B \;\} && \text{by}~ x \in B \implies x \in U\\
+        &&=~ &B &&
+    \end{flalign*}
+    If $A = \emptyset$, then the equality $((U \setminus A) \cap B) \cup (A \cap (U \setminus B)) = B$ holds.\\
+    Now assume $((U \setminus A) \cap B) \cup (A \cap (U \setminus B)) = B$. \hfill$(\impliedby)$\\
+    By axiom of extentionality,
+    \begin{align*}
+        \forall x&.~ x \in ((U \setminus A) \cap B) \cup (A \cap (U \setminus B)) \iff x \in B\\
+        \forall x&.~ (x \in (U \setminus A) \cap B) \lor (x \in A \cap (U \setminus B)) \iff x \in B\\
+        \forall x&.~ ((x \in U \setminus A) \land (x \in B)) \lor ((x \in A) \land (x \in U \setminus B)) \iff x \in B\\
+        \forall x&.~ ((x \in U) \land \lnot(x \in A) \land (x \in B)) \lor ((x \in A) \land (x \in U) \land \lnot(x \in B)) \iff x \in B\\
+        \forall x&.~ ((x \in A) \land (x \in U) \land \lnot(x \in B)) \implies x \in B
+    \end{align*}
+    Suppose for a contradiction that $\exists x \in A$, since $A \subseteq U$, $x \in U$,\\
+    if $x \not \in B$, $(x \in A) \land (x \in U) \land \lnot(x \in B)$ is true, but $x \in B$ false, a contradiction.\\
+    Therefore if the equality $((U \setminus A) \cap B) \cup (A \cap (U \setminus B)) = B$ holds,
+    there must not exist $x$ where $x \in A$, that is, $\forall x.~ x \not\in A$, which means $A = \emptyset$.\\
+    Because $A = \emptyset \implies ((U \setminus A) \cap B) \cup (A \cap (U \setminus B)) = B$ and\\
+    $((U \setminus A) \cap B) \cup (A \cap (U \setminus B)) = B \implies A = \emptyset$,\\
+    we can conclude that $A = \emptyset$ iff the equality $((U \setminus A) \cap B) \cup (A \cap (U \setminus B)) = B$ holds.
+\end{proof}
+\newpage
+
+\section*{Q9}
+\begin{claim}
+    Suppose $f: X \mapsto Y$ is injective. Then for any set $T$,
+    the map $\Phi_T$ of ``post-composition with $f$'' is injective.
+\end{claim}
+\begin{proof}
+    $f$ is injective, by definition, $$\forall x_1, x_2 \in X.~ f(x_1) = f(x_2) \implies x_1 = x_2.$$
+    For any set $T$, the map $\Phi_T$ of ``post-composition with $f$'' is defined as
+    $$\forall \phi \in \text{Maps}(T, X).~ \Phi_T(\phi) := (f \circ \phi).$$
+    Given any set $T$ and $\phi_1, \phi_2 \in \text{Maps}(T, X)$,\\
+    if $f \circ \phi_1 = f \circ \phi_2\,$, then
+        \begin{align*}
+            \forall t \in T.~ \forall y \in Y&.~ (t,y) \in \Gamma(f \circ \phi_1) \iff (t,y) \in \Gamma(f \circ \phi_2)\\
+            \forall t \in T.~ \forall y \in Y&.~ (f \circ \phi_1)(t) = y \iff (f \circ \phi_2)(t) = y\\
+            \forall t \in T&.~ (f \circ \phi_1)(t) = (f \circ \phi_2)(t)\\
+            \forall t \in T&.~ f(\phi_1(t)) = f(\phi_2(t))
+        \end{align*}
+    Since $\phi_1(t), \phi_2(t) \in X$, by injectivity of $f$,
+        \begin{align*}
+            \forall t \in T&.~ \phi_1(t) = \phi_2(t)\\
+            \forall t \in T.~ \forall x \in X&.~ \phi_1(t) = x \iff \phi_2(t) = x\\
+            \forall t \in T.~ \forall x \in X&.~ (t,x) \in \Gamma \phi_1 \iff (t,x) \in \Gamma \phi_2
+        \end{align*}
+    Therefore $\phi_1 = \phi_2$.\\
+    For any set $T$, for all $\phi_1, \phi_2 \in \text{Maps}(T, X)$, we have $(f \circ \phi_1) = (f \circ \phi_2)$, implies $\phi_1 = \phi_2$.\\
+    This means that if $f$ is injective, the map $\Phi_T$ of ``post-composition with $f$'' is injective for any set $T$.
+\end{proof}
+\newpage
+
+\section*{Q10}
+\begin{claim}
+    Suppose for any set $T$, the map $\Phi_T$ of ``post-composition with $f$'' is injective.
+    Then $f: X \mapsto Y$ is injective.
+\end{claim}
+\begin{proof}
+    For any set $T$, the map $\Phi_T$ of ``post-composition with $f$'' is defined as
+    $$\forall \phi \in \text{Maps}(T, X).~ \Phi_T(\phi) := (f \circ \phi).$$
+    $\Phi_T$ of ``post-composition with $f$'' is injective, by definition, for any set $T$,
+    \begin{equation*}
+        \forall \phi_1,\phi_2 \in \text{Maps}(T, X).~ (f \circ \phi_1) = (f \circ \phi_2) \implies \phi_1 = \phi_2 \tag{1} \label{eq:q10e1}
+    \end{equation*}
+%    $\text{Maps}(T,X)$ contains \emph{all} maps from $T$ to $X$, and is defined as
+%    \begin{equation*}
+%        \text{Maps}(T,X) := \left\{
+%        \begin{aligned}
+%            \varphi \in T \times X :~&\varphi \textit{~as a relation from T to X}\;\\
+%            &\textit{is totally-defined and well-defined}\;
+%        \end{aligned}\right\}
+%    \end{equation*}
+    By definition, $\text{Maps}(T,X)$ contains \emph{all} maps from $T$ to $X$, this means that
+    given $T \not = \emptyset$,
+    \begin{align*}
+        \forall x \in X&.~ \forall t \in T.~\exists \phi \in \text{Maps}(T,X).~ (t,x) \in \Gamma\phi\\
+        \forall x \in X&.~ \forall t \in T.~\exists \phi \in \text{Maps}(T,X).~ \phi(t) = x
+    \end{align*}
+    Given $x_1, x_2 \in X$, if $f(x_1) = f(x_2)$, then
+    \begin{itemize}[label={}]
+        \item Take $x_1 = \phi_1(t_0)$ and $x_2 = \phi_2(t_0)$,
+            where $\phi_1, \phi_2 \in \text{Maps}(T, X)$ and $t_0 \in T$ is arbitary, but fixed, then
+            $$f(\phi_1(t_0)) = f(\phi_2(t_0)).$$
+        \item Since $t_0$ is arbitary,
+            \begin{align*}
+                \forall t \in T&.~f(\phi_1(t)) = f(\phi_2(t))\\
+                \forall t \in T&.~(f \circ \phi_1)(t) = (f \circ \phi_2)(t)\\
+                \forall t \in T.~ \forall y \in Y&.~
+                    (f \circ \phi_1)(t) = y \iff (f \circ \phi_2)(t) = y\\
+                \forall t \in T.~ \forall y \in Y&.~
+                    (t,y) \in \Gamma(f \circ \phi_1) \iff (t,y) \in \Gamma(f \circ \phi_2)\\
+                &(f \circ \phi_1) = (f \circ \phi_2)
+            \end{align*}
+        \item Because $\Phi_T$ of ``post-composition with $f$'' is injective, by \eqref{eq:q10e1},
+            \begin{align*}
+                \phi_1 &= \phi_2\\
+                \phi_1(t_0) &= \phi_2(t_0)\\
+                x_1 &= x_2
+            \end{align*}
+    \end{itemize}
+    Since $$\forall x_1, x_2 \in X.~ f(x_1) = f(x_2) \implies x_1 = x_2$$
+    We can conlude that if the map $\Phi_T$ of ``post-composition with $f$'' is injective for any set $T$, $f$ is injective.
+\end{proof}
+\newpage
+
+\section*{Q11}
+\begin{claim}
+    Suppose $f: X \mapsto Y$ is surjective. Then for any set $T$,
+    the map $\Psi_T$ of ``pre-composition with $f$'' is injective.
+\end{claim}
+\begin{proof}
+    $f$ is surjective, by definition,
+    \begin{equation*} \tag{1} \label{eq:q11e1}
+        \forall y \in Y.~ \exists x \in X.~ f(x) = y.
+    \end{equation*}
+    The map $\Psi_T$ of ``pre-composition with $f$'' is defined as
+    $$\forall \psi \in \text{Maps}(Y, T).~ \Psi_T(\psi) := (\psi \circ f).$$
+    Given any set $T$ and $\psi_1, \psi_2 \in \text{Maps}(Y, T)$,\\
+    if $\Psi_T(\psi_1) = \Psi_T(\psi_2)$, then
+    \begin{flalign*}
+        && &(\psi_1 \circ f) = (\psi_2 \circ f) &&\\
+%       && \forall x \in X.~\forall t \in T.~& (x,t)\in\Gamma(\psi_1\circ f) \iff (x,t)\in\Gamma(\psi_2\circ f)
+        &&\forall x \in X.~& (\psi_1\circ f)(x) = (\psi_2\circ f)(x) &&\\
+        &&\forall x \in X.~& \psi_1(f(x)) = \psi_2(f(x)) &&\\
+        &&\forall y \in Y.~& \psi_1(y) = \psi_2(y) && \text{by~}\eqref{eq:q11e1}\\
+        &&\forall y \in Y.~ \forall t \in T.~& \psi_1(y) = t \iff \psi_2(y) = t &&\\
+        &&\forall y \in Y.~ \forall t \in T.~& (y,t) \in \Gamma\psi_1 \iff (y,t) \in \Gamma\psi_2 &&\\
+    \end{flalign*}
+    Therefore $\psi_1 = \psi_2$.\\
+    For any set $T$, for all $\psi_1,\psi_2 \in \text{Maps}(Y, T)$, we have $(\psi_1 \circ f) = (\psi_2 \circ f) \implies \psi_1 = \psi_2$.\\
+    This means that if $f$ is surjective, the map $\Psi_T$ of ``pre-composition with $f$'' is injective for any set $T$.
+\end{proof}
+\newpage
+
+\section*{Q12}
+\begin{claim}
+    Suppose for any set $T$, the map $\Psi_T$ of ``pre-composition with $f$'' is injective. Then
+    $f:X\mapsto Y$ is surjective.
+\end{claim}
+\begin{proof}
+    For any set $T$, the map $\Psi_T$ of ``pre-composition with $f$'' is defined as
+    $$\forall \psi \in \text{Maps}(Y,T).~ \Psi_T(\psi) := (\psi \circ f).$$
+    The map $\Psi_T$ of ``pre-composition with $f$'' is injective, by definition, for any set $T$,
+    \begin{equation*} \tag{*} \label{eq:q12impl}
+        \forall \psi_1,\psi_2 \in \text{Maps}(Y,T).~
+        \psi_1 \not= \psi_2 \implies (\psi_1 \circ f) \not= (\psi_2 \circ f)
+    \end{equation*}
+    Suppose for a contradiction that $f$ is not surjective, meaning
+    $$\exists y \in Y.~ \forall x \in X.~ f(x) \not = y$$
+    \begin{itemize}[label={}]
+        \item Take $Y_0 \subseteq Y$ to be when the above condition holds,
+            $$Y_0 := \{\; y \in Y : \forall x \in X.~ f(x) \not = y\;\}$$
+            $$\forall y \in Y\setminus Y_0.~ \exists x \in X.~ f(x) = y.$$
+        \item Take $\psi_1, \psi_2 \in \text{Maps}(Y, T)$ where $\psi_1 \not= \psi_2$, specifically
+            \begin{align}
+                \forall y\in Y\setminus Y_0.~& \psi_1(y) = \psi_2(y) \tag{1} \label{eq:q12e2}\\
+                \forall y \in Y_0.~& \psi_1(y) \not= \psi_2(y) \nonumber
+            \end{align}
+        \item Then for all $x \in X$, $f(x) \in Y \setminus Y_0$, then by \eqref{eq:q12e2}
+            \begin{align*}
+                \forall x \in X.~& \psi_1(f(x)) = \psi_2(f(x))\\
+                \forall x \in X.~& (\psi_1 \circ f)(x) = (\psi_2 \circ f)(x)\\
+                \forall x \in X.~ \forall t \in T.~& (\psi_1 \circ f)(x) = t \iff (\psi_2 \circ f)(x) = t\\
+                \forall x \in X.~ \forall t \in T.~& (x,t) \in \Gamma(\psi_1 \circ f) \iff (x,t) \in \Gamma(\psi_2 \circ f)\\
+                &(\psi_1 \circ f) = (\psi_2 \circ f)
+            \end{align*}
+        \item There exists maps $\psi_1, \psi_2 \in \text{Maps}(Y,T)$
+            where $\psi_1 \not= \psi_2$ and $(\psi_1 \circ f) = (\psi_2 \circ f)$,
+            a contradiction with \eqref{eq:q12impl}.
+    \end{itemize}
+    Therefore, if the map $\Psi_T$ of ``pre-composition with $f$'' is injective for any set $T$, $f$ is surjective.
+\end{proof}
+
+\end{document}

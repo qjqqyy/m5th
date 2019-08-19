@@ -1,0 +1,212 @@
+\documentclass{article}
+\usepackage[a4paper]{geometry}
+\usepackage{sectsty}
+\parindent 0pt
+\allsectionsfont{\normalfont\sffamily\bfseries}
+
+\author{Qi Ji\\\small T03 \\\small A0167793L}
+\title{MA2104 Assignment 1}
+\date{28th January 2018}
+
+\usepackage{amsthm, amsmath, amsfonts}
+
+\newtheorem{thm}{Theorem}
+\newtheorem*{proposition}{Proposition}
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{corollary}[thm]{Corollary}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{Qi Ji -- A0167793L -- T03}
+\rhead{MA2104 -- Assignment 1}
+
+\usepackage{mathtools}
+\newcommand{\vect}{\overrightarrow}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\coords{\langle}{\rangle}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+% make unstarred variants scale
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+%
+\let\oldcoords\coords
+\def\coords{\@ifstar{\oldcoords}{\oldcoords*}}
+\makeatother
+
+\DeclareMathOperator{\comp}{comp}
+\DeclareMathOperator{\proj}{proj}
+\newcommand{\QED}{\tag*{\qedsymbol}}
+\begin{document}
+\maketitle
+
+\subsection*{Problem 1}
+Vector parallel to $L_1$,$\vect{AB} = \coords{1,0,-1}$,
+vector parallel to $L_2$,$\vect{CD} = \coords{-2,5,-1}$.
+\begin{align*}
+    L_1&: \coords{1,1,1} + s\coords{1,0,-1},\\
+    L_2&: \coords{3,0,-1} + t\coords{-2,5,-1}.
+\end{align*}
+Find a vector orthorgonal to both $\vect{AB}$ and $\vect{CD}$,
+\[
+    \mathbf{n} :=
+    \begin{vmatrix}
+        \mathbf{i} & \mathbf{j} & \mathbf{k} \\
+        1  & 0 & -1  \\
+        -2 & 5 & -1
+    \end{vmatrix}
+    = \coords{5, 3, 5}.
+\]
+The shortest distance is the absolute value of scalar projection of $\vect{AC} = \coords{2,-1,-2}$ on $\mathbf{n}$.
+\begin{align*}
+    \abs{ \comp_\mathbf{n} \vect{AC} } &= \abs{ \frac{\vect{AC}\cdot\mathbf{n}}{\norm{\mathbf{n}}} }   \\
+    &= \abs{ \frac{-3}{\sqrt{59}} } = \frac{3}{\sqrt{59}}. \QED
+\end{align*}
+
+\subsection*{Problem 2}
+A vector orthogonal to both $\mathbf{j - k}$ and $\mathbf{i + j}$ will be their cross product,
+\[
+    \mathbf{n} :=
+    \begin{vmatrix}
+        \mathbf{i} & \mathbf{j} & \mathbf{k} \\
+        0 & 1 & -1  \\
+        1 & 1 & 0
+    \end{vmatrix}
+    = \coords{1,-1,-1}.
+\]
+Two unit vectors orthogonal to $\mathbf{j - k}$ and $\mathbf{i + j}$ are
+\begin{align*}
+    \frac{\mathbf{n}}{\norm{\mathbf{n}}} &= \frac{1}{\sqrt{3}}\coords{1,-1,-1}\\
+    &= \coords{\frac{1}{\sqrt{3}}, -\frac{1}{\sqrt{3}},-\frac{1}{\sqrt{3}}}, \text{ and}\\
+    -\frac{\mathbf{n}}{\norm{\mathbf{n}}} &= \coords{-\frac{1}{\sqrt{3}}, \frac{1}{\sqrt{3}}, \frac{1}{\sqrt{3}}}.   \QED
+\end{align*}
+
+\subsection*{Problem 3}
+$\vect{PQ} = \coords{2,3,1},
+\vect{PS} = \coords{4,2,5},
+\vect{QR} = \coords{4,2,5},
+\vect{SR} = \coords{2,3,1}$.
+Parallelogram is spanned by vectors $\vect{PQ}$ and $\vect{PS}$.
+\begin{align*}
+    \text{area} = \norm{\vect{PQ} \times \vect{PS}} &=
+    \norm{
+        \begin{vmatrix}
+            \mathbf{i} & \mathbf{j} & \mathbf{k} \\
+            2 & 3 & 1  \\
+            4 & 2 & 5
+        \end{vmatrix}
+    }   \\
+    &= \norm{\coords{13, -6, -8}} = \sqrt{269}.  \QED
+\end{align*}
+
+\subsection*{Problem 4}
+$\vect{PQ} = \coords{1,2,1}$, $\vect{PR} = \coords{5, 0, -2}$,
+a vector normal to the plane will be their cross product.
+\begin{align*}
+    \mathbf{n} := \vect{PQ} \times \vect{PR} &=
+    \begin{vmatrix}
+        \mathbf{i} & \mathbf{j} & \mathbf{k} \\
+        1 & 2 & 1   \\
+        5 & 0 & -2
+    \end{vmatrix}
+    \\
+    &= \coords{-4, 7, -10}
+\end{align*}
+Define point $S$ as $\vect{OS} := \vect{OP} + \vect{PQ} + \vect{PR}$.
+Area of triangle $PQR$ is half the area of parallelogram $PQRS$, which can be computed as $\norm{\mathbf{n}}$.
+Therefore
+\begin{align*}
+    \text{area of } PQR &= \frac{1}{2} \norm{\mathbf{n}}    \\
+    &= \frac{\sqrt{165}}{2} \QED
+\end{align*}
+
+\subsection*{Problem 5}
+\begin{align*}
+    \text{signed volume} &= \mathbf{a}\cdot(\mathbf{b}\times\mathbf{c}) \\
+    &= \begin{vmatrix}
+        1 & 1 & -1  \\
+        1 & -1 & 1  \\
+        -1 & 1 & 1
+    \end{vmatrix} \\
+    &= -1 -1 -1 +1 -1 -1    \\
+    &= -4
+\end{align*}
+Therefore volume of parallelpiped is $4$.\hfill\qedsymbol
+
+\newpage
+\subsection*{Problem 6}
+To show $\mathbf{v} := (\mathbf{a}\times\mathbf{b}) + (\mathbf{b}\times\mathbf{c}) + (\mathbf{c}\times\mathbf{a})$ is
+perpendicular to the plane containing $P, Q, R$,
+it suffices to show that the vector is orthogonal to both $\vect{PQ}$ and $\vect{PR}$.
+
+$\vect{PQ} = \mathbf{b} - \mathbf{a}$. To check for orthogonality, compute
+$\mathbf{v}\cdot \vect{PQ}$
+as follows,
+\begin{align*}
+    &\phantom{=}\ \left((\mathbf{a}\times\mathbf{b}) + (\mathbf{b}\times\mathbf{c}) + (\mathbf{c}\times\mathbf{a}) \right)
+    \cdot (\mathbf{b} - \mathbf{a}) \\
+    &= (\mathbf{a}\times\mathbf{b})\cdot(\mathbf{b} - \mathbf{a})
+    + (\mathbf{b}\times\mathbf{c}) \cdot(\mathbf{b} - \mathbf{a})
+    + (\mathbf{c}\times\mathbf{a}) \cdot(\mathbf{b} - \mathbf{a})   \\
+    &= \underbrace{(\mathbf{a}\times\mathbf{b})\cdot\mathbf{b}}_{0}
+    - \underbrace{(\mathbf{a}\times\mathbf{b}) \cdot\mathbf{a}}_{0}
+    + \underbrace{(\mathbf{b}\times\mathbf{c}) \cdot\mathbf{b}}_{0}
+    - (\mathbf{b}\times\mathbf{c}) \cdot\mathbf{a}
+    + (\mathbf{c}\times\mathbf{a}) \cdot\mathbf{b}
+    - \underbrace{(\mathbf{c}\times\mathbf{a}) \cdot\mathbf{a}}_{0}  \\
+    &= - (\mathbf{b}\times\mathbf{c}) \cdot\mathbf{a}
+    + (\mathbf{c}\times\mathbf{a}) \cdot\mathbf{b} \tag*{(matrix with duplicate rows has det $0$)} \\
+    &= (\mathbf{c}\times\mathbf{b}) \cdot\mathbf{a}
+    + (\mathbf{c}\times\mathbf{a}) \cdot\mathbf{b}  \tag*{(by anticommutativity of $\times$)}
+\end{align*}
+By computing $\mathbf{a}\cdot (\mathbf{c}\times\mathbf{b})$ and $\mathbf{b}\cdot (\mathbf{c}\times\mathbf{a})$,
+it is clear that by swapping the 1st row with the 3rd row of the determinant in $\mathbf{a}\cdot (\mathbf{c}\times\mathbf{b})$,
+$\mathbf{b}\cdot (\mathbf{c}\times\mathbf{a})$ is obtained.
+Thus by property of determinant, $\mathbf{a}\cdot (\mathbf{c}\times\mathbf{b}) = -\mathbf{b}\cdot (\mathbf{c}\times\mathbf{a})$
+and we have $\mathbf{v}\cdot \vect{PQ} = 0$, so $\mathbf{v}\perp \vect{PQ}$.
+
+Similarly, we can compute $\mathbf{v} \cdot \vect{PR}$, where $\vect{PR} = (\mathbf{c} - \mathbf{a})$,
+\begin{align*}
+    &\phantom{=}\ \left((\mathbf{a}\times\mathbf{b}) + (\mathbf{b}\times\mathbf{c}) + (\mathbf{c}\times\mathbf{a}) \right)
+    \cdot (\mathbf{c} - \mathbf{a}) \\
+    &= (\mathbf{a}\times\mathbf{b})\cdot(\mathbf{c} - \mathbf{a})
+    + (\mathbf{b}\times\mathbf{c}) \cdot(\mathbf{c} - \mathbf{a})
+    + (\mathbf{c}\times\mathbf{a}) \cdot(\mathbf{c} - \mathbf{a})   \\
+    &= (\mathbf{a}\times\mathbf{b})\cdot\mathbf{c}
+    - \underbrace{(\mathbf{a}\times\mathbf{b}) \cdot\mathbf{a}}_{0}
+    + \underbrace{(\mathbf{b}\times\mathbf{c}) \cdot\mathbf{c}}_{0}
+    - (\mathbf{b}\times\mathbf{c}) \cdot\mathbf{a}
+    + \underbrace{(\mathbf{c}\times\mathbf{a}) \cdot\mathbf{c}}_{0}
+    - \underbrace{(\mathbf{c}\times\mathbf{a}) \cdot\mathbf{a}}_{0}  \\
+    &= (\mathbf{a}\times\mathbf{b})\cdot\mathbf{c}
+    - (\mathbf{b}\times\mathbf{c}) \cdot\mathbf{a}  \\
+    &= (\mathbf{a}\times\mathbf{b})\cdot\mathbf{c}
+    + (\mathbf{c}\times\mathbf{b}) \cdot\mathbf{a}
+\end{align*}
+By a similar computation, we can determine that
+$(\mathbf{a}\times\mathbf{b})\cdot\mathbf{c} = - (\mathbf{c}\times\mathbf{b}) \cdot\mathbf{a}$,
+implying $\mathbf{v} \cdot \vect{PR} = 0$, so we have $\mathbf{v}\perp \vect{PR}$.
+This completes the proof.
+\hfill\qedsymbol
+
+\subsection*{Problem 7}
+Compute signed volume of parallelpiped spanned by $\mathbf{a}$,$\mathbf{b}$ and $\mathbf{c}$.
+\begin{align*}
+    \text{signed volume} &= \begin{vmatrix}
+        2 & 4  & -8 \\
+        3 & -1 & 3  \\
+        -5& 11 & -25
+    \end{vmatrix}   \\
+    &= 50 - 60 -264 +40 -66 +300    \\
+    &= 0
+\end{align*}
+This implies that the parallelpiped spanned by $\mathbf{a}$,$\mathbf{b}$ and $\mathbf{c}$ is in fact a plane,
+meaning that the vectors are coplanar.
+\hfill\qedsymbol
+
+\end{document}

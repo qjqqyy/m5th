@@ -1,0 +1,245 @@
+\documentclass[11pt,twocolumn]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[british]{babel}
+\usepackage[a4paper,landscape,top=1.2cm,bottom=1.2cm,left=1.2cm,right=1.2cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{multirow}
+
+\newcommand{\ul}[1]{\underline{\texttt{#1}}}
+
+\usepackage{listings}
+\usepackage[lighttt]{lmodern}
+
+\makeatletter
+\let\commentfullflexible\lst@column@fullflexible
+\makeatother
+\lstset{
+    language=C,
+    basicstyle=\ttfamily,
+    commentstyle=\rmfamily\commentfullflexible,
+%    keywordstyle=\bfseries,
+%    stringstyle=\ttfamily,
+    columns=fixed,
+    showspaces=false,
+    showstringspaces=false,
+}
+
+\lstMakeShortInline[columns=fixed]@
+\setlength\parindent{0pt}
+\begin{document}
+\pagestyle{empty}
+\paragraph{Operator Precedence Table}\hfill\\
+
+\begin{tabular}{| l | l | l |}
+    \hline
+    Operator        & Desc.         & Direction   \\ \hline
+    \verb|i++ i--|  & post-in/decr  & \multirow{ 2}{*}{$\longrightarrow$}   \\
+    \verb|() [] . ->| & fn, arr, struct, struct thru pointer &          \\
+    \hline
+    \verb|++i --i|  & pre-in/decr & \multirow{ 5}{*}{$\longleftarrow$}    \\
+    \verb|+ -|      & unary $+,-$ & \\
+    \verb|! ~|      & $\lnot$, bitwise NOT & \\
+    \verb|(type)|   & cast & \\
+    \verb|* &|      & deref, addr of & \\
+    \hline
+    \verb|* / %|    & $\times$,$\div$, mod  & \multirow{7}{*}{$\longrightarrow$}  \\\cline{1-2}
+    \verb|+ -|      & binary $+,-$          &   \\\cline{1-2}
+    \verb|< <= > >=|& relational $<,\leqslant,>,\geqslant$ &   \\\cline{1-2}
+    \verb|== !=|    & relational $=, \ne$   &   \\\cline{1-2}
+    \verb@& ^ |@    & Bitwise AND,XOR,OR    &   \\\cline{1-2}
+    \verb@&&@       & Logical $\land$       &   \\\cline{1-2}
+    \verb@||@       & Logical $\lor$        &   \\
+    \hline
+    \verb|?:|       & Ternary               & \multirow{2}{*}{$\longleftarrow$}   \\\cline{1-2}
+    \verb|= += -=| \dots & Assignment         & \\
+    \hline
+    \verb|,|        & Comma    & $\longrightarrow$  \\
+    \hline
+\end{tabular}
+
+\paragraph{stdlib.h rand, time.h time} \hfill\\
+\hfill\\
+@int rand(void);@\\
+The \verb|rand()| function computes a sequence of pseudo-random integers in the
+range of \verb|0| to \verb|RAND_MAX|.
+
+\hfill\\
+@void srand(unsigned seed);@\\
+The \verb|srand()| function sets its argument \ul{seed} as the seed for a new
+sequence of pseudo-random numbers to be returned by \verb|rand()|.  These
+sequences are repeatable by calling \verb|srand()| with the same seed value.
+
+\hfill\\
+@time_t time(time_t *tloc);@\\
+The \verb|time()| function returns the value of time in seconds since 0 hours, 0 minutes,
+0 seconds, January 1, 1970, Coordinated Universal Time, without including leap seconds.
+
+\newpage
+\paragraph{string.h}\hfill\\
+\hfill\\
+@char *strcpy(char *dst, char *src);@\\
+The \verb|strcpy()| function copies the string \ul{src} to \ul{dst} (including
+the terminating \verb|`\0'| character).
+
+@char *strcat(char *s, char *append);@\\
+The \verb|strcat()| function appends a copy of the null-terminated
+string \ul{append} to the end of the null-terminated string \ul{s}, then add a
+terminating \verb|`\0'|.  The string \ul{s} must have sufficient space to hold the
+result.
+
+\hfill\\
+@char *strstr(char *big, char *little);@\\
+The \verb|strstr()| function locates the first occurrence of the null-terminated
+string \ul{little} in the null-terminated string \ul{big}.
+If \ul{little} is an empty string, \ul{big} is returned; if \ul{little} occurs nowhere
+in \ul{big}, \verb|NULL| is returned; otherwise a pointer to the first character of
+the first occurrence of \ul{little} is returned.
+
+@char *strchr(char *s, int c);@\\
+The \verb|strchr()| function locates the first occurrence of \ul{c} (converted to a
+\verb|char|) in the string pointed to by \ul{s}.  The terminating null character is
+considered part of the string; therefore if \ul{c} is \verb|`\0'|, the functions
+locate the terminating \verb|`\0'|.
+Returns a pointer to the located character, or \verb|NULL| if the character does not
+appear in the string.
+
+\hfill\\
+@char *strtok(char *str, char *sep);@\\
+The \verb|strtok()| function is used to isolate sequential tokens in a null-
+terminated string, \ul{str}.  These tokens are separated in the string by at
+least one of the characters in \ul{sep}.  The first time that \verb|strtok()| is
+called, \ul{str} should be specified; subsequent calls, wishing to obtain
+further tokens from the same string, should pass a null pointer instead.
+The separator string, \ul{sep}, must be supplied each time, and may change
+between calls.
+\begin{lstlisting}
+char str[80] = "cs1010-abc!def@123";
+char sep[10] = "-!@";
+char *token;
+token = strtok(str, sep);
+while (token != NULL) {
+    printf("%s\n", token);
+    token = strtok(NULL, sep);
+}
+\end{lstlisting}
+
+\newpage
+\paragraph{File Processing}\hfill\\
+@FILE *fopen(char *path, char *mode);@\\
+The \verb|fopen()| function opens the file whose name is the string pointed to
+by \ul{path} and associates a stream with it.
+
+The argument \ul{mode} points to a string beginning with one of the following
+letters:
+
+\begin{tabular}{r p{0.9\linewidth}}
+    \verb|"r"| &Open for reading.  The stream is positioned at the beginning of the file. \\
+               &Fail if the file does not exist.  \\
+    \verb|"w"| &Open for writing.  The stream is positioned at the beginning of the file. \\
+               &Create the file if it does not exist.  \\
+    \verb|"a"| &Open for writing.  The stream is positioned at the end of the file. \\
+               &Create the file if it does not exist.
+\end{tabular}
+An optional \verb|"+"| following \verb|"r"|, \verb|"w"| or \verb|"a"| opens the file for both
+reading and writing.
+
+Upon successful completion \verb|fopen()| returns a \verb|FILE|
+pointer.  Otherwise, \verb|NULL| is returned and the global variable \ul{errno} is
+set to indicate the error.
+
+@int feof(FILE *stream);@\\
+@int ferror(FILE *stream);@\\
+The function \verb|feof()| tests the end-of-file indicator for the stream
+pointed to by \ul{stream}, returning non-zero if it is set.
+
+The function \verb|ferror()| tests the error indicator for the stream pointed to
+by \ul{stream}, returning non-zero if it is set.
+
+\hfill\\
+@int fscanf(FILE *stream, char *format, ...);@\\
+Returns number of input items assigned, which can be fewer than provided for, or even zero,
+in the event of a matching failure. Zero indicates that, while there was input available,
+no conversions were assigned; typically this is due to an invalid input charactersuch as an alphabetic character for a `\verb|%d|' conversion.
+The value \verb|EOF| is returned if an input failure occurs before any conversion
+such as an end-of-file occurs.  If an error or end-of-file occurs after
+conversion has begun, the number of conversions which were successfully
+completed is returned.
+
+\hfill\\
+@char *fgets(char *str, int size, FILE *stream);@\\
+The \verb|fgets()| function reads at most one less than the number of characters
+specified by \ul{size} from the given \ul{stream} and stores them in the string
+\ul{str}.  Reading stops when a newline character is found, at end-of-file or
+error.  The newline, if any, is retained.  If any characters are read and
+there is no error, a \verb|`\0'| character is appended to end the string.
+
+@char *gets(char *str);@\\
+The \verb|gets()| function is equivalent to \verb|fgets()| with an infinite \ul{size} and a
+\ul{stream} of \verb|stdin|, except that the newline character (if any) is not stored
+in the string. It is the caller's responsibility to ensure that the
+input line, if any, is sufficiently short to fit in the string.
+
+Upon successful completion, \verb|fgets()| and \verb|gets()| return a pointer to the
+string.  If end-of-file occurs before any characters are read, they
+return \verb|NULL| and the buffer contents remain unchanged.  If an error
+occurs, they return \verb|NULL| and the buffer contents are indeterminate.  The
+\verb|fgets()| and \verb|gets()| functions do not distinguish between end-of-file and
+error, and callers must use \verb|feof(3)| and \verb|ferror(3)| to determine which
+occurred.
+
+\paragraph{File I/O Usage}\hfill\\
+\begin{lstlisting}
+FILE *readfp, *writefp;
+...
+if ((readfp = fopen("infile.in", "r")) == NULL) {
+    printf("cannot open `infile.in' for reading\n");
+    // bail/exit/return
+}
+if ((writefp = fopen("outfile.out", "w")) == NULL) {
+    printf("cannot open `outfile.out' for writing\n");
+    // bail/exit/return
+}
+/* do I/O on readfp/writefp for example */
+char line[LENGTH+1];
+while (fgets(line, LENGTH+1, readfp) != NULL) {
+    // do stuff
+}
+if (!feof(readfp))
+    // read error: bail/exit/return
+fclose(readfp);
+...
+\end{lstlisting}
+
+\paragraph{Corner cases}\hfill\\
+\begin{lstlisting}
+/* arrays */
+char *str = "string literal";  // READ-ONLY MEMORY!
+char str[20] = "modifiable";
+int x[8] = {1,2,3};     // missing elements are all zeroes
+int y[3] = {1,2,3,4};   // 4 will be truncated
+
+/* 2nd dimension compulsory for matrix */
+int m[4][3] = {         // 4x3 matrix
+    { 1 },              // row 0 is { 1, 0, 0 }
+    { 0, 1 },           // row 1 is { 0, 1, 0 }
+};                      // everything else are zeroes
+int m[3][2] = {1,3,2};  // will automatically be flattened.
+
+int arr[2][3], arr2[3] = {1,1,1}
+arr[0] = arr2;  // error: array type int[3] is not assignable
+
+/* Struct */
+typedef struct s_t {
+    int a;
+    float b;
+    char* name;
+} s_t;
+s_t st = { 5, 2.2, "George" };
+f(st);                  // structures are copied
+
+/* I/O */
+puts("blabla");         // write(1, "blabla\n", 7);
+fputs("blabla", fp);    // write(?, "blabla", 6);
+\end{lstlisting}
+
+\end{document}

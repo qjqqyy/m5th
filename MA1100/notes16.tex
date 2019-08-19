@@ -1,0 +1,287 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[a4paper,top=2.2cm,bottom=2.2cm,left=2.2cm,right=2.2cm]{geometry}
+\usepackage{geometry}
+%\geometry{paperwidth=210mm, paperheight=16383pt, left=2.2cm, top=2.2cm, right=2.2cm, marginparsep=20pt, marginparwidth=100pt, textheight=16263pt, footskip=40pt}
+%\geometry{paperwidth=210mm, paperheight=9638pt, left=2.2cm, top=2.2cm, right=2.2cm, marginparsep=20pt, marginparwidth=100pt, textheight=9626pt, footskip=40pt}
+%\geometry{paperwidth=210mm, paperheight=4638pt, left=2.2cm, top=2.2cm, right=2.2cm, marginparsep=20pt, marginparwidth=100pt, textheight=4626pt, footskip=40pt}
+\setlength\parindent{0pt}
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{braket}
+\usepackage{color}
+
+%\renewcommand{\qedsymbol}{}
+\newenvironment{prf}
+{
+    \begin{proof}
+        \hfill
+        \begin{enumerate}[label*=\arabic*.]
+                }
+                {
+                \hfill\qedsymbol
+        \end{enumerate}
+    \renewcommand{\qedsymbol}{}
+    \end{proof}
+}
+\newcounter{dummy} \numberwithin{dummy}{section}
+\numberwithin{equation}{dummy}
+\newtheorem{theorem}[dummy]{Theorem}
+\newtheorem*{dummythm}{Theorem}
+\newtheorem{cor}[dummy]{Corollary}
+\newtheorem{lemma}[dummy]{Lemma}
+\theoremstyle{definition}
+\newtheorem{axiom}[dummy]{Axiom}
+\newtheorem{defn}[dummy]{Definition}
+\newcommand{\nat}{\mathbb{N}}
+\newcommand{\bigC}{\mathcal{C}}
+\newcommand{\power}{\mathcal{P}}
+\newcommand{\by}[1]{\hfill \emph{(by #1)}}
+\newcommand{\comment}[1]{\tag{\emph{#1}}}
+
+\begin{document}
+\setcounter{section}{15}
+\begin{theorem}[Well-ordering principle]
+    Every non-empty subset $A$ of $\nat$ has a smallest element.\\
+    $\forall A \in \power(\nat).~ A \ne \emptyset \implies A \text{ has a smallest element}$\\
+    \phantom{$\forall A \in \power(\nat).~ A$}\quad where ``has a smallest element'' means $\exists a_0 \in A.~ \forall a \in A.~ a_0 \leq a$.
+\end{theorem}
+\begin{proof}
+    Theorem 3.5.1 in textbook. (induction) \renewcommand{\qedsymbol}{}
+\end{proof}
+
+\section{Divisibility}
+\begin{defn}
+    For any $a,d\in\nat$, write $d\mid a$ ($d$ (is a factor of$|$divides) $a$, $a$ (is divisible by$|$a multiple of) $d$)
+    iff $\exists k \in\nat.~ d\cdot k=a$.
+\end{defn}
+\textbf{Examples.}
+    $\forall a,d\in\nat$
+\begin{itemize}
+    \item $a\mid a$ is true (because $a\cdot 1=a$)
+    \item $1\mid a$ is true (because $1\cdot a=a$)
+    \item $d\mid 0$ is true (because $d\cdot 0=0$)
+    \item $0\mid a \implies a=0$ (because only $0\cdot 0 = 0$)
+\end{itemize}
+\begin{lemma}[Divisibility implies ordering in $\nat$]
+    For any $a,d\in\nat$, with $a\ne 0$. If $d\mid a$, then $d\leq a$.
+\end{lemma}
+\begin{prf}
+\item Suppose $d\mid a \implies \exists k\in\nat.~ d\cdot k = a$
+\item Since $a\ne 0$ by hopothesis, $d\ne 0, k\ne 0$. So $k \in \nat\setminus\set{0} = S(\nat)$
+\item so $\exists l \in \nat.~ k = S(l)$
+\item $a = d\cdot k = d\cdot(l+1) = d\cdot l + d$
+\item Since $d + d\cdot l = a$ and $d\cdot l \in \nat$, $d \leq a$.
+\end{prf}
+\textbf{Example.} $\forall d\in\nat.~ d\mid 1 \implies d=1$.
+\begin{proof}
+    $d\mid 1$, then by (division implies ordering) lemma, $d\leq 1$, so $d=0 \lor d=1$, but $0 \nmid 1$, so $d=1$.
+\end{proof}
+\textbf{Properties.} Divisibility is reflexive, anti-symmetric and transitive. $\forall a,b,c\in\nat$,
+\begin{enumerate}
+    \item $\exists 1 \in\nat.~ a\cdot 1 =a \implies a\mid a$
+    \item $a\mid b \land b\mid a \implies a\leq b \land b\leq a \implies a = b$ (by above lemma and anti-symmetry of ordering)
+    \item $a\mid b \land b\mid c \implies \exists l,m\in \nat.~ a\cdot l=b, b\cdot m=c
+        \implies a\cdot l\cdot m = c \implies a\mid c$
+\end{enumerate}
+
+\section{More Division}
+\begin{theorem}[Division Algorithm]
+    Let $a,d \in \nat$ with $d>0$. Then there exists $q \in \nat$ and $r \in \set{0,\dots,d-1}$
+    such that $a = qd+r$ in $\nat$.
+    Moreover, $q\in\nat$ and $r\in\set{0,\dots,d-1}$ are uniquely determined by $a,d\in\nat$.
+\end{theorem}
+\begin{dummythm}[Uniqueness of $q,r$]
+    Given $a, d \in \nat, d > 0$, if $q, q' \in \nat, r, r' \in \set{0,\dots,d-1}$ such that
+    \begin{equation}
+        a = qd + r = q'd + r'       \label{eq:STAR1}
+    \end{equation}
+    then $q=q', r=r'$. \emph{(uniqueness)}
+\end{dummythm}
+\begin{prf}
+\item Suppose for a contradiction that $r \ne r'$. By comparibility of natural numbers, either $r > r'$ or $r' > r$.
+\item Without loss of generality, assume $r > r'$, then
+    $$\exists s\in\nat, s\ne0.~ r = r' + s$$ %(s = r - r' > 0)
+\item Then by \eqref{eq:STAR1}, $qd + r' + s = q'd + r'$,
+    then by cancellation law for addition,
+    \begin{equation}qd + s = q'd \label{eq:STAR2}\end{equation}
+\item Because $s\in\nat, s\ne 0$, $q'd > qd$, then by cancellation law for multiplication, $q' > q$, so
+    $$\exists t \in \nat, t\ne0.~ q' = q + t$$ %($t = q' - q >0$)
+\item By \eqref{eq:STAR2},
+    \begin{align*}
+        qd + s &= (q+t)\cdot d     \\
+        qd + s &= qd + td  \\
+        s &= td  \comment{cancellation property of addition}\\
+        d&\mid s \comment{and $d > 0$}\\
+        d &\le s \comment{division implies ordering}
+    \end{align*}
+\item which shows $d\leq s\leq r \implies d \leq r$, a contradiction with requirement that $r \in \set{0, \dots, d-1}$.
+\item Hence $r = r'$, then by \eqref{eq:STAR1}, $a = qd + r = q'd + r$.
+\item $qd = q'd \implies q = q'$. \by{cancellation law of $+, \times$}
+\item $r = r'$ and $q = q'$, uniqueness of $r,q$ shown.
+\end{prf}
+
+\newpage
+\begin{dummythm}[Existence of $q,r$]
+    Given $a,d\in\nat, d>0, \exists q,r \in \nat$ with $r<d$ such that $a = qd+r$.
+\end{dummythm}
+\begin{prf}
+\item Consider the following subset of $\nat$:
+    $$S := \set{n\in\nat: \exists q\in\nat.~ a = qd + n}$$
+\item[] [($S$ consists of all natural numbers of form $a - q\cdot d$ for various choices of $q$)]
+\item Then $a = 0\cdot d + a$, shows $a \in S$, in particular $S \ne \emptyset$, then by well-ordering principle,
+    $$\exists r\in S.~\forall n\in S.~ r\leq n$$
+\item This means $\exists q \in \nat.~ a = qd + r$.
+    \item[] \textbf{Claim.} $r<d$
+    \begin{itemize}
+        \item Suppose for contradiction $r \geq d$, $\exists k \in \nat.~ d+k=r$ \hfill($k=r-d$)
+        \item Then $a = qd +d  + k = (q+1)\cdot d + k$
+        \item This shows that $k\in S$, then by fact that $r\in S$ is smallest, we must have $r \leq k$.
+        \item But $d + k = r \implies k \leq r$, so $r = k$ \by{anti-symmetry of ordering}
+        \item then we have $d+r=r$, cancelling $+$, $d=0$, a contradiction with $d>0$.
+    \end{itemize}
+\item So given any number $a$ and factor $d$, there exists quotient $q$ and remainder $r < d$ such that $a = qd + r$
+\end{prf}
+
+\begin{cor}
+    Let $n\in\nat$. Then $\lnot(n \text{ is even}) \iff (\exists l \in \nat.~ n=2l+1)$
+\end{cor}
+\begin{prf}
+\item Apply division algorithm to $n$ with $d=2$,
+    $$\exists q \in \nat, r \in \set{0,1}.~ n = 2q+r$$
+    and $q,r$ above are uniquely defined by n. Either $r=0$ exclusive or $r=1$.
+\item Case $r=0$, then $n=2q$ is even \by{definition}
+\item If $n$ is odd, then $\exists l \in \nat.~ n = 2l +1$, then
+    $$2q + 0 = n = 2l + 1$$ with $q,l\in\nat$ and $0,1 \in \set{0,1}$
+        a contradiction with uniqueness of remainder
+\item Case $r=1$, then $n=2q+1$ is odd
+\item if $n$ is even, then $\exists k\in\nat.~ n=2k$, again
+    $$2k + 0 = n = 2q + 1$$ a contradiction with uniqueness of remainder.
+\end{prf}
+
+\newpage
+\subsection*{Prime numbers and factorisation}
+\begin{defn}
+    A \underline{prime number} is a natural number, $p\in \nat$ such that
+    \begin{itemize}
+        \item $p > 1$ (ie. $p\ne 0 \land p \ne 1$)
+        \item $\forall d \in \nat .~ d\mid p.~ d=1 \lor d=p$.
+        \item[] equivalently: $\forall r,s \in\nat.~ p=r\cdot s$, one has $r=1\lor s=1$.
+    \end{itemize}
+\end{defn}
+\begin{defn}
+    A \underline{composite number} is a natural number $n\in\nat$ such that
+    \begin{itemize}
+        \item $n > 1$ (ie. $n\ne 0 \land n \ne 1$)
+        \item $n$ is \underline{not prime}
+        \item[] equivalently: $\exists d \in \nat.~ d\mid n \land d\ne 1 \land d\ne n$
+    \end{itemize}
+\end{defn}
+
+\begin{theorem}[Existence of prime factors]
+    Let $a\in \nat$ with $a>1$. Then $\exists p.~ p\mid a$ where $p$ is a prime number.
+\end{theorem}
+\begin{prf}
+\item Consider the subset
+    $$S := \set{ d\in\nat: d>1 \land d\mid a}$$
+    ie. $S$ is set of all divisors of $a$ which are $>1$.
+\item Then since $a>1$ by given hypothesis, and $a\mid a$, we get $a\in S$, $S\ne \emptyset$.
+    then by well-ordering principle
+        $$\exists p\in S.~ \forall d\in S.~ p\leq d$$
+\item so we know $p\in\nat, p>1, p\mid a$.
+    \item[] \textbf{Claim.} $p$ is prime.
+    \begin{itemize}
+        \item If not, $\exists r,s\in\nat.~ (p = r\cdot s)\land(r\ne 1)\land(s\ne 1)$. \hfill\emph{(defn of composite numbers)}
+        \item Then because $s\mid p$ and $p\mid a$, $s\mid a$.
+        \item because $p\in S \implies p>1 \implies p\ne 0$, so $s\ne 0$, then $s>1$, hence $s\in S$.
+            \begin{align*}
+                s = 1\cdot s &< 2\cdot s\\
+                2 &\leq r       \\
+                s < 2\cdot s &\leq r\cdot s = p \\
+                s &< p
+            \end{align*}
+        \item because $2\leq r$ and $1 < s\implies s\ne 0$.
+        \item $s < p$ contradicts with $p$ being smallest in $S$.
+    \end{itemize}
+\item So every natural number $a\in\nat$ has prime factor(s) $p\in\nat$ where $p\mid a$.
+\end{prf}
+
+\newpage
+\begin{theorem}[Fundamental Theorem of Arithmatic or Unique Prime Factorisation property of $\nat$] \hfill\\
+    For any natural number $a\in\nat$ with $a>1$, there exists a (finitely many) sequence of prime numbers
+    $p_1,\dots,p_r$ such that $a = \prod\limits_{i=1}^{r} p_i$.\\
+    Moreover, the primes $p_1,\dots,p_r$ are \underline{unique up to reordering}.
+    ie if $q_1,\dots,q_s$ is another sequence of primes such that $a = \prod\limits_{i=1}^{r} q_i$, then $r = s$ (same number) and $q_1,\dots,q_r$, up to re-ordering, matches $p_1,\dots,p_r$.
+\end{theorem}
+\textbf{Existence.}
+\begin{prf}
+\item Given $a\in\nat$, $a>1$, show: $\exists$ primes $p_1,\dots,p_r$ such that $a = \prod\limits_{i=1}^{r} p_i$.
+\item For $a\in\nat$, $a>1$, let
+    $$Q(a) := \exists\text{ primes }p_1,\dots,p_r.~ a = \prod_{i=1}^{r} p_i$$
+\item \underline{Base case:} $Q(2)$ is true because $2$ is prime, so $a=2$, can take $r=1, p_1=2$.
+\item \underline{Induction step:} Assume $a>1$ and $Q(2), \dots, Q(a)$ true. then $Q(a+1)$ true because
+\item $a+1$ is either prime xor not prime
+\item Case $a+1$ is prime, then $Q(a+1)$ is true (take $r=1, p_1=a+1$)
+\item Case $a+1$ is not prime, then $a+1>1$,
+    $$\exists r,s\in\nat.~ a+1 = r\cdot s, r\ne 1, s\ne 1.$$
+    (clear that $r \ne 0, s \ne 0$ either)
+\item $r\mid (a+1) \implies r \leq a+1$ and $s\ne 1 \implies r < a+1\implies r\leq a$
+\item Symmetrically, $s\leq a$.
+\item Then $r,s \in \set{2,3,\dots,a}$, so $Q(r),Q(s)$ are true by induction hypothesis.
+\item Hence $\exists$ primes $p_1,\dots,p_l.~ r = \prod\limits_{i=1}^{l} p_i$.\\
+    and $\exists$ primes $p_{l+1},\dots,p_{l+m}.~ s = \prod\limits_{i=l+1}^{l+m} p_i$.
+\item Then $a+1 = r\cdot s = \prod\limits_{i=1}^{l} p_i \cdot \prod\limits_{i=l+1}^{l+m} p_i$ is a product of primes.
+\item by strong induction, $Q(a)$ true for all $a \geq 2$.
+\end{prf}
+
+\newpage
+\textbf{Uniqueness.} (ad-hoc proof using wop, not (easily) generalisable to other context.)
+\begin{prf}
+\item Suppose on contary that uniqueness of factorisation fails, consider the set
+    $$S:= \set{a\in\nat: a>1, a\text{ has non-unique prime factors}}$$
+    ie. assuming $S\ne\emptyset$.
+\item By well-ordering principle, $S$ has smallest element $a \in S$
+\item So $a\in\nat, a>1, \exists \text{ primes } p_1, \dots, p_r, q_1, \dots, q_s$
+    such that $a = \prod\limits_{i=1}^{r} p_i = \prod\limits_{i=1}^{s} q_i$ and
+    $p_1,\dots,p_r$ and $q_1,\dots,q_s$ are distinct even allowing permutation.
+\item[] \textbf{Claim.} None of $p$'s appear among the $q$'s.
+    $$\forall i\in\set{1,\dots,r}.~ \forall j\in\set{1,\dots,s}.~ p_i \ne q_j$$
+    \begin{enumerate}[label=\roman*.]
+        \item Suppose $\exists i\in\set{1,\dots,r}.~\exists j\in\set{1,\dots,s}.~ p_i=q_j$, then
+            $$p_1\cdots p_{i-1}\cdot p_{i+1} \cdots p_r =
+            \frac{a}{p_i} = \frac{a}{q_j} =
+            q_1\cdots q_{j-1}\cdot q_{j+1} \cdots q_r$$
+        \item Take $a'$ as above expression, we have $a' < a$, and having non-unique prime factors, so $a'\in S$, a contradiction with smallest $a\in S$.
+    \end{enumerate}
+\item Without loss of generality, assume $p_1 < q_1$, so $\exists t\in\nat.~ t\ne 0, p_1 + t = q_1$.
+\item consider $b := t\cdot q_2\cdots q_s$, $t$ nonzero, so $b\geq 1$.
+\item Also, $a = q_1\cdot q_2\cdots q_s$, so $b<a$, so $b\not\in S$, ie $b$ has the unique prime factorisation property
+\item If $t = 1$, then $b = q_2\cdots q_s$ must be \underline{the} unique prime factorisation of $b$. Then by above claim, $p_1$ does not appear among $q_2,\dots,q_s$. Yet,
+    \begin{align*}
+        b &= (q_1 - p_1)\cdot q_2\cdots q_s     \\
+        &= q_1q_2\cdots q_s - p_1q_2\cdots q_s  \\
+        &= p_1p_2\cdots p_r - p_1q_2\cdots q_s  \\
+        &= p_1(p_2\cdots p_r - q_2\cdots q_s)
+    \end{align*}
+\item So $p_1\mid b$, which should appear in the prime factorisation of $b$, a contradiction, so $t \ne 1$.
+\item So $t = q_1 - p_1 > 1$. Now $q_1 -p_1 \leq b \le a$, so $q_1 - p_1 \not\in S$.
+    So $q_1 - p_1$ has unique prime factorasation, say
+    $$q_1 - p_1 = l_1 \cdots l_u$$
+    where $l_1,\dots,l_u$ are primes.
+\item By examination of $b = (q_1 - p_q)\cdot q_2\cdots q_s = p_1(p_2\cdots p_r - q_2\cdots q_s)$, $p_1$ must appear in prime factor of $b$.
+\item But $b = l_1\cdots l_u\cdot q_1\cdots q_s$ is also a prime factorisation of $b$, but
+\item \emph{I give up, this is useless}.
+\end{prf}
+
+
+
+
+
+
+
+\end{document}

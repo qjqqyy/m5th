@@ -1,0 +1,267 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor}
+%
+\documentclass[british,a4paper,]{article}
+\usepackage[british]{babel}
+\title{Cooling the YIH food court}
+\author{Qi Ji (A0167793L) [D33]}
+\date{26th October 2018}
+\makeatletter
+\let\thetitle\@title
+\let\theauthor\@author
+\let\thedate\@date
+\makeatother
+
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+\usepackage{fancyhdr}
+\usepackage{wasysym}
+\usepackage{siunitx}
+\usepackage{tabu}
+\usepackage[tablewithin=section]{caption}
+
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{
+            pdftitle={GEQ1000 Engineering Assignment},
+            pdfauthor={Qi Ji},
+            colorlinks=true,
+            linkcolor=Violet,
+            citecolor=PineGreen,
+            urlcolor=MidnightBlue,
+            breaklinks=true}
+\usepackage{cleveref}
+
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+%\usepackage{csquotes}
+%% load polyglossia as late as possible as it *could* call bidi if RTL lang (e.g. Hebrew or Arabic)
+%\usepackage{polyglossia}
+%\setmainlanguage[variant=british]{english}
+\usepackage[style=numeric]{biblatex}
+\addbibresource{\jobname.bib}
+
+\theoremstyle{definition}
+\newtheorem{solution}{Solution}
+\newtheorem{consideration}{Consideration}
+\newtheorem{definition}{Definition}[subsection]
+\newtheorem{observation}[definition]{Observation}
+%\theoremstyle{remark}
+
+\newcommand{\set}[1]{\left\{\, #1 \,\right\}}
+
+\pagestyle{fancy}
+\lhead{GEQ1000}
+\chead{}
+\rhead{\thedate}
+\lfoot{Qi Ji}
+\cfoot{}
+\rfoot{\thepage}
+\renewcommand{\footrulewidth}{\headrulewidth}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+    We propose a solution to the problem of high temperatures and humidity in the
+    open-air food court area at Yusof Ishak House.
+\end{abstract}
+
+\tableofcontents
+
+\section*{Introduction}
+
+According the Meteorological Service Singapore, over the past decade,
+there are 11.6 more warm days in every year, on average.\autocite{MSS}
+In light of the numerous complaints regarding the open-air food court at Yusof Ishak House,
+it is clear that some mistakes have been made in the design process of the food court.
+
+\newpage
+
+\section{Assessment}
+
+\noindent\emph{This section addresses Question 1.}
+
+\noindent After some preliminary research, we have narrowed down on four options.
+
+\begin{solution} \label{sol1}
+    Install 1$\times$ giant ceiling fan.
+\end{solution}
+
+\begin{solution} \label{sol2}
+    Install 30$\times$ regular-sized ceiling fans, equidistant from each other.
+\end{solution}
+
+\begin{solution} \label{sol3}
+    Install 40$\times$ regular standing fans, equidistant from each other.
+\end{solution}
+
+\begin{solution} \label{sol4}
+    Install air-conditioning.
+\end{solution}
+
+%An immediate observation becomes clear.
+%
+%\begin{observation}
+%    Solutions \ref{sol2} and \ref{sol3}, as stated, are physically impossible.
+%\end{observation}
+%\begin{proof}
+%    Treat the ceiling or floor as a $2$-dimensional plane,
+%    it follows from elementary geometry that there can be at most $3$ pairwise-equidistant points.
+%\end{proof}
+%
+%\setcounter{solution}{1}
+%\begin{solution}[fixed] \label{sol2fix}
+%    Install 30$\times$ regular-sized ceiling fans, \emph{evenly-distributed}.
+%\end{solution}
+%\begin{solution}[fixed] \label{sol3fix}
+%    Install 40$\times$ regular standing fans, \emph{evenly-distributed}.
+%\end{solution}
+
+\subsection{Priorities and considerations}
+
+In selecting the best solution, we have settled on the top three most important considerations, listed in decreasing order of importance.
+
+\begin{consideration} \label{consider:comfort}
+    Comfort.
+
+    We prioritise the comfort of our students and staff, as a more comfortable environment improves productivity and reduces stress.
+\end{consideration}
+\begin{consideration} \label{consider:cost}
+    Cost efficiency.
+
+    Rather than going with the cheapest option, we prioritise ``bang for the buck'',
+    the solution selected should be worth what it costs.
+\end{consideration}
+\begin{consideration} \label{consider:aesthetic}
+    Aesthetic appeal.
+
+    The solution must look nice and fit in the architectural design of the existing ambience of Yusof Ishak House.
+\end{consideration}
+
+\subsection{Comparison of solutions}
+
+For \Cref{consider:comfort}, we judge each solution based on the perceived temperature.
+\begin{definition}
+    The \textbf{perceived temperature} of a solution is defined as the actual temperature subtracted by
+    expected improvements from airflow circulation, temperature control or humidity control.
+\end{definition}
+
+We assume here that the actual daily temperature is around \SI{30}{\celsius} on a warm day.
+We also assume that each level of improvement of airflow circulation and humidity control corresponds to
+a \SI{1}{\celsius} drop in the perceived temperature.
+The estimated perceived temperatures of each solution are tabulated in \Cref{tbl:comfort}.
+
+\begin{table}[b]
+\centering
+\begin{tabu}{lrrrr}
+    \hline\hline
+                            & Solution 1 & Solution 2 & Solution 3 & Solution 4 \\ \hline
+Actual temp. (\SI{}{\celsius}) & 28.5    & 28         & 30         & 24         \\
+Humidity control            & 2          & 1          & 0          & 3          \\
+Airflow circulation         & 3          & 1          & 2          & 1          \\
+Perceived temp. (\SI{}{\celsius})& 23.5  & 26         & 28         & 20         \\
+    \hline\hline
+\end{tabu}
+\caption{Expected temperature characteristics}
+\label{tbl:comfort}
+\end{table}
+
+For \Cref{consider:cost} we consider the cost of each solution over 15 years.
+\begin{definition}
+    The estimated \textbf{long-term cost} of solution $i$ is
+    the sum of its cost of purchasing, installation and the power consumption over 15 years,
+    the expected lifespan of this installation.
+\end{definition}
+
+The cost is computed by the following formula,
+\[ c = \pi + \iota + 33.93 \cdot \omega \]
+where \(\pi\) denotes the cost of purchasing, \(\iota\) the cost of installation, and \(\omega\) the power consumption in Watts.
+The constant term \(33.93\) reflects the cost of using \(1\) Watt of power over 15 years, extrapolated from current electricity tariffs.\autocite{electricity}
+
+For \Cref{consider:aesthetic} we rate each solution aesthetically out of 5 \davidsstar{}s.
+In particular, \Cref{sol1} minimally affects the current aesthetics, while
+Solutions \ref{sol2} and \ref{sol3} are considered unsightly.
+\Cref{sol4} is largely favourable with a caveat -- the food court will be arbitrarily divided into two halves, both air-conditioned.
+
+The solutions are summarised in \Cref{tab:summary}.
+
+\begin{table}[]
+\centering
+\begin{tabu}{lrrrr}
+    \hline \hline
+                         & Solution 1 & Solution 2 & Solution 3 & Solution 4 \\ \hline
+    Perceived temp. (\SI{}{\celsius})& 23.5  & 26  & 28         & 20         \\
+    Long-term cost (\$)  & 75860      & 57495      & 49206      & 1707500     \\
+    Aesthetic appeal & \davidsstar\davidsstar\davidsstar\davidsstar\davidsstar  & \davidsstar\davidsstar & \davidsstar    & \davidsstar\davidsstar\davidsstar\davidsstar     \\
+    \hline \hline
+\end{tabu}
+\caption{Summary of solutions}
+\label{tab:summary}
+\end{table}
+
+\subsection{Choice of solution}
+
+With reference to \Cref{tab:summary}, it is clear that \textbf{\Cref{sol1}} emerges as the best choice.
+Having a long-term cost two orders of magnitude lower than that of \Cref{sol4},
+it provides comparable performance, greatly surpassing that of \Cref{sol2} and \Cref{sol3}.
+In addition, it is also the most aesthetically appealing.
+
+\section{Evaluation}
+
+\noindent\emph{This section addresses Question 2.}
+
+\subsection{Potential risks}
+
+The solution chosen allows for dust to accumulate and dust mites to gather.
+This could pose hygiene and air quality issues for our students and staff, especially those
+with respiratory conditions such as asthma.
+An unclean fan blows dust and dust mites around the environment, posing as a health risk especially for
+people with allergic reactions.\autocite{dustmites}
+It is therefore important for the giant ceiling fan to be kept clean in order to
+maintain the air quality and the health of our students and staff.
+
+\subsection{Mitigation strategies}
+
+To mitigate this potential risk attributed to \Cref{sol1},
+we propose a cleaning schedule for the ceiling fan.\autocite{howtoclean}
+\begin{itemize}
+    \item At least once every two weeks, the fan is to be dusted clean.
+    \item At least once every month, the fan should be brushed and vacumned thoroughly.
+\end{itemize}
+
+\section{Future improvements}
+
+For \Cref{consider:comfort}, more advanced models could be tested and experiments conducted in order to determine the precise relationship between a solution's airflow circulation, humidity control and the perceived hotness experienced.
+
+In the determination process of \Cref{consider:cost}, predictions could be made on future electricity tariffs in order to better estimate long-term cost.
+
+In the process of judging \Cref{consider:aesthetic}, the author's personal tastes and preferences were invoked as judgement.
+As improvement, we could come up with mock-up designs for each solution,
+and allow the students to choose the one they like most.
+
+
+\printbibliography
+
+\end{document}

@@ -13,7 +13,7 @@ import System.Process (system)
 import qualified Text.Pandoc.UTF8 as UTF8
 
 --------------------------------------------------------------------------------
-meta :: [ (String -> Rules (), [String]) ]
+meta :: [(String -> Rules (), [String])]
 meta = [ (texToPdf,   [ "CS1010"
                       , "CP3108"
                       , "CS3230"
@@ -29,11 +29,11 @@ meta = [ (texToPdf,   [ "CS1010"
                       , "MA2108S"
                       , "MA2104/summary"
                       , "MA2202S/t"
+                      , "MA3205"
                       ])
        , (mdToPdf,    [ "MA2101S"
                       , "MA2104/a"
                       , "MA2202S/hw"
-                      , "MA3205"
                       ])
        ]
 
@@ -43,7 +43,8 @@ numberSectionDisabled = ["MA2101S", "MA2104/a", "MA2108S", "MA3205"]
 main :: IO ()
 main = hakyll $ do
     sequence $ concatMap (uncurry map) meta
-    traverse autoIndex . nub . map takeTopLevelDirectory . concatMap snd $ meta
+    traverse autoIndex $ tldsFrom meta
+    homepage
     match "css/*" $ do
         route   idRoute
         compile compressCssCompiler
@@ -70,6 +71,18 @@ autoIndex dir = create [fromFilePath $ dir </> "index.html"] $ do
     where noIndexPattern = (dir */* "*.md" .||. dir */* "*.tex") .&&.
                 complement (dir */* "index.html")
 
+homepage :: Rules ()
+homepage = match "index.md" $ do
+    route $ setExtension "html"
+    compile $ do
+        let mods = map (\x -> Item { itemIdentifier = fromFilePath (x++"/index.html"), itemBody = x } ) (tldsFrom meta)
+            homepageCtx = listField "entries" defaultContext (pure mods) <> defaultContext
+            readerOptions = defaultReaderOptions { readerExtensions = disableExtension Ext_tex_math_dollars extensions }
+        pandocCompilerWith readerOptions defaultWriterOptions
+            >>= applyAsTemplate homepageCtx
+            >>= loadAndApplyTemplate "templates/default.html" homepageCtx
+            >>= relativizeUrls
+
 --------------------------------------------------------------------------------
 mdToHtml :: String -> Rules ()
 mdToHtml prefix = match (patternFrom prefix) $ do
@@ -94,19 +107,11 @@ mdToBeamer prefix = match (patternFrom prefix) $ do
         >>= readPandocWith defaultReaderOptions
         >>= withItemBody (writeXetex writeBeamer defaultHakyllWriterOptions "default" prefix >=> xelatex)
 
-patternFrom :: String -> Pattern
-patternFrom prefix = if prefix == takeTopLevelDirectory prefix
-                        then prefix */* "*.md"
-                        else fromGlob $ prefix ++ "*.md"
-
 texToPdf :: String -> Rules ()
 texToPdf mod = match (mod */* "*.tex") $ do
     route $ setExtension "pdf"
     compile $ getResourceString >>= saveSnapshot "_autoindex"
         >> getResourceFilePath >>= latexmk >>= makeItem
-
-(*/*) :: FilePath -> FilePath -> Pattern
-a */* b = fromGlob $ a </> b
 
 --------------------------------------------------------------------------------
 extensions :: Extensions
@@ -195,3 +200,14 @@ takeTopLevelDirectory :: FilePath -> FilePath
 takeTopLevelDirectory path = case splitDirectories path of
                         []    -> "."
                         (d:_) -> d
+
+tldsFrom :: [(String -> Rules (), [String])] -> [String]
+tldsFrom = nub . map takeTopLevelDirectory . concatMap snd
+
+(*/*) :: FilePath -> FilePath -> Pattern
+a */* b = fromGlob $ a </> b
+
+patternFrom :: String -> Pattern
+patternFrom prefix = if prefix == takeTopLevelDirectory prefix
+                        then prefix */* "*.md"
+                        else fromGlob $ prefix ++ "*.md"

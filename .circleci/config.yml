@@ -1,0 +1,36 @@
+version: 2.1
+jobs:
+  build-and-deploy:
+    docker:
+      - image: qjqqyy/hakyll-latex:4.12.5.1
+    steps:
+      - checkout
+      - run:
+          name: Compile
+          command: stack ghc -- site.hs
+      - run:
+          name: Build site
+          command: ./site build
+      - add_ssh_keys:
+          fingerprints:
+            - "a6:b4:43:16:e0:c9:4c:f6:ac:9a:e7:2a:22:ec:a0:c6"
+      - deploy:
+          name: Push to pages
+          command: |
+            git config --global user.name "CircleCI"
+            git config --global user.email "qjqqyy@gmail.com"
+            SHORT_REV=$(echo $CIRCLE_SHA1 | cut -c -7)
+            git clone --depth 1 -b gh-pages "$CIRCLE_REPOSITORY_URL" /root/old-pages
+            mv /root/old-pages/.git _site/.git
+            cd _site
+            git add -f .
+            git commit -m "rebuild pages at $SHORT_REV"
+            git push
+
+workflows:
+  build_and_deploy:
+    jobs:
+      - build-and-deploy:
+          filters:
+            branches:
+              only: master

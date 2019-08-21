@@ -5,6 +5,7 @@ import Text.Pandoc
 import Control.Monad ((>=>), when)
 import Data.Monoid (mconcat)
 import Data.List (nub)
+import Data.Maybe (isJust, fromJust)
 import Data.Text (Text, unpack)
 import System.Directory (copyFile, doesFileExist)
 import System.FilePath ((</>), takeFileName, replaceExtension, takeDirectory, splitDirectories)
@@ -39,6 +40,9 @@ meta = [ (texToPdf,   [ "CS1010"
 
 numberSectionDisabled = ["MA2101S", "MA2104/a", "MA2108S", "MA3205"]
 
+cname :: Maybe String
+cname = Just "m5th.b0ss.net"
+
 --------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
@@ -53,6 +57,9 @@ main = hakyll $ do
     match ("**.pdf" .||. "**.png" .||. "**.jpg") $ do
         route   idRoute
         compile copyFileCompiler
+    when (isJust cname) $ create [fromFilePath "CNAME"] $ do
+        route   idRoute
+        compile . makeItem . fromJust $ cname
 
 autoIndex :: String -> Rules ()
 autoIndex dir = create [fromFilePath $ dir </> "index.html"] $ do

@@ -31,6 +31,7 @@ meta = [ (texToPdf,   [ "CS1010"
                       , "MA2104/summary"
                       , "MA2202S/t"
                       , "MA3205"
+                      , "MA5220"
                       ])
        , (mdToPdf,    [ "MA2101S"
                       , "MA2104/a"

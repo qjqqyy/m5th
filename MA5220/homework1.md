@@ -83,6 +83,13 @@ this allows us to find an infinite descending chain of members of \(x\), which c
 > \((X,\prec)\) is isomorphic to an initial segment of \((L,\prec)\).
 > Show that \((L, \prec)\) is a well ordering.
 
+First consider \(0\subseteq L\), let \(m\in L\) such that \((0,\prec) \cong \pred{L,\prec,m}\).
+We can see that \(m\) is the \(\prec\)-least member of \(L\).
+
+Let \(X\subseteq L\), since \((X,\prec)\) is isomorphic to an initial segment of \((L,\prec)\) which necessarily contains \(m\),
+\(X\) also has a \(\prec\)-least element and this shows \((L,\prec)\) is a well ordering.
+$\square$
+
 
 #
 

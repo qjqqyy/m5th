@@ -96,5 +96,21 @@ $\square$
 > Suppose \(X\) is an uncountable set and \(\prec_1, \prec_2\) are two well orderings on \(X\).
 > Show that there is an uncountable \(Y\subseteq X\) such that \(\prec_1,\prec_2\) agree on \(Y\).
 
+Without loss of generality we can only consider the case in which \(\operatorname{type}(X,\prec_1) = \omega_1\)
+(by only considering the \(\prec_1\)-initial segment of \(X\) otherwise, and \((X,\prec_2)\) will still be a well order).
+Now let \(Z\) be the \(\prec_2\)-initial segment of \(X\) such that \(\operatorname{type}(Z,\prec_2) = \omega_1\).
+Define
+\[ \mathcal{F} = \set{Y\subseteq Z: \paren{\forall a,b\in Y}\paren{a\prec_1 b \iff a\prec_2 b} } \]
+\(\mathcal{F}\) is non-empty (otherwise one of the orderings will fail to be a well order) and it is clear that \(\mathcal{F}\) has finite character.
+By Teichmüller-Tukey (AC) every \(W\in \mathcal{F}\) is contained in a maximal \(M\in\mathcal{F}\).
+Suppose the result fails and let \(Y\in\mathcal{F}\) be maximal, then \(Y\) is at most countable.
 
-<div style="height:50vh"></div>
+Note that \(\operatorname{type}(Z,\prec_1) = \omega_1\) still,
+let \[ Y_1 = \set{z\in Z: \paren{\exists y\in Y}\paren{z \preccurlyeq_1 y}} \]
+since no element of \(\omega_1\) has uncountably many predecessors, \(|Y_1| \leq \omega_0\).
+Define \(Y_2\) analogously.
+Let \(w \in Z\setminus\paren{Y_1\cup Y_2}\), the set is not empty since \(Y_1\cup Y_2\) is only countable.
+Note that \(w\) satisfies
+\[\paren{\forall y\in Y}\paren{y\prec_1 w} \land \paren{\forall y\in Y}\paren{y\prec_2 w},\]
+which means \(Y\cup\set{w} \in \mathcal{F}\), contradicting maximality of \(Y\).
+$\square$

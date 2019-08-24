@@ -45,6 +45,9 @@ numberSectionDisabled = ["MA2101S", "MA2104/a", "MA2108S", "MA3205"]
 cname :: Maybe String
 cname = Just "m5th.b0ss.net"
 
+mathJax :: String
+mathJax = "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML-full\" type=\"text/javascript\"></script>"
+
 --------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
@@ -95,10 +98,11 @@ homepage = match "index.md" $ do
 --------------------------------------------------------------------------------
 mdToHtml :: String -> Rules ()
 mdToHtml prefix = match (patternFrom prefix) $ do
+    let mathCtx = constField "math" mathJax <> defaultContext
     route $ setExtension "html"
     compile $ pandocCompilerWith defaultReaderOptions (updateNumberSections prefix defaultWriterOptions)
-        >>= loadAndApplyTemplate "templates/entry.html" defaultContext
-        >>= loadAndApplyTemplate "templates/default.html" defaultContext
+        >>= loadAndApplyTemplate "templates/entry.html" mathCtx
+        >>= loadAndApplyTemplate "templates/default.html" mathCtx
         >>= relativizeUrls
         >>= saveSnapshot "_autoindex"
 

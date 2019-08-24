@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-$if(author)$
+  $if(author)-$
   <meta name="author" content="$author$" />
-$endif$
-$if(date)$
+  $endif-$
+  $if(date)-$
   <meta name="dcterms.date" content="$date$" />
-$endif$
+  $endif-$
   <title>$title$</title>
   <style>
       code{white-space: pre-wrap;}
@@ -19,11 +19,22 @@ $endif$
   </style>
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
   <link rel="stylesheet" href="/css/pandoc.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  $-if(math)$$math$$endif$
 </head>
 <body>
 <main role="main">
+<header>
 <h1 class="title">$title$</h1>
+$-if(subtitle)$
+<p class="subtitle">$subtitle$</p>
+$endif-$
+$if(author)-$
+<p class="author">$author$</p>
+$endif-$
+$if(date)-$
+<p class="date">$date$</p>
+$-endif$
+</header>
 $body$</main>
 </body>
 </html>

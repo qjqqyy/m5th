@@ -1,7 +1,9 @@
 ---
 title: CS2030 Lab 1
-author: Qi Ji (<qiji@u.nus.edu>)
-date: 29th January 2019
+author:
+- Qi Ji
+- Ge Shuming
+date: 26th August 2019
 subtitle: Maximum Disc Coverage
 theme: Madrid
 fontsize: 14pt
@@ -9,16 +11,21 @@ header-includes:
 - '\newcommand{\textsmall}[1]{{\small #1}}'
 ...
 
-# Your lab tutor
+# Your lab tutors
 
-* Qi Ji
+### Qi Ji
 
-* Email: <qiji@u.nus.edu>  
-    Telegram: `@Endomorphism`
+* <qiji@u.nus.edu>, Telegram: `@Endomorphism`
 
 * CS2030 student in AY18/19 Sem 1
 
-# Labs vs Tutorials
+### Shuming
+
+* <geshuming@u.nus.edu>, Telegram: `@Sushi_Monster`
+
+* CS2030 student in AY18/19 Sem 2
+
+# Labs vs Recitation
 
 * Lab: Work on a (graded) assignment.  
     \textsmall{Lab PCs are limited, please try not to crash other sessions.}
@@ -64,9 +71,7 @@ $\implies$ **All** labs contribute to your final grade!
   - plab server submission
   - final CodeCrunch submission adjusted by similarity score
 -->
-* Coding environment will be the same.
-  
-  \textsmall{More details will be released in due time.}
+* Same coding environment as now (but more locked down).
 
 
 # Grading
@@ -74,13 +79,13 @@ $\implies$ **All** labs contribute to your final grade!
 
 * **\textcolor{red}{Submit all levels.}**
 
-* Marks are awarded for correctness (auto-graded)
+* Marks are awarded for functionality (auto-graded)
 
 # Let's get started!
 
-* You need your personal plab account (details in your email)
+* Check email for personal plab account credentials
 
-    - You also need your NUSNET ID to log in to plab (host name: `pe106`)
+    - You also need your NUSNET ID to log in to plab (hostname is something like `peXXX`)
 
 * Place your `main()` method into `class Main`
 

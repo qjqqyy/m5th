@@ -1,14 +1,9 @@
-<article>
-<header>
-$if(subtitle)$
-<p class="subtitle">$subtitle$</p>
-$endif$
-$if(author)$
-<p class="author">$author$</p>
-$endif$
-$if(date)$
-<p class="date">$date$</p>
-$endif$
-</header>
-$body$
+<article>$body$
 </article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://raw.githubusercontent.com/qjqqyy/m5th/master/$path$">$path$</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>

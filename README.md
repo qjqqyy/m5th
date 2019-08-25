@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/qjqqyy/m5th.svg?style=svg)](https://circleci.com/gh/qjqqyy/m5th)
+
 This repo contains all of my school-related LaTeX/markdown manuscripts, since uni started in fall 2017.
 
 With effort, everything is generated with with [Hakyll](https://jaspervdj.be/hakyll/index.html).
@@ -5,7 +7,7 @@ With effort, everything is generated with with [Hakyll](https://jaspervdj.be/hak
 Also, every single markdown file in here except for this one liberally uses pandoc extensions,
 and probably will not preview nicely.
 
-# Quick (docker) dev setup
+## Quick (docker) dev setup
 
 1. `docker run --rm -p 8000:8000 -it -v $(pwd):/site qjqqyy/hakyll-latex`
     * noobtip: `--tmpfs` might or might not come in useful here
@@ -14,7 +16,15 @@ and probably will not preview nicely.
 
 See: [hakyll-latex](https://github.com/qjqqyy/hakyll-latex)
 
-# Routes
+## What is even going on
+
+I do the majority of my homework stuff with either LaTeX or Markdown
+(depending on whether I need stuff like `amsthm` and more control over document structure).
+As an upgrade from my [old stash of symlinks, Makefiles and general crap](https://m4th.b0ss.net),
+I [repurposed Hakyll](site.hs) to compile almost all source files into viewables.
+This also has the nice side-effect of separating the source of truth (in here) from the [produced files](https://github.com/qjqqyy/m5th/tree/gh-pages).
+
+## Routes
 
 * Pandoc markdown to HTML
 * Pandoc markdown to PDF

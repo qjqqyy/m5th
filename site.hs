@@ -4,7 +4,7 @@ import Text.Pandoc
 
 import Control.Monad ((>=>), when)
 import Data.Monoid (mconcat)
-import Data.List (nub)
+import Data.List (nub, sort)
 import Data.Maybe (isJust, fromJust)
 import Data.Text (Text, unpack)
 import System.Directory (copyFile, doesFileExist)
@@ -87,7 +87,8 @@ homepage :: Rules ()
 homepage = match "index.md" $ do
     route $ setExtension "html"
     compile $ do
-        let mods = map (\x -> Item { itemIdentifier = fromFilePath (x++"/index.html"), itemBody = x } ) (tldsFrom meta)
+        -- hack
+        let mods = map (\x -> Item { itemIdentifier = fromFilePath (x++"/index.html"), itemBody = x }) . sort $ tldsFrom meta
             homepageCtx = listField "entries" defaultContext (pure mods) <> defaultContext
             readerOptions = defaultReaderOptions { readerExtensions = disableExtension Ext_tex_math_dollars extensions }
         pandocCompilerWith readerOptions defaultWriterOptions

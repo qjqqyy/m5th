@@ -2,8 +2,12 @@
 title: Homeworks and stuff
 ...
 
-Here are all the stuff I did, in no particular order.
+Here's almost all the stuff I did, organised by module
 
 <ul>
 $for(entries)$<li><a href="$body$/">$body$</a></li>
 $endfor$</ul>
+
+---
+
+[View source on GitHub](https://github.com/qjqqyy/m5th)

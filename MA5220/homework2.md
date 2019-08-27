@@ -8,6 +8,7 @@ date: 30 August 2019
 \newcommand{\abs}[1]{\left\lvert#1\right\rvert}
 \newcommand{\paren}[1]{\left(#1\right)}
 \newcommand{\pred}[1]{\operatorname{\mathsf{pred}}\left(#1\right)}
+\newcommand{\R}{\mathbb{R}}
 
 #
 
@@ -39,6 +40,10 @@ ma3205lecturenotes.pdf has like 5 exercises proving this
 
 I need a better picture of cofinality to solve this...
 
+
+
+<div style="height:100vh"></div>
+
 #
 
 > Prove that the following statement is equivalent to CH.
@@ -46,4 +51,26 @@ I need a better picture of cofinality to solve this...
 > \(X\) meets every vertical line on a countable set
 > and \(\mathbb{R}^2\setminus X\) meets every horizontal line on a countable set.
 
-<div style="height:100vh"></div>
+Assume CH, then \(\abs{\R} = \omega_1\).
+Let \(\R = \set{t_{\alpha}: \alpha < \omega_1}\) be a well ordering.
+Define
+\[ X = \set{\paren{t_\alpha,t_\beta}: \alpha \geq \beta }. \]
+To see that \(X\) meets every vertical line on a countable set,
+fix \(x\) and let \(\alpha\) such that \(x = t_\alpha\),
+then by definition of \(X\) there are exactly \(\abs{\alpha}\) many points with \(x = t_\alpha\),
+and since \(\alpha < \omega_1\), it follows that the intersection is countable.
+Similarly fix \(y\) and let \(\beta\) such that \(y = t_\beta\),
+we observe that \(\paren{t_\alpha, t_\beta}\in \R^2\setminus X\) whenever \(\alpha < \beta\),
+so \(\R^2\setminus X\) meets the horizontal line on less than \(\abs{\beta} = \omega\) points too.
+
+Assume \(X\) exists with the property, let \(A\subset \R\) be of size \(\abs{A} = \omega_1\).
+We consider the subset of the \(X\) given by
+\[ S = \paren{A\times \R}\cap X \]
+size of \(S\) is \(\omega_1\cdot\omega_0 = \omega_1\).
+Define \(S_Y = \set{y:\paren{\exists x\in\R}\paren{(x,y)\in S}}\), claim is \(S_Y = \R\).
+To see this, let \(y\in\R\) and notice that by hypothesis, the set
+\[ \set{x: (x,y)\in \R\setminus X} \] is only countable which means
+there must exist \(x\in\R\) with \((x,y)\in S\).
+Then we have
+\[2^{\omega_0} = \abs{\R} = \abs{S_Y} \leq \abs{S} \leq \abs{X} = \omega_1 \]
+which shows CH. $\square$

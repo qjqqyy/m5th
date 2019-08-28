@@ -11,16 +11,16 @@ b.
 
 ```mips
 lw   $2, -16($fp)   # put 16 in $2
-add  $sp, $sp, $2   # add 15 to $sp
+add  $sp, $sp, $2   # add 16 to $sp
                     # $sp is now pointing at -24
-lw   $1, 0($sp)     # put -24 in $1
+lw   $1, 0($sp)     # put *(-24)=7 in $1
 call print
 ```
 c. whatever junk was in address `16`
 
 #
 
-## part a {-]
+## part a {-}
 
 ```{.mips .numberLines}
 iFact:
@@ -57,15 +57,15 @@ main:
 ```{.mips .numberLines}
 iFact:
       # Callee enter function
-      sw    $11, -8($fp)    # save registers
-      sw    $12, -4($fp)
-      sw    $13, 0($fp)
+      sw    $11, -20($sp)   # save registers
+      sw    $12, -16($sp)
+      sw    $13, -12($sp)
 
       sw    $sp, -8($sp)    # save $fp, $sp
       sw    $fp, -4($sp)
 
-      addi  $sp, $sp, -36   # move $fp, $sp to new position
-      addi  $fp, $fp, -36
+      addi  $fp, $sp, -12
+      addi  $sp, $sp, -40   # move $fp, $sp to new position
       # Callee enter function done
 ```
 
@@ -76,15 +76,16 @@ end:
       # Callee exit function
       sw    $11, 16($sp)    # save return result
 
-      lw    $11, 20($sp)    # restore registers
-      lw    $12, 24($sp)
-      lw    $13, 28($sp)
+      lw    $11, -8($fp)    # restore registers
+      lw    $12, -4($fp)
+      lw    $13, 0($fp)
 
-      addi  $sp, $sp, 36   # restore $sp, $fp
-      addi  $fp, $fp, 36
+      lw    $sp, 4($sp)
+      lw    $fp, 8($fp)
 
-      return -36($sp)
+      return -40($sp)
 ```
+actually this doesn't really make sense idk
 
 ## part e (optional recursion) {-}
 

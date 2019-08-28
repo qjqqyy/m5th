@@ -1,0 +1,103 @@
+---
+title: CS2106 tutorial 1
+author: Qi Ji
+date: 28th August 2019
+---
+
+#
+
+a. junk
+b.
+
+```mips
+lw   $2, -16($fp)   # put 16 in $2
+add  $sp, $sp, $2   # add 15 to $sp
+                    # $sp is now pointing at -24
+lw   $1, 0($sp)     # put -24 in $1
+call print
+```
+c. whatever junk was in address `16`
+
+#
+
+## part a {-]
+
+```{.mips .numberLines}
+iFact:
+      # irrelevant stuff...
+      addi  $11, $0, 1      # put 1 somewhere
+      sw    $11, -24($fp)   ## (a) result = 1
+
+      addi  $12, $0, 2      # put 2 somewhere
+      sw    $12, -20($fp)   ## (a) i = 2
+
+      lw    $13, -16($fp)   ## (a) Get N
+loop: bgt   $12, $13, end
+
+      mul   $11, $11, $12
+      sw    $11, -24($fp)
+
+      addi  $12, $12, 1
+      sw    $12, -20($fp)
+```
+
+## part b {-}
+
+```{.mips .numberLines}
+main:
+      ....      # irrelevant crap
+
+      addi  $13, $0, 10     # put 10 in $13
+      sw    $13, -28($sp)
+      call  iFact, 0($sp)
+```
+
+## part c {-}
+
+```{.mips .numberLines}
+iFact:
+      # Callee enter function
+      sw    $11, -8($fp)    # save registers
+      sw    $12, -4($fp)
+      sw    $13, 0($fp)
+
+      sw    $sp, -8($sp)    # save $fp, $sp
+      sw    $fp, -4($sp)
+
+      addi  $sp, $sp, -36   # move $fp, $sp to new position
+      addi  $fp, $fp, -36
+      # Callee enter function done
+```
+
+## part d {-}
+
+```{.mips .numberLines}
+end:
+      # Callee exit function
+      sw    $11, 16($sp)    # save return result
+
+      lw    $11, 20($sp)    # restore registers
+      lw    $12, 24($sp)
+      lw    $13, 28($sp)
+
+      addi  $sp, $sp, 36   # restore $sp, $fp
+      addi  $fp, $fp, 36
+
+      return -36($sp)
+```
+
+## part e (optional recursion) {-}
+
+I too sian to do.
+
+#
+
+The 5 states are
+
+* New
+* Ready
+* Running
+* Blocked
+* Exit
+
+and it is obvious.

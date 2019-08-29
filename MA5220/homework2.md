@@ -1,7 +1,7 @@
 ---
 title: MA5220 Homework 2
 author: Qi Ji
-date: 30 August 2019
+date: 30th August 2019
 ...
 
 \newcommand{\set}[1]{\left\{#1\right\}}

@@ -9,6 +9,7 @@ date: 30 August 2019
 \newcommand{\paren}[1]{\left(#1\right)}
 \newcommand{\pred}[1]{\operatorname{\mathsf{pred}}\left(#1\right)}
 \newcommand{\R}{\mathbb{R}}
+\newcommand{\cf}{\operatorname{cf}}
 
 #
 
@@ -101,11 +102,16 @@ and we have \(\abs{Y} = \abs{C} = \abs{\operatorname{ran}(f)} = \abs{X}\). $\squ
 
 > Assume CH. Show that \(\paren{\omega_n}^\omega = \omega_n\) for every \(1\leq n < \omega\).
 
-I need a better picture of cofinality to solve this...
+By CH \(\paren{\omega_1}^\omega = 2^{\omega^\omega} = 2^\omega = \omega_1\).
 
-
-
-<div style="height:100vh"></div>
+Each \(\omega_n\) is regular so \(\omega < \cf(\omega_n) = \omega_n\), let \(n>2\) and assume result holds for \(n-1\), then
+\[
+{}^\omega \omega_n
+= \bigcup\set{{}^\omega \alpha: \alpha < \omega_n}
+\]
+note that for each \(\alpha\), \(\alpha^\omega \leq \paren{\omega_{n-1}}^\omega = \omega^{n-1}\) by induction hypothesis.
+This means \(\paren{\omega_n}^\omega \leq \omega_n\).
+\(\square\)
 
 #
 

@@ -26,12 +26,56 @@ compose inequalities to get \(\alpha\cdot\alpha < \beta\cdot\beta\).
 #
 
 > Suppose \(\kappa\) is a infinite cardinal and \(\prec\) is a well ordering on \(\kappa\).
-> Show that here exists \(X\subseteq \kappa\) such that \(\abs{X} = \kappa\) and
+> Show that there exists \(X\subseteq \kappa\) such that \(\abs{X} = \kappa\) and
 > for every \(\alpha,\beta\) in \(X\), it follows that \(\alpha < \beta\) iff \(\alpha\prec\beta\).
 
-Check stackexchange
+\newcommand{\tlt}{\triangleleft}
 
-<div style="height:50vh"></div>
+In the case that \(\kappa\) is regular we can basically reuse the argument in Homework 1 Question 3.
+Without loss of generality (by only considering initial segments) we can assume \(\operatorname{type}(\kappa,\prec) = \kappa\).
+Let \(X\subseteq \kappa\) be any maximal subset
+such that \(<\) and \(\prec\) agree and suppose for a contradiction \(\abs{X} < \kappa\),
+then both the \(<\) and \(\prec\)-downward closures of \(X\) are of size strictly less than \(\kappa\),
+and there exists an element above \(A\) under both \(<\) and \(\prec\), contradicting maximality.
+
+In the case where \(\kappa\) is singular,
+Let \(\lambda = \cf(\kappa)\) and
+\(f: \lambda\to\kappa\) be a strictly increasing cofinal map, then because \(\kappa\) is singular,
+we can define a cofinal map \(g: \lambda\to\kappa\) in a fashion similar to lemma 6.5 as
+\[ g(\xi) = \max\paren{ \abs{f(\xi)}^+, \abs{\sup\set{ g(\eta): \eta < \xi }}^+ } \]
+then \(\kappa = \bigcup_{\alpha<\lambda} g(\alpha)\)
+and note that \(g\) is strictly increasing and only outputs regular cardinals. Proceed to clean up \(g\) by defining \(h: \lambda\to\mathcal{P}(\kappa)\) as
+\[ h(\xi) = g(\xi)\setminus\bigcup\set{g(\eta):\eta <\xi} \]
+and we still can express \(\kappa\) as the union
+\( \kappa = \bigcup_{\alpha<\lambda} h(\alpha) \).
+We achieve the following
+
+* \(\alpha<\beta\) implies for every \(\gamma\in h(\alpha), \delta\in h(\beta)\), we have \(\gamma<\delta\),
+
+* \(\abs{h(\alpha)} = g(\alpha)\) for each \(\alpha\).
+
+Again without loss of generality (by considering \(\prec\)-initial segments)
+we can assume \(\operatorname{type}(\kappa,\prec) = \kappa\) and
+\(\operatorname{type}\paren{h(\alpha),\prec} = g(\alpha)\) at each \(\alpha\).
+Define the order \(\tlt\) on \(\lambda\) as
+\[ \alpha \tlt \beta \iff \sup_\prec(h(\alpha)) \prec \sup_\prec(h(\beta)) \]
+and it can be checked that \(\tlt\) is a well order.
+As \(\lambda\) is in fact a regular cardinal, we can use the earlier case
+to obtain a cofinal set \(\set{t_\alpha: \alpha<\lambda}\) where \(<\) and \(\tlt\) agree.
+Note that at each \(t_\alpha\) there exists \(W_{t_\alpha} \subseteq h(t_\alpha)\)
+with size \(\abs{h(t_\alpha)}\) where \(<\) and \(\prec\) agree, and \(W_{t_\alpha}\) is also
+\(\prec\)-cofinal due to our assumption on \(\operatorname{type}(h(\alpha),\prec)\).
+
+Now we recursively define \(X_\alpha\) for all \(\alpha<\lambda\) as
+\(\set{x\in W_{t_\alpha}: \paren{\forall\beta<\alpha}\paren{\forall w\in X_{\beta}}\paren{w\prec x}}\).
+At every \(\alpha\), \(\abs{X_\alpha} = \abs{W_{t_\alpha}}\),
+because the number of elements we deleted from \(W_{t_\alpha}\) to get \(X_\alpha\)
+is less than \(\abs{W_{t_\alpha}}\), and as a result \(X_\alpha\) is still \(\prec\)-cofinal.
+The deletion forces out the property that
+\[\alpha<\beta \implies \paren{\forall \gamma\in X_\alpha, \delta\in X_\beta}\paren{\gamma<\delta}.\]
+Finally define \[X = \bigcup_{\alpha<\lambda} X_\alpha\]
+which has cardinality \(\kappa\) and by construction \(<\) agrees with \(\prec\) on \(X\).
+\(\square\)
 
 # Prove Schröder-Bernstein Theorem without AC
 

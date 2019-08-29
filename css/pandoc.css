@@ -59,9 +59,11 @@ body {
 	background-color: #fdf6e3;
 	margin: 0 auto;
 	max-width: 55em;
-	border: 1pt solid #93a1a1;
 	padding: 1em;
 }
+@media only screen { body {
+	border: 1pt solid #93a1a1;
+} }
 @media only screen and (min-width: 480px) {
 	body {
 		font-size: 14px;
@@ -351,3 +353,5 @@ code span.in { color: #93A1A1; font-weight: normal; font-style: italic; } /* Inf
  * syntax-highlighting from https://github.com/jez/tufte-pandoc-css/blob/master/pandoc-solarized.css
  * tons of random fixes
  */
+
+@media only print { * { overflow: visible !important; } }

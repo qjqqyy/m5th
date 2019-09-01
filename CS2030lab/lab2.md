@@ -45,6 +45,7 @@ The program will output the loader allocation schedule.
 - 2 types of cruises
     - normal
     - big
+
 - 2 types of loaders
     - normal
     - recycled (less useful)
@@ -52,12 +53,16 @@ The program will output the loader allocation schedule.
 # Levels
 
 1. Representing a normal cruise
+
 2. Representing a normal loader
     - Use loaders to serve cruises
+
 3. Introduce Big Cruises
     - Inheritance and polymorphism.
+
 4. Introduce Recycled Loaders
     - See above
+
 5. Finishing up
     - Same as Lab 1 Level 5
 
@@ -72,11 +77,13 @@ Cruises:
 # Level 1: Things to do
 
 - Constructor that takes in `String id` and `int arrivalTime`
+
 - Instance method `getServiceCompletionTime()`: 30 minutes after `arrivalTime`
     - \textsmall{Cases to consider}
     - \textsmall{130 + 30 = 200}
     - \textsmall{145 + 30 = 215}
-    - \textsmall{Hint: Abstract into a private function}    
+    - \textsmall{Hint: Abstract into a private function}
+
 - Overriden `toString()` method (next page)
 
 # Level 1: Output format
@@ -101,9 +108,11 @@ Loaders:
 
 - Constructor that takes in `int id`
     - \textsmall{Hint: Consider using a \type{static int} as counter.}
+
 - Instance method `serve(Cruise cruise)`: serves a cruise
     - \textsmall{Does the loader need to know what cruises it has served?}
     - \textsmall{Does the loader need to know when is the next available time?}
+
 - Overriden `toString()` method (next page)
 
 # Level 2: Output format
@@ -117,9 +126,9 @@ Loader id serves:
 
 # Level 3: Big cruises
 
-- Needs \(X\) loaders \(0 $\leq$ X $\leq$ 9\)
+- Needs \(X\) loaders \(0 \leq X \leq 9\)
 
-- Needs \(T\) service time. \(0 $\leq$ T $\leq$ 99\)
+- Needs \(T\) service time. \(0 \leq T \leq 99\)
 
 - Use inheritance
     - What new information is there?

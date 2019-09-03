@@ -60,3 +60,29 @@ similarly the \(g\)-image of the arc from \(a\) to \(b\) via \(y\) is also \([0,
 This contradicts injectivity.
 
 # Homework 3
+
+## Q1
+
+later
+
+<div style="height:50vh"></div>
+
+## Q2
+
+Without loss of generality we can consider the case that
+\(\forall x\in(0,1)\), we have \(f(x)>0\).
+Fix \(n\in\mathbb{N}\) and define \(g(x) = f(x)^n f(1-x)\).
+Then \(g(0) = 0\) and \(g(1) = 0\), let \(\xi\in (0,1)\) such that
+\[g'(\xi) = n f(\xi)^{n-1} f'(\xi)f(1-\xi) - f(\xi)^n f'(1-\xi) = 0 \]
+rearranging gives
+\begin{align*}
+n f(\xi)^{n-1} f'(\xi)f(1-\xi) &= f(\xi)^n f'(1-\xi) \\
+n f'(\xi)f(1-\xi) &= f(\xi) f'(1-\xi) \\
+\frac{nf'(\xi)}{f(\xi)} &= \frac{f'(1-\xi)}{f(1-\xi)}
+\end{align*}
+
+## Q3
+
+Whenever \(x>a\), \(f(x) > f(a) + k(x-a)\) because \(f'(x) > k\).
+Then picking sufficiently large \(x\) gives \(f(x) > 0\) and by intermediate value theorem (\(f\) is continuous) \(f\) has a zero.
+Suppose \(f\) has at least two zeroes then Rolle's theorem gives \(c\) with \(f'(c) = 0\) which cannot happen.

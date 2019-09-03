@@ -58,4 +58,24 @@ Define \(X\) as the final union and observe that no 3 points are colinear in \(X
 otherwise they would occur in some \(X_l\).
 Also all lines are taken care off so \(X\) intersects every line at exactly two points.
 
+#
+
+> Let \(\kappa\) be an infinite cardinal and suppose \(\lambda\) is
+> the least cardinal such that \(\kappa^\lambda > \kappa\).
+> Show that \(\lambda\) is a regular cardinal.
+
+\(\lambda\) obviously cannot be finite,
+suppose \(\lambda\) is singular, then it cannot be a successor cardinal so it
+has to be a singular cardinal.
+We can decompose \(\lambda\) (in a fashion similar to Homework 2 Q2\) as
+\[ \lambda = \bigcup_{\eta<\cf(\lambda)} X_\eta \]
+where the union is disjoint, and \(\eta<\xi<\cf(\lambda)\) implies
+\(\abs{X_\eta} < \abs{X_\xi}<\lambda\).
+Now it is clear that
+\[ {}^\lambda\kappa = \bigcup_{\eta<\cf(\lambda)} {}^{X_\eta}\kappa \]
+which gives
+\[ \kappa^\lambda = \sup_{\eta<\cf(\lambda)} \kappa^{\abs{X_\eta}} \]
+Then \(\kappa < \kappa^\lambda\) means that there is some \(\eta<\cf(\lambda)\)
+such that \(\kappa < \kappa^{\abs{X_\eta}}\), but \(\abs{X_\eta} < \lambda\) contradicting minimality.
+
 <div style="height:50vh"></div>

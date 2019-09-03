@@ -78,4 +78,46 @@ which gives
 Then \(\kappa < \kappa^\lambda\) means that there is some \(\eta<\cf(\lambda)\)
 such that \(\kappa < \kappa^{\abs{X_\eta}}\), but \(\abs{X_\eta} < \lambda\) contradicting minimality.
 
+#
+
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\restrict}{\upharpoonright}
+> Let \(\kappa\) be an infinite cardinal.
+> Show that there is a family \(\mathcal{A}\) of subsets of \(\kappa\) such that
+> \(\abs{\mathcal{A}} = \kappa^+\) and
+> for every \(X,Y\in\A\), either \(X\subseteq Y\) or \(Y\subseteq X\).
+
+Following hint, let \(\lambda\) be the least cardinal such that \(2^\lambda > \kappa\).
+Let \(\prec\) be the following linear order on \({}^\lambda 2\):
+\(f\prec g\) iff \(\paren{\exists \alpha<\lambda}\paren{f\restrict \alpha = g\restrict \alpha \land f(\alpha) < g(\alpha)}\).
+Let \(D\) be the set of all \(f\in{}^\lambda 2\) such that \(f\) is eventually \(0\).
+For \(f\in {}^\lambda2\), let \(A_f = \set{g\in D: g\preccurlyeq f}\).
+
+First let \(f, g\in{}^\lambda2\) where \(f\prec g\), and we want to show that \(A_f \subsetneq A_g\).
+The containment is clear as \(h\in D, h\preccurlyeq f\implies h\preccurlyeq g\).
+Case \(g\in D\) then clearly \(g\notin A_f\),
+when \(g\notin D\) let \(\alpha<\lambda\) such that \(f\restrict\alpha = g\restrict\alpha\) and \(f(\alpha) < g(\alpha)\),
+let \(\beta>\alpha\) be minimal such that \(g(\beta) = 1\), we produce \(h\in D\) by
+\[
+h(\gamma) = \begin{cases}
+g(\gamma)&\text{if }\gamma < \beta\\
+0&\text{if }\gamma \geq \beta
+\end{cases}
+\]
+and note that \(f\prec h\) because \(h(\alpha) = g(\alpha)\), also \(h\prec g\) since \(g\notin D\),
+this shows properness of containment.
+
+Note that since \(\kappa < 2^\kappa\), \(\lambda \leq \kappa\).
+In addition, by definition we can see a natural injection from \(D\) into \(\bigcup_{\alpha<\lambda} {}^\alpha2\),
+and for each \(\alpha<\lambda\), we have \(2^\alpha \leq \kappa\) by minimality of \(\lambda\).
+Then \[ \abs{D} \leq \abs{\bigcup_{\alpha<\lambda} 2^\alpha} \leq \kappa \]
+and let \(i:D\to\kappa\) be injective.
+
+Define \(F:{}^\lambda2\to\mathcal{P}(\kappa)\) as \( f\mapsto i(A_f) \) which is injective, so \(\abs{\operatorname{range}(F)} = 2^\lambda > \kappa\).
+For any \(i(A_f), i(A_g) \in \operatorname{range}(F)\), we have \(A_f\subseteq A_g\) or \(A_g \subseteq A_f\) and this property is still preserved after taking the image of an injective mapping,
+so \(\operatorname{range}(F)\) is a family with size at least \(\kappa^+\) satisfying the property.
+We let \(\mathcal{A}\) be any subset of \(\operatorname{range}(F)\) with size exactly \(\kappa^+\) and complete the proof by making the observation that
+the property still holds for any infinite subset of \(\operatorname{range}(F)\).
+
+
 <div style="height:50vh"></div>

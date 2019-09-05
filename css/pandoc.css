@@ -50,7 +50,6 @@ html {
 	-webkit-text-size-adjust: 100%;
 	-ms-text-size-adjust: 100%;
 	background-color: #eee8d5;
-	color: #657b83;
 	margin: 1em;
 }
 body {
@@ -61,9 +60,14 @@ body {
 	max-width: 55em;
 	padding: 1em;
 }
-@media only screen { body {
-	border: 1pt solid #93a1a1;
-} }
+@media only screen {
+	html {
+		color: #657b83;
+	}
+	body {
+		border: 1pt solid #93a1a1;
+	}
+}
 @media only screen and (min-width: 480px) {
 	body {
 		font-size: 14px;

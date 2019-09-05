@@ -94,7 +94,7 @@ which we can do by defining \(g(\alpha)\) to be the only element of \(f(\alpha+1
 
 #
 
-> Use transfinite induction to construct \(X \subseteq \R^2\) such that
+> Use transfinite recursion to construct \(X \subseteq \R^2\) such that
 > \(X\) intersects every line in \(\R^2\) at exactly two points.
 
 Let \(<\) be a well ordering of lines in \(\R^2\) with the order type exactly \(\abs{\R}\)

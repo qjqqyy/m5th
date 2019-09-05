@@ -1,7 +1,7 @@
 ---
 title: MA5220 Homework 2
 author: Qi Ji
-date: 30th August 2019
+date: 6th September 2019
 ...
 
 \newcommand{\set}[1]{\left\{#1\right\}}
@@ -59,7 +59,9 @@ we can assume \(\operatorname{type}(\kappa,\prec) = \kappa\) and
 \(\operatorname{type}\paren{h(\alpha),\prec} = g(\alpha)\) at each \(\alpha\).
 Define the order \(\tlt\) on \(\lambda\) as
 \[ \alpha \tlt \beta \iff \sup_\prec(h(\alpha)) \prec \sup_\prec(h(\beta)) \]
-and it can be checked that \(\tlt\) is a well order.
+the two \(\sup\)s are distinct as each \(\abs{h(\alpha)}\) is regular,
+and from here it is easy to see that \(\tlt\) is a well order.
+
 As \(\lambda\) is in fact a regular cardinal, we can use the earlier case
 to obtain a cofinal set \(\set{t_\alpha: \alpha<\lambda}\) where \(<\) and \(\tlt\) agree.
 Note that at each \(t_\alpha\) there exists \(W_{t_\alpha} \subseteq h(t_\alpha)\)
@@ -72,7 +74,7 @@ At every \(\alpha\), \(\abs{X_\alpha} = \abs{W_{t_\alpha}}\),
 because the number of elements we deleted from \(W_{t_\alpha}\) to get \(X_\alpha\)
 is less than \(\abs{W_{t_\alpha}}\), and as a result \(X_\alpha\) is still \(\prec\)-cofinal.
 The deletion forces out the property that
-\[\alpha<\beta \implies \paren{\forall \gamma\in X_\alpha, \delta\in X_\beta}\paren{\gamma<\delta}.\]
+\[\alpha<\beta \implies \paren{\forall \gamma\in X_\alpha, \delta\in X_\beta}\paren{\gamma\prec\delta}.\]
 Finally define \[X = \bigcup_{\alpha<\lambda} X_\alpha\]
 which has cardinality \(\kappa\) and by construction \(<\) agrees with \(\prec\) on \(X\).
 \(\square\)
@@ -151,7 +153,7 @@ By CH \(\paren{\omega_1}^\omega = 2^{\omega^\omega} = 2^\omega = \omega_1\).
 Each \(\omega_n\) is regular so \(\omega < \cf(\omega_n) = \omega_n\), let \(n>2\) and assume result holds for \(n-1\), then
 \[
 {}^\omega \omega_n
-= \bigcup\set{{}^\omega \alpha: \alpha < \omega_n}
+= \bigcup_{\alpha<\omega_n} {}^\omega\alpha
 \]
 note that for each \(\alpha\), \(\alpha^\omega \leq \paren{\omega_{n-1}}^\omega = \omega^{n-1}\) by induction hypothesis.
 This means \(\paren{\omega_n}^\omega \leq \omega_n\).

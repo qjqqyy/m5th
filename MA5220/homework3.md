@@ -130,7 +130,7 @@ and notice that the invariant is preserved throughout.
 
 Define \(X\) as the final union and observe that no 3 points are colinear in \(X\),
 otherwise they would occur in some \(X_l\).
-Also all lines are taken care off so \(X\) intersects every line at exactly two points.
+Also all lines are taken care of so \(X\) intersects every line at exactly two points.
 
 #
 
@@ -138,17 +138,15 @@ Also all lines are taken care off so \(X\) intersects every line at exactly two 
 > the least cardinal such that \(\kappa^\lambda > \kappa\).
 > Show that \(\lambda\) is a regular cardinal.
 
-\(\lambda\) obviously cannot be finite,
-suppose \(\lambda\) is singular, then it cannot be a successor cardinal so it
-has to be a singular cardinal.
-We can decompose \(\lambda\) (in a fashion similar to Homework 2 Q2\) as
+Suppose \(\lambda\) is singular (\(\lambda\) obviously cannot be finite),
+we can decompose \(\lambda\) (in a fashion similar to Homework 2 Q2\) as
 \[ \lambda = \bigcup_{\eta<\cf(\lambda)} X_\eta \]
-where the union is disjoint, and each \(\abs{X_\eta} < \lambda\).
+where each \(\abs{X_\eta} < \lambda\).
 We can verify by chasing elements that
-\[ {}^\lambda\kappa = \prod_{\eta<\cf(\lambda)} {}^{X_\eta}\kappa \]
+\[ \abs{{}^\lambda\kappa} \leq \abs{\prod_{\eta<\cf(\lambda)} {}^{X_\eta}\kappa} \]
 and at each \(\eta\), we have \(\abs{{}^{X_\eta}\kappa} \leq \kappa\)
-which can be used to get the bound \(\kappa^\lambda \leq \kappa^{\cf(\lambda)} = \kappa\)
-as \(\cf(\lambda) < \lambda\). This is a contradiction.
+which can be used to get the bound \(\kappa^\lambda \leq \kappa^{\cf(\lambda)} \leq \kappa\),
+a contradiction.
 
 #
 
@@ -191,5 +189,33 @@ so \(\operatorname{range}(F)\) is a family with size at least \(\kappa^+\) satis
 We let \(\mathcal{A}\) be any subset of \(\operatorname{range}(F)\) with size exactly \(\kappa^+\) and complete the proof by making the observation that
 the property still holds for any infinite subset of \(\operatorname{range}(F)\).
 
+#
 
-<div style="height:50vh"></div>
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\U}{\mathcal{U}}
+> Let \(\mathcal{F}\) be a filter on \(X\). Show that
+> there is a filter \(\mathcal{U}\) on \(X\) such that \(\F\subseteq \U\) and
+> for every \(Y\subseteq X\), either \(Y\in\U\) or \(X\setminus Y\in \U\).
+
+Define
+\(\mathscr{A} = \set{\mathcal{G}: \mathcal{G}\text{ is a filter on }X} \),
+which is partially ordered by inclusion.
+Let \(C\subseteq \mathscr{A}\) be a chain and we want to show that \(\bigcup C \in \mathscr{A}\),
+that is \(\bigcup C\) is a filter on \(X\),
+\newcommand{\G}{\mathcal{G}}
+
+i. for all \(\G\in C\), \(0\notin \G\) and \(X\in \G\), so \(0\notin \bigcup C\) and \(X\in \bigcup C\),
+
+ii. for all \(A,B\in\bigcup C\), let \(A\in \G_A\in C\) and \(B\in \G_B\in C\), since \(C\) is a chain without loss of generality
+let \(\G_A\subseteq \G_B\), then \(A\cap B\in \G_B\) which means \(A \cap B \in \bigcup C\),
+
+iii. for all \(A\subseteq B\subseteq X\), if \(A\in\bigcup C\) then let \(A\in \G_A\in C\), then \(B\in G_A\) which means \(B \in \bigcup C\).
+
+As every chain \(C\) is bounded above by \(\bigcup C\) in \(\mathscr{A}\),
+we can apply Zorn's lemma and let \(\U\supseteq\F\) be the maximal element above \(\F\) in \(\mathscr{A}\).
+
+We now show that \(\U\) has the ultrafilter property.
+Suppose not, let \(Y\subseteq X\) with \(Y\notin \U\) and \(X\setminus Y\notin \U\).
+Let \(Z\in\U\) and we have \(Z\cap Y \ne 0\), otherwise \(Z \subseteq X\setminus Y\).
+Since \(Y\) meets every \(Y\in\U\) on a nonempty set the upward closure of \(\U\cup\set{Z}\) is a filter which contradicts
+maximality of \(\U\).

@@ -69,14 +69,12 @@ suppose \(\lambda\) is singular, then it cannot be a successor cardinal so it
 has to be a singular cardinal.
 We can decompose \(\lambda\) (in a fashion similar to Homework 2 Q2\) as
 \[ \lambda = \bigcup_{\eta<\cf(\lambda)} X_\eta \]
-where the union is disjoint, and \(\eta<\xi<\cf(\lambda)\) implies
-\(\abs{X_\eta} < \abs{X_\xi}<\lambda\).
-Now it is clear that
-\[ {}^\lambda\kappa = \bigcup_{\eta<\cf(\lambda)} {}^{X_\eta}\kappa \]
-which gives
-\[ \kappa^\lambda = \sup_{\eta<\cf(\lambda)} \kappa^{\abs{X_\eta}} \]
-Then \(\kappa < \kappa^\lambda\) means that there is some \(\eta<\cf(\lambda)\)
-such that \(\kappa < \kappa^{\abs{X_\eta}}\), but \(\abs{X_\eta} < \lambda\) contradicting minimality.
+where the union is disjoint, and each \(\abs{X_\eta} < \lambda\).
+We can verify by chasing elements that
+\[ {}^\lambda\kappa = \prod_{\eta<\cf(\lambda)} {}^{X_\eta}\kappa \]
+and at each \(\eta\), we have \(\abs{{}^{X_\eta}\kappa} \leq \kappa\)
+which can be used to get the bound \(\kappa^\lambda \leq \kappa^{\cf(\lambda)} = \kappa\)
+as \(\cf(\lambda) < \lambda\). This is a contradiction.
 
 #
 

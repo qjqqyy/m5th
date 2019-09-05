@@ -33,7 +33,7 @@ meta = [ (texToPdf,   [ "CS1010"
                       , "MA3205"
                       , "MA5220"
                       , "CS4232"
-                      , "MA3110S"
+                      , "MA3110S/h", "MA3110S/t"
                       , "CS2102"
                       , "CS2105"
                       , "CS2106"
@@ -44,7 +44,7 @@ meta = [ (texToPdf,   [ "CS1010"
                       ])
        ]
 
-numberSectionDisabled = ["MA2101S", "MA2104/a", "MA2108S", "MA3205"]
+numberSectionDisabled = ["MA2101S", "MA2104/a", "MA2108S", "MA3205", "MA3110S/h"]
 
 cname :: Maybe String
 cname = Just "m5th.b0ss.net"

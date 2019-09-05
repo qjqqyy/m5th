@@ -11,12 +11,86 @@ date: 6th September 2019
 \newcommand{\pred}[1]{\operatorname{\mathsf{pred}}\left(#1\right)}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\cf}{\operatorname{cf}}
+\newcommand{\range}{\operatorname{range}}
 
 #
 
 > Suppose \(\angle{X_n:n<\omega}\) is a sequence of infinite sets.
 > Show that there is a sequence \(\angle{Y_n:n<\omega}\) of pairwise disjoint
 > sets such that for every \(n<\omega\), \(Y_n\subseteq X_n\) and \(\abs{Y_n} = \abs{X_n}\).
+
+Let the cardinalities of the sets in the sequence be \(\omega\leq \kappa_1 < \kappa_2 < \kappa_3 < \dots\),
+then we can easily obtain a sequence where \(Y_i\subseteq X_i\) and \(\abs{Y_i} \ne \abs{Y_j} \implies Y_i \cap Y_j = 0\).
+This can be achieved by doing
+
+* for all \(i\) where \(\abs{X_i} = \kappa_1\), set \(Y_i = X_i\),
+
+* for each \(n > 2\), for all \(i\) where \(\abs{X_i} = \kappa_n\),
+  set \(Y_i = X_i \setminus\bigcup\set{X_j: \abs{X_j} \leq \kappa_{n-1}}\).
+
+Hence without loss of generality we can assume that in the sequence, sets of different cardinalities do not intersect.
+By refining the resultant sequence at each cardinality,
+we can reduce to the case where all the \(X_i\) are of the same size \(\kappa\).
+Then it suffices to prove that given a sequence \(\angle{X_n:n<\omega}\) of subsets of \(\kappa\) where
+\(\abs{X_i} = \kappa\) for all \(i\), we can create a disjoint refinement.
+
+\newcommand{\acc}{\operatorname{acc}}
+Given two sequences \(A = \angle{A_n:n<\omega}\) and \(B = \angle{b_n:n<\omega}\)
+we let \(\acc(A,B) = \angle{A_n\cup\set{b_n}: n<\omega}\).
+
+Define \(f:\kappa \to {}^\omega\kappa\) by
+
+\begin{align*}
+f(0) &= \angle{\set{\min(X_0)},0, 0, \dots} \\
+f(n+1) &=
+\left(
+\begin{aligned}
+\textbf{ let } D &= \bigcup \range(f(n)) \\
+y_0 &= \min(X_0\setminus D) \\
+y_1 &= \min(X_1\setminus D\setminus\set{y_0}) \\
+y_2 &= \min(X_2\setminus D\setminus\set{y_0,y_1}) \\
+&\dots\\
+y_{n+1} &= \min(X_{n+1}\setminus D\setminus\set{y_0,y_1,\dots,y_n}) \textbf{ in }\\
+ &\acc\paren{f(n), \angle{{y_0},{y_1},\dots,{y_{n+1}},0,0,\dots}}
+\end{aligned}
+\right)
+\end{align*}
+whenever \(n<\omega\),
+\[ f(\alpha)(i) = \bigcup_{\beta<\alpha} f(\beta)(i) \]
+whenever \(\alpha\) is a limit ordinal and \(i<\omega\), and
+\begin{align*}
+f(\alpha+1) &=
+\left(
+\begin{aligned}
+\textbf{ let } D &= \bigcup \range(f(\alpha)) \\
+y_0 &= \min(X_0\setminus D) \\
+y_{n+1} &= \min\paren{X_{n+1}\setminus\paren{D\cup\set{y_0,y_1,\dots,y_n}}} \textbf{ in }\\
+&\acc\paren{f(\alpha), \angle{y_i: i<\omega}}
+\end{aligned}
+\right)
+\end{align*}
+whenever \(\alpha\geq\omega\).
+
+Finally let \(Y_i = \bigcup_{\beta<\kappa} f(\beta)(i)\) and the pairwise disjointedness and containment properties arise from construction.
+
+For each \(n<\omega\), we see that \(f(n+1)\) is well-defined, as \(\abs{D} < \omega \leq \abs{X_i}\) for any \(X_i\).
+Next we see that in the sequence \(f(\omega)\), each \(f(\omega)(i)\) has size \(\omega\),
+this observation also completes the proof in the case \(\kappa=\omega\).
+
+For any \(i<\omega\) we want to show that \(\abs{\alpha} \geq \abs{f(\alpha)(i)}\) for all \(\alpha\geq\omega\).
+Proceed by induction and the successor case is obvious.
+When \(\alpha\) is a limit, then
+\[
+\abs{f(\alpha)(i)} = \abs{\bigcup_{\beta<\alpha} f(\beta)(i)}
+= \abs{\alpha}
+\]
+as each \(\abs{f(\beta)(i)} \leq \abs{\beta}\leq\abs{\alpha}\).
+This means \(f(\alpha+1)\) is also well defined for any \(\alpha\geq\omega\) as \(\abs{D} \leq \abs{\alpha} < \kappa\).
+
+Note that we are in the case that \(\kappa>\omega\) and we still need to prove that for each \(i<\omega\), \(\abs{Y_i} = \abs{\kappa}\),
+it suffices to define an injective function \(g: \paren{\kappa\setminus\omega} \to Y_i\),
+which we can do by defining \(g(\alpha)\) to be the only element of \(f(\alpha+1)(i)\setminus f(\alpha)(i)\).
+
 
 #
 

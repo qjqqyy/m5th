@@ -23,11 +23,34 @@ date: 13th September 2019
 > Suppose \(\A\) is an uncountable family of pairwise disjoint non-stationary subsets of \(\omega_1\).
 > Show that there exists \(\B\subseteq\A\) such that \(\B\) is uncountable and \(\bigcup\B\) is a non-stationary subset of \(\omega_1\).
 
-Let's try dualing the statement,
-Suppose \(\A^* \subseteq \Club(\omega_1)\) uncountable such that every pair unions to get \(\omega_1\).
-We want \(\B \subseteq\A^*\) also uncountable such that \(\bigcap\B\) is in \(\Club(\omega_1)\).
+Suppose for a contradiction that for all \(\B\subseteq \A\), whenever
+\(\B\) is uncountable, \(\bigcup\B\) is stationary subset of \(\omega_1\).
 
-Diagonal intersection, or Fodor's lemma.
+__Claim.__ We can refine \(\A\) into an uncountable sequence \(\B = \angle{B_\alpha: \alpha < \omega_1}\) where each \(B_\alpha\in A\) such that
+\[ \alpha < \beta \implies \alpha < \min A_\alpha < \min A_\beta .\]
+
+Let \(\angle{A_\alpha: \alpha < \abs{\A}}\) be a well-ordering of the subsets in \(\A\),
+first recursively define an increasing function \(f:\omega_1\to\omega_1\) which we use to obtain a subsequence \(\B\).
+
+\[
+f(0) = \begin{cases}
+0 &\text{if } \min A_0 > 0 \\
+1 &\text{otherwise}
+\end{cases}\]
+and when \(f(\alpha)\) is defined for all \(\alpha<\beta\),
+let \(\mu = \sup\set{\min(A_{f\alpha}): \alpha<\beta}\) and define
+\[
+f(\beta) = \min\set{\gamma: \beta<\gamma \text{ and } \sup\set{\mu,\beta} < \min A_{\gamma} }
+\]
+and note that \(f(\beta)\) is well defined as both \(\mu,\beta\) are countable and by pairwise disjointedness of \(A_\alpha\)'s I can always find a suitable \(\gamma\) below \(\omega_1\).
+We can now verify that \(\B = \angle{B_\alpha = A_{f(\alpha)}: \alpha<\omega_1}\) is an uncountable subsequence of \(\A\).
+
+Define \(g: \bigcup_{\alpha<\omega_1} B_\alpha \to \omega_1\) as
+\[ g(\gamma) = \beta \text{ where } \gamma \in B_\beta \]
+which is regressive by construction as \(\beta < \min B_\beta \leq \gamma\).
+Then by Fodor's lemma there exists a stationary \(T\subseteq \bigcup_{\alpha<\omega_1} B_\alpha\) where \(g\upharpoonright T\) is constant,
+but if the restriction is constant it means that \(T\subseteq B_\beta\) for some \(\beta<\omega_1\), which means \(T\) is non-stationary.
+
 
 #
 
@@ -35,7 +58,33 @@ Alternate the sequences.
 
 #
 
-Ulam matrix
+> Suppose \(\kappa\) is an infinite cardinal.
+> For each \(\alpha<\kappa^+\), fix a one-one function \(f_\alpha: \alpha\to\kappa\).
+> For each \(\xi<\kappa\) and \(\alpha<\kappa^+\), define \(A_\alpha^\xi = \set{\beta<\kappa^+:\alpha<\beta \text{ and } f_\beta(\alpha) = \xi}\).
+
+#### (a) For every \(\xi<\kappa\), \(\angle{A_\alpha^\xi:\alpha<\kappa^+}\) is a sequence of pairwise disjoint sets. {-}
+
+Fix \(\xi<\kappa\) and compare \(A^\xi_\alpha\) and \(A^\xi_\beta\) where \(\alpha < \beta < \kappa^+\).
+If they intersect, then there is a \(\gamma\in (\beta,\kappa^+) \) where \(f_\gamma(\alpha) = \xi\) and \(f_\gamma(\beta) = \xi\).
+This cannot happen because \(f_\gamma\) is one-one.
+
+#### (b) For every \(\alpha<\kappa^+\), \(\bigcup\set{A_\alpha^\xi: \xi<\kappa} = \kappa^+\setminus\left(\alpha+1\right)\). {-}
+
+Each \(\A_\alpha^\xi\) is a subset of \(\kappa^+\setminus\left(\alpha+1\right)\) by construction.
+Now let \(\beta\in(\alpha, \kappa^+)\), then let \(\xi = f_\beta(\alpha) < \kappa\)
+and by definition we see that \(\beta\in A_\alpha^\xi\).
+
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\I}{\mathcal{I}}
+
+#### (c) There is a family \(\F\) of pairwise disjoint stationary subsets of \(\kappa^+\) such that \(\abs{\F} = \kappa^+\). {-}
+
+Let \(\I\) be the non-stationary ideal on \(\kappa^+\).
+For any \(\alpha<\kappa^+\), we cannot have \(\paren{\forall\xi<\kappa}\paren{A_\alpha^\xi \in \I}\) or else the union would also be in \(\I\) as \(\I\) is \(\kappa^+\)-complete.
+Let \(h:\kappa^+\to\kappa\) such that \(A_\alpha^{h(\alpha)} \notin \I\),
+and there is a \(\xi\) where \(\abs{h^{-1}\set{\xi}} = \kappa^+\),
+otherwise \(\kappa^+\) would be a union of \(\kappa\)-many sets of size at most \(\kappa\).
+Now let \(\F = \set{A_\alpha^\xi: h(\alpha) = \xi}\), pairwise disjointedness is due to part (a) and each \(A_\alpha^\xi\) is non-stationary by our choice of \(h\).
 
 #
 

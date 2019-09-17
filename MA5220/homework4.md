@@ -52,9 +52,51 @@ Then by Fodor's lemma there exists a stationary \(T\subseteq \bigcup_{\alpha<\om
 but if the restriction is constant it means that \(T\subseteq B_\beta\) for some \(\beta<\omega_1\), which means \(T\) is non-stationary.
 
 
+
 #
 
-Alternate the sequences.
+\newcommand{\Lim}{\operatorname{Lim}}
+> Let \(\Lim(\omega_1)\) denote the set of limit ordinals in \(\omega_1\).
+> Suppose \(\angle{A_\alpha:\alpha\in\Lim(\omega_1)}\) satisfies the following
+>
+> i. For every \(\alpha\in\Lim(\omega_1)\), \(A_\alpha\) is an unbounded subset of \(\alpha\) of order type \(\omega\).
+> ii. For every uncountable \(A\subseteq \omega_1\), there exists \(\alpha\in\Lim(\omega_1)\) such that \(A_\alpha\subseteq A\).
+>
+> Show that for every uncountable \(A\subseteq\omega_1\), the set
+> \(\set{\alpha\in\Lim(\omega_1): A_\alpha\subseteq A}\) is stationary in \(\omega_1\).
+
+Let \(A\subseteq \omega_1\) be uncountable, suppose for a contradiction
+the set \(\set{\alpha\in\Lim(\omega_1):A_\alpha \subseteq A}\) is non-stationary,
+that is its complement contains a club.
+So there exists \(C\subseteq\omega_1\) club such that
+\(\paren{\forall\alpha\in C}\paren{\alpha\notin \Lim(\omega_1)\lor A_\alpha\nsubseteq A}\).
+By considering \(C\cap \Lim(\omega_1)\), which is the intersection of 2 clubs,
+we can simplify the condition to
+\[\paren{\forall\alpha\in C}\paren{A_\alpha\nsubseteq A}.\]
+Recursively define \(f:\omega_1\to A\) as
+\[ f(0) = \left(\begin{aligned}
+\textbf{let } & \mu = \min\set{\alpha\in\Lim(\omega_1):A_\alpha\subseteq A} \textbf{ in} \\
+&\min A_{\mu}
+\end{aligned}\right)\]
+and when \(f\) is defined for all \(\alpha<\beta\),
+\[ f(\beta) = \left(\begin{aligned}
+\textbf{let }& \gamma_1 = \sup\set{f(\alpha):\alpha<\beta}\\
+&\gamma_2 = \min(C\setminus\gamma) \\
+&A' = A\setminus\gamma_2 \\
+&\mu = \min\set{\alpha\in\Lim(\omega_1): A_\alpha\subseteq A'} \textbf{ in} \\
+&\min A_\mu
+\end{aligned}\right)\]
+in both cases \(f\) is well-defined as \(\mu\) always exists since \(A'\) remains unbounded.
+Now observe that by construction \(f\) has the property
+\[ \alpha<\beta \implies \paren{\exists\gamma\in C}\paren{f(\alpha) < \gamma < f(\beta)}. \]
+Let \(B = \operatorname{range}(f)\subseteq A\), which is uncountable, let
+\(\alpha\in\Lim(\omega_1)\) such that \(A_\alpha\subseteq B\).
+As the order type of \(A_\alpha\) is \(\omega\) we enumerate it as an increasing sequence
+\(A_\alpha = \set{\beta_0,\beta_1, \dots}\).
+Then for each \(n\in\omega\) use property of \(f\) to choose \(\gamma_n \in C\) such that
+\(\beta_n < \gamma_n < \beta_{n+1}\).
+Then \(\sup\set{\beta_n:n\in\omega} = \sup\set{\gamma_n:n\in\omega} = \alpha\).
+As \(C\) is a club \(\alpha \in C\), this is a contradiction as we chose \(\alpha\) to satisfy \(A_\alpha\subseteq B\subseteq A\) but \(A_\alpha \nsubseteq A\) by our choice of \(C\).
 
 #
 

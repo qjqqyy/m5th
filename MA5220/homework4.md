@@ -65,6 +65,8 @@ but if the restriction is constant it means that \(T\subseteq B_\beta\) for some
 > Show that for every uncountable \(A\subseteq\omega_1\), the set
 > \(\set{\alpha\in\Lim(\omega_1): A_\alpha\subseteq A}\) is stationary in \(\omega_1\).
 
+**TODO:** untangle contradiction argument
+
 Let \(A\subseteq \omega_1\) be uncountable, suppose for a contradiction
 the set \(\set{\alpha\in\Lim(\omega_1):A_\alpha \subseteq A}\) is non-stationary,
 that is its complement contains a club.

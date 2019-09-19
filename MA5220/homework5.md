@@ -16,6 +16,7 @@ date: 20th September 2019
 \newcommand{\Club}{\operatorname{Club}}
 \newcommand{\ex}[2]{\paren{\exists #1}\paren{#2}}
 \newcommand{\fa}[2]{\paren{\forall #1}\paren{#2}}
+\newcommand{\rank}{\operatorname{rank}}
 
 #
 
@@ -23,9 +24,24 @@ date: 20th September 2019
 > \[\paren{\forall x,y\in X_1}\paren{x\in y \iff f(x)\in f(y)}.\]
 > Show that \(X_1 = X_2\) and \(f\) is the identity function on \(X_1\).
 
-induct on rank?
+Case when \(X_1 = X_2 = 0\) is trivial,
+suppose \(X_1, X_2\) are nonempty.
 
-<div style="height:50vh"></div>
+We first show that \(0 \in X_1\), \(0 \in X_2\) and \(f(0) = 0\).
+By foundation there exists \(x\in X_1\) with \(x\cap X_1 = 0\), then
+as \(x\subseteq X_1\) due to transitivity \(x \cap X_1 = x = 0\).
+Same argument shows \(0 \in X_2\).
+Now \(f(0) = 0\), because if \(f(0) \ne 0\), then let \(y \in f(0)\) which by bijectivity means \(f^{-1}(y) \in 0\) which can never happen.
+
+Suppose for all \(x\in X_1\) with \(\rank(x) < \alpha\), \(f(x) = x\).
+Let \(y\in X_1\) with \(\rank(y) = \alpha\), we show that \(y = f(y)\).
+Let \(x\in y\), then as \(\rank(x) < \rank(y) = \alpha\) it follows that \(f(x) = x \in f(y)\).
+Suppose the inclusion is proper, that is \(y \subsetneq f(y)\),
+then let \(z \in f(y)\) but \(z\notin y\), then
+\(f^{-1}(z) \in y\) so \(\rank(f^{-1}(z) < \alpha\), which means
+\(f(f^{-1}(z)) = z = f^{-1}(z)\), so \(z\in y\) which contradicts.
+
+By letting the induction run vacuously past \(\rank(X_1)\) we can see that \(f\) is identity function, then bijectivity of \(f\) gives us that \(X_1 = X_2\).
 
 #
 
@@ -57,7 +73,6 @@ all of which are \(\Delta_0\).
 #
 
 \newcommand{\trcl}{\operatorname{trcl}}
-\newcommand{\rank}{\operatorname{rank}}
 
 > Let \(H_\kappa = \set{x: \abs{\trcl(x)} <\kappa}\).
 >
@@ -79,7 +94,7 @@ Conversely let \(\alpha \in H_\kappa\) be an ordinal, we want to show that \(\al
 
 __Observation.__ For all \(\alpha\), \(V_\alpha\) is transitive.
 
-When \(\alpha = 0\), \(V_\alpha = 0\) is trivially transitive.
+\(V_0 = 0\) is trivially transitive.
 Suppose \(V_\alpha\) is transitive, let \(x\in V_{\alpha+1}\),
 then \(x\subseteq V_\alpha\), so let \(y\in x\subseteq V_\alpha\),
 by transitivity of \(V_\alpha\) \(y\subseteq V_\alpha\) therefore \(y\in V_{\alpha+1}\) which completes the proof for successor case.
@@ -93,8 +108,15 @@ Conversely \(x\subseteq \trcl(x) \subseteq V_{\alpha}\).
 This result tells us that for all \(x\), \(\rank(x) = \rank(\trcl(x))\).
 
 Now let \(x\in H_\kappa\), it suffices to show \(\rank(\trcl(x)) < \kappa\).
-Suppose on the contrary that \(\rank(\trcl(x)) \geq \kappa\),
-then there exists a \(\in\)-chain \(C\subseteq \trcl(x)\) with \(\abs{C}\geq \kappa\), which contradicts \(\abs{\trcl(x)} <\kappa\).
+Let \(t = \trcl(x)\) and \(S = \set{\rank(y): y\in t}\) which is a set of ordinals.
+Let \(\alpha = \min \mathbf{ORD}\setminus S\), then \(\alpha \subseteq S\).
+We claim that \(\alpha = S\), then \(\alpha = \rank(t) < \kappa\) and we will be done.
+
+To prove the claim suppose the inclusion is proper, let \(\beta >\alpha\) be minimum such that \(\beta\in S\),
+then \(\beta = \rank(y)\) for some \(y \in t\), which means
+\[ \beta = \sup_{z\in y} \paren{\rank(z) + 1} \leq \alpha \]
+by transitivity \(z\in t\) so \(\rank(z) \in S\), and \(\rank(z) < \rank(y) = \beta\) which by our choice of \(\beta\) means \(\rank(z) < \alpha\),
+so the upper bound holds, this contradicts \(\beta > \alpha\).
 
 > d. For every regular uncountable cardinal \(\kappa\),
 >    \(H_\kappa = V_\kappa\) iff \(\kappa\) is strongly inaccessible.
@@ -119,4 +141,5 @@ By part (c) we only need to show that \(V_\kappa\subseteq H_\kappa\).
 Let \(x\in V_\kappa\), then \(x\in V_\alpha\) for some \(\alpha < \kappa\).
 Since \(V_\alpha\) is transitive, \(x\subseteq \trcl(x)\subseteq V_\alpha\),
 then \(\abs{\trcl(x)} \leq \abs{V_\alpha} \leq \beth_\alpha < \kappa\).
-The fact used that \(\abs{V_\alpha} = \beth_\alpha\) can be proven easily with induction.
+Where the inequality \(\abs{V_\alpha}\leq \beth_\alpha\) is a weak form of
+\(\abs{V_{\omega+\alpha}} = \beth_\alpha\), which follows from induction.

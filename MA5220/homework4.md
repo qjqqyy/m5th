@@ -1,7 +1,7 @@
 ---
 title: MA5220 Homework 4
 author: Qi Ji
-date: 13th September 2019
+date: 20th September 2019
 ...
 
 \newcommand{\set}[1]{\left\{#1\right\}}
@@ -65,16 +65,13 @@ but if the restriction is constant it means that \(T\subseteq B_\beta\) for some
 > Show that for every uncountable \(A\subseteq\omega_1\), the set
 > \(\set{\alpha\in\Lim(\omega_1): A_\alpha\subseteq A}\) is stationary in \(\omega_1\).
 
-**TODO:** untangle contradiction argument
-
-Let \(A\subseteq \omega_1\) be uncountable, suppose for a contradiction
-the set \(\set{\alpha\in\Lim(\omega_1):A_\alpha \subseteq A}\) is non-stationary,
-that is its complement contains a club.
-So there exists \(C\subseteq\omega_1\) club such that
-\(\paren{\forall\alpha\in C}\paren{\alpha\notin \Lim(\omega_1)\lor A_\alpha\nsubseteq A}\).
+Let \(A\subseteq \omega_1\) be uncountable,
+and let \(C\subseteq\omega_1\) be a club.
+We want to show that
+\(\paren{\exists\alpha\in C}\paren{\alpha\in \Lim(\omega_1)\land A_\alpha\subseteq A}\).
 By considering \(C\cap \Lim(\omega_1)\), which is the intersection of 2 clubs,
-we can simplify the condition to
-\[\paren{\forall\alpha\in C}\paren{A_\alpha\nsubseteq A}.\]
+we can without loss of generality let \(C\subseteq \Lim(\omega_1)\) and simplify the condition to
+\[\paren{\exists\alpha\in C}\paren{A_\alpha\subseteq A}.\]
 Recursively define \(f:\omega_1\to A\) as
 \[ f(0) = \left(\begin{aligned}
 \textbf{let } & \mu = \min\set{\alpha\in\Lim(\omega_1):A_\alpha\subseteq A} \textbf{ in} \\
@@ -98,7 +95,7 @@ As the order type of \(A_\alpha\) is \(\omega\) we enumerate it as an increasing
 Then for each \(n\in\omega\) use property of \(f\) to choose \(\gamma_n \in C\) such that
 \(\beta_n < \gamma_n < \beta_{n+1}\).
 Then \(\sup\set{\beta_n:n\in\omega} = \sup\set{\gamma_n:n\in\omega} = \alpha\).
-As \(C\) is a club \(\alpha \in C\), this is a contradiction as we chose \(\alpha\) to satisfy \(A_\alpha\subseteq B\subseteq A\) but \(A_\alpha \nsubseteq A\) by our choice of \(C\).
+As \(C\) is closed \(\alpha \in C\).
 
 #
 

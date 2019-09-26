@@ -89,4 +89,63 @@ then the result follows.
 
 # Homework 5
 
+## Q1
+
+Clearly \(f(0) = 0\) and \(f(s) = 0\) for all \(s<0\).
+By wolfram alpha, \(f(1) = 0\), \(f(2) = \frac{e}2\) and \(f(3) = \infty\).
+Domain should be \((-\infty, 2]\).
+How to eyeball limit?
+
+## Q2
+
+First we note that for all \(n\), as long as \(x \geq 0\), \(P_n(x) > 0\).
+Also by Taylor's theorem on \(e^{-x}\) we have for any \(n\), there exists \(c\in (0,x)\) such that
+\[ e^{-x} = P_n(-x) + \frac{(-1)^{n+1} e^{-c}}{(n+1)!}x^{n+1}. \]
+
+### (i)
+
+If \(n\) is even, for any \(x > 0\) then there exists \(c\in (0,x)\) such that
+\[ P_n(-x) = e^{-x} + \frac{e^{-c}}{(n+1)!}x^{n+1} >0 \]
+which completes the proof.
+
+### (ii)
+
+If \(n\) is odd, then we can evaluate the derivative of \(P_n(x)\), which turns out to be \(P_{n-1}(x)\)
+(case \(n=1\) is obvious). By our earlier result in part (i) \(P_{n-1} > 0\) so \(P_n(x)\) cannot have two or more zeroes.
+\(P_n\) has to have a root though, since it is an odd degree polynomial.
+
+### (iii)
+
+Fix \(n\) and we compare \(P_{2n+1}\) with \(P_{2n-1}\), specifically
+\[ P_{2n+1}(x) = P_{2n-1}(x) + \frac{x^{2n}}{(2n)!} + \frac{x^{2n+1}}{(2n+1)!} \]
+it suffices to show that
+\(P_{2n+1}(x_{n-1}) > 0\), then by earlier result that \(P_{2n+1}\) has strictly positive derivative we can conclude that \(x_n < x_{n-1}\).
+To show that \(P_{2n+1}(x_{n-1}) > 0\) we only have to check that
+\[ x_{n-1}^{2n}(2n+1) + x_{n-1}^{2n+1} > 0 \]
+which can be reduced to just showing that \(-(2n+1) < x_{n-1} < 0\), and note that \(x_{n-1}\) being negative was shown earlier.
+
+Suppose for a contradiction \(x_{n-1} \leq -(2n+1)\), then there exists \(c \in (x_{n-1}, 0)\) such that
+\[ P_{2n-1}(x_{n-1}) = e^{x_{n-1}} - \frac{e^c}{(2n)!} x_{n-1}^{2n} \]
+but \(e^c \geq e^{x_{n-1}}\) so
+\[ P_{2n-1}(x_{n-1}) \leq e^{x_{n-1}}\left[
+1 - \frac{x_{n-1}^{2n}}{(2n)!}
+\right]\]
+and \(x_{n-1}^{2n} \geq (2n+1)^{2n} \geq (2n)^{2n} > (2n)!\) for all \(n>0\), which means \(P_{2n-1}(x_{n-1}) < 0\).
+
+## Q3
+
+By taking Taylor's expansions at \(\frac{a+b}2\), there exists
+\(c\in (\frac{a+b}2, b), d\in (a,\frac{a+b}2)\) such that
+\begin{align*}
+f(b) &= f\left(\frac{a+b}2\right) + \frac{f''(c)}2 \cdot\left(\frac{b-a}2\right)^2 \\
+f(a) &= f\left(\frac{a+b}2\right) + \frac{f''(d)}2 \cdot\left(\frac{b-a}2\right)^2
+\end{align*}
+then
+\begin{align*}
+f(b) - f(a) &= \frac{f''(d) - f''(c)}8 (b-a)^2 \\
+\abs{f''(d) - f''(c)} &= \frac{8}{(b-a)^2}\abs{f(b)-f(a)}
+\end{align*}
+and since \(\max\left(\abs{f''(c)},\abs{f''(d)}\right) \geq \dfrac12\abs{f''(d)-f''(c)}\),
+and by choosing \(\xi\in\set{c,d}\) such that \(\abs{f''(\xi)} = \max\left(\abs{f''(c)},\abs{f''(d)}\right)\) we complete the proof.
+
 <div style="height:50vh"></div>

@@ -7,6 +7,7 @@ date: 27th September 2019
 \newcommand{\set}[1]{\left\{#1\right\}}
 \newcommand{\abs}[1]{\left\lvert#1\right\rvert}
 \newcommand{\R}{\mathbb{R}}
+\let\epsilon\varepsilon
 
 # Homework 4
 
@@ -96,6 +97,8 @@ By wolfram alpha, \(f(1) = 0\), \(f(2) = \frac{e}2\) and \(f(3) = \infty\).
 Domain should be \((-\infty, 2]\).
 How to eyeball limit?
 
+<div style="height:50vh"></div>
+
 ## Q2
 
 First we note that for all \(n\), as long as \(x \geq 0\), \(P_n(x) > 0\).
@@ -148,4 +151,89 @@ f(b) - f(a) &= \frac{f''(d) - f''(c)}8 (b-a)^2 \\
 and since \(\max\left(\abs{f''(c)},\abs{f''(d)}\right) \geq \dfrac12\abs{f''(d)-f''(c)}\),
 and by choosing \(\xi\in\set{c,d}\) such that \(\abs{f''(\xi)} = \max\left(\abs{f''(c)},\abs{f''(d)}\right)\) we complete the proof.
 
-<div style="height:50vh"></div>
+# Homework 6
+
+## Q1
+
+Let \(P\) be any partition \(a = x_0 < x_1 < \dots < x_{p-1} < x_p = b\),
+then for all \(j\), by mean value theorem there exists \(d_j \in [x_{j-1}, x_j]\) such that
+\begin{align*}
+x_j^{m+1} - x_{j-1}^{m+1} &= (m+1) d_j^m (x_j - x_{j-1}) \\
+d_j^m &= \frac1{m+1}(x_j^{m+1} - x_{j-1}^{m+1})
+\end{align*}
+and when we let \(\mathbf{d}\) denote \((d_1,d_2,\dots,d_p)\) this sum will telescope as follows
+\begin{align*}
+R(x^m, x, P, \mathbf{d})
+&= \sum_{j=1}^p d_j^m (x_j - x_{j-1}) \\
+&= \frac1{m+1} \sum_{j=1}^p (x_j^{m+1} - x_{j-1}^{m+1}) \\
+&= \frac1{m+1} \left(b^{m+1} - a^{m+1}\right)
+\end{align*}
+This reduces our problem to showing that for any \(\epsilon>0\),
+there exists \(\delta>0\) such that when \(\abs{P} \leq \delta\) and
+\(\mathbf{t} = (t_1, t_2, \dots, t_p)\) such that each \(t_j \in [x_{j-1}, x_j]\)
+\[ \abs{R(x^m, x, P, \mathbf{t}) - R(x^m, x, P, \mathbf{d})} < \epsilon. \]
+
+First observe that \(x^m\) is continuous on \([a,b]\), and is hence uniformly continuous.
+Fix \(\epsilon > 0\) and use uniform continuity of \(x^m\) to get a \(\delta_1\) such that
+whenever \(a \leq x < y \leq b\),
+\[ \abs{x-y} < \delta_1 \implies \abs{x^m - y^m} < \frac{\epsilon}{2(b-a)} \]
+choose \(\delta = \delta_1\) and consider any partition \(\abs{P} \leq \delta\)
+that is uniform enough, in the sense that \(p < \frac{2(b-a)}{\delta}\).
+Let \(\mathbf{t}\) be any set of tags, then
+\begin{align*}
+\abs{R(x^m,x,P,\mathbf{t}) - R(x^m,x,P,\mathbf{d})}
+&= \abs{\sum_{j=1}^p\left(t_j^m - d_j^m\right)(x_j-x_{j-1})} \\
+&\leq p\delta\frac{\epsilon}{2(b-a)} < \epsilon
+\end{align*}
+then reusing the fact proven in Proposition 3.3 (regarding refinements) we get the general case for arbitrary partitions.
+In greater detail, when \(P^* \supset P\) is a refinement and \(\mathbf{t}^*\) is a set of tags for \(P^*\),
+we can check that there are tag assignments \(\mathbf{t}_1, \mathbf{t}_2\) satisfying
+\[ R(x^m,x,P,\mathbf{t}_1) \leq R(x^m,x,P^*,\mathbf{t}^*) \leq R(x^m,x,P,\mathbf{t}_2). \]
+
+## Q2
+
+Suppose \(f\) is continuous at \(x\) but \(f(x) \ne 0\), then by continuity there exists \(\delta_0>0\) such that
+for all \(y \in (x-\delta_0, x+\delta_0)\), we have \(f(y) \in (\frac{f(x)}2, \frac{3f(x)}2)\),
+so in particular \(f(y) > \frac{f(x)}2\).
+
+We now show that the integral \(\int_a^b f\ dx\) cannot be \(0\).
+Let \(\epsilon = \frac{\delta_0 f(x)}2\) and for any \(\delta>0\), we can produce a mesh \(P\) with \(\abs{P} < \delta\)
+such that \(\abs{R(f,x,P)} > \epsilon\).
+Specifically let \(P\) be \(a = x_0 < x_1 < \dots < x_i = x - \delta_0 < \dots < x_j = x + \delta_0 < \dots < x_p = b\)
+and \(P\) just have to be fine enough, then
+\begin{align*}
+\abs{R(f,x,P)}
+&= \sum_{k=1}^p f(t_k)(x_k-x_{k-1}) \\
+&\geq \sum_{k=i}^j f(t_k)(x_k-x_{k-1}) \\
+&\geq \frac{f(x)}2 \sum_{k=i}^j (x_k-x_{k-1}) \\
+&\geq \frac{f(x)}2 (x_j - x_i) > \epsilon
+\end{align*}
+
+## Q3
+
+Let \(c_1, c_2, \dots, c_r \in [a,b]\) enumerate all points which \(f\) and \(g\) differ
+and let \(d = \max\abs{g(c_i) - f(c_i)}\).
+
+Suppose \(f\) is Riemann integrable on \([a,b]\) and let \(\epsilon> 0\)
+let
+\[ L = \int_a^b f(x)\ dx \]
+then by integrability of \(f\) there exists \(\delta_0>0\) such that for all partitions \(P\) with \(\abs{P} < \delta_0\)
+\[ \abs{R(f,x,P) - L} < \frac\epsilon2 \]
+choose \(\delta = \min(\delta_0, \frac{\epsilon}{2rd})\) and let \(P\) be a partition such that \(\abs{P} < \delta\),
+let \(\mathbf{t} = \set{t_1, t_2, \dots, t_p}\) be any tag set
+\begin{align*}
+R(g,x,P,\mathbf{t})
+&= \sum_{k=1}^p g(t_k) (x_k - x_{k-1}) \\
+&= \sum_{k=1}^p \left(f(t_k) + g(t_k) - f(t_k) \right) (x_k - x_{k-1}) \\
+&= R(f,x,P,\mathbf{t}) + \sum_{k=1}^p \left(g(t_k) - f(t_k) \right) (x_k - x_{k-1}) \\
+\abs{R(g,x,P,\mathbf{t}) - L}
+&\leq \abs{R(f,x,P,\mathbf{t}) - L} + \sum_{k=1}^p \abs{g(t_k) - f(t_k)} (x_k - x_{k-1}) \\
+\end{align*}
+note that in the worst case \(\{t_k\}_{k\in\set{1,\dots,p}}\) covers \(\{c_l\}_{l\in\set{1,\dots,r}}\), but we still have the bound
+\[
+\sum_{k=1}^p \abs{g(t_k) - f(t_k)}(x_k-x_{k-1})
+\leq \delta \sum_{l=1}^r \abs{g(c_l) - f(c_l)}
+\leq \delta r d
+\]
+which substituted back gives
+\[ \abs{R(g,x,P,\mathbf{t}) -L} < \frac{\epsilon}2 + \delta rd \leq \epsilon. \]

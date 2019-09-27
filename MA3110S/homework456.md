@@ -92,12 +92,51 @@ then the result follows.
 
 ## Q1
 
-Clearly \(f(0) = 0\) and \(f(s) = 0\) for all \(s<0\).
-By wolfram alpha, \(f(1) = 0\), \(f(2) = \frac{e}2\) and \(f(3) = \infty\).
-Domain should be \((-\infty, 2]\).
-How to eyeball limit?
-
-<div style="height:50vh"></div>
+By Taylor expansion on \(\ln(1+x)\) for any \(x\) there exists \(c\in(0,x)\) such that
+\[ \ln(1+x) = x - \frac{x^2}{2(1+c)^2}. \]
+Then for any \(n\), there exists \(c_1\in(0,\frac1{n+1}), c_2\in(0,\frac1n)\) such that
+\begin{align*}
+n^s\left(
+\left( 1 + \frac1{n+1}\right)^{n+1} -
+\left( 1 + \frac1{n}\right)^{n}
+\right)
+&= n^s\left(
+e^{(n+1)\ln(1+\frac1{n+1})} -
+e^{n\ln(1+\frac1{n})}
+\right) \\
+&= n^s e \left(
+\exp\left(- \frac{1}{2(1+c_1)^2(n+1)}\right)-
+\exp\left(- \frac{1}{2(1+c_1)^2n}\right)
+\right) \\
+\end{align*}
+then there exists
+\(d_1\in \left(- \frac{1}{2(1+c_1)^2(n+1)},0\right), d_2\in \left(- \frac{1}{2(1+c_1)^2n)},0\right)\) such that
+\begin{align*}
+n^s\left(
+\left( 1 + \frac1{n+1}\right)^{n+1} -
+\left( 1 + \frac1{n}\right)^{n}
+\right)
+&= n^s e \left(
+1 - \frac{e^{d_1}}{2(1+c_1)^2(n+1)}
+- 1 + \frac{e^{d_2}}{2(1+c_2)^2n}
+\right) \\
+&= n^s \frac{e}2 \left(
+\frac{e^{d_2}}{n(1+c_2)^2}
+- \frac{e^{d_1}}{(n+1)(1+c_1)^2}
+\right) \\
+&= \frac{n^s}{n(n+1)} \frac{e}2 \left(
+\frac{e^{d_2}(n+1)}{(1+c_2)^2}
+- \frac{e^{d_1}n}{(1+c_1)^2}
+\right) \\
+&= \frac{n^s}{n(n+1)} \frac{e}2 \left(
+n\left(\frac{e^{d_2}}{(1+c_2)^2}
+- \frac{e^{d_1}}{(1+c_1)^2}\right)
++ \frac{e^{d_2}}{(1+c_2)^2}
+\right)
+\end{align*}
+as \(n\to\infty\), each \(c_i, d_i\to 0\) and \(\frac{e^{d_i}}{(1+c_i)^2} \to 1\),
+so \(f(2) = \frac{e}2\) and \(f(s) = 0\) for all \(s < 2\), while the limit diverges for all \(s > 2\),
+and the domain is \((-\infty, 2]\) and range \(\set{0,\frac{e}2}\).
 
 ## Q2
 

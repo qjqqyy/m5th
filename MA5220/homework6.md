@@ -144,4 +144,50 @@ then we can see that \(\gamma \notin V_\alpha\), and it follows from the uniquen
 
 Finally, let \(\psi = \psi_1 \land \psi_2 \land \text{Inf}\) and \(\psi^{V_\alpha}\) will fail for all \(\alpha < \omega_1\) but \(\psi^{V_{\omega_1}}\) will hold.
 
+#
+
+> Assume \(\mathbf{V} = \mathbf{L}\). Show that for every infinite \(\kappa\), \(L_\kappa = H_\kappa\).
+
+It is known that \(L_\omega = V_\omega = H_\omega\), so assume \(\kappa > \omega\).
+
+We first show that \(L_\kappa \subseteq H_\kappa\).
+Let \(x\in L_\kappa\), so \(x\in L_\alpha\) for some \(\alpha <\kappa\),
+then \(x\subseteq \trcl(x)\subseteq L_\alpha\),
+therefore \(\abs{\trcl(x)}\leq \abs{L_\alpha} \leq \abs{\alpha} < \kappa\).
+
+Before we show \(H_\kappa \subseteq L_\kappa\), we cite the following results.
+
+__Lemma 14.7.__
+There is a finite conjunction \(\psi\) of axioms of ZF such that for every transitive \(M\),
+\[\psi^M \land \paren{\mathbf{V} = \mathbf{L}}^M \implies M = L_{o(M)}. \]
+
+__Downward Löwenheim-Skolem (Kunen IV 7.10).__
+Let \(\mathbf{Z}\) be any transitive class and \(\phi\) a sentence, then
+\[ \paren{\forall X\subseteq \mathbf{Z}}\left[
+X\text{ is transitive} \Rightarrow
+\ex{M}{
+X\subseteq M \land
+\phi^M\Leftrightarrow\phi \land
+M\text{ is transitive} \land
+\abs{M} \leq \max\paren{\omega,\abs{X}}
+}
+\right]. \]
+This statement can be proven by applying the standard Löwenheim-Skolem theorem followed by Mostowski collapse.
+
+Now assume \(\mathbf{V} = \mathbf{L}\) and let \(x \in H_\kappa\),
+define \(X = \set{x}\cup \trcl(x)\) which is transitive and \(\abs{X} = \abs{\trcl(x)} + 1 < \kappa\).
+In the case that \(X\) is finite we have \(x\in X\in L_\omega\subseteq L_\kappa\) and we are done.
+So assume \(\abs{X} \geq \omega\) and
+let \(\psi\) be given by Lemma 14.7.
+By downward Löwenheim-Skolem theorem there exists transitive \(M\supseteq X\)
+with \(\abs{M} = \abs{X} < \kappa\) such that
+\[
+\psi \land \paren{\mathbf{V} = \mathbf{L}} \iff
+\psi^M\land\paren{\mathbf{V} = \mathbf{L}}^M
+\]
+and so \(M = L_{o(M)}\).
+Now \(\abs{o(M)} = \abs{L_{o(M)}} = \abs{M} = \abs{X} <\kappa\)
+which gives \(o(M) < \kappa\),
+this means that \(x\in X\subseteq M = L_{o(M)} \subseteq L_\kappa\).
+
 <div style="height:50vh"></div>

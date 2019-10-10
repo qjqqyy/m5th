@@ -190,4 +190,33 @@ Now \(\abs{o(M)} = \abs{L_{o(M)}} = \abs{M} = \abs{X} <\kappa\)
 which gives \(o(M) < \kappa\),
 this means that \(x\in X\subseteq M = L_{o(M)} \subseteq L_\kappa\).
 
+#
+
+> Let \(S\) be any set of axioms extending ZF.
+> Suppose \(\phi_1,\dots,\phi_n\in S\). Show that,
+> if \(\phi_1,\dots,\phi_n\vdash \phi\) for each \(\phi\in S\), then
+> \(S\) is inconsistent.
+> Conclude that ZF is not finitely axiomatizable.
+
+Let \(\chi = \phi_1\land\cdots\land\phi_n\), and we know that
+for every statement \(\phi\) of \(S\),
+the statement \(\chi\Rightarrow\phi\) is logically valid,
+then for every transitive class \(\mathbf{M}\),
+by Fact 10.2 \(\chi^\mathbf{M}\Rightarrow\phi^\mathbf{M}\) is also logically valid.
+We reflect on \(\chi\) and let \(\alpha\) be the smallest such that
+\( \chi^{V_\alpha} \Leftrightarrow \chi \).
+Then since \(\chi\) are axioms, \(\chi^{V_\alpha}\) holds and for each
+statement \(\phi\) in \(S\), \(\phi^{V_\alpha}\) holds too.
+As \(S\) extends ZF, all the basic absoluteness results hold for \(V_\alpha\) and
+\((\)Reflection theorem\()^{V_\alpha}\) holds too, so in particular
+\[
+\ex{\beta \in V_\alpha}
+{\chi^{V_\beta} \iff \chi^{V_\alpha}}
+\]
+as by Lemma 11.12, \(\paren{V_\beta}^{V_\alpha} = V_\beta\cap V_\alpha = V_\beta\).
+This means \(\chi^{V_\beta}\) also holds which contradicts minimality of \(\alpha\), therefore \(S\) is inconsistent.
+This means that if any finite collection of statements \(S\) proves ZF,
+then \(\text{ZF}\cup S\) is inconsistent,
+so any attempt to axiomatize ZF in a finite manner gives rise to an inconsistent theory.
+
 <div style="height:50vh"></div>

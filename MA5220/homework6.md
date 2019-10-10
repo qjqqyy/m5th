@@ -219,4 +219,68 @@ This means that if any finite collection of statements \(S\) proves ZF,
 then \(\text{ZF}\cup S\) is inconsistent,
 so any attempt to axiomatize ZF in a finite manner gives rise to an inconsistent theory.
 
-<div style="height:50vh"></div>
+#
+
+> Show that there is a finite conjunction \(\phi\) of axioms of ZF,
+> such that whenever \(\mathbf{M}\) is a transitive **proper** class satisfying \(\phi\),
+> \(\mathbf{M}\) satisfies all the axioms of ZF.
+
+The only axiom schemes in ZF are replacement and comprehension.
+We first let \(\phi\) be a conjunction of all the other axioms,
+plus whatever instances of replacement and comprehension
+needed to prove all the absoluteness results I invoke below.
+
+\newcommand{\En}{\operatorname{En}}
+For any \(s\in B^m, t\in B^n\), we let
+\(s*t\) denote \(\angle{s(0),\dots,s(m-1),t(0),\dots,t(n-1)}\in B^{m+n}\).
+Using \(\En(m,A,n)\) as in Definition 14.1, we add to \(\phi\)
+the following statements,
+\[ \texttt{C} \equiv
+\paren{\forall m,n\in\omega}
+\paren{\forall B}
+\paren{\forall A\in B, s\in B^n}
+\paren{\exists y}
+\paren{\forall t}
+\left[ t\in y \Leftrightarrow
+t\in B\land \angle{t,A}*s \in \En(m,B,n+2)
+\right]
+\]
+and
+\[ \texttt{R} \equiv
+\paren{\forall m,n\in\omega}
+\paren{\forall B}
+\paren{\forall A\in B, s\in B^n}
+\left[
+\paren{\forall t\in A}
+\paren{\exists ! y}
+\paren{y\in B \land \angle{t,y,A} \in \En(m,B,n+3)} \\
+\Rightarrow
+\paren{\exists Y}
+\paren{\forall t\in A}
+\paren{\exists y\in Y}
+\paren{y\in B \land \angle{t,y,A} \in \En(m,B,n+3)}
+\right]
+\]
+
+Let \(\mathbf{M}\) be a transitive proper class satisfying \(\phi\),
+we only need to check instances of Comprehension and Replacement.
+Let \(M_\alpha = \mathbf{M} \cap V_\alpha\) and note that
+\(\mathbf{M} = \bigcup_{\alpha\in \mathbf{ORD}} M_\alpha\) is a continuous hierarchy.
+
+Let \(\theta(t,A,\overline{v})\) be a formula with free variables as shown.
+Let \(\overline{v}, A\in \mathbf{M}\) and we want
+\[ X = \set{t\in A: \theta^\mathbf{M}(t,A,\overline{v})} \in \mathbf{M}. \]
+First note that \(\mathbf{M}\) satisfies enough of ZF for tuples to exist, so
+\(\angle{v_1,\dots,v_n}\in \mathbf{M}\) too.
+Reflect on \(\theta\land\phi\) to find \(\beta\) above the ranks of \(X,A,s,\omega\)
+such that \(\theta\) and \(\phi\) are absolute between \(M_\beta\) and \(\mathbf{M}\).
+Now \(M_\beta\) is a transitive set and \(\phi^{M_\beta}\) holds,
+also note that \(A,s,\overline{v},\omega \in M_\beta\), \(X\subseteq M_\beta\)
+and \(M_\beta = \paren{V_\beta}^\mathbf{M} \in \mathbf{M}\).
+Appealing to Gödel's construction there is a number \(q\in \omega\) such that
+\(\En(q,M_\beta,n+2)\) is precisely the set of all \((n+2)\)-tuples over \(M_\beta\)
+where \(\theta^{M_\beta}\) holds. Then applying \(\texttt{C}\) with \(m = q\) and \(B = M_\beta\) gives a \(y\in M\) containing precisely the members \(t\in M_\beta\)
+satisfying \(t\in A\) and \(\theta^{M_\beta}(t,A,\overline{v})\),
+but \(\theta\) is absolute between \(M_\beta\) and \(\mathbf{M}\) so \(y = X \in \mathbf{M}\) as desired.
+
+The proof for any instance of foundation uses exactly the same reflection argument, just that we invoke \(\texttt{R}\).

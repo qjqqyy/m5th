@@ -140,4 +140,28 @@ Taking image of \(\pi\) is reversible too as \(\pi\) is primitive recursive and 
 This means \(g^{-1}(G) = X \in \M[G]\), then as \(\omega\in\M[G]\) it follows that \(\type(\omega,X) \in \M[G]\)
 which contradicts part (b) of question 2.
 
-<div style="height:50vh"></div>
+#
+
+> Suppose \(\M\) is a ctm of ZFC and \(\P\) is a poset in \(\M\).
+> Let \(G\) be a filter on \(\P\).
+> Prove that \(G\) is \(\P\)-generic over \(\M\) iff for every maximal antichain \(A\subseteq\P\),
+> if \(A\in\M\), then \(G\cap A\ne 0\).
+
+Let \(G\) be \(\P\)-generic over \(\M\) and let \(A\in\M\) be a maximal antichain of \(\P\).
+Let \(D = \set{p:\ex{a\in A}{p\leq a}}\) and note that \(D\in\M\) and is dense.
+As \(G\) is generic \(G\cap D \ne 0\), then by upward closure of \(G\) we have \(G\cap A\ne 0\).
+
+Conversely suppose for every maximal antichain \(A\subseteq\P\), if \(A\in \M\) then \(G\cap A \ne 0\).
+Let \(D\subseteq \P\) be dense and assume \(D\in \M\).
+By choice let \(A\in \M\) be a maximal antichain of \(D\),
+the result will follow if \(A\) is also a maximal antichain of \(\P\).
+
+By being a maximal antichain in \(D\), it holds that
+\[\fa{p'\in D}{p'\in A \lor \ex{q\in A,r\in D}{r\leq p'\land r\leq q}}, \]
+and we want to show that \(A\) is a maximal antichain in \(\P\), that is
+\[\fa{p\in \P}{p\in A \lor \ex{q\in A,r\in \P}{r\leq p\land r\leq q}}. \]
+Let \(p\in\P\), if \(p\in A\) we are done.
+In the other case as \(D\) is dense let \(p'\in D\) such that \(p' \leq p\).
+Case \(p' \in A\), then we satisfy the condition with witnesses \(q,r\) both set to \(p'\).
+In the only remaining case there exists \(q\in A, r\in D\) such that \(r\) is a common extension of \(p'\) and \(q\),
+then \(r\leq p\) too and the result follows.

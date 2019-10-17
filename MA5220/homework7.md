@@ -8,9 +8,9 @@ date: 18th October 2019
 \newcommand{\abs}[1]{\left\lvert#1\right\rvert}
 \newcommand{\paren}[1]{\left(#1\right)}
 \newcommand{\angle}[1]{\left\langle#1\right\rangle}
-\newcommand{\cf}{\operatorname{cf}}
 \newcommand{\Im}{\operatorname{Im}}
 \newcommand{\range}{\operatorname{range}}
+\newcommand{\type}{\operatorname{type}}
 \newcommand{\trcl}{\operatorname{trcl}}
 \newcommand{\dom}{\operatorname{dom}}
 \newcommand{\ex}[2]{\paren{\exists #1}\paren{#2}}
@@ -100,5 +100,44 @@ and unfolding the definition of \(x\in \sigma[G]\) will make clear the fact that
 
 Foundation holds in any transitive class.
 
+#
+
+> Suppose \(\M\) is a ctm of ZFC and \(\P\) is a poset in \(\M\).
+> Assume that every condition in \(\P\) has two incompatible extensions.
+> Show that there exists a filter \(G\) on \(\P\) such that
+> \(\M[G]\) is not a model of ZFC.
+
+Fix a well-order on \(\P\),
+and by recursion on \(2^*\) define a labelling of some elements of \(\P\) as follows,
+\(p_{\varepsilon} = 1_\P \)
+and when \(w\in 2^*\), let \(q,r\in\P\) with \(q\ne r\), \(q,r\leq p_w\) and \(q\perp r\), then
+\(p_{w0} = \min\set{q,r}\) and \(p_{w1} = \max\set{q,r}\),
+where \(\varepsilon\) denotes the empty string and \(2^*\) denotes all finite sequences over \(2\).
+Let \(R\) denote the set of all labelled elements in \(\P\) and
+for each \(\omega\)-sequence \(s\in 2^\omega\),
+it is natural to associate \(s\) with a filter in \(\P\), specifically
+let \(f(s)\) be the upward closure of  \( \set{p_{s\upharpoonright n}: n\in\omega} \).
+Let \(s\in 2^\omega\) be arbitrary and we show that \(f(s)\) is a filter.
+We have \(1_\P = p_{s\upharpoonright 0} \in f(s)\).
+Given \(n,n'\in\omega\), by our labelling it follows that \(p_{s\upharpoonright \max(n,n')} \in f(s)\) extends both \(p_n, p_{n'}\).
+The last condition is free because we took upward closure.
+
+Let \(\gamma = o(\M)\) and let \(X\subseteq \omega^2\) be a well order of \(\omega\) with \(\type(\omega,X) > \gamma\).
+Let \(\pi: \omega^2\to\omega\) denote the Cantor pairing function which is primitive recursive.
+Let \(g\) be the composition
+\[ \mathcal{P}(\omega^2) \xrightarrow{\Im_\pi} \mathcal{P}(\omega) \xrightarrow{\chi} 2^\omega \xrightarrow{f} \mathcal{P}(\P) \]
+where \(\chi\) denotes the characteristic function.
+Let \(G = g(X)\) which is a filter on \(\P\), then \(G\in \M[G]\).
+
+Suppose for a contradiction \(\M[G]\) is a model of ZFC,
+then \(f^{-1}(G) \in \M[G]\) (note that \(f\) is one-one).
+This is due to \(\M\subseteq \M[G]\) already containing the labelling map \(w\mapsto p_w\) which is also one-one,
+then applying the inverse of labelling to \(G\cap R\) gives us a subset of \(2^*\) where for every pair of strings,
+the shorter one is an initial segment of the longer one.
+Taking its union will uniquely identify an \(\omega\)-sequence, which can be checked to be \(f^{-1}(G)\).
+We can also reverse \(\chi\), given an \(\omega\)-sequence we just look at \(\set{n: (n,1)\in s}\).
+Taking image of \(\pi\) is reversible too as \(\pi\) is primitive recursive and hence definable.
+This means \(g^{-1}(G) = X \in \M[G]\), then as \(\omega\in\M[G]\) it follows that \(\type(\omega,X) \in \M[G]\)
+which contradicts part (b) of question 2.
 
 <div style="height:50vh"></div>

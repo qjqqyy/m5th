@@ -64,4 +64,19 @@ Case \(\phi(\overline{x}) \equiv \lnot\psi(\overline{x})\).
 Case \(\phi(\overline{x}) \equiv \ex{y}{\psi(y,\overline{x})}\).
 :   Same argument as \(\phi \equiv x_1 = x_2\).
 
+#
+
+TODO: later
+
+#
+
+> Suppose \(\M\) is a ctm of ZFC, \(\P\) a posit in \(\M\)
+> and \(G,H\) are \(\P\)-generic filters over \(\M\).
+> Show that either \(G = H\) or there exist \(p\in G\) and \(q\in H\)
+> such that \(p\perp q\).
+
+Assume \(G\ne H\), without loss of generality let \(p \in G\setminus H\).
+By choice in \(\M\) let \(A\in\M\) be a maximal antichain containing \(p\).
+Since \(H\) is generic \(H\cap A\) is nonempty, let \(q\in H\cap A\) and note that \(q \ne p\), the result follows.
+
 <div style="height:50vh"></style>

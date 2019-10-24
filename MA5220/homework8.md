@@ -17,6 +17,7 @@ date: 25th October 2019
 \newcommand{\ex}[2]{\paren{\exists #1}\paren{#2}}
 \newcommand{\fa}[2]{\paren{\forall #1}\paren{#2}}
 \newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Fn}{\operatorname{Fn}}
 \newcommand{\P}{{\mathbb{P}}}
 \newcommand{\M}{\mathbf{M}}
 \newcommand{\forces}{\Vdash}
@@ -97,9 +98,27 @@ Since \(H\) is generic \(H\cap A\) is nonempty, let \(q\in H\cap A\) and note th
 
 #
 
-later
+> Suppose \(\M\) is a ctm of ZFC and \(\paren{\kappa\text{ is a cardinal}}^\M\). Show the following
+>
+> (a) \(\Fn(\omega,\kappa)\in\M\).
 
-<div style="height:50vh"></div>
+As \(\abs{X}<\omega\) is absolute, and
+\[\Fn(X,Y) = \set{p:\abs{p}<\omega \land p\text{ is a function} \land \dom(p)\subseteq X\land \range(p)\subseteq Y},\]
+then for any \(X,Y\in\M\) (including \(\omega, \kappa\)), \(\Fn(X,Y) = \Fn(X,Y)^\M \in \M\).
+
+> (b) Let \(G\) be a \(\Fn(\omega,\kappa)\)-generic filter over \(\M\).
+      Show that \(\paren{\kappa\text{ is countable}}^{\M[G]}\).
+
+Since \(G\in \M[G]\), let \(f = \bigcup G \in \M[G]\).
+It is enough to show that \(f:\omega\to\kappa\) is onto.
+As \(G\) is a filter, \(f\) is a function with \(\dom(f)\subseteq \omega\) and \(\range(f)\subseteq \kappa\).
+To show \(\dom(f) = \omega\) let \(n\in\omega\), consider this set
+\[D_n = \set{p\in\Fn(\omega,\kappa):n\in \dom(p)}\]
+which is dense. By absoluteness \(D_n\in\M\) also, so \(G\cap D_n \ne 0\) and \(n\in\dom(f)\).
+
+To see that \(\range(f) = \kappa\) let \(\lambda\in\kappa\) and similarly consider
+\[E_\lambda = \set{p\in\Fn(\omega,\kappa):\lambda\in\range(p)}\]
+which is also dense (as \(\omega\) is infinite) and in \(\M\) by absoluteness, so \(G\cap E_\lambda \ne 0\) and \(\lambda \in \range(f)\).
 
 #
 

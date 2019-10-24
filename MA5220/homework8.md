@@ -10,6 +10,7 @@ date: 25th October 2019
 \newcommand{\angle}[1]{\left\langle#1\right\rangle}
 \newcommand{\Im}{\operatorname{Im}}
 \newcommand{\range}{\operatorname{range}}
+\newcommand{\cf}{\operatorname{cf}}
 \newcommand{\type}{\operatorname{type}}
 \newcommand{\trcl}{\operatorname{trcl}}
 \newcommand{\dom}{\operatorname{dom}}
@@ -66,7 +67,7 @@ Case \(\phi(\overline{x}) \equiv \ex{y}{\psi(y,\overline{x})}\).
 
 #
 
-> Suppose \(\M\) is a ctn of ZFC and \(\P\) is aposet in \(\M\) in which every condition has two incompatible extensions.
+> Suppose \(\M\) is a ctn of ZFC and \(\P\) is a poset in \(\M\) in which every condition has two incompatible extensions.
 > Show that there exists \(\angle{\angle{M_n, G_n}: n<\omega}\) such that the following hold.
 >
 > (a) \(\M_0 = \M\)
@@ -85,7 +86,7 @@ Define \(\M_{n+1} = \M_n[G_n]\).
 
 #
 
-> Suppose \(\M\) is a ctm of ZFC, \(\P\) a posit in \(\M\)
+> Suppose \(\M\) is a ctm of ZFC, \(\P\) a poset in \(\M\)
 > and \(G,H\) are \(\P\)-generic filters over \(\M\).
 > Show that either \(G = H\) or there exist \(p\in G\) and \(q\in H\)
 > such that \(p\perp q\).
@@ -94,4 +95,55 @@ Assume \(G\ne H\), without loss of generality let \(p \in G\setminus H\).
 By choice in \(\M\) let \(A\in\M\) be a maximal antichain containing \(p\).
 Since \(H\) is generic \(H\cap A\) is nonempty, let \(q\in H\cap A\) and note that \(q \ne p\), the result follows.
 
-<div style="height:50vh"></style>
+#
+
+later
+
+<div style="height:50vh"></div>
+
+#
+
+\newcommand{\cc}{{\mathsf{cc}}}
+\newcommand{\Pp}{\P_{\leq p}}
+\newcommand{\Pq}{\P_{\leq q}}
+\newcommand{\Pr}{\P_{\leq r}}
+\newcommand{\Ps}{\P_{\leq s}}
+> Let \(\P\) be a poset in which every condition has two incompatible extensions.
+> Define \(\cc(\P)\) to be the least cardinal \(\kappa\) such that every antichain in \(\P\) has cardinality \(<\kappa\).
+> For \(p\in \P\), let \(\P_{\leq p} = \set{q\in \P: q\leq p}\). Prove the following.
+>
+> (a) \(\fa{p,q\in\P}{p\leq q\implies \cc(\P_{\leq p}) \leq \cc(\P_{\leq q})}\).
+
+Let \(p,q\in\P\) with \(p\leq q\).
+Since \(\P_{\leq p} \subseteq \P_{\leq q}\) every antichain in \(\Pp\) is also an antichain in \(\Pq\) and the result follows.
+
+
+> (b) For every \(p\in\P\), there exists \(q\leq p\) such that
+      \[\paren{\forall r,s\in\P}\left[\paren{r\leq p\land s\leq q}\implies \cc(\P_{\leq r}) = \cc(\P_{\leq s})\right]\]
+
+Fix \(p\in\P\) and let \(q_0 = p\).
+Suppose \(\fa{r,s\in \P_{\leq q_0}}{\cc(\Pr) = \cc(\Ps)}\), then we are done.
+In the other case let \(r,s\leq q_0\) witness \(\cc(\Pr) < \cc(\Ps)\), then define \(q_1 = r\).
+We can repeat this construction to get \(q_2, q_3,\dots\) and so on but this construction terminates in finitely many stages.
+Otherwise by part (a) we will get an infinite strictly decreasing sequence of ordinals \(\cc(\P_{q_0}) > \cc(\P_{q_1}) > \dots \).
+Now define \(q\) to be \(q_n\) where this construction stops and the result follows.
+
+> (c) Show that \(\cc(\P)\) is a regular cardinal.
+
+Suppose not, let \(\kappa = \cc(\P)\) and \(\lambda = \cf(\kappa) < \kappa\).
+Let \(a(X)\) denote \(\sup\set{\abs{A}: A\subseteq X \text{ is an antichain}}\).
+
+Fix \(M\) a maximal antichain in \(\P\).
+We first claim that for any regular \(\mu < \kappa\), whenever \(\mu > \abs{M}\) there is a \(p\in M\) with \(\cc(\Pp) = \mu\).
+By minimality of \(\kappa = \cc(\P)\) let \(A\) be an antichain with \(\abs{A} = \mu\).
+Regularity of \(\mu\) gives us a \(p\in M\) that is compatible with \(\mu\) many members of \(A\).
+Let \(A_p\) denote everyone in \(A\) compatible with \(p\).
+For each \(q\in A_p\) choose \(r_q \in \Pp\cap\Pq\),
+then \(\set{r_q:q\in A_p}\subseteq \Pp\) is an antichain with size \(\mu\).
+This together with part (a) gives \(\sup\set{a(\Pp):p\in M} = \kappa\).
+
+Now let \(\angle{p_\xi: \xi < \lambda}\) be a sequence in \(M\) such that
+\(a(\P_{\leq p_\xi})\) is increasing and
+\(\sup_{\xi<\lambda} a(\P_{\leq p_\xi}) = \kappa\).
+At each \(\xi < \lambda\) choose \(A_\xi\) an antichain witnessing \(a(\P_{\leq p_\xi})\),
+then \(A = \bigcup_{\xi<\lambda} A_\xi\) is still an antichain in \(\P\) but \(\abs{A} = \kappa\) which contradicts \(\cc(\P)\).

@@ -66,7 +66,22 @@ Case \(\phi(\overline{x}) \equiv \ex{y}{\psi(y,\overline{x})}\).
 
 #
 
-TODO: later
+> Suppose \(\M\) is a ctn of ZFC and \(\P\) is aposet in \(\M\) in which every condition has two incompatible extensions.
+> Show that there exists \(\angle{\angle{M_n, G_n}: n<\omega}\) such that the following hold.
+>
+> (a) \(\M_0 = \M\)
+> (b) For every \(n<\omega\), \(G_n\) is a \(\P\)-generic filter over \(\M_n\) and \(\M_{n+1} = \M_n[G_n]\).
+> (c) There is no ctm \(\mathbf{N}\) of ZFC such that \(o(\mathbf{N}) = o(\M), \M\subseteq\mathbf{N}\) and \(\angle{G_n:n<\omega}\in\mathbf{N}\).
+
+Let \(z\in 2^\omega\) be a real that encodes an ordinal above \(o(\M)\).
+The idea is to make \(G_n\) encode the \(n\)-th bit of \(z\), then no ctm \(\mathbf{N}\) that satisfies (c) can exist since from
+\(\angle{G_n:n<\omega}\) we can recover \(z\) and the ordinal that \(z\) encodes.
+
+Let \(p_0,p_1\in\P\) be two incompatible extensions of \(1_\P\).
+Let \(\M_0 = \M\) and suppose \(\M_n\) has already been defined,
+if \(z(n) = 0\), we repeat the construction of Lemma 16.5 but starting from \(p_0\),
+this gives us a generic filter \(G_n\) which contains \(p_0\), proceed similarly with \(p_1\) if \(z(n) = 1\).
+Define \(\M_{n+1} = \M_n[G_n]\).
 
 #
 

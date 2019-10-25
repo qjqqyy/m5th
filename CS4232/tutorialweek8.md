@@ -18,19 +18,19 @@ First observe that a non-empty palindrome matching \(0^*1^*0^*1^*\) must match o
 
 Now we construct a grammar \((\set{S,T,U,V,W}, \set{0,1}, P, S)\) with the rules given by
 \begin{align*}
-S&\to 0T0 | 1U1 | 0V | 1W \\
+S&\to 0T0 | 1U1 | 0V | 0 | 1W | 1 \\
 T&\to 0T0 | 1W \\
 U&\to 1U1 | 0V \\
-V&\to 0V | \epsilon \\
-W&\to 1W | \epsilon
+V&\to 0V | 0 \\
+W&\to 1W | 1
 \end{align*}
 and we normalise it by adding two more non-terminals \(\set{\overline{0}, \overline{1}}\) and changing the rules to
 \begin{align*}
-S&\to 0T\overline{0} | 1U\overline{1} | 0V | 1W \\
+S&\to 0T\overline{0} | 1U\overline{1} | 0V | 0 | 1W | 1 \\
 T&\to 0T\overline{0} | 1W \\
 U&\to 1U\overline{1} | 0V \\
-V&\to 0V | \epsilon \\
-W&\to 1W | \epsilon \\
+V&\to 0V | 0 \\
+W&\to 1W | 1 \\
 \overline{0}&\to 0 \\
 \overline{1}&\to 1
 \end{align*}

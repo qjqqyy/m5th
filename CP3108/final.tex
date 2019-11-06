@@ -108,8 +108,8 @@
     \end{center}
 }
 \newenvironment{acknowledgements}{\renewcommand\abstractname{Acknowledgements}\begin{abstract}} {\end{abstract}}
-%\onehalfspacing
-\singlespacing
+\onehalfspacing
+%\singlespacing
 \begin{document}
 \let\setminus\smallsetminus
 \let\epsilon\varepsilon
@@ -119,6 +119,7 @@
 \end{titlepage}
 %% Title page
 \pagenumbering{roman}
+\addcontentsline{toc}{chapter}{Title}
 \begin{titlepage}
     \makecoverpage
     \vspace*{3cm}
@@ -130,11 +131,15 @@
     Report: 1 Volume
 \end{titlepage}
 
+\addcontentsline{toc}{chapter}{Abstract}
 \begin{abstract}
-    {\Huge TODO}
-    we try to find semiautomatic presentations of ordinal and ring structures.
+    Semiautomatic structures generalise automatic structures in the sense that for some of the relations and functions in the structure one only requires the derived relations and structures are automatic when all but one input are filled with constants.
+    One can also permit that this applies to equality in the structure so that only the sets of representatives equal to a given element of the structure are regular while equality itself is not an automatic relation on the domain of representatives.
+    We look at semiautomatic rings with automatic addition and comparison
+    and we also examine arithmetic on ordinals with semiautomatic multiplication.
 \end{abstract}
 
+\addcontentsline{toc}{chapter}{Acknowledgements}
 \begin{acknowledgements}
     I would like to thank my advisor, professor Frank Stephan, for his invaluable advice and support.
     Thanks also goes out to my friends, especially Thomas Tan and Na\"im Favier, for the many fruitful discussions that we had.
@@ -600,14 +605,16 @@ Let \(a = \sum_{i=m,\dots,0,\dots,n} a_i u^i \in \Z[u]\), the following pseudoco
     \DontPrintSemicolon
     initialise \(x, y \leftarrow 0, i\leftarrow n\)\;
     \While{\(i \geq m\)}{
-        \((x,y)\leftarrow (x+y, x+ a_i)\)\;
-        \(i\leftarrow i - 1\)\;
-        \uIf{\(x > k'  \lor y > k'\)}{
+        \(a_{i+1}\leftarrow a_{i+1} + a_{i+2}\)\;
+        \(a_{i}\leftarrow a_{i} + a_{i+2}\)\;
+        \(a_{i+2}\leftarrow 0\)\;
+        \uIf{\(a_{i+1} > k'  \lor a_{i+2} > k'\)}{
             halt with \(a>0\)\;
         }
-        \uIf{\(x < -k' \lor y < -k'\)}{
+        \uIf{\(a_{i+1} < -k' \lor a_{i+2} < -k'\)}{
             halt with \(a<0\)\;
         }
+        \(i\leftarrow i - 1\)\;
     }
     determine sign by a finite case distinction over the values of \(x\) and \(y\)
 \end{algorithm}
@@ -630,13 +637,14 @@ its associated Pell's equation \(d^2 - ne^2 = 1\) has infinitely many solutions 
 \section{Cube roots}
 
 Trying to generalise this observation for cube roots is not trivial,
-as we are still not aware of any deeper understanding of the cubic ring \(\Z[\sqrt[3]{n}]\).
+as we are still not aware of any deeper understanding of the cubic rings \(\Z[\sqrt[3]{n}]\) in general.
 However we do have some preliminary results.
 
 \begin{example} \label{cube root 7}
     There is a semiautomatic ring \((A, +, =, <;\cdot)\) containing \(\cbrt{7}\).
 
     We choose \[ u^{-1} = 2 - \cbrt{7} \]
+    and consider the semiautomatic ring \((\Z[u], +, <, =;\cdot)\),
     then we have the relation \(1 - 12u^{-1} + 6u^{-2} - u^{-3} = 0\), where \(12\) dominates the sum of all other terms,
     allowing us to use a representation similar to that for the Golden ratio case, with coefficients bounded between \(-12\) and \(12\).
 
@@ -645,7 +653,16 @@ However we do have some preliminary results.
     When checking if \(a + b = c\), we perform the sign test on \(a + b - c\), so assume the coefficients are between \(-36\) and \(36\).
     This time, we perform the sign test using a sliding window of size \(3\), as we use the relation \(u^3 = 12u^2 - 6u + 1\) to update our variables.
 
-    To double check: tail bounds.
+    For a tail bound, we have \[\sum_{i\leq 1} u^i \leq \frac1{10}.\]
+
+    Instead of using a flat bound \(k'\), we terminate when one of the following conditions is broken
+    \begin{itemize}
+        \item \(\abs{a_{i+2}} \leq 16\hat{c}\),
+        \item \(\abs{a_{i+1}} \geq 4\hat{c}\), or
+        \item \(\abs{a_{i}} \leq \hat{c}\).
+    \end{itemize}
+    where \(\hat{c} = 360\).
+    The reader can verify that violating one of the conditions will conclusively indicate that the number exceeds the tail sum in a specific direction, which allows us to determine its sign.
 \end{example}
 %\section{Representing reals}
 % omega-automatic extension of the square-root representation

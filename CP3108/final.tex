@@ -114,11 +114,13 @@
 \let\setminus\smallsetminus
 \let\epsilon\varepsilon
 %% Cover page
+\pagenumbering{alph}
 \begin{titlepage}
     \makecoverpage
 \end{titlepage}
 %% Title page
 \pagenumbering{roman}
+\phantomsection
 \addcontentsline{toc}{chapter}{Title}
 \begin{titlepage}
     \makecoverpage
@@ -128,21 +130,33 @@
     Project No: U107040 \\
     Advisor: Prof Frank Stephan \\
     Deliverables: \\
-    Report: 1 Volume
+    \hspace*{2em} Report: 1 Volume
 \end{titlepage}
 
+\phantomsection
 \addcontentsline{toc}{chapter}{Abstract}
 \begin{abstract}
     Semiautomatic structures generalise automatic structures in the sense that for some of the relations and functions in the structure one only requires the derived relations and structures are automatic when all but one input are filled with constants.
     One can also permit that this applies to equality in the structure so that only the sets of representatives equal to a given element of the structure are regular while equality itself is not an automatic relation on the domain of representatives.
     We look at semiautomatic rings with automatic addition and comparison
     and we also examine arithmetic on ordinals with semiautomatic multiplication.
+
+    \vspace*{1cm}
+    \noindent
+    Subject Descriptors: \\
+    \hspace*{2em} F.4.1 Mathematical Logic
+
+    \vspace*{1cm}
+    \noindent
+    Keywords: \\
+    \hspace*{2em} Automatic Structures
 \end{abstract}
 
+\phantomsection
 \addcontentsline{toc}{chapter}{Acknowledgements}
 \begin{acknowledgements}
     I would like to thank my advisor, professor Frank Stephan, for his invaluable advice and support.
-    Thanks also goes out to my friends, especially Thomas Tan and Na\"im Favier, for the many fruitful discussions that we had.
+    Thanks are also in order to my friends, especially Thomas Tan and Na\"im Favier, for the many fruitful discussions that we had.
 \end{acknowledgements}
 
 \tableofcontents
@@ -619,8 +633,7 @@ Let \(a = \sum_{i=m,\dots,0,\dots,n} a_i u^i \in \Z[u]\), the following pseudoco
     determine sign by a finite case distinction over the values of \(x\) and \(y\)
 \end{algorithm}
 
-We basically go through coefficients \(a_i\) with a sliding window of size \(2\), updating using the relation \(u^2 = u + 1\),
-and at runtime, \((x,y)\) represents the value \(x\cdot u^{i+2} + y\cdot u^{i+1}\).
+We basically go through coefficients \(a_i\) with a sliding window of size \(2\), updating using the relation \(u^2 = u + 1\).
 By our tail bounds, the early termination always outputs the correct answer.
 Furthermore by appealing to the characterisation of automatic functions as those computable by linear-time one-tape Turing machines
 where input and output start at the same position \autocite{Case2012}, this algorithm is automatic.
@@ -687,6 +700,6 @@ and significant insights might require breakthroughs in number theory.
 Also, it seems plausible for larger ordinals to admit semiautomatic addition, multiplication and equality, not just \(\omega^\omega\) as in \Cref{omega polynomials}.
 
 
-\printbibliography
+\printbibliography[heading=bibintoc,title={References}]
 
 \end{document}

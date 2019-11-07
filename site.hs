@@ -16,7 +16,7 @@ import qualified Text.Pandoc.UTF8 as UTF8
 --------------------------------------------------------------------------------
 meta :: [(String -> Rules (), [String])]
 meta = [ (texToPdf,   [ "CS1010"
-                      , "CP3108"
+                      , "CP3208"
                       , "CS3230"
                       , "GEH1036"
                       , "GEQ1000"

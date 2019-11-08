@@ -51,11 +51,15 @@ Let \(p\in G_f \cap D'\), then \(p' \in D'' = D\), and it follows from the defin
 > Suppose \(Y\in\M\) is an infinite subset of \(\omega\).
 > Show that both \(Y\cap X_f\) and \(Y\setminus X_f\) are infinite.
 
-If \(Y\cap X_f\) is finite then there exists infinite \(n\in Y\) in which \(f(n) = 0\).
+Suppose \(Y\cap X_f\) is finite, we show that \(f\) is not a Cohen real over \(\M\).
+The case where \(Y\setminus X_f\) is finite is similar.
 
-If \(Y\setminus X_f\) is finite then there exists infinite \(n\in Y\) about when \(f(n) = 1\).
+Suppose \(Y\cap X_f\) is finite then \(Y\) (and hence \(\M\)) knows about infinitely many \(n\) where \(f(n) = 0\).
+Let \(\abs{Y \cap X_f} = l\), use this rather large formula to define the following dense set
+\[ D = \set{p: \ex{n_0,n_1,\dots,n_l<\omega}{\overline{n}\in\dom(p) \land \bigwedge_{i\ne j} n_i\ne n_j \land \bigwedge_{i=0}^l p(n_i) = 1 \iff n_i\in Y}}. \]
+The density of \(D\) follows from \(Y\) being infinite, and \(D\in\M\) too.
+Now \(G_f\) cannot meet \(D\) as \(f\) is \(1\) in \(Y\) at at most \(l\) points.
 
-later
 
 #
 
@@ -84,8 +88,7 @@ but the projection of \(A\) is an uncountable antichain in \({}^r\P\).
 > Let \(\P\) be a c.c.c. poset and suppose \(A\in [\P]^{\omega_1}\).
 > Show that there exists \(\angle{G_n:n<\omega}\) such that each \(G_n\) is a filter on \(\P\) and \(A\subseteq \bigcup_{n<\omega} G_n\).
 
-By previous problem \(\omega\) copies of \(\P\) with finite support is also ccc.
-Let \(A\subseteq \P\) be \(\abs{A} = \omega_1\).
+I'm sorry I couldn't finish this.
 
 #
 
@@ -101,5 +104,3 @@ consider the least \(n<\omega\) where \(x(n) \ne y(n)\),
 if \(p_x\) and \(p_y\) were to have a common extension,
 then \(p_{s\,x(n)}\) and \(p_{s\,y(n)}\) where \(s = x\upharpoonright n = y\upharpoonright n\) would have a common extension too,
 which cannot happen.
-
-<div style="height:50vh"></div>

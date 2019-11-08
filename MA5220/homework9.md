@@ -88,7 +88,20 @@ but the projection of \(A\) is an uncountable antichain in \({}^r\P\).
 > Let \(\P\) be a c.c.c. poset and suppose \(A\in [\P]^{\omega_1}\).
 > Show that there exists \(\angle{G_n:n<\omega}\) such that each \(G_n\) is a filter on \(\P\) and \(A\subseteq \bigcup_{n<\omega} G_n\).
 
-I'm sorry I couldn't finish this.
+Following hint,
+let \(\Q\) denote the finite support \(\omega\)-product of \(\P\).
+By past question \(\Q\) is ccc.
+For each \(p\in A\), let
+\[D_p = \set{f: \ex{n<\omega}{f(n) = p}}\]
+as the support of every sequence is finite \(D_p\) is dense in \(\Q\).
+Invoke \(\textsf{MA}_{\omega_1}\) to get a filter \(G\) on \(\Q\) such that
+\(G\) meets \(D_p\) for every \(p\in A\).
+By meeting every single \(D_p\), we can cover \(A\) using \(\bigcup_{g\in G} \range(g)\).
+Now define for each \(n<\omega\)
+\[ G_n = \set{g(n): g\in G} \]
+and \(\bigcup_{n<\omega} G_n = \bigcup_{g\in G} \range(g) \supseteq A\) as desired.
+As the conditions required to be a filter distributes pointwise,
+each \(G_n\) is a filter.
 
 #
 

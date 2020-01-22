@@ -9,7 +9,7 @@ and probably will not preview nicely.
 
 ## Quick (docker) dev setup
 
-1. `docker run --rm -p 8000:8000 -it -v $(pwd):/site qjqqyy/hakyll-latex`
+1. `docker run --rm -p 8000:8000 -it -v $(pwd):/site docker.pkg.github.com/qjqqyy/hakyll-latex/hakyll-latex`
     * noobtip: `--tmpfs` might or might not come in useful here
     * you might or might not wanna alias the above
 2. open <http://localhost:8000> (if Docker is running on `localhost` that is)

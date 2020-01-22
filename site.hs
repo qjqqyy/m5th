@@ -25,7 +25,9 @@ meta = [ (texToPdf,   [ "CS1010"
                       , "MA2101S"
                       , "MA2104"
                       ])
-       , (mdToBeamer, [ "CS2030lab" ])
+       , (mdToBeamer, [ "CS2030lab"
+                      , "CP3208/slides"
+                      ])
        , (mdToHtml,   [ "CS2100"
                       , "MA2108S"
                       , "MA2104/summary"

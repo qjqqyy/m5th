@@ -1,0 +1,33 @@
+name: Deploy to gh-pages
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  login:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Login to GPR
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: echo $GITHUB_TOKEN | docker login --password-stdin -u $GITHUB_ACTOR docker.pkg.github.com
+
+      - name: Build site
+        run: docker run -v $(pwd):/site docker.pkg.github.com/qjqqyy/hakyll-latex/hakyll-latex:4.13.0.1 build
+
+      - name: Install SSH Keys
+        uses: webfactory/ssh-agent@v0.2.0
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+
+      - name: Build and Deploy
+        uses: JamesIves/github-pages-deploy-action@3.2.0
+        with:
+          ssh: true
+          branch: gh-pages
+          folder: _site

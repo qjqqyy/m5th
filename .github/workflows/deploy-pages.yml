@@ -1,11 +1,11 @@
-name: Deploy to gh-pages
+name: Deploy
 
 on:
   push:
     branches: [master]
 
 jobs:
-  login:
+  build-and-deploy:
 
     runs-on: ubuntu-latest
 
@@ -25,7 +25,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.DEPLOY_KEY }}
 
-      - name: Build and Deploy
+      - name: Push to pages
         uses: JamesIves/github-pages-deploy-action@3.2.0
         with:
           ssh: true

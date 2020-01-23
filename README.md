@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/qjqqyy/m5th.svg?style=svg)](https://circleci.com/gh/qjqqyy/m5th)
+![](https://github.com/qjqqyy/m5th/workflows/Deploy/badge.svg)
 
 This repo contains all of my school-related LaTeX/markdown manuscripts, since uni started in fall 2017.
 

@@ -1,6 +1,6 @@
 ---
 cname: m5th.b0ss.net
-mathJax: <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+mathJax: <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
 texpdf:
   - CS1010
   - CP3208
@@ -28,7 +28,6 @@ mdhtml:
   - MA3110S/h:
     - disableNumberSections
   - MA3110S/t
-  - CS2102
   - CS2105
   - CS2106
 mdpdf:

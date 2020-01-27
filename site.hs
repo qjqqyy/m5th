@@ -9,6 +9,7 @@ import Data.Aeson ( defaultOptions
                   , genericParseJSON
                   , sumEncoding
                   , SumEncoding(UntaggedValue)
+                  , FromJSON(..)
                   )
 import Data.Monoid (appEndo, Endo(..), mconcat)
 import Data.List (nub, sort)

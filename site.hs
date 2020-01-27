@@ -1,76 +1,55 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE DeriveGeneric #-}
+
 import Hakyll
 import Text.Pandoc
 
 import Control.Monad ((>=>), when)
-import Data.Monoid (mconcat)
+import Data.Aeson ( defaultOptions
+                  , genericParseJSON
+                  , sumEncoding
+                  , SumEncoding(UntaggedValue)
+                  , FromJSON(..)
+                  )
+import Data.Monoid (appEndo, Endo(..), mconcat)
 import Data.List (nub, sort)
+import Data.Map.Strict (Map)
 import Data.Maybe (isJust, fromJust)
 import Data.Text (Text, unpack)
+import Data.Yaml (decodeFileThrow)
+import GHC.Generics
 import System.Directory (copyFile, doesFileExist)
-import System.FilePath ((</>), takeFileName, replaceExtension, takeDirectory, splitDirectories)
+import System.FilePath ( (</>)
+                       , takeFileName
+                       , replaceExtension
+                       , takeDirectory
+                       , splitDirectories
+                       )
 import System.Process (system)
 
 import qualified Text.Pandoc.UTF8 as UTF8
+import qualified Data.Map.Strict as Map
 
---------------------------------------------------------------------------------
-meta :: [(String -> Rules (), [String])]
-meta = [ (texToPdf,   [ "CS1010"
-                      , "CP3208"
-                      , "CS3230"
-                      , "GEH1036"
-                      , "GEQ1000"
-                      , "MA1100"
-                      , "MA1101R"
-                      , "MA2101S"
-                      , "MA2104"
-                      ])
-       , (mdToBeamer, [ "CS2030lab"
-                      , "CP3208/slides"
-                      ])
-       , (mdToHtml,   [ "CS2100"
-                      , "MA2108S"
-                      , "MA2104/summary"
-                      , "MA2202S/t"
-                      , "MA3205"
-                      , "MA5220"
-                      , "CS4232"
-                      , "MA3110S/h", "MA3110S/t"
-                      , "CS2102"
-                      , "CS2105"
-                      , "CS2106"
-                      ])
-       , (mdToPdf,    [ "MA2101S"
-                      , "MA2104/a"
-                      , "MA2202S/hw"
-                      ])
-       ]
-
-numberSectionDisabled = ["MA2101S", "MA2104/a", "MA2108S", "MA3205", "MA3110S/h"]
-
-cname :: Maybe String
-cname = Just "m5th.b0ss.net"
-
-mathJax :: String
-mathJax = "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML-full\" type=\"text/javascript\"></script>"
-
---------------------------------------------------------------------------------
 main :: IO ()
-main = hakyll $ do
-    sequence $ concatMap (uncurry map) meta
-    traverse autoIndex $ tldsFrom meta
-    homepage
-    match "css/*" $ do
-        route   idRoute
-        compile compressCssCompiler
-    match "templates/*" $
-        compile templateBodyCompiler
-    match ("**.pdf" .||. "**.png" .||. "**.jpg") $ do
-        route   idRoute
-        compile copyFileCompiler
-    when (isJust cname) $ create [fromFilePath "CNAME"] $ do
-        route   idRoute
-        compile . makeItem . fromJust $ cname
+main = do
+    (cn, meta) <- convert <$> decodeFileThrow "routes.yaml"
+    hakyll $ do
+        sequence $ concatMap (uncurry map) meta
+        traverse autoIndex $ tldsFrom meta
+        homepage $ tldsFrom meta
+        match "css/*" $ do
+            route   idRoute
+            compile compressCssCompiler
+        match "templates/*" $
+            compile templateBodyCompiler
+        match ("**.pdf" .||. "**.png" .||. "**.jpg") $ do
+            route   idRoute
+            compile copyFileCompiler
+        when (isJust cn) $ create [fromFilePath "CNAME"] $ do
+            route   idRoute
+            compile . makeItem . fromJust $ cn
+
+--------------------------------------------------------------------------------
 
 autoIndex :: String -> Rules ()
 autoIndex dir = create [fromFilePath $ dir </> "index.html"] $ do
@@ -89,12 +68,12 @@ autoIndex dir = create [fromFilePath $ dir </> "index.html"] $ do
     where noIndexPattern = (dir */* "*.md" .||. dir */* "*.tex") .&&.
                 complement (dir */* "index.html")
 
-homepage :: Rules ()
-homepage = match "index.md" $ do
+homepage :: [String] -> Rules ()
+homepage tlds = match "index.md" $ do
     route $ setExtension "html"
     compile $ do
         -- hack
-        let mods = map (\x -> Item { itemIdentifier = fromFilePath (x++"/index.html"), itemBody = x }) . sort $ tldsFrom meta
+        let mods = map (\x -> Item { itemIdentifier = fromFilePath (x++"/index.html"), itemBody = x }) . sort $ tlds
             homepageCtx = listField "entries" defaultContext (pure mods) <> defaultContext
             readerOptions = defaultReaderOptions { readerExtensions = disableExtension Ext_tex_math_dollars extensions }
         pandocCompilerWith readerOptions defaultWriterOptions
@@ -103,32 +82,32 @@ homepage = match "index.md" $ do
             >>= relativizeUrls
 
 --------------------------------------------------------------------------------
-mdToHtml :: String -> Rules ()
-mdToHtml prefix = match (patternFrom prefix) $ do
-    let mathCtx = constField "math" mathJax <> defaultContext
+mdToHtml :: String -> PrefixInfo -> Rules ()
+mdToHtml mJax (prefix, woverrides) = match (patternFrom prefix) $ do
+    let mathCtx = constField "math" mJax <> defaultContext
     route $ setExtension "html"
-    compile $ pandocCompilerWith defaultReaderOptions (updateNumberSections prefix defaultWriterOptions)
+    compile $ pandocCompilerWith defaultReaderOptions (appEndo woverrides defaultWriterOptions)
         >>= loadAndApplyTemplate "templates/entry.html" mathCtx
         >>= loadAndApplyTemplate "templates/default.html" mathCtx
         >>= relativizeUrls
         >>= saveSnapshot "_autoindex"
 
-mdToPdf :: String -> Rules ()
-mdToPdf prefix = match (patternFrom prefix) $ do
+mdToPdf :: PrefixInfo -> Rules ()
+mdToPdf (prefix, woverrides) = match (patternFrom prefix) $ do
     route $ setExtension "pdf"
     compile $ getResourceString >>= saveSnapshot "_autoindex"
         >>= readPandocWith defaultReaderOptions
-        >>= withItemBody (writeXetex writeLaTeX defaultWriterOptions "eisvogel" prefix >=> xelatex)
+        >>= withItemBody (writeXetex writeLaTeX (appEndo woverrides defaultWriterOptions) "eisvogel" >=> xelatex)
 
-mdToBeamer :: String -> Rules ()
-mdToBeamer prefix = match (patternFrom prefix) $ do
+mdToBeamer :: PrefixInfo -> Rules ()
+mdToBeamer (prefix, woverrides) = match (patternFrom prefix) $ do
     route $ setExtension "pdf"
     compile $ getResourceString >>= saveSnapshot "_autoindex"
         >>= readPandocWith defaultReaderOptions
-        >>= withItemBody (writeXetex writeBeamer defaultHakyllWriterOptions "default" prefix >=> xelatex)
+        >>= withItemBody (writeXetex writeBeamer (appEndo woverrides defaultHakyllWriterOptions) "default" >=> xelatex)
 
-texToPdf :: String -> Rules ()
-texToPdf mod = match (mod */* "*.tex") $ do
+texToPdf :: PrefixInfo -> Rules ()
+texToPdf (mod, _) = match (mod */* "*.tex") $ do
     route $ setExtension "pdf"
     compile $ getResourceString >>= saveSnapshot "_autoindex"
         >> getResourceFilePath >>= latexmk >>= makeItem
@@ -160,10 +139,10 @@ defaultWriterOptions = defaultHakyllWriterOptions
     }
 
 --------------------------------------------------------------------------------
-writeXetex :: (WriterOptions -> Pandoc -> PandocIO Text) -> WriterOptions -> String -> FilePath
+writeXetex :: (WriterOptions -> Pandoc -> PandocIO Text) -> WriterOptions -> String
             -> Pandoc -> Compiler String
-writeXetex w writerOptions templateName prefix p = unsafeCompiler . fmap (either (fail . show) unpack) . runIO $ do
-    wo <- updateNumberSections prefix <$> updateTemplate templateName writerOptions
+writeXetex w writerOptions templateName p = unsafeCompiler . fmap (either (fail . show) unpack) . runIO $ do
+    wo <- updateTemplate templateName writerOptions
     w wo p
 
 updateTemplate :: PandocMonad m => String -> WriterOptions -> m WriterOptions
@@ -171,14 +150,6 @@ updateTemplate templateName writerOptions = do
     lookupEnv "HOME" >>= setUserDataDir . fmap (++ "/.pandoc")
     t <- UTF8.toString <$> readDataFile ("templates/" ++ templateName ++ ".latex")
     pure $ writerOptions { writerTemplate = Just t }
-
-disableNumberSections :: WriterOptions -> WriterOptions
-disableNumberSections wo = wo { writerNumberSections = False }
-
-updateNumberSections :: String -> WriterOptions -> WriterOptions
-updateNumberSections prefix
-  | prefix `elem` numberSectionDisabled = disableNumberSections
-  | otherwise = id
 
 --------------------------------------------------------------------------------
 -- | From https://github.com/jaspervdj/jaspervdj/blob/f12cdf27340106613e560dfcecbd7a87a6ce408a/src/Main.hs#L261
@@ -221,8 +192,8 @@ takeTopLevelDirectory path = case splitDirectories path of
                         []    -> "."
                         (d:_) -> d
 
-tldsFrom :: [(String -> Rules (), [String])] -> [String]
-tldsFrom = nub . map takeTopLevelDirectory . concatMap snd
+tldsFrom :: [(PrefixInfo -> Rules (), [PrefixInfo])] -> [String]
+tldsFrom = nub . map (takeTopLevelDirectory . fst) . concatMap snd
 
 (*/*) :: FilePath -> FilePath -> Pattern
 a */* b = fromGlob $ a </> b
@@ -231,3 +202,49 @@ patternFrom :: String -> Pattern
 patternFrom prefix = if prefix == takeTopLevelDirectory prefix
                         then prefix */* "*.md"
                         else fromGlob $ prefix ++ "*.md"
+
+--------------------------------------------------------------------------------
+-- low effort parsing hell
+type Prefix = String
+type PrefixInfo = (Prefix, Endo WriterOptions)
+type Override = String
+
+-- very partial function, fite me
+toWriterOptionsEndo :: Override -> Endo WriterOptions
+toWriterOptionsEndo "disableNumberSections" = Endo (\w -> w { writerNumberSections = False })
+
+data Entry = Short Prefix
+           | Long (Map Prefix [Override])
+           deriving (Generic, Show)
+instance FromJSON Entry where
+    parseJSON = genericParseJSON defaultOptions { sumEncoding = UntaggedValue }
+toPrefixInfo :: Entry -> PrefixInfo
+toPrefixInfo (Short p) = (p, Endo id)
+toPrefixInfo (Long m)
+  | Map.size m == 1 = let (p, os) = head (Map.toList m)
+                       in (p, mconcat (map toWriterOptionsEndo os))
+
+data Config = Config
+    { texpdf :: [Entry]
+    , mdbeamer :: [Entry]
+    , mdhtml :: [Entry]
+    , mdpdf :: [Entry]
+    , cname :: Maybe String
+    , mathJax :: String
+    } deriving (Generic, Show)
+instance FromJSON Config where
+    parseJSON = genericParseJSON defaultOptions { sumEncoding = UntaggedValue }
+convert :: Config -> (Maybe String, [(PrefixInfo -> Rules(), [PrefixInfo])])
+convert Config{ cname = c
+              , mathJax = mj
+              , texpdf = tp
+              , mdbeamer = mb
+              , mdhtml = mh
+              , mdpdf = mp
+              } = ( c
+                  , [ (texToPdf,    map toPrefixInfo tp)
+                    , (mdToBeamer,  map toPrefixInfo mb)
+                    , (mdToHtml mj, map toPrefixInfo mh)
+                    , (mdToPdf,     map toPrefixInfo mp)
+                    ]
+                  )

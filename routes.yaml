@@ -1,0 +1,37 @@
+---
+cname: m5th.b0ss.net
+mathJax: <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+texpdf:
+  - CS1010
+  - CP3208
+  - CS3230
+  - GEH1036
+  - GEQ1000
+  - MA1100
+  - MA1101R
+  - MA2101S:
+    - disableNumberSections
+  - MA2104
+mdbeamer:
+  - CS2030lab
+  - CP3208/slides
+mdhtml:
+  - CS2100
+  - MA2108S:
+    - disableNumberSections
+  - MA2104/summary
+  - MA2202S/t
+  - MA3205:
+    - disableNumberSections
+  - MA5220
+  - CS4232
+  - MA3110S/h:
+    - disableNumberSections
+  - MA3110S/t
+  - CS2105
+  - CS2106
+mdpdf:
+  - MA2101S
+  - MA2104/a:
+    - disableNumberSections
+  - MA2202S/hw

@@ -31,6 +31,8 @@ mdhtml:
   - CS2105
   - CS2106
   - MA4211
+  - MA3111S:
+    - disableNumberSections
 mdpdf:
   - MA2101S
   - MA2104/a:

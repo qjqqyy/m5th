@@ -42,7 +42,7 @@ consider any \(x_1,y_1,z_1\in X_1\) and \(x_2,y_2,z_2\in X_2\),
 \begin{align*}
 d((x_1, x_2), (z_1, z_2))
 &= d_1(x_1, z_1) + d_2(x_2, z_2) \\
-&= d_1(x_1, y_1) + d_1(y_1,z_1) + d_2(x_2, y_2) + d_2(x_2,z_2) \\
+&\leq d_1(x_1, y_1) + d_1(y_1,z_1) + d_2(x_2, y_2) + d_2(x_2,z_2) \\
 &= d((x_1, x_2), (y_1,y_2)) + d((y_1,y_2), (z_1,z_2))
 \end{align*}
 
@@ -96,8 +96,8 @@ Now for any \(x,y\in[0,1]\), by triangle inequality for all \(n\)
 &< \frac2n + \abs{f_n(y)-f_n(x)} \\
 &\leq \frac2n + \abs{y-x}
 \end{align*}
-so it turns out that \(g\in\mathcal{F}\).
-Hence \(\mathcal{F}\) is closed.
+so it turns out that \(g\in\mathscr{F}\).
+Hence \(\mathscr{F}\) is closed.
 
 ## (4)
 

@@ -30,7 +30,9 @@ mdhtml:
   - MA3110S/t
   - CS2105
   - CS2106
-  - MA4211
+  - MA4211/t
+  - MA4211/hw:
+    - disableNumberSections
   - MA3111S:
     - disableNumberSections
   - MA3201:

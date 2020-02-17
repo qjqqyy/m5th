@@ -107,6 +107,8 @@ The sequence is also uniformly equicontinuous as each \(f_n\) is 1-Lipschitz.
 By Arzelà–Ascoli theorem \((f_n)\) has a convergent (wrt \(\norm{\cdot}\)) subsequence, hence \(\mathscr{F}_1\) is sequentially compact, and therefore compact
 (in the metric space \(\mathscr{C}^0\)).
 
+**FIXUP: also state that the convergent subsequence converges to some function in \(\mathscr{F}_1\).**
+
 ## (5)
 
 Choose any \(f\in\mathscr{F}_2\), if \(f\not\equiv 0\) since \(f\) is continuous,
@@ -119,6 +121,8 @@ Now repeat the argument in (4).
 For any \(f\in\mathscr{F}_3\) by mean value theorem for any \(x,y\in[0,1]\), we have
 \[ \abs{f(y) - f(x)}\leq\abs{y-x} \]
 due to the uniform bound on \(f'\). Repeat the argument in (4).
+
+**FIXUP: this is wrong**
 
 # Exercise 4
 

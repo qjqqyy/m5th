@@ -4,8 +4,6 @@ author: Qi Ji
 date: 18th February 2020
 ---
 
-\newcommand{\set}[1]{\left\{#1\right\}}
-\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \newcommand{\abs}[1]{\left\lvert#1\right\rvert}
 \newcommand{\pd}[2]{\frac{\partial#1}{\partial#2}}
 \newcommand{\pdd}[3]{\frac{\partial^2 #1}{\partial#2\partial#3}}
@@ -31,9 +29,9 @@ so
 \[
 \pdd{u}{z}{\overline{z}} = \frac14\left(\pdd{u}{x}{x} - i\pdd{u}{y}{x} + i \pdd{u}{x}{y} + \pdd{u}{y}{y} \right)
 \]
-and by Clarinut's theorem we know that \(\pdd{u}{x}{y} = \pdd{u}{y}{x}\) so we have \(\Delta u = 4\pdd{}{z}{\overline{z}} u\) as desired.
+and by Clairaut's theorem we know that \(\pdd{u}{x}{y} = \pdd{u}{y}{x}\) so we have \(\Delta u = 4\pdd{}{z}{\overline{z}} u\) as desired.
 
-\(u\) is harmonic iff \(\Delta u = 0\) iff \(\pdd{u}{z}{\overline{z}} = 0\) iff (by Clarinut's theorem again) \(\pdd{u}{\overline{z}}{z} = \pd{}{\overline{z}} \pd{u}{z} = 0\)
+\(u\) is harmonic iff \(\Delta u = 0\) iff \(\pdd{u}{z}{\overline{z}} = 0\) iff (by Clairaut's theorem again) \(\pdd{u}{\overline{z}}{z} = \pd{}{\overline{z}} \pd{u}{z} = 0\)
 iff (by Exercise 1.4\) \(\pd{u}{z}\) is holomorphic.
 
 ## 2
@@ -51,7 +49,7 @@ Let \(f(x + iy) = u(x,y) + iv(x,y)\), so \(\pd{f}{\zbar} = 0\), that is
 so \(u_x = v_y\) and \(v_x = -u_y\).
 It follows that
 \[ u_{xx} = v_{yx} \text{ and } v_{xy} = - u_{yy} \]
-and by Clarinut theorem
+and by Clairaut theorem
 \[ \Delta \Re(f) = u_{xx} + u_{yy} = v_{yx} - v_{xy} = 0 \]
 similarly we can show
 \[ \Delta \Im(f) = v_{xx} + v_{yy} = u_{xy} - u_{yx} = 0. \]
@@ -111,7 +109,7 @@ u(x,y) &= \frac{x+1}{x^2+y^2+2x+1} \\
 \end{align*}
 so we have
 \begin{align*}
-\Delta u &= 8u^3 - u\left( \frac{8y^2 - 8y^2 - 8(x+1)^2}{(x^2+y^2+2x+1)^2} \right) \\
+\Delta u &= 8u^3 + u\left( \frac{8y^2 - 8y^2 - 8(x+1)^2}{(x^2+y^2+2x+1)^2} \right) \\
 &= 8u^3 - 8u^3 = 0
 \end{align*}
 and therefore \(u\) is harmonic.
@@ -135,8 +133,6 @@ so
 
 # Exercise 8
 
-* Removable singularity at \(z=1\),
-
-* Poles of order 1 at \(z=e^{2k\pi i/3}\) for \(k = 1,2\),
-
-* Essential singularity at \(z=0\).
+Removable singularity at \(z=1\),
+poles of order 1 at \(z=e^{2k\pi i/3}\) for \(k = 1,2\), and
+essential singularity at \(z=0\).

@@ -1,6 +1,8 @@
 ---
 title: MA3111S Homework 2
-author: Qi Ji
+author:
+ - Pek Yu-Xuan Sean
+ - Qi Ji
 date: 18th February 2020
 ---
 
@@ -8,6 +10,53 @@ date: 18th February 2020
 \newcommand{\pd}[2]{\frac{\partial#1}{\partial#2}}
 \newcommand{\pdd}[3]{\frac{\partial^2 #1}{\partial#2\partial#3}}
 \newcommand{\zbar}{\overline{z}}
+
+Exercise 1
+==========
+
+1
+-
+
+We have
+$\frac{\partial z}{\partial z} = \frac{\partial \overline{z}}{\partial \overline{z}} = 1, \frac{\partial z}{\partial \overline{z}} = \frac{\partial \overline{z}}{\partial z} = 0.$
+
+2
+-
+
+Without loss of generality, let $z_0 = 0$. Then, we have that
+$f(z) = u(z) + iv(z)$ for real functions $u,v$.
+
+$$f(x + iy) = f(0) + \begin{pmatrix} \frac{\partial u}{\partial x} & \frac{\partial u}{\partial y} \\ \frac{\partial v}{\partial x} & \frac{\partial v}{\partial y}\end{pmatrix}\begin{pmatrix}x \\ y \end{pmatrix} + o(|x + iy|)$$
+
+Let $\alpha = a + ib$ and $\beta = c + id$. We get that
+$\alpha(x + iy) + \beta(x - iy)$ has the form
+$$\begin{pmatrix}(a+c)x + (b-d)y & (-b-d)x + (a-c)y \end{pmatrix}^T = \begin{pmatrix} \frac{\partial u}{\partial x}x + \frac{\partial u}{\partial y}y & \frac{\partial v}{\partial x}x + \frac{\partial v}{\partial y}y\end{pmatrix}^T.$$
+This has 4 independent equations and 4 unknowns, so it can always be
+done.
+
+3
+-
+
+Differentiating the expression above shows
+$\alpha = \frac{\partial f}{\partial z}$ and
+$\beta = \frac{\partial f}{\partial \overline{z}}.$
+
+4
+-
+
+This follows from Cauchy Riemann Equations. Observe that
+$\frac{\partial (u + iv)}{\partial \overline{z}} = \frac{1}{2}\left( (\frac{\partial u}{\partial x} - \frac{\partial v}{\partial y}) + i(\frac{\partial u}{\partial y} + \frac{\partial v}{\partial x}) \right).$
+
+5
+-
+
+We have that
+$\frac{\partial \overline{f}}{\partial \overline{z}} = \overline{\frac{\partial f}{\partial z}}$.
+Thus, if $f$ is anti-holomorphic, then
+$\frac{\partial \overline{f}}{\partial \overline{z}} = \overline{0} = 0.$
+Conversely, if $\overline{f}$ is holomorphic, then,
+$\frac{\partial f}{\partial \overline{z}} = \overline{\frac{\partial \overline{f}}{\partial z}} = 0.$
+
 
 # Exercise 2
 
@@ -92,6 +141,17 @@ This means that \(u_x\), \(u_y\), \(v_x\), and \(v_y\) are all zero, so \(f\) is
 Conversely it is trivial that \(f\) constant implies \(\abs{f}^2\) harmonic.
 Therefore \(\abs{f}^2\) is harmonic iff \(f\) is constant.
 
+Exercise 3
+==========
+
+1.  No. Let
+    $f(x,y) = e^{(x^2 + y^2)} + \cos(x^2 + y^2) - \sin(x + iy) + 2$
+    Then,
+    $$\frac{\partial f}{\partial \overline{z}} = \frac{1}{2}(\frac{\partial f}{\partial x} + i \frac{\partial f}{\partial y}) = 2(x+iy)(e^{(x^2 + y^2)} - \cos(x^2 + y^2))$$
+    which is non-zero.
+
+2.  No. The function is not continuous when $z^4 = -1$ as the numerator
+    is always non-zero and denominator is.
 
 # Exercise 4
 
@@ -121,6 +181,16 @@ and
 we can verify that a solution of this differential equation is
 \[ v(x,y) = \frac{-y}{y^2 + (x+1)^2}. \]
 
+Exercise 5
+==========
+
+Let $g(z) = zf(z)$ and $g(0) = 0$. Then $g$ is bounded near 0, and thus
+a removable singularity at 0. But
+$\lim_{z \to 0} g(z) = \lim_{z \to 0} |\sqrt{z}| (|\sqrt{z}| f(z)) = 0$.
+Then, $g(z) = zh(z)$ for some analytic $h$. But $f = h$ on the punctured
+unit disk, which implies $f$ is bounded near 0, which is a
+contradiction.
+
 # Exercise 6
 
 By Liouville's theorem as \(f(z) + e^z - 3z^5 + 5\) is still entire and is also bounded it is constant, therefore
@@ -130,6 +200,15 @@ f(2) + e^2 - 3(2)^5 + 5 &= f(0) + e^0 + 5 \\
 \end{align*}
 so
 \[ f(2) = 29 - e^2. \]
+
+Exercise 7
+==========
+
+No. Consider $g(z) = e^{-z}(1+ f(z))(z+3)$. As $g$ is holomorphic and
+$|g(z)| \leq 1$ when $z \neq -3$, thus $g$ is constant by Liouville's
+theorem. Then, $f(z) = ce^z(z+3)^{-1} - 1$ for some $c$, but $f$ is
+continuous everywhere, which is a contradiction as the limit
+$\lim_{z \to -3}f(z)$ does not exist unless $c = 0$.
 
 # Exercise 8
 

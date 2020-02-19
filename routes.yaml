@@ -24,6 +24,7 @@ mdhtml:
   - MA3205:
     - disableNumberSections
   - MA5220
+  - MA6222
   - CS4232
   - MA3110S/h:
     - disableNumberSections

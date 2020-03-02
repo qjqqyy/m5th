@@ -84,7 +84,30 @@ so the metric topologies agree.
 
 #
 
-later
+Hint: \(Y_{h,r}\) is just surface of a torus with major radius \(r\) and tube radius \(h\).
+
+Define some helpers
+\begin{align*}
+C_r(x) &= \begin{pmatrix}
+r \cos (2\pi x) \\
+r \sin (2\pi x) \\
+0
+\end{pmatrix} \\
+c_h(x,y) &= \begin{pmatrix}
+h \cos (2\pi y) \cos (2\pi x) \\
+h \cos (2\pi y) \sin (2\pi x) \\
+h \sin (2\pi y)
+\end{pmatrix}
+\end{align*}
+and define \(f: X^* \to Y_{h,r}\) as
+\[ f(x,y) = C_r(x) + c_h(x,y). \]
+which is well-defined.
+
+Let \(q:X\to X^*\) denote the quotient map and as \(f\circ q\) is continuous on each coordinate, \(f\) is continuous.
+We can check (easier to do so geometrically) that \(f\) is injective and surjective.
+As \(X\) is compact, \(X^*\) is also compact and \(Y_{h,r}\subseteq \mathbb{R}^3\) is closed bounded and thus compact.
+Since \(f\) sends compact sets to compact sets and in \(X^*\) and \(Y_{h,r}\) the notions of being closed and compact coincide,
+\(f\) is a closed map and thus a homeomorphism
 
 #
 
@@ -121,7 +144,35 @@ and as \(X\times V\) is closed, by previous problem \(f^{-1}(V)\) is closed as d
 
 #
 
-cantor later
+## (a) {-}
+
+Let \(x,y\in C\) with \(x < y\).
+Archimedean property gives us some \(n\) with \(y-x > \frac{1}{3^n}\),
+which means that \(x,y\) lie in different closed sub-intervals of \(A_n\),
+and we can choose some \(z \in \left(\frac{1+3k}{3^n}, \frac{2+3k}{3^n}\right)\) for some suitable \(k\) satisfying \(x < z < y\).
+This allows us to separate any non-singleton subsets of \(C\) with \((-1,z)\cap C)\) and \((z,2)\cap C)\).
+
+## (b) {-}
+
+The Cantor set is closed and bounded, which suffices to show compactness in \(\mathbb{R}\) by Heine-Borel theorem.
+
+## (c) {-}
+
+If there was to be an isolated point \(x\in C\), then there would be some open interval \((a,b)\) such that \((a,b) \cap C = \set{x}\).
+Archimedean property gives us some \(n\) with \(\frac{1}{3^n} < \min(x-a, b-x)\).
+As \(x\in C\subseteq A_{n+500}\), we can choose an endpoint of a closed sub-interval in \(A_{n+500}\) that lies in \((a,b)\),
+call it \(z\), and as endpoints of the closed sub-intervals are never deleted in stages \(A_{n+501}\) and beyond \(z\in C\cap(a,b)\),
+a contradiction.
+
+## (d) {-}
+
+Define \(\phi: \set{0,2}^\mathbb{N} \to C\) where for any \(f:\mathbb{N} \to \set{0,2}\),
+\[\phi(f) = \sum_{n=1}^\infty \frac{f(n)}{3^n}\]
+which is essentially the ternary expansion of \(f\).
+So we can inspect that when \(f\ne g\), that is when they encode different ternary numbers, \(\phi(f) \ne \phi(g)\).
+As \(\phi\) is injective,
+\[ \aleph_0 < 2^{\aleph_0} = \abs{\set{0,2}^\mathbb{N}} \leq \abs{C} \]
+as desired.
 
 #
 
@@ -153,5 +204,3 @@ For reasons similar to previous part, \(A\cap \overline{V} = \emptyset\).
 Now let \(U', V'\) be disjoint and open such that \(A\subseteq U'\) and \(\overline{V}\subseteq V'\).
 Similarly \(\overline{V}\cap \overline{U'} = \emptyset\) and
 \(A\subseteq U'\), \(B\subseteq V\) gives us the separation.
-
-<div style="height:50vh"></div>

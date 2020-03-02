@@ -38,6 +38,7 @@ mdhtml:
     - disableNumberSections
   - MA3201:
     - disableNumberSections
+  - MA4266
 mdpdf:
   - MA2101S
   - MA2104/a:

@@ -97,14 +97,14 @@ mdToPdf (prefix, woverrides) = match (patternFrom prefix) $ do
     route $ setExtension "pdf"
     compile $ getResourceString >>= saveSnapshot "_autoindex"
         >>= readPandocWith defaultReaderOptions
-        >>= withItemBody (texWithPandocWriter "eisvogel" writeLaTeX (appEndo woverrides defaultWriterOptions) >=> lualatex)
+        >>= withItemBody (texWithPandocWriter "eisvogel.latex" writeLaTeX (appEndo woverrides defaultWriterOptions) >=> lualatex)
 
 mdToBeamer :: PrefixInfo -> Rules ()
 mdToBeamer (prefix, woverrides) = match (patternFrom prefix) $ do
     route $ setExtension "pdf"
     compile $ getResourceString >>= saveSnapshot "_autoindex"
         >>= readPandocWith defaultReaderOptions
-        >>= withItemBody (texWithPandocWriter "default" writeBeamer (appEndo woverrides defaultHakyllWriterOptions) >=> lualatex)
+        >>= withItemBody (texWithPandocWriter "default.latex" writeBeamer (appEndo woverrides defaultHakyllWriterOptions) >=> lualatex)
 
 texToPdf :: PrefixInfo -> Rules ()
 texToPdf (mod, _) = match (mod */* "*.tex") $ do
@@ -130,11 +130,11 @@ defaultWriterOptions = defaultHakyllWriterOptions
     , writerHTMLMathMethod   = MathJax ""
     , writerNumberSections   = True
     , writerListings         = True
-    , writerVariables        = [ ("lang",          "en-UK")
-                               , ("papersize",     "a4")
-                               , ("colorlinks",    "true")
-                               , ("CJKmainfont",   "IPAexMincho")
-                               ]
+    --, writerVariables        = [ ("lang",          "en-UK")
+    --                           , ("papersize",     "a4")
+    --                           , ("colorlinks",    "true")
+    --                           , ("CJKmainfont",   "IPAexMincho")
+    --                           ]
     }
 
 --------------------------------------------------------------------------------
@@ -145,8 +145,8 @@ texWithPandocWriter templateName w writerOptions p = unsafeCompiler . fmap (eith
 
 updateTemplate :: PandocMonad m => String -> WriterOptions -> m WriterOptions
 updateTemplate templateName writerOptions = do
-    lookupEnv "HOME" >>= setUserDataDir . fmap (++ "/.pandoc")
-    t <- UTF8.toString <$> readDataFile ("templates/" ++ templateName ++ ".latex")
+    lookupEnv "HOME" >>= setUserDataDir . fmap ((++ "/.pandoc") . unpack)
+    t <- fmap (either (error) id) $ getTemplate templateName >>= runWithDefaultPartials . compileTemplate ""
     pure $ writerOptions { writerTemplate = Just t }
 
 --------------------------------------------------------------------------------

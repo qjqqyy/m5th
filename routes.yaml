@@ -44,3 +44,10 @@ mdpdf:
   - MA2104/a:
     - disableNumberSections
   - MA2202S/hw
+writervars:
+  lang: en-UK
+  papersize: a4
+  classoption:
+    - british
+  colorlinks: true
+  CJKmainfont: IPAexMincho

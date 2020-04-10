@@ -22,8 +22,6 @@ classoption:
 \newcommand{\qed}{\hfill$\blacksquare$}
 \newcommand{\tagQED}{\tag*{$\blacksquare$}}
 
-\maketitle
-
 Question 1
 ==========
 >Find the point on the paraboloid $z=\dfrac{x^2}{4} + \dfrac{y^2}{25}$ that is closest to the point $(3,0,0)$.

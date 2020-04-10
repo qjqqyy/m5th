@@ -3,13 +3,17 @@
 
 import Hakyll
 import Text.Pandoc
+import Text.DocTemplates (toContext)
 
+import Control.Arrow (second)
 import Control.Monad ((>=>), when)
 import Data.Aeson ( defaultOptions
                   , genericParseJSON
                   , sumEncoding
+                  , toJSON
                   , SumEncoding(UntaggedValue)
                   , FromJSON(..)
+                  , Value
                   )
 import Data.Monoid (appEndo, Endo(..), mconcat)
 import Data.List (nub, sort)
@@ -123,6 +127,13 @@ defaultReaderOptions = defaultHakyllReaderOptions
     , readerStandalone = True
     }
 
+vars :: [(String, String)]
+vars = [ ("lang",          "en-UK")
+       , ("papersize",     "a4")
+       , ("colorlinks",    "true")
+       , ("CJKmainfont",   "IPAexMincho")
+       ]
+
 defaultWriterOptions :: WriterOptions
 defaultWriterOptions = defaultHakyllWriterOptions
     { writerExtensions       = extensions
@@ -130,11 +141,6 @@ defaultWriterOptions = defaultHakyllWriterOptions
     , writerHTMLMathMethod   = MathJax ""
     , writerNumberSections   = True
     , writerListings         = True
-    --, writerVariables        = [ ("lang",          "en-UK")
-    --                           , ("papersize",     "a4")
-    --                           , ("colorlinks",    "true")
-    --                           , ("CJKmainfont",   "IPAexMincho")
-    --                           ]
     }
 
 --------------------------------------------------------------------------------
@@ -211,6 +217,9 @@ type Override = String
 toWriterOptionsEndo :: Override -> Endo WriterOptions
 toWriterOptionsEndo "disableNumberSections" = Endo (\w -> w { writerNumberSections = False })
 
+attachWriterVars :: Value -> Endo WriterOptions
+attachWriterVars wv = Endo(\w -> w { writerVariables = toContext wv })
+
 data Entry = Short Prefix
            | Long (Map Prefix [Override])
            deriving (Generic, Show)
@@ -229,6 +238,7 @@ data Config = Config
     , mdpdf :: [Entry]
     , cname :: Maybe String
     , mathJax :: String
+    , writervars :: Value
     } deriving (Generic, Show)
 instance FromJSON Config where
     parseJSON = genericParseJSON defaultOptions { sumEncoding = UntaggedValue }
@@ -239,10 +249,12 @@ convert Config{ cname = c
               , mdbeamer = mb
               , mdhtml = mh
               , mdpdf = mp
+              , writervars = wv
               } = ( c
                   , [ (texToPdf,    map toPrefixInfo tp)
                     , (mdToBeamer,  map toPrefixInfo mb)
                     , (mdToHtml mj, map toPrefixInfo mh)
-                    , (mdToPdf,     map toPrefixInfo mp)
+                    , (mdToPdf,     map toPrefixInfoWithWV mp)
                     ]
                   )
+  where toPrefixInfoWithWV = second ((attachWriterVars wv) <>) . toPrefixInfo

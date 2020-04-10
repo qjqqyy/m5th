@@ -20,7 +20,7 @@ header-includes:
 \newcommand{\rank}{\operatorname{rank}}
 \newcommand{\nullity}{\operatorname{nullity}}
 \newcommand{\N}{\mathbb{N}}
-\renewcommand{\M}{\mathbb{M}}
+\newcommand{\M}{\mathbb{M}}
 \newcommand{\Z}{\mathbb{Z}}
 \let\setminus\smallsetminus
 \let\geq\geqslant

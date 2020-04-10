@@ -13,7 +13,7 @@ date: 19th March 2018
 \newcommand{\qed}{\hfill$\square$}
 \newcommand{\tagQED}{\tag*{$\square$}}
 \newcommand{\N}{\mathbb{N}}
-\renewcommand{\M}{\mathbb{M}}
+\newcommand{\M}{\mathbb{M}}
 \newcommand{\chara}{\operatorname{char}}
 \newcommand{\adj}{\operatorname{adj}}
 \renewcommand{\Im}{\operatorname{Im}}

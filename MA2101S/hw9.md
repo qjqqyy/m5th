@@ -13,7 +13,7 @@ date: 9th April 2018
 \newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
 \newcommand{\qed}{\hfill$\square$}
 \newcommand{\tagQED}{\tag*{$\square$}}
-\renewcommand{\M}{\mathbb{M}}
+\newcommand{\M}{\mathbb{M}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\End}{\operatorname{End}}
 \newcommand{\GL}{\mathrm{GL}}

@@ -97,14 +97,14 @@ mdToPdf (prefix, woverrides) = match (patternFrom prefix) $ do
     route $ setExtension "pdf"
     compile $ getResourceString >>= saveSnapshot "_autoindex"
         >>= readPandocWith defaultReaderOptions
-        >>= withItemBody (writeXetex writeLaTeX (appEndo woverrides defaultWriterOptions) "eisvogel" >=> xelatex)
+        >>= withItemBody (texWithPandocWriter "eisvogel" writeLaTeX (appEndo woverrides defaultWriterOptions) >=> lualatex)
 
 mdToBeamer :: PrefixInfo -> Rules ()
 mdToBeamer (prefix, woverrides) = match (patternFrom prefix) $ do
     route $ setExtension "pdf"
     compile $ getResourceString >>= saveSnapshot "_autoindex"
         >>= readPandocWith defaultReaderOptions
-        >>= withItemBody (writeXetex writeBeamer (appEndo woverrides defaultHakyllWriterOptions) "default" >=> xelatex)
+        >>= withItemBody (texWithPandocWriter "default" writeBeamer (appEndo woverrides defaultHakyllWriterOptions) >=> lualatex)
 
 texToPdf :: PrefixInfo -> Rules ()
 texToPdf (mod, _) = match (mod */* "*.tex") $ do
@@ -134,14 +134,12 @@ defaultWriterOptions = defaultHakyllWriterOptions
                                , ("papersize",     "a4")
                                , ("colorlinks",    "true")
                                , ("CJKmainfont",   "IPAexMincho")
-                               , ("titlepage",     "true")
                                ]
     }
 
 --------------------------------------------------------------------------------
-writeXetex :: (WriterOptions -> Pandoc -> PandocIO Text) -> WriterOptions -> String
-            -> Pandoc -> Compiler String
-writeXetex w writerOptions templateName p = unsafeCompiler . fmap (either (fail . show) unpack) . runIO $ do
+texWithPandocWriter :: String -> (WriterOptions -> Pandoc -> PandocIO Text) -> WriterOptions -> Pandoc -> Compiler String
+texWithPandocWriter templateName w writerOptions p = unsafeCompiler . fmap (either (fail . show) unpack) . runIO $ do
     wo <- updateTemplate templateName writerOptions
     w wo p
 
@@ -154,17 +152,17 @@ updateTemplate templateName writerOptions = do
 --------------------------------------------------------------------------------
 -- | From https://github.com/jaspervdj/jaspervdj/blob/f12cdf27340106613e560dfcecbd7a87a6ce408a/src/Main.hs#L261
 -- | Hacky.
-xelatex :: String -> Compiler (TmpFile)
-xelatex texString = do
-    TmpFile tmpTexPath <- newTmpFile "xelatex.tex"
+lualatex :: String -> Compiler (TmpFile)
+lualatex texString = do
+    TmpFile tmpTexPath <- newTmpFile "lualatex.tex"
     let tmpDir  = takeDirectory tmpTexPath
         pdfPath = replaceExtension tmpTexPath "pdf"
 
     unsafeCompiler $ do
         writeFile tmpTexPath texString
         -- gotta do it twice
-        _ <- system $ unwords ["xelatex", "-halt-on-error", "-output-directory", tmpDir, tmpTexPath, ">/dev/null 2>&1"]
-        _ <- system $ unwords ["xelatex", "-halt-on-error", "-output-directory", tmpDir, tmpTexPath, ">/dev/null 2>&1"]
+        _ <- system $ unwords ["lualatex", "-halt-on-error", "-output-directory", tmpDir, tmpTexPath, "</dev/null >/dev/null 2>&1"]
+        _ <- system $ unwords ["lualatex", "-halt-on-error", "-output-directory", tmpDir, tmpTexPath, "</dev/null >/dev/null 2>&1"]
         pure ()
 
     pure (TmpFile pdfPath)
@@ -172,7 +170,7 @@ xelatex texString = do
 -- | Even more hacky.
 latexmk :: FilePath -> Compiler (TmpFile)
 latexmk origTexPath = do
-    TmpFile tmpTexPath <- newTmpFile "xelatex.tex"
+    TmpFile tmpTexPath <- newTmpFile "lualatex.tex"
     let tmpDir  = takeDirectory tmpTexPath
         pdfPath = replaceExtension tmpTexPath "pdf"
         tmpBibPath = replaceExtension tmpTexPath "bib"
@@ -182,7 +180,7 @@ latexmk origTexPath = do
         copyFile origTexPath tmpTexPath
         bibExist <- doesFileExist origBibPath
         when bibExist $ copyFile origBibPath tmpBibPath
-        _ <- system $ unwords ["latexmk", "-xelatex", "-halt-on-error", "-outdir=" ++ tmpDir, "-cd", tmpTexPath, ">/dev/null 2>&1"]
+        _ <- system $ unwords ["latexmk", "-lualatex", "-halt-on-error", "-outdir=" ++ tmpDir, "-cd", tmpTexPath, "</dev/null >/dev/null 2>&1"]
         pure ()
 
     pure (TmpFile pdfPath)

@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy Pages
 
 on:
   push:
@@ -20,14 +20,11 @@ jobs:
       - name: Build site
         run: docker run -v $(pwd):/site docker.pkg.github.com/qjqqyy/hakyll-latex/hakyll-latex:4.13.2.0 build
 
-      - name: Install SSH Keys
-        uses: webfactory/ssh-agent@v0.2.0
-        with:
-          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
-
       - name: Push to pages
-        uses: JamesIves/github-pages-deploy-action@3.4.7
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          ssh: true
-          branch: gh-pages
-          folder: _site
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: _site
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          force_orphan: true

@@ -1,6 +1,6 @@
 ---
 cname: m5th.b0ss.net
-mathJax: <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+mathJax: <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async type="text/javascript"></script>
 texpdf:
   - CS1010
   - CP3208

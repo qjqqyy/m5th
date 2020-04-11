@@ -24,7 +24,6 @@ mdhtml:
   - MA3205:
     - disableNumberSections
   - MA5220
-  - MA6222
   - CS4232
   - MA3110S/h:
     - disableNumberSections
@@ -44,6 +43,7 @@ mdpdf:
   - MA2104/a:
     - disableNumberSections
   - MA2202S/hw
+  - MA6222
 writervars:
   lang: en-UK
   papersize: a4

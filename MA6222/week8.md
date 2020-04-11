@@ -1,5 +1,5 @@
 ---
-title: Week 8 Exercise
+title: Week 8 Exercises
 author: Qi Ji
 date: 31st March 2020
 ---
@@ -7,7 +7,6 @@ date: 31st March 2020
 \newcommand{\ACA}{\mathbf{ACA}}
 \newcommand{\PA}{\mathbf{PA}}
 \newcommand{\model}{\vDash}
-\newcommand{\models}{\vDash}
 \newcommand{\prove}{\vdash}
 \newcommand{\proves}{\vdash}
 \newcommand{\set}[1]{\left\{#1\right\}}

@@ -1,4 +1,4 @@
-![](https://github.com/qjqqyy/m5th/workflows/Deploy/badge.svg)
+![Deploy Pages](https://github.com/qjqqyy/m5th/workflows/Deploy%20Pages/badge.svg)
 
 This repo contains all of my school-related LaTeX/markdown manuscripts, since uni started in fall 2017.
 

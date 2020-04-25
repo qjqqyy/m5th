@@ -127,13 +127,6 @@ defaultReaderOptions = defaultHakyllReaderOptions
     , readerStandalone = True
     }
 
-vars :: [(String, String)]
-vars = [ ("lang",          "en-UK")
-       , ("papersize",     "a4")
-       , ("colorlinks",    "true")
-       , ("CJKmainfont",   "IPAexMincho")
-       ]
-
 defaultWriterOptions :: WriterOptions
 defaultWriterOptions = defaultHakyllWriterOptions
     { writerExtensions       = extensions

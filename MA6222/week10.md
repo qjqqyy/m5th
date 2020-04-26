@@ -6,6 +6,9 @@ header-includes: |
   \usepackage{turnstile}
   \usepackage{bussproofs}
   \newcommand{\To}{\ \mbox{\Large\(\Rightarrow\)\ }}
+  ```{=latex}
+  \def\fCenter{\ \mbox{\Large\(\Rightarrow\)\ }}
+  ```
 ---
 
 \let\phi\varphi

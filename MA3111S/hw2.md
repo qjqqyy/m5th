@@ -1,8 +1,6 @@
 ---
 title: MA3111S Homework 2
-author:
- - Pek Yu-Xuan Sean
- - Qi Ji
+author: Pek Yu-Xuan Sean, Qi Ji
 date: 18th February 2020
 ---
 

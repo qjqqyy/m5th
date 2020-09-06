@@ -16,6 +16,7 @@ mdbeamer:
   - CS2030lab
   - CP3208/slides
 mdhtml:
+  - GET1004
   - CS2100
   - MA2108S:
     - disableNumberSections

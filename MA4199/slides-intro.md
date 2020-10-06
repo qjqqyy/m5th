@@ -99,7 +99,7 @@ Impossible!
 ## Easy informal independence proof
 
 Assume consistency of ZF,
-\[ V_\omega = \set{\text{all finite sets}} \] is a model of ZF - infinity + "all sets are finite".
+\[ V_\omega = \set{\text{all hereditarily finite sets}} \] is a model of ZF - infinity + "all sets are finite".
 
 **Conclusion.**
 Infinity is not provable from the other axioms of ZFC, there is a model in which it fails.

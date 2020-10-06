@@ -1,5 +1,5 @@
 ---
-title: Week 2
+title: Kunen IV Exercise 18 to 24
 author: Qi Ji
 date: 19th August 2020
 ---
@@ -118,5 +118,13 @@ Do model theory.
 
 Assume choice and \(\text{choice}^{\WF(A)}\) follows from Lemma 3.14 (universal statements relativise down).
 
+# Exercise 23
+
+Use a nice enough \(\F\) to get a \(U\) satisfying \(\forall x\in U.~ x = \set{x}\) (argument in 18 should work in a model of just \(\text{ZF}^-\)),
+then plug 22.
+
+# Exercise 24
+
+doable
 
 <div style="height:50vh"></div>

@@ -15,6 +15,7 @@ texpdf:
 mdbeamer:
   - CS2030lab
   - CP3208/slides
+  - MA4199/slides
 mdhtml:
   - GET1004
   - CS2100

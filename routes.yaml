@@ -43,6 +43,8 @@ mdhtml:
   - MA4199/notes:
     - disableNumberSections
   - MA4262
+  - PC1144:
+    - disableNumberSections
 mdpdf:
   - MA2101S
   - MA2104/a:

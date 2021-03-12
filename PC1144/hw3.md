@@ -35,12 +35,12 @@ We have
 \end{align*}
 solving time-independent Schrödinger equation we have
 \begin{align*}
-    -\frac{\hbar}{2m} 2\beta(2\beta x^2 - 1)  + V(x) &= E \\
-    V(x) - \frac{\hbar}{m}(2\beta^2 x^2 - \beta) &= E
+    -\frac{\hbar^2}{2m} 2\beta(2\beta x^2 - 1)  + V(x) &= E \\
+    V(x) - \frac{\hbar^2}{m}(2\beta^2 x^2 - \beta) &= E
 \end{align*}
-substituting \(V(0) = 0\) we obtain \(E = \frac{\hbar\beta}{m}\),
+substituting \(V(0) = 0\) we obtain \(E = \frac{\hbar^2\beta}{m}\),
 then we have expression for \(V(x)\) as
-\[ V(x) = \frac{2\hbar\beta^2}{m}x^2. \]
+\[ V(x) = \frac{2\hbar^2\beta^2}{m}x^2. \]
 
 # (c)
 

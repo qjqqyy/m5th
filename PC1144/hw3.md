@@ -30,17 +30,17 @@ We have
 \begin{align*}
     u(x) &= Ae^{-\beta x^2} \\
     u'(x) &= -2A\beta x e^{-\beta x^2} \\
-    u''(x) &= 2A\beta (2\beta x - 1) e^{-\beta x^2} \\
-           &= 2\beta(2\beta x - 1) u(x)
+    u''(x) &= 2A\beta (2\beta x^2 - 1) e^{-\beta x^2} \\
+           &= 2\beta(2\beta x^2 - 1) u(x)
 \end{align*}
 solving time-independent Schrödinger equation we have
 \begin{align*}
-    -\frac{\hbar}{2m} 2\beta(2\beta x - 1)  + V(x) &= E \\
-    V(x) - \frac{\hbar}{m}(2\beta^2 x - \beta) &= E
+    -\frac{\hbar}{2m} 2\beta(2\beta x^2 - 1)  + V(x) &= E \\
+    V(x) - \frac{\hbar}{m}(2\beta^2 x^2 - \beta) &= E
 \end{align*}
 substituting \(V(0) = 0\) we obtain \(E = \frac{\hbar\beta}{m}\),
 then we have expression for \(V(x)\) as
-\[ V(x) = \frac{2\hbar\beta^2}{m}x. \]
+\[ V(x) = \frac{2\hbar\beta^2}{m}x^2. \]
 
 # (c)
 

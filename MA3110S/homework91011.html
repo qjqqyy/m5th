@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="1st November 2019" />
+  <title>MA3110S Homeworks 9, 10, 11</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">MA3110S Homeworks 9, 10, 11</h1><p class="author">Qi Ji</p>
+<p class="date">1st November 2019</p>
+</header>
+<article><h1 id="homework-9">Homework 9</h1>
+<h2 id="q1">Q1</h2>
+<p>As <span class="math inline">\(\lim_{x\to\infty} f(x) = a\)</span>, it follows that <span class="math inline">\(\int_0^x f(t)\ dt \to\infty\)</span> as <span class="math inline">\(x\to\infty\)</span>. Then by l’Hopital’s rule and FTOC we have <span class="math display">\[
+\lim_{x\to\infty}\frac{\int_0^x f(t)\ dt}x = \lim_{x\to\infty} f(x) = a.
+\]</span></p>
+<h2 id="q2">Q2</h2>
+<p>As <span class="math inline">\(g(x)\)</span> does not change sign, for all <span class="math inline">\(x\in[a,b]\)</span> <span class="math display">\[ m\,g(x) \leq f(x)\,g(x) \leq M\,g(x) \]</span> then <span class="math display">\[ m \int_a^b g(x)\ dx \leq \int_a^b f(x)g(x)\ dx \leq M \int_a^b g(x)\ dx \]</span> and the result follows.</p>
+<h2 id="q3">Q3</h2>
+<p>For each <span class="math inline">\(n\in\mathbb{N}\)</span> we have the following</p>
+<p><span class="math display">\[\begin{align*}
+\int_0^\pi f(x)\left\lvert\sin nx\right\rvert dx
+&amp;= \sum_{k=1}^n \int_{(k-1)\pi/n}^{k\pi/n} f(x)\left\lvert\sin nx\right\rvert dx
+\end{align*}\]</span> and at each <span class="math inline">\(k\)</span> by result of question 2, there is a <span class="math inline">\(\mu_k\in[a,b]\)</span> such that <span class="math display">\[ \mu_k\int_a^b \left\lvert\sin nx\right\rvert dx = \int_a^b f(x)\left\lvert\sin nx\right\rvert dx \]</span> where <span class="math inline">\(a = \frac{(k-1)\pi}n, b = \frac{k\pi}n\)</span>. Additionally as <span class="math inline">\(f\)</span> is continuous we know that <span class="math inline">\(\mu_k = f(c_k)\)</span> for some <span class="math inline">\(c_k\in [a,b]\)</span>. Then <span class="math display">\[\begin{align*}
+\int_0^\pi f(x)\left\lvert\sin nx\right\rvert dx
+&amp;= \sum_{k=1}^n f(c_k)\int_{(k-1)\pi/n}^{k\pi/n} \left\lvert\sin nx\right\rvert dx \\
+&amp;= \sum_{k=1}^n f(c_k) \frac1n \int_{0}^{\pi} \left\lvert\sin x\right\rvert dx \\
+&amp;= \sum_{k=1}^n \frac2n f(c_k)
+\end{align*}\]</span> then as we take the limit <span class="math display">\[\begin{align*}
+\lim_{n\to\infty} \int_0^\pi f(x)\left\lvert\sin nx\right\rvert dx
+&amp;= \frac2\pi \lim_{n\to\infty} \frac\pi{n} \sum_{k=1}^n f(x_k) \\
+&amp;= \frac2\pi \int_0^x f(x)\ dx.
+\end{align*}\]</span></p>
+<h1 id="homework-10">Homework 10</h1>
+<h2 id="q1-1">Q1</h2>
+<p><strong>Part (i).</strong> Integrating by parts, <span class="math display">\[\begin{align*}
+I(m,n) &amp;= \int_0^{\pi/2}\cos^m x\sin^n x\ dx \\
+&amp;= \left[
+\frac{\cos^{m-1} x\sin^{n+1} x}{n+1}
+\right]^{\pi/2}_0 + \int_0^{\pi/2} \frac{m-1}{n+1} \cos^{m-2}x\sin^{n+2}x\ dx \\
+&amp;= \frac{m-1}{n+1} \int_0^{\pi/2} \cos^{m-2}x\sin^nx (1-\cos^2 x)\ dx \\
+&amp;= \frac{m-1}{n+1} (I(m-2, n) - I(m,n))
+\end{align*}\]</span> solving for <span class="math inline">\(I(m,n)\)</span> gives <span class="math display">\[ I(m,n) = \frac{m-1}{n+m} I(m-2,n) \]</span> as desired. Proceed similarly for the case <span class="math inline">\(I(m, n-2)\)</span>, <span class="math display">\[\begin{align*}
+I(m,n) &amp;= \int_0^{\pi/2}\cos^m x\sin^n x\ dx \\
+&amp;= \left[
+\frac{-\sin^{n-1} x\cos^{m+1} x}{m+1}
+\right]^{\pi/2}_0 + \int_0^{\pi/2} \frac{n-1}{m+1} \cos^{m+2}x\sin^{n-2}x\ dx \\
+&amp;= \frac{n-1}{m+1} (I(m, n-2) - I(m,n))
+\end{align*}\]</span> and solve for <span class="math inline">\(I(m,n)\)</span> the same way.</p>
+<p><strong>Part (ii).</strong> To find <span class="math inline">\(I(2m,2n)\)</span> repeatedly apply part (i). <span class="math display">\[\begin{align*}
+I(2m,2n) &amp;= I(0,2n) \prod_{i=1}^m \frac{2i-1}{2i+2n} \\
+&amp;= I(0,0) \prod_{i=1}^m \frac{2i-1}{2i+2n} \prod_{j=1}^n \frac{2j-1}{2j} \\
+&amp;= \frac\pi2 \frac{\prod_{i=1}^m (2i-1) \prod_{j=1}^n (2j-1)}{2^{m+n}(m+n)!}
+\end{align*}\]</span> for the product terms observe that <span class="math display">\[ \prod_{i=2}^m (2i-1) = \frac{(2m)!}{2^m m!} \]</span> so <span class="math display">\[
+I(2m,2n) = \frac{(2m)!(2n)!}{2^{2(m+n)}(m+n)!} \frac\pi2
+\]</span></p>
+<h2 id="q2-1">Q2</h2>
+<p>Let <span class="math inline">\(f(x) = \frac{(-1)^{\lfloor x\rfloor}}{\sqrt{\lfloor x\rfloor}}\)</span>, then integrating <span class="math inline">\(f\)</span> from <span class="math inline">\(a\)</span> is (more or less) equivalent to adding the series <span class="math inline">\(\sum_{n=a}^\infty \frac{(-1)^n}{\sqrt{n}}\)</span>, which is convergent by alternating series test. However integrating <span class="math inline">\(f^2\)</span> is equivalent to adding the harmonic series <span class="math inline">\(\frac1n\)</span> which diverges.</p>
+<h2 id="q3-1">Q3</h2>
+<p><strong>Part (i).</strong> Let <span class="math inline">\(S_n(x)\)</span> denote the partial sum <span class="math inline">\(\sum_{m=1}^n u_n(x)\)</span>. Let <span class="math inline">\(\mu = \inf_{x\in[a,b]} S(x)\)</span> and for each <span class="math inline">\(n\in\mathbb{N}\)</span>, let <span class="math inline">\(X_n = \left\{x\in[a,b]: S_n(x) \leq \mu\right\}\)</span> which is closed. Note that <span class="math inline">\(X_n\)</span> is also nonempty as <span class="math inline">\(S_n\)</span> achieves its minimum. Next observe that <span class="math inline">\(X_1\supseteq X_2\supseteq \dots\)</span>, since if <span class="math inline">\(x\in X_{n+1}\)</span>, then <span class="math inline">\(S_{n+1}(x) &lt; \mu\)</span>, then <span class="math inline">\(S_n(x) + u_{n+1}(x) \leq \mu\)</span> so <span class="math inline">\(x\in X_n\)</span> too. By nested ball theorem <span class="math inline">\(\bigcap_{n=1}^\infty X_n\)</span> is nonempty, let <span class="math inline">\(a\)</span> be in the intersection. As each <span class="math inline">\(S_n(a) \leq \mu\)</span>, <span class="math inline">\(S(a) = \lim_n S_n(a) \leq \mu\)</span> too which suffices.</p>
+<p><strong>Part (ii).</strong> <span class="math inline">\(S(x)\)</span> could achieve its minimum on an endpoint, so the conclusion for <span class="math inline">\((a,b)\)</span> fails. This can hold in a degenerate example where <span class="math inline">\(u_1(x) = x\)</span> and <span class="math inline">\(u_n(x) = 0\)</span> for all <span class="math inline">\(n&gt;1\)</span>.</p>
+<h1 id="homework-11">Homework 11</h1>
+<h2 id="q1-2">Q1</h2>
+<p>We show <span class="math inline">\(f_n(x)\)</span> uniformly converges to <span class="math inline">\(f'(x)\)</span> on any finite closed interval <span class="math inline">\([a,b]\)</span>, which will imply the result.</p>
+<p>Consider the difference <span class="math display">\[ f_n(x) - f'(x) = e^n\left[f(x+e^{-n}) - f(x)\right] - f'(x) \]</span> by Taylor’s theorem there exists <span class="math inline">\(c\in (x,x+e^{-n})\)</span> such that <span class="math display">\[\begin{align*}
+f(x+e^{-n}) &amp;= f(x) + f'(c)(e^{-n}) \\
+f_n(x) - f'(x) &amp;= f'(c) - f'(x)
+\end{align*}\]</span> Now as <span class="math inline">\(f'\)</span> is continuous, and thus uniformly continuous on <span class="math inline">\([a,b]\)</span>, by making <span class="math inline">\(n\)</span> sufficiently large we can ensure that <span class="math inline">\(c\)</span> and <span class="math inline">\(x\)</span> get arbitrarily close. Specifically fix <span class="math inline">\(\varepsilon&gt; 0\)</span> and let <span class="math inline">\(\delta\)</span> such that <span class="math inline">\(\left\lvert c-x\right\rvert&lt;\delta\implies \left\lvert f'(c)-f'(x)\right\rvert&lt;\varepsilon\)</span>, then choose <span class="math inline">\(N &gt; -\ln\delta\)</span> then whenever <span class="math inline">\(n\geq N\)</span>, <span class="math inline">\(e^{-n} &lt; \delta\)</span> and <span class="math inline">\(\left\lvert c-x\right\rvert&lt;\delta\)</span>, then the result follows.</p>
+<h2 id="q2-2">Q2</h2>
+<p>First we show that <span class="math inline">\(\sum_{n=1}^\infty u'_n(x_0)\)</span> converges. By Cauchy criterion, we consider <span class="math inline">\(\left\lvert\sum_{n=k}^l u'_n(x_0)\right\rvert\)</span>. Note that for each <span class="math inline">\(n\in\left\{k,k+1,\dots,l\right\}\)</span> there exists <span class="math inline">\(\delta_n\)</span> such that <span class="math display">\[ \left\lvert x-x_0\right\rvert&lt;\delta_n \implies \left\lvert\frac{u_n(x) - u_n(x_0)}{x-x_0} - u'_n(x_0)\right\rvert &lt; \frac{\varepsilon}{2(l-k+1)} \]</span> then whenever <span class="math inline">\(\left\lvert x-x_0\right\rvert&lt;\min_n \delta_n\)</span>, <span class="math display">\[\begin{align*}
+\left\lvert\sum_{n=k}^l u'_n(x_0)\right\rvert
+&amp;= \left\lvert\sum_{n=k}^l \frac{u_n(x) - u_n(x_0)}{x - x_0}\right\rvert + \frac\varepsilon 2
+\end{align*}\]</span> and uniform convergence of <span class="math inline">\(\sum_{n=1}^\infty \frac{u_n(x) - u_n(x_0)}{x - x_0}\)</span> controls the other term.</p>
+<p>Next we show <span class="math inline">\(f'(x_0) = \sum_{n=1}^\infty u'_n(x_0)\)</span>. Consider <span class="math display">\[\begin{align*}
+\left\lvert \frac{\sum_n u_n(x) - \sum_n u_n(x_0)}{x-x_0} - \sum_n u'_n(x_0) \right\rvert
+&amp;=
+\left\lvert \sum_n \frac{u_n(x) - u_n(x_0)}{x-x_0} - \sum_n u'_n(x_0) \right\rvert
+\end{align*}\]</span> By property (2) for all <span class="math inline">\(x\)</span> near <span class="math inline">\(x_0\)</span>, the tail of <span class="math inline">\(\sum_{n=N}^\infty \frac{u_n(x) - u_n(x_0)}{x-x_0}\)</span> can be made arbitrarily small, and the same can be said for <span class="math inline">\(\sum_{n=N}^\infty u'_n(x_0)\)</span> for some large enough <span class="math inline">\(N\)</span>, therefore <span class="math display">\[\begin{align*}
+\left\lvert \frac{\sum_n u_n(x) - \sum_n u_n(x_0)}{x-x_0} - \sum_n u'_n(x_0) \right\rvert
+&amp;\leq \left\lvert \sum_{n=1}^N \frac{u_n(x) - u_n(x_0)}{x-x_0} - \sum_{n=1}^N u'_n(x_0) \right\rvert + o(1) \\
+&amp;\leq \left\lvert \sum_{n=1}^N \frac{u_n(x) - u_n(x_0)}{x-x_0} - u'_n(x_0) \right\rvert + o(1)
+\end{align*}\]</span> and the finite sum can be controlled using an argument similar to the earlier part.</p>
+<h2 id="q3-2">Q3</h2>
+<p>We first show that <span class="math inline">\(\sum_{n=1}^\infty \int_a^\infty u_n(x)\ dx\)</span> converges. By the Cauchy criterion consider <span class="math display">\[\begin{align*}
+\left\lvert\sum_{n=k}^l \int_a^\infty u_n(x)\ dx\right\rvert
+&amp;\leq\left\lvert \sum_{n=k}^l \int_a^b u_n(x)\ dx \right\rvert
+  +  \sum_{n=k}^l \left\lvert\int_b^\infty u_n(x)\ dx\right\rvert
+\end{align*}\]</span> applying property (3) to <span class="math inline">\(g(b)\)</span> controls the first term while applying property (1) controls the second summation.</p>
+<p>Now it suffices to show that for any <span class="math inline">\(\varepsilon&gt;0\)</span>, there exists large enough <span class="math inline">\(b\)</span> such that <span class="math display">\[
+\left\lvert
+\int_a^b \sum_{n=1}^\infty u_n(x)\ dx -
+\sum_{n=1}^\infty \int_a^\infty u_n(x)\ dx
+\right\rvert&lt; \varepsilon.
+\]</span></p>
+<p>By property (2) we can exchange integral and sum <span class="math display">\[ \int_a^b \sum_{n=1}^\infty u_n(x)\ dx = \sum_{n=1}^\infty \int_a^b u_n(x)\ dx \]</span> Now <span class="math display">\[\begin{align*}
+\sum_{n=1}^\infty\int_a^\infty u_n(x)\ dx
+&amp;= \sum_{n=1}^K\int_a^\infty u_n(x)\ dx + o(1) \tag*{convergence} \\
+&amp;= \sum_{n=1}^K\int_a^b u_n(x)\ dx + o(1) \tag*{property (1)}\\
+&amp;= \sum_{n=1}^\infty\int_a^b u_n(x)\ dx + o(1) \tag*{property (3)}
+\end{align*}\]</span> for sufficiently large <span class="math inline">\(K\)</span> (chosen to satisfy property (3) in addition) and <span class="math inline">\(b\)</span>, which suffices.</p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA3110S/homework91011.md">MA3110S/homework91011.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

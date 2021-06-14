@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="Week 6" />
+  <title>MA2202S Tutorial 4</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">MA2202S Tutorial 4</h1><p class="author">Qi Ji</p>
+<p class="date">Week 6</p>
+</header>
+<article><!--\let\setminus\smallsetminus-->
+<h1 data-number="1" id="group-homomorphism" data-number="1"><span class="header-section-number">1</span> Group Homomorphism</h1>
+<blockquote>
+<p>Suppose <span class="math inline">\(\phi: G \to H\)</span> is a group homomorphism.</p>
+</blockquote>
+<h2 data-number="1.1" id="show-that-phie_g-e_h." data-number="1.1"><span class="header-section-number">1.1</span> Show that <span class="math inline">\(\phi(e_G) = e_H\)</span>.</h2>
+<p><span class="math display">\[\begin{align*}
+    e_H \phi(e_G) &amp;= \phi(e_G) \\
+    &amp;= \phi(e_G e_G) \\
+    &amp;= \phi(e_G) \phi(e_G) \\
+    e_H &amp;= \phi(e_G)    \tag*{$\square$}
+\end{align*}\]</span></p>
+<h2 data-number="1.2" id="show-that-phig-1-phig-1." data-number="1.2"><span class="header-section-number">1.2</span> Show that <span class="math inline">\(\phi(g^{-1}) = \phi(g)^{-1}\)</span>.</h2>
+<p>By earlier tutorial/homework it suffices to show that for any <span class="math inline">\(g\in G\)</span>, <span class="math display">\[ \phi(g^{-1}) \phi(g) = e_H \]</span> which is true because <span class="math display">\[\begin{align*}
+    \phi(g^{-1}) \phi(g)
+    &amp;= \phi(g^{-1} g) \\
+    &amp;= \phi(e_G) \\
+    &amp;= e_H \tag*{$\square$}
+\end{align*}\]</span></p>
+<h1 data-number="2" id="group-isomorphism." data-number="2"><span class="header-section-number">2</span> Group isomorphism.</h1>
+<ol type="i">
+<li><p><span class="math inline">\(I\circ I = I\)</span></p></li>
+<li><p>Homework 1.</p></li>
+<li><p>Homework 1.</p></li>
+</ol>
+<h1 data-number="3" id="mathbbznmathbbzcong-mu_n" data-number="3"><span class="header-section-number">3</span> <span class="math inline">\(\mathbb{Z}/n\mathbb{Z}\cong \mu_n\)</span></h1>
+<ol type="i">
+<li><p>Verify that <span class="math inline">\(\phi^{-1}\)</span> is given by <span class="math inline">\(z \mapsto \frac{n}{2\pi i} \log z\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(k, k' \in \mathbb{Z}/nZ\)</span>, verify that</p>
+<ul>
+<li>Case <span class="math inline">\(k +_\mathbb{Z}k' &lt; n\)</span>, <span class="math inline">\(\phi(k+k') = e^{2\pi ik/n}e^{2\pi ik'/n}\)</span></li>
+<li>Case <span class="math inline">\(k +_\mathbb{Z}k' \geq n\)</span>, then <span class="math inline">\(\phi(k+k') = \phi(k+_\mathbb{Z}k' -_\mathbb{Z}n) = e^{2\pi i(k+k'-n)/n} = e^{2\pi ik/n}e^{2\pi ik'/n}\)</span></li>
+</ul></li>
+</ol>
+<h1 data-number="4" id="section" data-number="4"><span class="header-section-number">4</span> </h1>
+<blockquote>
+<p>Let <span class="math inline">\(\phi: \mathbb{Z}/12\mathbb{Z}\to \mathbb{Z}/12\mathbb{Z}\)</span> be a group isomorphism.</p>
+</blockquote>
+<h2 data-number="4.1" id="phi0-0." data-number="4.1"><span class="header-section-number">4.1</span> <span class="math inline">\(\phi(0) = 0\)</span>.</h2>
+<p>By question 1a.</p>
+<h2 data-number="4.2" id="phi6-6." data-number="4.2"><span class="header-section-number">4.2</span> <span class="math inline">\(\phi(6) = 6\)</span>.</h2>
+<p>We have <span class="math inline">\(\phi(6 + 6) = \phi(0) = 0 = \phi(6) + \phi(6)\)</span>. Verify that in <span class="math inline">\(\mathbb{Z}/12\mathbb{Z}\)</span>, only <span class="math inline">\(0\)</span> and <span class="math inline">\(6\)</span> are solutions to the equation <span class="math inline">\(t + t = 0\)</span>, but as <span class="math inline">\(\phi\)</span> is an isomorphism <span class="math inline">\(\phi(6) \neq \phi(0)\)</span>, so we have <span class="math inline">\(\phi(6) = 6\)</span>.</p>
+<h2 data-number="4.3" id="show-that-phi1-notin-left-23468910-right" data-number="4.3"><span class="header-section-number">4.3</span> Show that <span class="math inline">\(\phi(1) \notin \left\{\, 2,3,4,6,8,9,10 \,\right\}\)</span></h2>
+<p>Let <span class="math inline">\(x\in \left\{\, 2,3,4,6,8,9,10 \,\right\}\)</span>, then <span class="math inline">\(d = \gcd(x,12) &gt; 1\)</span>. Define <span class="math inline">\(a := \frac{12}{d}\)</span>, as <span class="math inline">\(d &gt; 1\)</span>, <span class="math inline">\(a &lt; 12\)</span>. Since <span class="math inline">\(ax = \operatorname{lcm}(12,x)\)</span>, we have <span class="math display">\[\begin{align*}
+    a x &amp;\equiv 0 \pmod{12} \\
+    \underbrace{x + x + \dots + x}_{a\text{ times}} &amp;= 0
+\end{align*}\]</span> Suppose for a contradiction <span class="math inline">\(\phi(1) = x\)</span>, then <span class="math display">\[\begin{align*}
+    \phi(\underbrace{1 + 1 + \dots + 1}_{a\text{ times}})
+    &amp;= \underbrace{x + x + \dots + x}_{a\text{ times}} \\
+    \phi(a) &amp;= 0
+\end{align*}\]</span> but we showed earlier that <span class="math inline">\(a \ne 0 \in \mathbb{Z}/12\mathbb{Z}\)</span>, so this contradicts fact that <span class="math inline">\(\phi\)</span> is an isomorphism. <span class="math inline">\(\square\)</span></p>
+<h2 data-number="4.4" id="show-that-there-is-a-group-isomorphism-phi-such-that-phi1-5." data-number="4.4"><span class="header-section-number">4.4</span> Show that there is a group isomorphism <span class="math inline">\(\phi\)</span> such that <span class="math inline">\(\phi(1) = 5\)</span>.</h2>
+<p>As <span class="math inline">\(\gcd(5,12) = 1\)</span>, <span class="math inline">\(\operatorname{lcm}(5,12) = 60 = 5\times 12\)</span>. So for all <span class="math inline">\(x\in \left\{\, 0,\dots,11 \,\right\}\)</span>, <span class="math inline">\(5x \not\equiv 0 \pmod{12}\)</span>.</p>
+<p style="font-size:98pt">
+DO THIS
+</p>
+<h1 data-number="5" id="operatornamegl_n" data-number="5"><span class="header-section-number">5</span> <span class="math inline">\(\operatorname{GL}_n\)</span></h1>
+<h2 data-number="5.1" id="operatornameglnmathbbr-is-a-group" data-number="5.1"><span class="header-section-number">5.1</span> <span class="math inline">\(\operatorname{GL}(n,\mathbb{R})\)</span> is a group</h2>
+<dl>
+<dt>Associative</dt>
+<dd>MA1101R
+</dd>
+<dt>Identity</dt>
+<dd>Verify that identity matrix <span class="math inline">\(I_n\)</span> does what we want and <span class="math inline">\(\det(I_n) = 1 \ne 0\)</span>.
+</dd>
+<dt>Inverse</dt>
+<dd>Linear algebra.
+</dd>
+</dl>
+<h2 data-number="5.2" id="operatornamesl_n-is-a-subgroup." data-number="5.2"><span class="header-section-number">5.2</span> <span class="math inline">\(\operatorname{SL}_n\)</span> is a subgroup.</h2>
+<p>By multiplicativity of determinant, let <span class="math inline">\(A, B\in \operatorname{SL}_n\)</span>, and <span class="math inline">\(\det(AB^{-1}) = \det(A)\det(B^{-1}) = 1\)</span>, win.</p>
+<h1 data-number="6" id="let-g-mathbbz100mathbbz." data-number="6"><span class="header-section-number">6</span> Let <span class="math inline">\(G = \mathbb{Z}/100\mathbb{Z}\)</span>.</h1>
+<h2 data-number="6.1" id="let-d-mid-100-show-that-t-left-0d-2ddots-100-d-right-is-a-subgroup-of-g." data-number="6.1"><span class="header-section-number">6.1</span> Let <span class="math inline">\(d \mid 100\)</span>, show that <span class="math inline">\(T = \left\{\, 0,d, 2d,\dots, 100-d \,\right\}\)</span> is a subgroup of <span class="math inline">\(G\)</span>.</h2>
+<p>Notice that <span class="math inline">\(100-d = \frac{100}{d} - 1\)</span>. Define <span class="math inline">\(k = \frac{100}{d}\)</span>. Take <span class="math inline">\(ad, bd\in T\)</span> where <span class="math inline">\(a,b\in\left\{\, 0,1,\dots,k-1 \,\right\}\)</span>, then <span class="math display">\[\begin{align*}
+    ad + bd &amp;=
+    \begin{cases}
+        ad + bd &amp;\text{if } ad + bd &lt; 100 = kd \\
+        ad + bd - 100 &amp;\text{otherwise}
+    \end{cases} \\
+    &amp;=
+    \begin{cases}
+        (a + b)d &amp;\text{if } a + b &lt; k \\
+        (a + b - k)d &amp;\text{otherwise}
+    \end{cases} \in T
+\end{align*}\]</span> similar argument for inverse.</p>
+<h2 data-number="6.2" id="h-g-h-ne-left-0-right-show-h-t-and-d-mid-100-where-d-minhsetminusleft-0-right." data-number="6.2"><span class="header-section-number">6.2</span> <span class="math inline">\(H &lt; G\)</span>, <span class="math inline">\(H \ne \left\{\, 0 \,\right\}\)</span>, show <span class="math inline">\(H = T\)</span> and <span class="math inline">\(d \mid 100\)</span> where <span class="math inline">\(d = \min(H\setminus\left\{\, 0 \,\right\})\)</span>.</h2>
+<p>To show <span class="math inline">\(d\mid 100\)</span>, consider <span class="math inline">\(\langle d \rangle\)</span>, we have <span class="math inline">\(\left\lvert \langle d \rangle \right\rvert \mid 100\)</span> so there exists an integer which multiplied by <span class="math inline">\(d\)</span> gives <span class="math inline">\(100\)</span>, so <span class="math inline">\(d\mid 100\)</span>.</p>
+<p><span class="math inline">\(T = \langle d \rangle \subseteq H\)</span> is clear. Suppose for a contradiction <span class="math inline">\(T \subsetneq H\)</span>, then take <span class="math inline">\(h\in H\setminus T\)</span>. By choice of <span class="math inline">\(d\)</span>, <span class="math inline">\(d &lt; h\)</span>. Consider the largest <span class="math inline">\(x \in \mathbb{Z}\)</span> such that <span class="math display">\[\underbrace{d + d + \dots + d}_{x \text{ times}} &lt; h. \]</span> LHS and RHS both are in <span class="math inline">\(H\)</span>, so take <span class="math inline">\(h - xd\)</span> which is still in <span class="math inline">\(H\)</span> but is a number less than <span class="math inline">\(d\)</span>, this contradicts our choice of <span class="math inline">\(d\)</span>. <span class="math inline">\(\square\)</span></p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA2202S/t4.md">MA2202S/t4.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

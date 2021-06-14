@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="23rd August 2019" />
+  <title>MA5220 Homework 1</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">MA5220 Homework 1</h1><p class="author">Qi Ji</p>
+<p class="date">23rd August 2019</p>
+</header>
+<article><h1 data-number="1" id="prove-fact-3.3" data-number="1"><span class="header-section-number">1</span> Prove Fact 3.3</h1>
+<h2 class="unnumbered" data-number id="a" class="unnumbered" data-number>(a)</h2>
+<blockquote>
+<p>If <span class="math inline">\(x\)</span> is an ordinal and <span class="math inline">\(y\in x\)</span>, then <span class="math inline">\(y\)</span> is an ordinal and <span class="math inline">\(y = \operatorname{\mathsf{pred}}\left(x,\in,y\right)\)</span>.</p>
+</blockquote>
+<p>By definition of an ordinal, <span class="math inline">\(x\)</span> is transitive and <span class="math inline">\((x,\in)\)</span> is a well ordering. First observe <span class="math inline">\(y\subseteq x\)</span> because <span class="math inline">\(y\in x\)</span> and <span class="math inline">\(x\)</span> is transitive.</p>
+<dl>
+<dt><span class="math inline">\(y\)</span> is transitive</dt>
+<dd>Let <span class="math inline">\(z\in y\subseteq x\)</span>. Since <span class="math inline">\(z\in x\)</span> and <span class="math inline">\(x\)</span> is transitive <span class="math inline">\(z\subseteq x\)</span>. Let <span class="math inline">\(w\in z\subseteq x\)</span>, by <span class="math inline">\(\in\)</span> being a linear order on <span class="math inline">\(x\)</span> and transitivity <span class="math inline">\(w\in y\)</span>. Therefore <span class="math inline">\(z\subseteq y\)</span>.
+</dd>
+<dt><span class="math inline">\((y,\in)\)</span> is a well ordering</dt>
+<dd>Let <span class="math inline">\(z\subseteq y\)</span>, <span class="math inline">\(z\ne 0\)</span>, then <span class="math inline">\(z\)</span> is also a nonempty subset of <span class="math inline">\(x\)</span>, and since <span class="math inline">\((x,\in)\)</span> is well ordered <span class="math inline">\(z\)</span> contains a <span class="math inline">\(\in\)</span>-least element.
+</dd>
+<dt><span class="math inline">\(y = \operatorname{\mathsf{pred}}\left(x,\in,y\right)\)</span>.</dt>
+<dd>Let <span class="math inline">\(z \in y \subseteq x\)</span>, we can see that <span class="math inline">\(y\subseteq \operatorname{\mathsf{pred}}\left(x,\in,y\right)\)</span>. Let <span class="math inline">\(z \in \operatorname{\mathsf{pred}}\left(x,\in,y\right)\)</span>, that is <span class="math inline">\(z\in x, z\in y\)</span>, we are also done.<span class="math inline">\(\square\)</span>
+</dd>
+</dl>
+<h2 class="unnumbered" data-number id="b" class="unnumbered" data-number>(b)</h2>
+<blockquote>
+<p>If <span class="math inline">\(x,y\)</span> are ordinals and <span class="math inline">\((x,\in)\cong (y,\in)\)</span>, then <span class="math inline">\(x = y\)</span>.</p>
+</blockquote>
+<p>Let <span class="math inline">\(f: x\to y\)</span> witness the isomorphism. It suffices to show that <span class="math inline">\(z = f(z)\)</span> for all <span class="math inline">\(z\in x\)</span>. Suppose the result fails, then we collect the set <span class="math display">\[ S = \left\{z\in x: f(z) \ne z \right\} \]</span> which is not empty by our assumption. Let <span class="math inline">\(z\)</span> be the <span class="math inline">\(\in\)</span>-least member of <span class="math inline">\(S\)</span>.</p>
+<p>By part (a), <span class="math inline">\(z = \operatorname{\mathsf{pred}}\left(x,\in,z\right)\)</span>, and because <span class="math inline">\(z\)</span> is minimal in <span class="math inline">\(S\)</span>, for all <span class="math inline">\(w\in z\)</span>, <span class="math inline">\(f(w) = w\)</span>. So the <span class="math inline">\(f\)</span>-image of <span class="math inline">\(z\)</span> is just <span class="math inline">\(z\)</span>. On the other hand <span class="math inline">\(f(z) = \operatorname{\mathsf{pred}}\left(y,\in,f(z)\right)\)</span> is also the image of <span class="math inline">\(z\)</span>, so <span class="math inline">\(z = f(z)\)</span> which is a contradiction. <span class="math inline">\(\square\)</span></p>
+<h2 class="unnumbered" data-number id="c" class="unnumbered" data-number>(c)</h2>
+<blockquote>
+<p>If <span class="math inline">\(x,y\)</span> are ordinals, then exactly one of the following holds: <span class="math inline">\(x=y, x\in y, y\in x\)</span>.</p>
+</blockquote>
+<p>By Theorem 2.11 exactly one of the following holds.</p>
+<ol>
+<li><p><span class="math inline">\((x,\in)\cong (y,\in)\)</span></p>
+<ul>
+<li>Apply (b) to get <span class="math inline">\(x = y\)</span>.</li>
+</ul></li>
+<li><p>for some <span class="math inline">\(z\in y\)</span>, <span class="math inline">\((\operatorname{\mathsf{pred}}\left(y,\in,z\right),\in) \cong (x,\in)\)</span></p>
+<ul>
+<li>Apply (a) to see that <span class="math inline">\((z,\in)\cong (x,\in)\)</span>, applying (b) <span class="math inline">\(x = z\)</span>, and <span class="math inline">\(x\in y\)</span> follows.</li>
+</ul></li>
+<li><p>for some <span class="math inline">\(z\in x\)</span>, <span class="math inline">\((\operatorname{\mathsf{pred}}\left(x,\in,z\right),\in) \cong (y,\in)\)</span></p>
+<ul>
+<li>Similar to 2. <span class="math inline">\(\square\)</span></li>
+</ul></li>
+</ol>
+<h2 class="unnumbered" data-number id="d" class="unnumbered" data-number>(d)</h2>
+<blockquote>
+<p>If <span class="math inline">\(C\)</span> is a non empty set of ordinals, then there exists <span class="math inline">\(x\in C\)</span> such that <span class="math inline">\(\forall y\in C\left( y=x \lor x\in y \right)\)</span>.</p>
+</blockquote>
+<p>Suppose for a contradiction <span class="math display">\[ \forall x\in C\exists y\in C \left(y\ne x \land x\notin y\right). \]</span> Then applying the trichotomy in part (c) we have for all <span class="math inline">\(x\in C\)</span>, there exists <span class="math inline">\(y\in C\)</span> such that <span class="math inline">\(y\in x\)</span>, this allows us to find an infinite descending chain of members of <span class="math inline">\(x\)</span>, which contradicts <span class="math inline">\(x\)</span> being an ordinal.</p>
+<h1 data-number="2" id="section" data-number="2"><span class="header-section-number">2</span> </h1>
+<blockquote>
+<p>Suppose <span class="math inline">\((L,\prec)\)</span> is a linear ordering such that for every <span class="math inline">\(X\subseteq L\)</span>, <span class="math inline">\((X,\prec)\)</span> is isomorphic to an initial segment of <span class="math inline">\((L,\prec)\)</span>. Show that <span class="math inline">\((L, \prec)\)</span> is a well ordering.</p>
+</blockquote>
+<p>First consider <span class="math inline">\(0\subseteq L\)</span>, let <span class="math inline">\(m\in L\)</span> such that <span class="math inline">\((0,\prec) \cong \operatorname{\mathsf{pred}}\left(L,\prec,m\right)\)</span>. We can see that <span class="math inline">\(m\)</span> is the <span class="math inline">\(\prec\)</span>-least member of <span class="math inline">\(L\)</span>.</p>
+<p>Let <span class="math inline">\(X\subseteq L\)</span>, since <span class="math inline">\((X,\prec)\)</span> is isomorphic to an initial segment of <span class="math inline">\((L,\prec)\)</span> which necessarily contains <span class="math inline">\(m\)</span>, <span class="math inline">\(X\)</span> also has a <span class="math inline">\(\prec\)</span>-least element and this shows <span class="math inline">\((L,\prec)\)</span> is a well ordering. <span class="math inline">\(\square\)</span></p>
+<h1 data-number="3" id="section-1" data-number="3"><span class="header-section-number">3</span> </h1>
+<blockquote>
+<p>Suppose <span class="math inline">\(X\)</span> is an uncountable set and <span class="math inline">\(\prec_1, \prec_2\)</span> are two well orderings on <span class="math inline">\(X\)</span>. Show that there is an uncountable <span class="math inline">\(Y\subseteq X\)</span> such that <span class="math inline">\(\prec_1,\prec_2\)</span> agree on <span class="math inline">\(Y\)</span>.</p>
+</blockquote>
+<p>Without loss of generality we can only consider the case in which <span class="math inline">\(\operatorname{type}(X,\prec_1) = \omega_1\)</span> (by only considering the <span class="math inline">\(\prec_1\)</span>-initial segment of <span class="math inline">\(X\)</span> otherwise, and <span class="math inline">\((X,\prec_2)\)</span> will still be a well order). Now let <span class="math inline">\(Z\)</span> be the <span class="math inline">\(\prec_2\)</span>-initial segment of <span class="math inline">\(X\)</span> such that <span class="math inline">\(\operatorname{type}(Z,\prec_2) = \omega_1\)</span>. Define <span class="math display">\[ \mathcal{F} = \left\{Y\subseteq Z: \left(\forall a,b\in Y\right)\left(a\prec_1 b \iff a\prec_2 b\right) \right\} \]</span> <span class="math inline">\(\mathcal{F}\)</span> is non-empty (otherwise one of the orderings will fail to be a well order) and it is clear that <span class="math inline">\(\mathcal{F}\)</span> has finite character. By Teichmüller-Tukey (AC) every <span class="math inline">\(W\in \mathcal{F}\)</span> is contained in a maximal <span class="math inline">\(M\in\mathcal{F}\)</span>. Suppose the result fails and let <span class="math inline">\(Y\in\mathcal{F}\)</span> be maximal, then <span class="math inline">\(Y\)</span> is at most countable.</p>
+<p>Note that <span class="math inline">\(\operatorname{type}(Z,\prec_1) = \omega_1\)</span> still, let <span class="math display">\[ Y_1 = \left\{z\in Z: \left(\exists y\in Y\right)\left(z \preccurlyeq_1 y\right)\right\} \]</span> since no element of <span class="math inline">\(\omega_1\)</span> has uncountably many predecessors, <span class="math inline">\(|Y_1| \leq \omega_0\)</span>. Define <span class="math inline">\(Y_2\)</span> analogously. Let <span class="math inline">\(w \in Z\setminus\left(Y_1\cup Y_2\right)\)</span>, the set is not empty since <span class="math inline">\(Y_1\cup Y_2\)</span> is only countable. Note that <span class="math inline">\(w\)</span> satisfies <span class="math display">\[\left(\forall y\in Y\right)\left(y\prec_1 w\right) \land \left(\forall y\in Y\right)\left(y\prec_2 w\right),\]</span> which means <span class="math inline">\(Y\cup\left\{w\right\} \in \mathcal{F}\)</span>, contradicting maximality of <span class="math inline">\(Y\)</span>. <span class="math inline">\(\square\)</span></p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA5220/homework1.md">MA5220/homework1.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

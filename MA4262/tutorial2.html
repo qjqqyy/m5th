@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="8th September 2020 (LATE)" />
+  <title>MA4262 Tutorial 2</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">MA4262 Tutorial 2</h1><p class="author">Qi Ji</p>
+<p class="date">8th September 2020 (LATE)</p>
+</header>
+<article><h1 data-number="1" id="section" data-number="1"><span class="header-section-number">1</span> </h1>
+<h2 data-number="1.1" id="a" data-number="1.1"><span class="header-section-number">1.1</span> (a)</h2>
+<p><span class="math inline">\(f:\mathbb{R}\to\mathbb{R}\)</span> is continuous, for any open subset <span class="math inline">\(U\subseteq \mathbb{R}\)</span>, <span class="math inline">\(f^{-1}(U)\)</span> is open and therefore Borel.</p>
+<h2 data-number="1.2" id="b" data-number="1.2"><span class="header-section-number">1.2</span> (b)</h2>
+<p><span class="math inline">\(g:\mathbb{R}\to\mathbb{R}\)</span> is continuous everywhere except at <span class="math inline">\(0\)</span>, for any open <span class="math inline">\(U\subseteq \mathbb{R}\)</span>, let <span class="math inline">\(V = U\setminus\left\{g(0)\right\}\)</span> which is open. Suppose <span class="math inline">\(U = V\sqcup\left\{g(0)\right\}\)</span> (other case <span class="math inline">\(U=V\)</span> is trivial), <span class="math display">\[g^{-1}(U) = g^{-1}(V)\cup g^{-1}(\left\{g(0)\right\}),\]</span> <span class="math inline">\(g^{-1}(V)\)</span> is open because <span class="math inline">\(g\)</span> is continuous on <span class="math inline">\(V\)</span>, while <span class="math inline">\(g^{-1}(\left\{g(0)\right\}\)</span> is the union of <span class="math inline">\(\left\{0\right\}\)</span> and a closed set.</p>
+<h1 data-number="2" id="section-1" data-number="2"><span class="header-section-number">2</span> </h1>
+<p>Basically use definition of continuous (pullback of open is open), so taking <span class="math inline">\(f^{-1}\)</span> of a Borel set keeps it Borel.</p>
+<h1 data-number="3" id="section-2" data-number="3"><span class="header-section-number">3</span> </h1>
+<p>It’s 1.</p>
+<h1 data-number="4" id="section-3" data-number="4"><span class="header-section-number">4</span> </h1>
+<ol type="a">
+<li><p>Any finite covering of <span class="math inline">\(E\)</span> with closed intervals also covers <span class="math inline">\(\overline{E}\)</span>.</p></li>
+<li><p><span class="math inline">\([0,1]\cap\mathbb{Q}\)</span> should do the trick. If I use finitely many intervals their length must add up to 1.</p></li>
+</ol>
+<h1 data-number="5" id="section-4" data-number="5"><span class="header-section-number">5</span> </h1>
+<p>Let <span class="math inline">\(\epsilon&gt;0\)</span>, then do analysis.</p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA4262/tutorial2.md">MA4262/tutorial2.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

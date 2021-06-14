@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="25th October 2019" />
+  <title>MA5220 Homework 8</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">MA5220 Homework 8</h1><p class="author">Qi Ji</p>
+<p class="date">25th October 2019</p>
+</header>
+<article><h1 data-number="1" id="section" data-number="1"><span class="header-section-number">1</span> </h1>
+<blockquote>
+<p>Suppose <span class="math inline">\({\mathbb{P}}\)</span> is a poset, <span class="math inline">\(\phi(\overline{x})\)</span> is a formula with free variables as shown and <span class="math inline">\(\overline{\tau}\)</span> are <span class="math inline">\({\mathbb{P}}\)</span>-names. Show that TFAE</p>
+<ol type="a">
+<li><span class="math inline">\(p\Vdash^* \phi(\overline{\tau})\)</span>,</li>
+<li><span class="math inline">\(\left(\forall q\leq p\right)\left(q\Vdash^* \phi(\overline{\tau})\right)\)</span>,</li>
+<li><span class="math inline">\(\left\{q\leq p: q\Vdash^*\phi(\overline{\tau})\right\}\)</span> is dense below <span class="math inline">\(p\)</span>.</li>
+</ol>
+</blockquote>
+<p>It is immediate that (b) implies (a) and (c). We induct on the complexity of <span class="math inline">\(\phi\)</span> to show the other implications.</p>
+<dl>
+<dt>Case <span class="math inline">\(\phi \equiv x_1 = x_2\)</span>.</dt>
+<dd><p><span class="math inline">\((a)\Rightarrow(b)\)</span>. We just need to observe that when a set is dense below <span class="math inline">\(p\)</span>, for every <span class="math inline">\(q\leq p\)</span>, it is also dense below <span class="math inline">\(q\)</span>.</p>
+<p><span class="math inline">\((c)\Rightarrow(a)\)</span>. To show <span class="math inline">\(p\Vdash^* \tau_1 = \tau_2\)</span>, let <span class="math inline">\((\pi_1, s_1)\in \tau_1\)</span>, we want <span class="math display">\[ \left\{r\leq p: r\leq s_1 \implies \left(\exists (\pi_2, s_2)\in \tau_2\right)\left(r\leq s_2 \land r\Vdash^*\pi_1 = \pi_2\right)\right\} \]</span> to be dense below <span class="math inline">\(p\)</span>. Let <span class="math inline">\(p' \leq p\)</span> and by (c) let <span class="math inline">\(q \leq p'\)</span> with <span class="math inline">\(q\Vdash^* \tau_1 = \tau_2\)</span>, then there exists <span class="math inline">\(r \leq q \leq p' \leq p\)</span> in the set as required. The symmetric case is similar.</p>
+</dd>
+<dt>Case <span class="math inline">\(\phi \equiv x_1\in x_2\)</span>.</dt>
+<dd>Same argument as <span class="math inline">\(\phi \equiv x_1 = x_2\)</span>.
+</dd>
+<dt>Case <span class="math inline">\(\phi(\overline{x},\overline{y}) \equiv \psi_1(\overline{x}) \land \psi_2(\overline{y})\)</span>.</dt>
+<dd>Trivially follows from induction hypothesis.
+</dd>
+<dt>Case <span class="math inline">\(\phi(\overline{x}) \equiv \lnot\psi(\overline{x})\)</span>.</dt>
+<dd><p><span class="math inline">\((a)\Rightarrow(c)\)</span>. Assume (a), then <span class="math inline">\(\lnot\left(\exists q\leq p\right)\left(q\Vdash^*\psi(\overline{\tau})\right)\)</span>. So for all <span class="math inline">\(r\leq p\)</span>, <span class="math inline">\(\lnot\left(\exists q\leq r\right)\left(q\Vdash^*\psi(\overline{\tau})\right)\)</span> and (c) follows.</p>
+<p><span class="math inline">\((c)\Rightarrow(a)\)</span>. Assume (a) fails and we show (c) fails, let <span class="math inline">\(q\leq p\)</span> witness <span class="math inline">\(q\Vdash^*\psi(\overline{\tau})\)</span>, by induction hypothesis <span class="math inline">\(\left(\forall r\leq q\right)\left(r\Vdash^*\psi(\overline{\tau})\right)\)</span> so the set <span class="math inline">\(\left\{q'\leq p: q'\Vdash^*\lnot\psi(\overline{\tau})\right\}\)</span> is empty below <span class="math inline">\(q\)</span> and (c) fails.</p>
+</dd>
+<dt>Case <span class="math inline">\(\phi(\overline{x}) \equiv \left(\exists y\right)\left(\psi(y,\overline{x})\right)\)</span>.</dt>
+<dd>Same argument as <span class="math inline">\(\phi \equiv x_1 = x_2\)</span>.
+</dd>
+</dl>
+<h1 data-number="2" id="section-1" data-number="2"><span class="header-section-number">2</span> </h1>
+<blockquote>
+<p>Suppose <span class="math inline">\(\mathbf{M}\)</span> is a ctn of ZFC and <span class="math inline">\({\mathbb{P}}\)</span> is a poset in <span class="math inline">\(\mathbf{M}\)</span> in which every condition has two incompatible extensions. Show that there exists <span class="math inline">\(\left\langle\left\langle M_n, G_n\right\rangle: n&lt;\omega\right\rangle\)</span> such that the following hold.</p>
+<ol type="a">
+<li><span class="math inline">\(\mathbf{M}_0 = \mathbf{M}\)</span></li>
+<li>For every <span class="math inline">\(n&lt;\omega\)</span>, <span class="math inline">\(G_n\)</span> is a <span class="math inline">\({\mathbb{P}}\)</span>-generic filter over <span class="math inline">\(\mathbf{M}_n\)</span> and <span class="math inline">\(\mathbf{M}_{n+1} = \mathbf{M}_n[G_n]\)</span>.</li>
+<li>There is no ctm <span class="math inline">\(\mathbf{N}\)</span> of ZFC such that <span class="math inline">\(o(\mathbf{N}) = o(\mathbf{M}), \mathbf{M}\subseteq\mathbf{N}\)</span> and <span class="math inline">\(\left\langle G_n:n&lt;\omega\right\rangle\in\mathbf{N}\)</span>.</li>
+</ol>
+</blockquote>
+<p>Let <span class="math inline">\(z\in 2^\omega\)</span> be a real that encodes an ordinal above <span class="math inline">\(o(\mathbf{M})\)</span>. The idea is to make <span class="math inline">\(G_n\)</span> encode the <span class="math inline">\(n\)</span>-th bit of <span class="math inline">\(z\)</span>, then no ctm <span class="math inline">\(\mathbf{N}\)</span> that satisfies (c) can exist since from <span class="math inline">\(\left\langle G_n:n&lt;\omega\right\rangle\)</span> we can recover <span class="math inline">\(z\)</span> and the ordinal that <span class="math inline">\(z\)</span> encodes.</p>
+<p>Let <span class="math inline">\(p_0,p_1\in{\mathbb{P}}\)</span> be two incompatible extensions of <span class="math inline">\(1_{\mathbb{P}}\)</span>. Let <span class="math inline">\(\mathbf{M}_0 = \mathbf{M}\)</span> and suppose <span class="math inline">\(\mathbf{M}_n\)</span> has already been defined, if <span class="math inline">\(z(n) = 0\)</span>, we repeat the construction of Lemma 16.5 but starting from <span class="math inline">\(p_0\)</span>, this gives us a generic filter <span class="math inline">\(G_n\)</span> which contains <span class="math inline">\(p_0\)</span>, proceed similarly with <span class="math inline">\(p_1\)</span> if <span class="math inline">\(z(n) = 1\)</span>. Define <span class="math inline">\(\mathbf{M}_{n+1} = \mathbf{M}_n[G_n]\)</span>.</p>
+<h1 data-number="3" id="section-2" data-number="3"><span class="header-section-number">3</span> </h1>
+<blockquote>
+<p>Suppose <span class="math inline">\(\mathbf{M}\)</span> is a ctm of ZFC, <span class="math inline">\({\mathbb{P}}\)</span> a poset in <span class="math inline">\(\mathbf{M}\)</span> and <span class="math inline">\(G,H\)</span> are <span class="math inline">\({\mathbb{P}}\)</span>-generic filters over <span class="math inline">\(\mathbf{M}\)</span>. Show that either <span class="math inline">\(G = H\)</span> or there exist <span class="math inline">\(p\in G\)</span> and <span class="math inline">\(q\in H\)</span> such that <span class="math inline">\(p\perp q\)</span>.</p>
+</blockquote>
+<p>Assume <span class="math inline">\(G\ne H\)</span>, without loss of generality let <span class="math inline">\(p \in G\setminus H\)</span>. By choice in <span class="math inline">\(\mathbf{M}\)</span> let <span class="math inline">\(A\in\mathbf{M}\)</span> be a maximal antichain containing <span class="math inline">\(p\)</span>. Since <span class="math inline">\(H\)</span> is generic <span class="math inline">\(H\cap A\)</span> is nonempty, let <span class="math inline">\(q\in H\cap A\)</span> and note that <span class="math inline">\(q \ne p\)</span>, the result follows.</p>
+<h1 data-number="4" id="section-3" data-number="4"><span class="header-section-number">4</span> </h1>
+<blockquote>
+<p>Suppose <span class="math inline">\(\mathbf{M}\)</span> is a ctm of ZFC and <span class="math inline">\(\left(\kappa\text{ is a cardinal}\right)^\mathbf{M}\)</span>. Show the following</p>
+<ol type="a">
+<li><span class="math inline">\(\operatorname{Fn}(\omega,\kappa)\in\mathbf{M}\)</span>.</li>
+</ol>
+</blockquote>
+<p>As <span class="math inline">\(\left\lvert X\right\rvert&lt;\omega\)</span> is absolute, and <span class="math display">\[\operatorname{Fn}(X,Y) = \left\{p:\left\lvert p\right\rvert&lt;\omega \land p\text{ is a function} \land \operatorname{dom}(p)\subseteq X\land \operatorname{range}(p)\subseteq Y\right\},\]</span> then for any <span class="math inline">\(X,Y\in\mathbf{M}\)</span> (including <span class="math inline">\(\omega, \kappa\)</span>), <span class="math inline">\(\operatorname{Fn}(X,Y) = \operatorname{Fn}(X,Y)^\mathbf{M}\in \mathbf{M}\)</span>.</p>
+<blockquote>
+<ol start="2" type="a">
+<li>Let <span class="math inline">\(G\)</span> be a <span class="math inline">\(\operatorname{Fn}(\omega,\kappa)\)</span>-generic filter over <span class="math inline">\(\mathbf{M}\)</span>. Show that <span class="math inline">\(\left(\kappa\text{ is countable}\right)^{\mathbf{M}[G]}\)</span>.</li>
+</ol>
+</blockquote>
+<p>Since <span class="math inline">\(G\in \mathbf{M}[G]\)</span>, let <span class="math inline">\(f = \bigcup G \in \mathbf{M}[G]\)</span>. It is enough to show that <span class="math inline">\(f:\omega\to\kappa\)</span> is onto. As <span class="math inline">\(G\)</span> is a filter, <span class="math inline">\(f\)</span> is a function with <span class="math inline">\(\operatorname{dom}(f)\subseteq \omega\)</span> and <span class="math inline">\(\operatorname{range}(f)\subseteq \kappa\)</span>. To show <span class="math inline">\(\operatorname{dom}(f) = \omega\)</span> let <span class="math inline">\(n\in\omega\)</span>, consider this set <span class="math display">\[D_n = \left\{p\in\operatorname{Fn}(\omega,\kappa):n\in \operatorname{dom}(p)\right\}\]</span> which is dense. By absoluteness <span class="math inline">\(D_n\in\mathbf{M}\)</span> also, so <span class="math inline">\(G\cap D_n \ne 0\)</span> and <span class="math inline">\(n\in\operatorname{dom}(f)\)</span>.</p>
+<p>To see that <span class="math inline">\(\operatorname{range}(f) = \kappa\)</span> let <span class="math inline">\(\lambda\in\kappa\)</span> and similarly consider <span class="math display">\[E_\lambda = \left\{p\in\operatorname{Fn}(\omega,\kappa):\lambda\in\operatorname{range}(p)\right\}\]</span> which is also dense (as <span class="math inline">\(\omega\)</span> is infinite) and in <span class="math inline">\(\mathbf{M}\)</span> by absoluteness, so <span class="math inline">\(G\cap E_\lambda \ne 0\)</span> and <span class="math inline">\(\lambda \in \operatorname{range}(f)\)</span>.</p>
+<h1 data-number="5" id="section-4" data-number="5"><span class="header-section-number">5</span> </h1>
+<blockquote>
+<p>Let <span class="math inline">\({\mathbb{P}}\)</span> be a poset in which every condition has two incompatible extensions. Define <span class="math inline">\({\mathsf{cc}}({\mathbb{P}})\)</span> to be the least cardinal <span class="math inline">\(\kappa\)</span> such that every antichain in <span class="math inline">\({\mathbb{P}}\)</span> has cardinality <span class="math inline">\(&lt;\kappa\)</span>. For <span class="math inline">\(p\in {\mathbb{P}}\)</span>, let <span class="math inline">\({\mathbb{P}}_{\leq p} = \left\{q\in {\mathbb{P}}: q\leq p\right\}\)</span>. Prove the following.</p>
+<ol type="a">
+<li><span class="math inline">\(\left(\forall p,q\in{\mathbb{P}}\right)\left(p\leq q\implies {\mathsf{cc}}({\mathbb{P}}_{\leq p}) \leq {\mathsf{cc}}({\mathbb{P}}_{\leq q})\right)\)</span>.</li>
+</ol>
+</blockquote>
+<p>Let <span class="math inline">\(p,q\in{\mathbb{P}}\)</span> with <span class="math inline">\(p\leq q\)</span>. Since <span class="math inline">\({\mathbb{P}}_{\leq p} \subseteq {\mathbb{P}}_{\leq q}\)</span> every antichain in <span class="math inline">\({\mathbb{P}}_{\leq p}\)</span> is also an antichain in <span class="math inline">\({\mathbb{P}}_{\leq q}\)</span> and the result follows.</p>
+<blockquote>
+<ol start="2" type="a">
+<li>For every <span class="math inline">\(p\in{\mathbb{P}}\)</span>, there exists <span class="math inline">\(q\leq p\)</span> such that <span class="math display">\[\left(\forall r,s\in{\mathbb{P}}\right)\left[\left(r\leq p\land s\leq q\right)\implies {\mathsf{cc}}({\mathbb{P}}_{\leq r}) = {\mathsf{cc}}({\mathbb{P}}_{\leq s})\right]\]</span></li>
+</ol>
+</blockquote>
+<p>Fix <span class="math inline">\(p\in{\mathbb{P}}\)</span> and let <span class="math inline">\(q_0 = p\)</span>. Suppose <span class="math inline">\(\left(\forall r,s\in {\mathbb{P}}_{\leq q_0}\right)\left({\mathsf{cc}}({\mathbb{P}}_{\leq r}) = {\mathsf{cc}}({\mathbb{P}}_{\leq s})\right)\)</span>, then we are done. In the other case let <span class="math inline">\(r,s\leq q_0\)</span> witness <span class="math inline">\({\mathsf{cc}}({\mathbb{P}}_{\leq r}) &lt; {\mathsf{cc}}({\mathbb{P}}_{\leq s})\)</span>, then define <span class="math inline">\(q_1 = r\)</span>. We can repeat this construction to get <span class="math inline">\(q_2, q_3,\dots\)</span> and so on but this construction terminates in finitely many stages. Otherwise by part (a) we will get an infinite strictly decreasing sequence of ordinals <span class="math inline">\({\mathsf{cc}}({\mathbb{P}}_{q_0}) &gt; {\mathsf{cc}}({\mathbb{P}}_{q_1}) &gt; \dots\)</span>. Now define <span class="math inline">\(q\)</span> to be <span class="math inline">\(q_n\)</span> where this construction stops and the result follows.</p>
+<blockquote>
+<ol start="3" type="a">
+<li>Show that <span class="math inline">\({\mathsf{cc}}({\mathbb{P}})\)</span> is a regular cardinal.</li>
+</ol>
+</blockquote>
+<p>Suppose not, let <span class="math inline">\(\kappa = {\mathsf{cc}}({\mathbb{P}})\)</span> and <span class="math inline">\(\lambda = \operatorname{cf}(\kappa) &lt; \kappa\)</span>. Let <span class="math inline">\(a(X)\)</span> denote <span class="math inline">\(\sup\left\{\left\lvert A\right\rvert: A\subseteq X \text{ is an antichain}\right\}\)</span>.</p>
+<p>Fix <span class="math inline">\(M\)</span> a maximal antichain in <span class="math inline">\({\mathbb{P}}\)</span>. We first claim that for any regular <span class="math inline">\(\mu &lt; \kappa\)</span>, whenever <span class="math inline">\(\mu &gt; \left\lvert M\right\rvert\)</span> there is a <span class="math inline">\(p\in M\)</span> with <span class="math inline">\({\mathsf{cc}}({\mathbb{P}}_{\leq p}) = \mu\)</span>. By minimality of <span class="math inline">\(\kappa = {\mathsf{cc}}({\mathbb{P}})\)</span> let <span class="math inline">\(A\)</span> be an antichain with <span class="math inline">\(\left\lvert A\right\rvert = \mu\)</span>. Regularity of <span class="math inline">\(\mu\)</span> gives us a <span class="math inline">\(p\in M\)</span> that is compatible with <span class="math inline">\(\mu\)</span> many members of <span class="math inline">\(A\)</span>. Let <span class="math inline">\(A_p\)</span> denote everyone in <span class="math inline">\(A\)</span> compatible with <span class="math inline">\(p\)</span>. For each <span class="math inline">\(q\in A_p\)</span> choose <span class="math inline">\(r_q \in {\mathbb{P}}_{\leq p}\cap{\mathbb{P}}_{\leq q}\)</span>, then <span class="math inline">\(\left\{r_q:q\in A_p\right\}\subseteq {\mathbb{P}}_{\leq p}\)</span> is an antichain with size <span class="math inline">\(\mu\)</span>. This together with part (a) gives <span class="math inline">\(\sup\left\{a({\mathbb{P}}_{\leq p}):p\in M\right\} = \kappa\)</span>.</p>
+<p>Now let <span class="math inline">\(\left\langle p_\xi: \xi &lt; \lambda\right\rangle\)</span> be a sequence in <span class="math inline">\(M\)</span> such that <span class="math inline">\(a({\mathbb{P}}_{\leq p_\xi})\)</span> is increasing and <span class="math inline">\(\sup_{\xi&lt;\lambda} a({\mathbb{P}}_{\leq p_\xi}) = \kappa\)</span>. At each <span class="math inline">\(\xi &lt; \lambda\)</span> choose <span class="math inline">\(A_\xi\)</span> an antichain witnessing <span class="math inline">\(a({\mathbb{P}}_{\leq p_\xi})\)</span>, then <span class="math inline">\(A = \bigcup_{\xi&lt;\lambda} A_\xi\)</span> is still an antichain in <span class="math inline">\({\mathbb{P}}\)</span> but <span class="math inline">\(\left\lvert A\right\rvert = \kappa\)</span> which contradicts <span class="math inline">\({\mathsf{cc}}({\mathbb{P}})\)</span>.</p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA5220/homework8.md">MA5220/homework8.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji (A0167793L)" />
+  <meta name="dcterms.date" content="5th September 2018" />
+  <title>Exercise 3.x</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">Exercise 3.x</h1><p class="author">Qi Ji (A0167793L)</p>
+<p class="date">5th September 2018</p>
+</header>
+<article><!---
+# Exercise 3.5
+
+> Let \(A\) and \(B\) be sets. Use the rules to verify that the following are sets:
+>
+> 1. \(\dom(A)\);
+> 2. \(\ran(A)\);
+> 3. \(\bigcap A\);
+> 4. \(A^B\);
+
+__Definition 2.6.__
+For any set \(R\), \(\dom(R) = \set{a : \exists b\sqbr{\ang{a,b} \in R}}\) and
+\(\ran(R) = \set{b : \exists a\sqbr{\ang{a,b} \in R}}\).
+
+### 1. \(\dom(A)\) is a set.
+Define \(F = \set{x : \exists a\exists b\sqbr{x = \ang{\ang{a,b},a}}}\), which is a class by rule 3.
+By rule 5 since \(A\) is a set,
+\(\Im_F(A) = \set{a : \exists b\sqbr{\ang{a,b}\in A \land \ang{\ang{a,b},a} \in F} }\) is a set.
+Note that definition of \(\Im_F(A)\) coincides with that of \(\dom(A)\).
+
+### 2. \(\ran(A)\)
+Similar argument.
+
+### 3. \(\bigcap A\)
+
+### 4. \(A^B\).
+
+By earlier exercise \(B\times A\) is a set, then by rule 6 so is \(\P(B\times A)\).
+-->
+<!---
+# Exercise 3.6
+> Let \(I\) be a set and \(\ang{A_i : i\in I}\) a sequence of sets.
+> Verify that \(\prod_{i\in I} A_i\) is a set.
+
+\(I\) is a set so by axiom or replacement, \(\set{A_i : i\in I}\) is a set, then \(\bigcup_{i\in I} A_i\) is also a set.
+Note that a member \(f\in \prod_{i\in I} A_i\) is a function from \(I\), whose output at each \(i\in I\) is in \(A_i\).
+So \(\ran(f)\subseteq \bigcup_{i\in I} A_i\).
+Then for every \(f\in\prod_{i\in I}A_i\), \(f \subseteq I \times \bigcup_{i\in I} A_i \implies f \in \P\left(I \times \bigcup_{i\in I}A_i \right)\).
+By earlier exercise the product is a set, then by rule 6 the power of the product is a set too.
+
+__not complete__
+-->
+<h1 id="exercise-3.7">Exercise 3.7</h1>
+<blockquote>
+<p>Let <span class="math inline">\(R\)</span> and <span class="math inline">\(A\)</span> be sets. Show that if <span class="math inline">\(R\)</span> is a relation, then <span class="math inline">\(\operatorname{Im}_R(A)\)</span> is a set.</p>
+</blockquote>
+<p><em>Proof.</em> Suppose <span class="math inline">\(R\)</span> is a relation, as <span class="math inline">\(R\)</span> is a set by exercise 3.5 <span class="math inline">\(\operatorname{ran}(R)\)</span> is a set. Because <span class="math inline">\(\operatorname{Im}_R(A) \subseteq \operatorname{ran}(R)\)</span>, by rule 4 <span class="math inline">\(\operatorname{ran}(R) \cap \operatorname{Im}_R(A) = \operatorname{Im}_R(A)\)</span> is a set too. <span class="math inline">\(\square\)</span></p>
+<h1 id="exercise-3.8">Exercise 3.8</h1>
+<blockquote>
+<p>Show that the class <span class="math inline">\(\mathbf{U} = \left\{  x : \exists a \exists b \left[ x = \left\langle a,b \right\rangle \right]  \right\}\)</span> is not a set.</p>
+</blockquote>
+<p><em>Proof.</em> Suppose for a contradiction <span class="math inline">\(\mathbf{U}\)</span> is a set. Let <span class="math inline">\(R\)</span> be the Russell class defined in Theorem 3.1, that is let <span class="math inline">\(R = \left\{ x : x\text{ is a set }\land x \notin x \right\}\)</span>. Consider the class <span class="math inline">\(R\times R = \left\{ x : \exists a\in R \exists b\in R \left[ x = \left\langle a,b \right\rangle \right] \right\}\)</span> which is a collection of sets. Since <span class="math inline">\(\mathbf{U}\)</span> is a set, <span class="math inline">\((R\times R) \cap \mathbf{U} = R\times R\)</span> is a set by rule 4. By exercise 3.5, <span class="math inline">\(\operatorname{dom}(R\times R) = R\)</span> is a set too, contradicting theorem 2.1. <span class="math inline">\(\square\)</span></p>
+<h1 id="exercise-3.9">Exercise 3.9</h1>
+<blockquote>
+<p>Let <span class="math inline">\(F\)</span> be a class. Show that if <span class="math inline">\(F\)</span> is a function and if <span class="math inline">\(\operatorname{dom}(F)\)</span> is a set, then <span class="math inline">\(F\)</span> is a set.</p>
+</blockquote>
+<p><em>Proof.</em> <span class="math inline">\(F\)</span> is a function and <span class="math inline">\(\operatorname{dom}(F)\)</span> is a set, so by axiom of replacement (rule 5), <span class="math inline">\(\operatorname{Im}_F(\operatorname{dom}(F)) = \operatorname{ran}(F)\)</span> is a set. Applying Example 3.4, <span class="math inline">\(\operatorname{dom}(F) \times \operatorname{ran}(F)\)</span> is also a set. Since <span class="math inline">\(F\)</span> is a function, <span class="math inline">\(F \subseteq \operatorname{dom}(F) \times \operatorname{ran}(F)\)</span>, then by rule 4, <span class="math inline">\(F = F \cap (\operatorname{dom}(F) \times \operatorname{ran}(F))\)</span> is a set. <span class="math inline">\(\square\)</span></p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA3205/t2.md">MA3205/t2.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

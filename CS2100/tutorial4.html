@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="Week 6" />
+  <title>CS2100 Tutorial 4</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">CS2100 Tutorial 4</h1><p class="author">Qi Ji</p>
+<p class="date">Week 6</p>
+</header>
+<article><h1 data-number="1" id="eyeballing-addresses" data-number="1"><span class="header-section-number">1</span> Eyeballing addresses</h1>
+<ol type="a">
+<li><p><code>op $t1, $t2</code></p>
+<ul>
+<li>NA, NA</li>
+<li>15000, 20000</li>
+</ul></li>
+<li><p><code>op $s2, 100($zero)</code></p>
+<ul>
+<li>NA, 100</li>
+<li>200, 1000</li>
+</ul></li>
+<li><p><code>op $t4, 40($s2)</code></p>
+<ul>
+<li>NA, 240</li>
+<li>30000, 2400</li>
+</ul></li>
+<li><p><code>op $s3, 200($zero)</code></p>
+<ul>
+<li>NA, 200</li>
+<li>240, 2000</li>
+</ul></li>
+<li><p><code>op $t3, $zero($t1)</code></p>
+<ul>
+<li>Not a valid instruction.</li>
+</ul></li>
+<li><p><code>op $s1, 140($s1)</code></p>
+<ul>
+<li>NA, 300</li>
+<li>160, 3000</li>
+</ul></li>
+</ol>
+<h1 data-number="2" id="different-isas" data-number="2"><span class="header-section-number">2</span> Different ISAs</h1>
+<p>Translate these 3 C statements</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1"></a>a0 = a1 + a2;</span>
+<span id="cb1-2"><a href="#cb1-2"></a>a1 = a0 + a2;</span>
+<span id="cb1-3"><a href="#cb1-3"></a>a2 = a0 + a1;</span></code></pre></div>
+<h2 data-number="2.1" id="stack" data-number="2.1"><span class="header-section-number">2.1</span> Stack</h2>
+<pre><code>push @a1
+push @a2
+add
+pop @a0
+
+push @a0
+push @a2
+add
+pop @a1
+
+push @a0
+push @a1
+add
+pop @a2</code></pre>
+<h2 data-number="2.2" id="accumulator" data-number="2.2"><span class="header-section-number">2.2</span> Accumulator</h2>
+<pre><code>load @a1
+add @a2
+store @a0
+
+load @a0
+add @a2
+store @a1
+
+load @a0
+add @a1
+store @a2</code></pre>
+<h2 data-number="2.3" id="memory-memory" data-number="2.3"><span class="header-section-number">2.3</span> Memory-Memory</h2>
+<pre><code>add @a0, @a1, @a2
+add @a1, @a0, @a2
+add @a2, @a0, @a1</code></pre>
+<h2 data-number="2.4" id="register-register" data-number="2.4"><span class="header-section-number">2.4</span> Register-register</h2>
+<pre><code>load $r0, @a0
+load $r1, @a1
+load $r2, @a2
+add $r3, $r1, $r2
+store $r3, @a0
+add $r3, $r0, $r2
+store $r3, @a1
+add $r3, $r0, $r1
+store $r3, @a2</code></pre>
+<h1 data-number="3" id="follow-up-isa" data-number="3"><span class="header-section-number">3</span> Follow-up ISA</h1>
+<ul>
+<li>Opcode costs 3 bits</li>
+<li>128 bytes of addressable memory <span class="math inline">\(\implies\)</span> 128 distinct addresses <span class="math inline">\(\implies\)</span> need 7 bits to specify memory location.</li>
+</ul>
+<dl>
+<dt>Stack</dt>
+<dd>3 bits for opcode + 7 bits for address gives 10 bits
+</dd>
+<dt>Accumulator</dt>
+<dd>Same as stack
+</dd>
+<dt>Memory-memory</dt>
+<dd>3 bits for opcode + 3 addresses in a single instruction gives 24 bits = 3 bytes
+</dd>
+<dt>Register-register</dt>
+<dd><p>5 registers available, so need 3 bits to specify register.</p>
+<ul>
+<li>add costs 3 bits for opcode + 9 bits for 3 registers giving 12 bits</li>
+<li>load/store costs 3 bits for opcode + 3 bits for register + 7 bits for memory giving 13 bits (3 bytes needed!)</li>
+</ul>
+</dd>
+</dl>
+<p>For code size, multiply number of bytes per instruction by number of instructions.</p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/CS2100/tutorial4.md">CS2100/tutorial4.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

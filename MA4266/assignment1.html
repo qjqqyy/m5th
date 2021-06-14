@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="3rd March 2020" />
+  <title>MA4266 Assignment 1</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">MA4266 Assignment 1</h1><p class="author">Qi Ji</p>
+<p class="date">3rd March 2020</p>
+</header>
+<article><h1 data-number="1" id="section" data-number="1"><span class="header-section-number">1</span> </h1>
+<p>As <span class="math inline">\(A\subset X\)</span> is closed <span class="math inline">\(X\setminus A\)</span> is open, similarly <span class="math inline">\(Y\setminus B\)</span> is open.</p>
+<p>To see that <span class="math inline">\(A\times B\)</span> is closed we show that its complement is open, now <span class="math display">\[
+(X\times Y) \setminus (A\times B) = (X\setminus A)\times Y \cup X\times (Y\setminus B)
+\]</span> and both <span class="math inline">\((X\setminus A)\times Y\)</span> and <span class="math inline">\(X\times (Y\setminus B)\)</span> are open in the box (equivalent in this case to product) topology.</p>
+<h1 data-number="2" id="section-1" data-number="2"><span class="header-section-number">2</span> </h1>
+<p>Suppose <span class="math inline">\(X\)</span> is Hausdorff, consider the complement of the diagonal <span class="math display">\[ \Delta^c = \left\{(x,y)\in X\times X: x\ne y\right\}. \]</span> For each <span class="math inline">\((x,y) \in \Delta^c\)</span>, as <span class="math inline">\(x\ne y\)</span>, let <span class="math inline">\(U_{x,y}\)</span> and <span class="math inline">\(V_{x,y}\)</span> be open and disjoint such that <span class="math inline">\(x\in U_{x,y}\)</span> and <span class="math inline">\(y\in V_{x,y}\)</span>. As a result <span class="math inline">\((x,y) \in U_{x,y}\times V_{x,y}\)</span> which is open in <span class="math inline">\(X\times X\)</span>, and we can see that <span class="math display">\[ \Delta^c \subseteq \bigcup_{(x,y)\in \Delta^c} U_{x,y}\times V_{x,y}. \]</span> To see that equality holds, suppose for a contradiction <span class="math inline">\(\Delta\)</span> intersects with the union at say <span class="math inline">\((z,z)\)</span>, and let <span class="math inline">\((x,y)\in \Delta^c\)</span> such that <span class="math inline">\((z,z) \in U_{x,y}\times V_{x,y}\)</span>. This is absurd as <span class="math inline">\(U_{x,y}\)</span> and <span class="math inline">\(V_{x,y}\)</span> are disjoint.</p>
+<p>Conversely suppose the diagonal is closed, so <span class="math inline">\(\Delta^c\)</span> is open. Let <span class="math inline">\(x,y\in X\)</span> with <span class="math inline">\(x\ne y\)</span>, that is <span class="math inline">\((x,y)\in \Delta^c\)</span>. By box topology we have <span class="math inline">\(U,V\)</span> open in <span class="math inline">\(X\)</span> with <span class="math inline">\((x,y) \in U\times V \subseteq \Delta^c\)</span>. Now <span class="math inline">\(U\)</span> and <span class="math inline">\(V\)</span> are disjoint, otherwise <span class="math inline">\(U\times V\)</span> would not be contained in <span class="math inline">\(\Delta^c\)</span>, and we are done.</p>
+<h1 data-number="3" id="section-2" data-number="3"><span class="header-section-number">3</span> </h1>
+<h2 class="unnumbered" data-number id="a" class="unnumbered" data-number>(a)</h2>
+<p>In the case where <span class="math inline">\(\Lambda\)</span> is finite, when <span class="math inline">\(\left\lvert \Lambda\right\rvert \leq 1\)</span> it is trivial. When <span class="math inline">\(\left\lvert \Lambda\right\rvert\geq 2\)</span> we just repeatedly apply pasting lemma.</p>
+<h2 class="unnumbered" data-number id="b" class="unnumbered" data-number>(b)</h2>
+<p>Let <span class="math inline">\(f:\mathbb{N}\to\mathbb{R}\)</span> be inclusion, where <span class="math inline">\(\mathbb{N}\)</span> is equipped with the cofinite topology and <span class="math inline">\(\mathbb{R}\)</span> the natural topology on the real line. Let <span class="math inline">\(\Lambda = \mathbb{N}\)</span> with <span class="math inline">\(A_n = \left\{n\right\}\)</span> for each <span class="math inline">\(n\in\mathbb{N}\)</span>. The restriction <span class="math inline">\(f\vert_{\left\{n\right\}}\)</span> is continuous for each <span class="math inline">\(n\)</span> but <span class="math inline">\(f^{-1}((0,10))\)</span> for example is co-infinite and not open.</p>
+<h2 class="unnumbered" data-number id="c" class="unnumbered" data-number>(c)</h2>
+<p>Let <span class="math inline">\(V\subseteq Y\)</span> be closed. For each <span class="math inline">\(\alpha\in\Lambda\)</span> denote <span class="math display">\[ C_\alpha = (f\vert_{A_\alpha})^{-1}(V) \subseteq A_\alpha \]</span> and note that <span class="math inline">\(C_\alpha\)</span> is closed in <span class="math inline">\(A_\alpha\)</span> and hence in <span class="math inline">\(X\)</span>. As the family <span class="math inline">\(\left\{C_\alpha\right\}_{\alpha\in\Lambda}\)</span> is also locally finite, it preserves closures and <span class="math display">\[\begin{align*}
+f^{-1}(V) &amp;= \bigcup_{\alpha\in\Lambda} C_\alpha \\
+&amp;= \bigcup_{\alpha\in\Lambda}\overline{C_\alpha} \\
+&amp;= \overline{\bigcup_{\alpha\in\Lambda} C_\alpha} \\
+&amp;= \overline{f^{-1}(V)}
+\end{align*}\]</span> so <span class="math inline">\(f^{-1}(V)\)</span> is closed.</p>
+<h1 data-number="4" id="section-3" data-number="4"><span class="header-section-number">4</span> </h1>
+<p>Boundedness of <span class="math inline">\(d'\)</span> is trivial and positivity, definiteness and symmetry all easily carry over from that of <span class="math inline">\(d\)</span>. To show triangle inequality consider <span class="math inline">\(f:[0,+\infty) \to [0,1)\)</span> defined by <span class="math display">\[f(t) = \frac{t}{1+t}.\]</span> Differentiating <span class="math inline">\(f\)</span> we see that it preserves order (strictly increasing), applying triangle inequality to <span class="math inline">\(d\)</span>, <span class="math display">\[\begin{align*}
+d(x,y) &amp;\leq d(x,z) + d(z,y) \\
+d'(x,y) = f(d(x,y)) &amp;\leq f(d(x,z) + d(z,y)) \\
+&amp;= \frac{d(x,z)}{1 + d(x,z) + d(z,y)} +\frac{d(z,y)}{1 + d(x,z) + d(z,y)} \\
+&amp;\leq \frac{d(x,z)}{1 + d(x,z)} +\frac{d(z,y)}{1 + d(z,y)} \\
+&amp;= d'(x,z) + d'(z,y)
+\end{align*}\]</span></p>
+<p>First note that <span class="math inline">\(f\)</span> has an inverse given by <span class="math inline">\(f^{-1}(u) = \frac{u}{1-u}\)</span>. Let <span class="math inline">\(x\in X, r\in\mathbb{R}^+\)</span> and <span class="math inline">\(B(x,r) = \left\{y: d(x,y) &lt; r\right\}\)</span>, as <span class="math inline">\(d(x,y) &lt; r\)</span> iff <span class="math inline">\(d'(x,y) &lt; f(r)\)</span>, it follows that <span class="math display">\[B(x,r) = B'(x,f(r)) = \left\{y:d'(x,y) &lt; f(r)\right\}\]</span> so the metric topologies agree.</p>
+<h1 data-number="5" id="section-4" data-number="5"><span class="header-section-number">5</span> </h1>
+<p>Hint: <span class="math inline">\(Y_{h,r}\)</span> is just surface of a torus with major radius <span class="math inline">\(r\)</span> and tube radius <span class="math inline">\(h\)</span>.</p>
+<p>Define some helpers <span class="math display">\[\begin{align*}
+C_r(x) &amp;= \begin{pmatrix}
+r \cos (2\pi x) \\
+r \sin (2\pi x) \\
+0
+\end{pmatrix} \\
+c_h(x,y) &amp;= \begin{pmatrix}
+h \cos (2\pi y) \cos (2\pi x) \\
+h \cos (2\pi y) \sin (2\pi x) \\
+h \sin (2\pi y)
+\end{pmatrix}
+\end{align*}\]</span> and define <span class="math inline">\(f: X^* \to Y_{h,r}\)</span> as <span class="math display">\[ f(x,y) = C_r(x) + c_h(x,y). \]</span> which is well-defined.</p>
+<p>Let <span class="math inline">\(q:X\to X^*\)</span> denote the quotient map and as <span class="math inline">\(f\circ q\)</span> is continuous on each coordinate, <span class="math inline">\(f\)</span> is continuous. We can check (easier to do so geometrically) that <span class="math inline">\(f\)</span> is injective and surjective. As <span class="math inline">\(X\)</span> is compact, <span class="math inline">\(X^*\)</span> is also compact and <span class="math inline">\(Y_{h,r}\subseteq \mathbb{R}^3\)</span> is closed bounded and thus compact. Since <span class="math inline">\(f\)</span> sends compact sets to compact sets and in <span class="math inline">\(X^*\)</span> and <span class="math inline">\(Y_{h,r}\)</span> the notions of being closed and compact coincide, <span class="math inline">\(f\)</span> is a closed map and thus a homeomorphism</p>
+<h1 data-number="6" id="section-5" data-number="6"><span class="header-section-number">6</span> </h1>
+<p>Let <span class="math inline">\(A\subseteq X\times Y\)</span> be closed, we want to show that <span class="math display">\[ X\setminus\pi_1(A) = \left\{ x\in X: (\forall y\in Y)((x,y)\in A^c) \right\} \]</span> is open.</p>
+<p>Let <span class="math inline">\(x_0\in X\setminus\pi_1(A)\)</span> and for each <span class="math inline">\(y\in Y\)</span> we have <span class="math inline">\(U_{y}\)</span> open in <span class="math inline">\(X\)</span> and <span class="math inline">\(V_{y}\)</span> open in <span class="math inline">\(Y\)</span> with <span class="math inline">\((x_0,y) \in U_{y}\times V_{y} \subseteq A^c\)</span>. As the family <span class="math inline">\(\left\{V_y\right\}_{y\in Y}\)</span> is an open cover for <span class="math inline">\(Y\)</span> pick a finite subcover <span class="math inline">\(Y = V_{y_1} \cup \dots \cup V_{y_k}\)</span>.</p>
+<p>Now let <span class="math inline">\(U = \bigcap_{i=1}^k U_{y_i}\)</span> which is open. It suffices to show that <span class="math inline">\(U\subseteq X\setminus \pi_1(A)\)</span>, so suppose for a contradiction that <span class="math inline">\(U\cap \pi_1(A) \ne \emptyset\)</span>. If <span class="math inline">\(x \in U \cap \pi_1(A)\)</span>, then let <span class="math inline">\(y\)</span> such that <span class="math inline">\((x, y) \in A\)</span>. But <span class="math inline">\(y\in V_{y_i}\)</span> for some <span class="math inline">\(i\)</span> and <span class="math inline">\(x \in U\subseteq U_{y_i}\)</span> too, so <span class="math inline">\((x,y) \in U_{y_i}\times V_{y_i}\subseteq A^c\)</span>, a contradiction.</p>
+<h1 data-number="7" id="section-6" data-number="7"><span class="header-section-number">7</span> </h1>
+<p>Suppose <span class="math inline">\(f\)</span> is continuous, we show <span class="math inline">\((X\times Y)\setminus G_f\)</span> is open. Let <span class="math inline">\((x,y) \in (X\times Y)\setminus G_f\)</span> and as <span class="math inline">\(Y\)</span> is Hausdorff let <span class="math inline">\(U,V\subseteq Y\)</span> disjoint such that <span class="math inline">\(f(x)\in U\)</span> and <span class="math inline">\(y\in V\)</span>. As <span class="math inline">\(f\)</span> is continuous there is some open <span class="math inline">\(W\subseteq X\)</span> with <span class="math inline">\(x\in W\)</span> and <span class="math inline">\(f(W)\subseteq U\)</span>. Now <span class="math inline">\(W\times V\)</span> is an open neighbourhood of <span class="math inline">\((x,y)\)</span> that is still disjoint from <span class="math inline">\(G_f\)</span>, and we are done.</p>
+<p>Conversely suppose the graph <span class="math inline">\(G_f\)</span> is closed. Let <span class="math inline">\(V\subseteq Y\)</span> be closed and we want to show that <span class="math inline">\(f^{-1}(V)\)</span> is closed in <span class="math inline">\(X\)</span>. Now <span class="math display">\[f^{-1}(V) = \pi_1(G_f \cap (X \times V))\]</span> and as <span class="math inline">\(X\times V\)</span> is closed, by previous problem <span class="math inline">\(f^{-1}(V)\)</span> is closed as desired.</p>
+<h1 data-number="8" id="section-7" data-number="8"><span class="header-section-number">8</span> </h1>
+<h2 class="unnumbered" data-number id="a-1" class="unnumbered" data-number>(a)</h2>
+<p>Let <span class="math inline">\(x,y\in C\)</span> with <span class="math inline">\(x &lt; y\)</span>. Archimedean property gives us some <span class="math inline">\(n\)</span> with <span class="math inline">\(y-x &gt; \frac{1}{3^n}\)</span>, which means that <span class="math inline">\(x,y\)</span> lie in different closed sub-intervals of <span class="math inline">\(A_n\)</span>, and we can choose some <span class="math inline">\(z \in \left(\frac{1+3k}{3^n}, \frac{2+3k}{3^n}\right)\)</span> for some suitable <span class="math inline">\(k\)</span> satisfying <span class="math inline">\(x &lt; z &lt; y\)</span>. This allows us to separate any non-singleton subsets of <span class="math inline">\(C\)</span> with <span class="math inline">\((-1,z)\cap C)\)</span> and <span class="math inline">\((z,2)\cap C)\)</span>.</p>
+<h2 class="unnumbered" data-number id="b-1" class="unnumbered" data-number>(b)</h2>
+<p>The Cantor set is closed and bounded, which suffices to show compactness in <span class="math inline">\(\mathbb{R}\)</span> by Heine-Borel theorem.</p>
+<h2 class="unnumbered" data-number id="c-1" class="unnumbered" data-number>(c)</h2>
+<p>If there was to be an isolated point <span class="math inline">\(x\in C\)</span>, then there would be some open interval <span class="math inline">\((a,b)\)</span> such that <span class="math inline">\((a,b) \cap C = \left\{x\right\}\)</span>. Archimedean property gives us some <span class="math inline">\(n\)</span> with <span class="math inline">\(\frac{1}{3^n} &lt; \min(x-a, b-x)\)</span>. As <span class="math inline">\(x\in C\subseteq A_{n+500}\)</span>, we can choose an endpoint of a closed sub-interval in <span class="math inline">\(A_{n+500}\)</span> that lies in <span class="math inline">\((a,b)\)</span>, call it <span class="math inline">\(z\)</span>, and as endpoints of the closed sub-intervals are never deleted in stages <span class="math inline">\(A_{n+501}\)</span> and beyond <span class="math inline">\(z\in C\cap(a,b)\)</span>, a contradiction.</p>
+<h2 class="unnumbered" data-number id="d" class="unnumbered" data-number>(d)</h2>
+<p>Define <span class="math inline">\(\phi: \left\{0,2\right\}^\mathbb{N} \to C\)</span> where for any <span class="math inline">\(f:\mathbb{N} \to \left\{0,2\right\}\)</span>, <span class="math display">\[\phi(f) = \sum_{n=1}^\infty \frac{f(n)}{3^n}\]</span> which is essentially the ternary expansion of <span class="math inline">\(f\)</span>. So we can inspect that when <span class="math inline">\(f\ne g\)</span>, that is when they encode different ternary numbers, <span class="math inline">\(\phi(f) \ne \phi(g)\)</span>. As <span class="math inline">\(\phi\)</span> is injective, <span class="math display">\[ \aleph_0 &lt; 2^{\aleph_0} = \left\lvert \left\{0,2\right\}^\mathbb{N}\right\rvert \leq \left\lvert C\right\rvert \]</span> as desired.</p>
+<h1 data-number="9" id="section-8" data-number="9"><span class="header-section-number">9</span> </h1>
+<p>Assume <span class="math inline">\(X\)</span> is separable and we want to show that <span class="math inline">\(X\)</span> has countable chain condition. Let <span class="math inline">\(D\subseteq X\)</span> be countable with <span class="math inline">\(\overline{D} = X\)</span>. Let <span class="math inline">\(\mathcal{F}\)</span> be a family of disjoint open subsets of <span class="math inline">\(X\)</span>. Without loss of generality assume <span class="math inline">\(\emptyset \notin \mathcal{F}\)</span>. For each nonempty open <span class="math inline">\(U\in\mathcal{F}\)</span>, as <span class="math inline">\(D\)</span> is dense in <span class="math inline">\(X\)</span>, <span class="math inline">\(U\cap D \ne \emptyset\)</span>. We can now define a function <span class="math inline">\(\phi:\mathcal{F} \to D\)</span> where <span class="math inline">\(\phi(U) \in U\cap D\)</span>. As <span class="math inline">\(\mathcal{F}\)</span> contains disjoint sets, <span class="math inline">\(\phi\)</span> is injective, hence <span class="math inline">\(\left\lvert \mathcal{F}\right\rvert \leq \left\lvert D\right\rvert \leq \aleph_0\)</span> as desired.</p>
+<h1 data-number="10" id="section-9" data-number="10"><span class="header-section-number">10</span> </h1>
+<h2 class="unnumbered" data-number id="a-2" class="unnumbered" data-number>(a)</h2>
+<p>Let <span class="math inline">\(x,y\in X\)</span> with <span class="math inline">\(x\ne y\)</span>. As <span class="math inline">\(\left\{y\right\}\)</span> is closed, let <span class="math inline">\(U,V\)</span> be open and disjoint with <span class="math inline">\(x\in U\)</span> and <span class="math inline">\(\left\{y\right\}\subseteq V\)</span>. Since <span class="math inline">\(U\)</span> is a neighbourhood of <span class="math inline">\(x\)</span> disjoint from <span class="math inline">\(V\)</span> it witnesses <span class="math inline">\(x\notin \overline{V}\)</span>. Now we can find <span class="math inline">\(U', V'\)</span> open and disjoint such that <span class="math inline">\(x\in U'\)</span> and <span class="math inline">\(\overline{V}\subseteq V'\)</span>. For any <span class="math inline">\(v\in\overline{V}\)</span>, <span class="math inline">\(V'\)</span> is an open neighbourhood disjoint from <span class="math inline">\(U'\)</span> which gives us that <span class="math inline">\(\overline{V}\cap \overline{U'} = \emptyset\)</span>. So <span class="math inline">\(x\in U'\)</span> and <span class="math inline">\(y\in V\)</span> gives us the separation as desired.</p>
+<h2 class="unnumbered" data-number id="b-2" class="unnumbered" data-number>(b)</h2>
+<p>Let <span class="math inline">\(A,B\subseteq X\)</span> be disjoint closed sets. Let <span class="math inline">\(U,V\)</span> be disjoint and open such that <span class="math inline">\(A\subseteq U\)</span> and <span class="math inline">\(B\subseteq V\)</span>. For reasons similar to previous part, <span class="math inline">\(A\cap \overline{V} = \emptyset\)</span>. Now let <span class="math inline">\(U', V'\)</span> be disjoint and open such that <span class="math inline">\(A\subseteq U'\)</span> and <span class="math inline">\(\overline{V}\subseteq V'\)</span>. Similarly <span class="math inline">\(\overline{V}\cap \overline{U'} = \emptyset\)</span> and <span class="math inline">\(A\subseteq U'\)</span>, <span class="math inline">\(B\subseteq V\)</span> gives us the separation.</p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA4266/assignment1.md">MA4266/assignment1.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

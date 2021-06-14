@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="9th April 2020" />
+  <title>MA3111S Homework 4</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">MA3111S Homework 4</h1><p class="author">Qi Ji</p>
+<p class="date">9th April 2020</p>
+</header>
+<article><h1 id="exercise-2">Exercise 2</h1>
+<p>Let <span class="math inline">\(g(z) = f(z)f(-z)f(iz)f(-iz)\)</span>. For any two edges <span class="math inline">\(e_1, e_2\)</span> along <span class="math inline">\(\partial\Omega\)</span> it follows from <span class="math inline">\(g(z) = g(iz)\)</span> that <span class="math display">\[ \sup_{z\in e_1} \left\lvert g(z)\right\rvert = \sup_{z\in e_2} \left\lvert g(z)\right\rvert.\]</span> By maximum modulus principle <span class="math inline">\(g\)</span> attains its maximum on <span class="math inline">\(\partial\Omega\)</span>, so we have <span class="math display">\[\begin{align*}
+\left\lvert g(0)\right\rvert &amp;\leq \sup_{z\in\partial\Omega} \left\lvert g(z)\right\rvert\\
+&amp;= \sup_{z\in e} \left\lvert g(z)\right\rvert \\
+&amp;= \sup_{z\in e} \left\lvert f(z)\right\rvert \left\lvert f(iz)\right\rvert\left\lvert f(-z)\right\rvert\left\lvert f(-iz)\right\rvert \\
+&amp;\leq \sup_{z\in e} \left\lvert f(z)\right\rvert \left(\sup_{z\in \partial\Omega} \left\lvert f(z)\right\rvert\right)^3 \\
+&amp;= \sup_{z\in e} \left\lvert f(z)\right\rvert \left(\sup_{z\in \overline{\Omega}} \left\lvert f(z)\right\rvert\right)^3 \\
+&amp;= m M^3
+\end{align*}\]</span> as <span class="math inline">\(\left\lvert g(0)\right\rvert = \left\lvert f(0)\right\rvert^4\)</span> the result follows immediately</p>
+<h1 id="exercise-4">Exercise 4</h1>
+<p>Suppose there is <span class="math inline">\(v\)</span> such that <span class="math inline">\(f = u + iv\)</span> is holomorphic on the punctured plane. For any open disk <span class="math inline">\(D\)</span>, <span class="math inline">\(f(D\setminus\left\{0\right\})\)</span> the image of the punctured disk is a neighbourhood of <span class="math inline">\(\infty\)</span>, in particular it contains <span class="math inline">\(\mathbb{C}\setminus \overline{\mathbb{D}_r}\)</span> for some positive radius <span class="math inline">\(r\)</span>. As a result <span class="math inline">\(\Re(f(D\setminus\left\{0\right\})) = u(D\setminus\left\{0\right\}) = \mathbb{R}\)</span>. Let radius of <span class="math inline">\(D\)</span> tend to zero and <span class="math inline">\(u\)</span> sending <span class="math inline">\((D\setminus\left\{0\right\})\)</span> to the entire real line will contradict <span class="math inline">\(\lim_{z\to 0} u(z) = +\infty\)</span>.</p>
+<p>An example is <span class="math inline">\(u(z) = - \log(\left\lvert z\right\rvert)\)</span>.</p>
+<h1 id="exercise-6">Exercise 6</h1>
+<p>Let <span class="math inline">\(u\)</span> be harmonic such that <span class="math inline">\(u^3\)</span> is also harmonic, then <span class="math display">\[\begin{align*}
+0 &amp;= \Delta u^3 \\
+\frac{\partial}{\partial x} u^3 &amp;= 3u^2 u_x \\
+\frac{\partial^2}{\partial x^2} u^3 &amp;= 3u^2 u_{xx} + 6u_x^2 u \\
+\frac{\partial^2}{\partial y^2} u^3 &amp;= 3u^2 u_{yy} + 6u_y^2 u \\
+0 &amp;= 3u^2 \underbrace{(u_{xx} + u_{yy})}_{0\text{ as \(u\) is harmonic}} + 6u (u_x^2 + u_y^2)
+\end{align*}\]</span> we have</p>
+<ul>
+<li><span class="math inline">\(u\equiv 0\)</span>, or</li>
+<li><span class="math inline">\(u_x \equiv u_y \equiv 0\)</span> which means that <span class="math inline">\(u\)</span> is constant.</li>
+</ul>
+<h1 id="exercise-8">Exercise 8</h1>
+<p>Easy to check that each coordinate is holomorphic. To see that <span class="math inline">\(\tau\)</span> is injective suppose <span class="math inline">\((t^2,t^3) = (s^2,s^3)\)</span>, then <span class="math display">\[ t^2\cdot t = t^3 = s^2 \cdot s = t^2\cdot s \implies t = s. \]</span> To show <span class="math inline">\(\tau\)</span> is proper, as <span class="math inline">\(\mathbb{C}^2\)</span> is locally compact and <span class="math inline">\(\mathbb{C}\)</span> is Hausdorff, we show that the pullback of any point in <span class="math inline">\(\mathbb{C}^2\)</span> by <span class="math inline">\(\tau\)</span> is compact. For <span class="math inline">\((z_1,z_2)\in \mathbb{C}^2\)</span>, <span class="math display">\[ \tau^{-1}(\left\{(z_1,z_2)\right\}) = \left\{t: t^2=z_1 \text{ and } t^3 = z_2\right\} =
+\begin{cases}
+\left\{\frac{z_2}{z_1}\right\} &amp;\text{if \((z_1,z_2)\) lies in the image} \\
+\emptyset &amp;\text{otherwise}
+\end{cases}
+\]</span> which in both cases results in a compact subset of <span class="math inline">\(\mathbb{C}\)</span>. It is easy to see that <span class="math inline">\(\tau\)</span> restricted to <span class="math inline">\(\mathbb{C}^*\)</span> does not map anything to <span class="math inline">\(0\)</span>.</p>
+<p>Now suppose <span class="math inline">\(\tau(\mathbb{C})\)</span> is a submanifold of <span class="math inline">\(\mathbb{C}^2\)</span>, then by definition of submanifold, near <span class="math inline">\((0,0)\)</span> <span class="math inline">\(\tau(\mathbb{C})\)</span> looks like <span class="math inline">\(\begin{pmatrix} f\\g\end{pmatrix}(\mathbb{D})\)</span> where <span class="math inline">\(f,g\)</span> are holomorphic functions on the unit disk and <span class="math inline">\(\begin{pmatrix} f\\g\end{pmatrix}(0) = \begin{pmatrix}0\\0\end{pmatrix}\)</span> (without loss of generality assume everything is normalised nicely). Now for all <span class="math inline">\(z\in\mathbb{D}\)</span>, <span class="math display">\[ \begin{pmatrix} f\\g\end{pmatrix}(z) = \begin{pmatrix}t^2\\t^3\end{pmatrix} \]</span> for some <span class="math inline">\(t\)</span>. This implies that <span class="math inline">\(f^3 = g^2\)</span>. Now express <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> as Taylor series and solving for <span class="math inline">\(f^3 = g^2\)</span> gives us that both Taylor series have 0 as their linear term. This implies that <span class="math inline">\(\begin{pmatrix}f'\\g'\end{pmatrix}(0) = \begin{pmatrix}0\\0\end{pmatrix}\)</span>. We have shown that rank of Jacobian at <span class="math inline">\(0\)</span> is <span class="math inline">\(0\)</span>, but earlier we showed that <span class="math inline">\(\tau(\mathbb{C}^*)\)</span> is a submanifold of <span class="math inline">\(\mathbb{C}^2\setminus\left\{0\right\}\)</span> (with dimension 1) so <span class="math inline">\(\tau(\mathbb{C})\)</span> cannot be a submanifold of <span class="math inline">\(\mathbb{C}^2\)</span>.</p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA3111S/hw4.md">MA3111S/hw4.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

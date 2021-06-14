@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="13th April 2020" />
+  <title>Homework 5</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">Homework 5</h1><p class="author">Qi Ji</p>
+<p class="date">13th April 2020</p>
+</header>
+<article><h1 id="question-6">Question 6</h1>
+<p>Let <span class="math inline">\(a_1+N, a_2+N,\dots,a_k+N\)</span> be set of generators for <span class="math inline">\(M/N\)</span> and <span class="math inline">\(b_1, b_2, \dots, b_l\)</span> be generators for <span class="math inline">\(N\)</span>. Let <span class="math inline">\(v\in M\)</span>, then <span class="math inline">\(v+N = c_1\overline{a_1} + \dots + c_k\overline{a_k}\)</span> for some <span class="math inline">\(c_1,\dots,c_k\in R\)</span>. This means <span class="math inline">\(v = c_1a_1 + \dots + c_ka_k + w\)</span> where <span class="math inline">\(w\in N\)</span>. Express <span class="math inline">\(w = d_1b_1 + \dots + d_lb_l\)</span> and as <span class="math inline">\(v\)</span> is arbitrary we obtain the result that <span class="math inline">\(R\left\{a_1,\dots,a_k,b_1,\dots,b_l\right\} = M\)</span>.</p>
+<h1 id="question-7">Question 7</h1>
+<p>Let <span class="math inline">\(v_1+N,\dots,v_s+N\in M/N\)</span> such that <span class="math inline">\(\overline{v_1},\dots,\overline{v_s}\)</span> are linearly independent in <span class="math inline">\(M/N\)</span>. Also let <span class="math inline">\(v_{s+1},\dots,v_{s+r}\)</span> be linearly independent in <span class="math inline">\(N\)</span>. To see that <span class="math inline">\(v_1,\dots,v_s,v_{s+1},\dots,v_{s+r}\)</span> are linearly independent, suppose <span class="math display">\[ c_1v_1 + \dots + c_sv_s + c_{s+1}v_{s+1} + \dots + c_{s+r}v_{s+r} = 0 \]</span> then <span class="math display">\[ \sum_{i=1}^{s+r} c_iv_i + N = \sum_{i=1}^s c_iv_i + N = 0 + N \]</span> and working in <span class="math inline">\(M/N\)</span> gives us <span class="math inline">\(c_1 = \dots = c_s = 0\)</span>. Now work in <span class="math inline">\(N\)</span> and linear independence of <span class="math inline">\(v_{s+1},\dots,v_{s+r}\)</span> lets us further conclude that <span class="math inline">\(c_1 = \dots = c_s = c_{s+1} = \dots = c_{s+r} = 0\)</span>.</p>
+<p>Let <span class="math inline">\(u\in M\)</span> and we want to show that some scalar multiple of <span class="math inline">\(u\)</span> lies in <span class="math inline">\(R\left\{v_1,\dots,v_{s+r}\right\}\)</span>. Case <span class="math inline">\(u\in N\)</span>, then <span class="math inline">\(du = c_1v_{s+1} + \dots + c_rv_{s+r}\)</span> for some nonzero <span class="math inline">\(d\in R\)</span> as rank of <span class="math inline">\(N\)</span> is <span class="math inline">\(r\)</span>. Case <span class="math inline">\(u\notin N\)</span>, then <span class="math inline">\(u+N \ne 0+N\)</span>, work in <span class="math inline">\(M/N\)</span> and as its rank is <span class="math inline">\(s\)</span>, we have <span class="math display">\[d_0u + N = c_1\overline{v_1}+\dots+c_s\overline{v_s}\]</span> for some nonzero <span class="math inline">\(d_0\in R\)</span>, which means <span class="math display">\[d_0u = c_1v_1 + \dots + c_sv_s + w\]</span> for <span class="math inline">\(w\in N\)</span>, with similar argument as above we have <span class="math display">\[d_1w = c_{s+1}v_{s+1} + \dots + c_{s+r}v_{s+r}\]</span> for nonzero <span class="math inline">\(d_1\in R\)</span>, so <span class="math display">\[d_0d_1u = c_1d_1v_1 + \dots + c_sd_1v_s + c_{s+1}v_{s+1} + \dots + c_{s+r}v_{s+r}.\]</span> This shows rank is <span class="math inline">\(r+s\)</span>.</p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA3201/homework5.md">MA3201/homework5.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="Week 5" />
+  <title>MA2202S Tutorial 3</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">MA2202S Tutorial 3</h1><p class="author">Qi Ji</p>
+<p class="date">Week 5</p>
+</header>
+<article><!--\let\setminus\smallsetminus-->
+<h1 class="unnumbered" data-number id="tutorial-4a" class="unnumbered" data-number>Tutorial 4A</h1>
+<h1 data-number="1" id="intersection-of-subgroup-is-a-subgroup." data-number="1"><span class="header-section-number">1</span> Intersection of subgroup is a subgroup.</h1>
+<p>Clear that <span class="math inline">\(\bigcap_{i\in I} H_i \subseteq G\)</span>. To show it’s a subgroup, show closure and inverse is inside.</p>
+<p>Take any <span class="math inline">\(a,b \in \bigcap_{i\in I} H_i\)</span>, expanding using logic we have <span class="math inline">\(a,b\in H_i\)</span> for all <span class="math inline">\(i\in I\)</span>, then since each <span class="math inline">\(H_i\)</span> is a subgroup <span class="math inline">\(ab \in H_i\)</span> for all <span class="math inline">\(i\in I\)</span> so <span class="math inline">\(ab \in \bigcap_{i\in I} H_i\)</span>. Closure shown. Similar argument shows inverse is inside the intersection.</p>
+<h1 data-number="2" id="show-these-are-equivalent" data-number="2"><span class="header-section-number">2</span> Show these are equivalent</h1>
+<blockquote>
+<ol type="i">
+<li><span class="math inline">\(a^{-1}b\in H\)</span>,</li>
+<li><span class="math inline">\(b \in aH\)</span>,</li>
+<li><span class="math inline">\(aH = bH\)</span>.</li>
+</ol>
+</blockquote>
+<p>Suppose (i), then exists <span class="math inline">\(h \in H\)</span> such that <span class="math inline">\(a^{-1}b = h\)</span>, then <span class="math inline">\(b = ah\)</span> which entails that <span class="math inline">\(b \in aH\)</span>. So (i) implies (ii).</p>
+<p>Suppose (ii), then exists <span class="math inline">\(h\in H\)</span> such that <span class="math inline">\(b = ah\)</span>. Take a <span class="math inline">\(ah'\in aH\)</span>, then <span class="math inline">\(ah' = bh^{-1}h' \in bH\)</span>. So <span class="math inline">\(aH \subseteq bH\)</span>. Similarly take <span class="math inline">\(bh'' \in bH\)</span>, then <span class="math inline">\(bh'' = ahh'' \in aH\)</span>. So <span class="math inline">\(aH = bH\)</span> and we have (ii) implies (iii).</p>
+<p>Suppose (iii), then take any <span class="math inline">\(x \in aH = bH\)</span>, exists <span class="math inline">\(h, h'\)</span> such that <span class="math inline">\(x = ah = bh'\)</span>, then <span class="math display">\[\begin{align*}
+    a^{-1} x = h &amp;= a^{-1}bh' \\
+    h{h'}^{-1} &amp;= a^{-1}b
+\end{align*}\]</span> then we have (i). </p>
+<h1 data-number="3" id="equivalence-relations" data-number="3"><span class="header-section-number">3</span> Equivalence relations</h1>
+<blockquote>
+<p><span class="math inline">\(H &lt; G\)</span>, <span class="math inline">\(\forall a,b \in G.~ a \equiv b \pmod{H} \iff a^{-1}b \in H\)</span>.</p>
+</blockquote>
+<!---
+## Verification.
+Refl
+:   \(a\in G\), then \(a^{-1}a = e \in H\) is trivial.
+
+Sym
+:   Suppose \(a,b\in G\) such that \(a^{-1}b \in H\), then
+\(\left(a^{-1}b\right)^{-1} = b^{-1} a \in H\).
+
+Trans
+:   Suppose \(a,b,c\in G\) such that \(a \equiv b \pmod{H}\) and
+\(b\equiv c\pmod{H}\).
+Then \(a^{-1}b \in H\) and \(b^{-1}c \in H\).
+Then clearly \(a^{-1}b b^{-1} c = a^{-1} c \in H\) so \(a \equiv c \pmod{H}\).
+\qed
+-->
+<p>We have <span class="math inline">\(a \equiv b \pmod{H} \iff a^{-1}b \in H \iff aH = bH\)</span>. Relation is logically equivalent to a strict equality of cosets so it’s clear.</p>
+<h2 data-number="3.1" id="show-equivalence-class." data-number="3.1"><span class="header-section-number">3.1</span> Show equivalence class.</h2>
+<p>Fix <span class="math inline">\(a\in G\)</span>.</p>
+<p>Let <span class="math inline">\(b\)</span> such that <span class="math inline">\(a\equiv b \pmod{H}\)</span>, that is <span class="math inline">\(a^{-1}b \in H\)</span>. By previous question <span class="math inline">\(b\in aH\)</span>, so <span class="math inline">\([a] \subseteq aH\)</span>. Let <span class="math inline">\(b\in aH\)</span> by previous question <span class="math inline">\(a^{-1}b \in H\)</span>.</p>
+<h1 data-number="4" id="well-defined" data-number="4"><span class="header-section-number">4</span> Well-defined</h1>
+<blockquote>
+<p>Show that <span class="math inline">\(f : G/H \to H \setminus G\)</span> given by <span class="math inline">\(f(gH) = Hg^{-1}\)</span> is a <strong>well-defined</strong> bijective function.</p>
+</blockquote>
+<p>Using a symmetric argument as question 2, I can show the logical equivalence that <span class="math inline">\(ab^{-1} \in H \iff a \in Hb \iff Ha = Hb\)</span>. (But I’m lazy to).</p>
+<p>Notice that the definition of <span class="math inline">\(f\)</span> could possibly ambiguously match multiple candidates for <span class="math inline">\(g\)</span> in the expression <span class="math inline">\(f(gH) = Hg^{-1}\)</span>. However, we show that if <span class="math inline">\(g, g'\in G\)</span> such that <span class="math inline">\(g\ne g'\)</span> and <span class="math inline">\(gH = g'H\)</span>, then <span class="math inline">\(f(gH) = Hg^{-1} = Hg'^{-1} = f(g'H)\)</span>.</p>
+<p>Now <span class="math inline">\(gH = g'H \implies g^{-1}g' \in H \implies Hg^{-1} = Hg'^{-1}\)</span>.</p>
+<p>Then produce an inverse function, shouldn’t be too hard.</p>
+<h3 class="unnumbered" data-number id="again" class="unnumbered" data-number>again</h3>
+<p>Consider the diagram <span class="math display">\[\require{AMScd}
+\begin{CD}
+    G       @&gt;{(\cdot)^{-1}}&gt;&gt;  G \\
+    @VV{q}V                     @VV{q}V \\
+    G/H     @&gt;f&gt;&gt;               H\setminus G
+\end{CD}
+\]</span> <span class="math inline">\(f\)</span> is defined such that this diagram commutes, so do a diagram chase.</p>
+<h1 data-number="5" id="chain-rule" data-number="5"><span class="header-section-number">5</span> Chain rule</h1>
+<blockquote>
+<p>Let <span class="math inline">\(K &lt; H &lt; G\)</span>. Show that <span class="math inline">\([G:K]=[G:H] [H:K]\)</span>.</p>
+</blockquote>
+<p>A partition counting argument is very hard to formalise.</p>
+<h1 data-number="6" id="more-linear-algebra" data-number="6"><span class="header-section-number">6</span> More Linear Algebra</h1>
+<blockquote>
+<p>Let <span class="math inline">\(G\)</span> be a finite subgroup of <span class="math inline">\(\operatorname{GL}(m, \mathbb{C})\)</span> of order <span class="math inline">\(n\)</span>. Let <span class="math inline">\(g\in G\)</span>.</p>
+</blockquote>
+<ol type="i">
+<li><p>Show that <span class="math inline">\(g^n\)</span> is identity matrix.</p>
+<p>Generate a cyclic subgroup based on the powers of <span class="math inline">\(g\)</span>, let it have order <span class="math inline">\(k\)</span>, then <span class="math inline">\(g^k = I\)</span> and by Lagrange theorem, <span class="math inline">\(k\mid n\)</span>, so <span class="math inline">\(g^n = I\)</span>.</p></li>
+<li><p>Show that <span class="math inline">\(g\)</span> is diagonalisable and every eigenvalue <span class="math inline">\(\lambda\)</span> is a <span class="math inline">\(n\)</span>-th root of unity.</p>
+<p>By part i the polynomial <span class="math inline">\(f(T) = T^n - 1 \in \mathbb{C}[T]\)</span> kills <span class="math inline">\(g\)</span>. Therefore the minimal polynomial <span class="math inline">\(\mu \mid f\)</span>. Notice that in <span class="math inline">\(\mathbb{C}\)</span> <span class="math inline">\(f(T)\)</span> splits fully into linear factors, so <span class="math inline">\(\mu\)</span> splits into linear factors, this property characterises diagonalisable operators so <span class="math inline">\(g\)</span> is diagonalisable. We also know that any polynomial that kills <span class="math inline">\(g\)</span> kills its eigenvalues, so <span class="math inline">\(f(\lambda) = 0\)</span> for any eigenvalue <span class="math inline">\(\lambda\)</span>.</p></li>
+</ol>
+<h1 data-number="7" id="k-nmathbbz-is-a-subgroup-of-z." data-number="7"><span class="header-section-number">7</span> <span class="math inline">\(K = n\mathbb{Z}\)</span> is a subgroup of <span class="math inline">\(Z\)</span>.</h1>
+<ol type="i">
+<li><p>Subgroup <span class="math inline">\(H\)</span> is an ideal so it’s <span class="math inline">\(d\mathbb{Z}\)</span> for some <span class="math inline">\(d\in \mathbb{Z}\)</span>. If <span class="math inline">\(d\mid n\)</span>, then <span class="math inline">\(dk = n \implies \underbrace{d + d + \dots + d}_{k\text{ times}} = n\)</span> so <span class="math inline">\(n \in H\)</span> so <span class="math inline">\(n\mathbb{Z}\subseteq H\)</span>.</p></li>
+<li><p>Generate the subgroup with <span class="math inline">\(d\)</span>.</p></li>
+<li><p>Skipping</p></li>
+</ol>
+<hr />
+<h1 class="unnumbered" data-number id="tutorial-4b" class="unnumbered" data-number>Tutorial 4B</h1>
+<h1 data-number="8" id="free-groups" data-number="8"><span class="header-section-number">8</span> Free groups</h1>
+<p>Refer to hint resource for construction. Key concepts (reducibility , reducibility in one step) I already understand.</p>
+<h1 data-number="9" id="ump-of-free-groups" data-number="9"><span class="header-section-number">9</span> UMP of free groups</h1>
+<p>Draw the damn diagram.</p>
+<h1 data-number="10" id="orders-of-subgroups" data-number="10"><span class="header-section-number">10</span> Orders of subgroups</h1>
+<p>We have <span class="math inline">\(H &lt; G\)</span> and <span class="math inline">\(K &lt; G\)</span> and <span class="math inline">\(\gcd(\left\lvert H \right\rvert,\left\lvert K \right\rvert) = 1\)</span>. Well <span class="math inline">\(H \cap K\)</span> is a subgroup too and its order divides both of that of <span class="math inline">\(H\)</span> and <span class="math inline">\(K\)</span> which entails that it has order 1.</p>
+<h1 data-number="11" id="orders-of-subgroups-1" data-number="11"><span class="header-section-number">11</span> Orders of subgroups</h1>
+<p><span class="math inline">\(p\mid n\)</span> so <span class="math inline">\(p \leq n\)</span>.</p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA2202S/t3.md">MA2202S/t3.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

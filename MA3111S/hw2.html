@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Pek Yu-Xuan Sean, Qi Ji" />
+  <meta name="dcterms.date" content="18th February 2020" />
+  <title>MA3111S Homework 2</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">MA3111S Homework 2</h1><p class="author">Pek Yu-Xuan Sean, Qi Ji</p>
+<p class="date">18th February 2020</p>
+</header>
+<article><h1 id="exercise-1">Exercise 1</h1>
+<h2 id="section">1</h2>
+<p>We have <span class="math inline">\(\frac{\partial z}{\partial z} = \frac{\partial \overline{z}}{\partial \overline{z}} = 1, \frac{\partial z}{\partial \overline{z}} = \frac{\partial \overline{z}}{\partial z} = 0.\)</span></p>
+<h2 id="section-1">2</h2>
+<p>Without loss of generality, let <span class="math inline">\(z_0 = 0\)</span>. Then, we have that <span class="math inline">\(f(z) = u(z) + iv(z)\)</span> for real functions <span class="math inline">\(u,v\)</span>.</p>
+<p><span class="math display">\[f(x + iy) = f(0) + \begin{pmatrix} \frac{\partial u}{\partial x} &amp; \frac{\partial u}{\partial y} \\ \frac{\partial v}{\partial x} &amp; \frac{\partial v}{\partial y}\end{pmatrix}\begin{pmatrix}x \\ y \end{pmatrix} + o(|x + iy|)\]</span></p>
+<p>Let <span class="math inline">\(\alpha = a + ib\)</span> and <span class="math inline">\(\beta = c + id\)</span>. We get that <span class="math inline">\(\alpha(x + iy) + \beta(x - iy)\)</span> has the form <span class="math display">\[\begin{pmatrix}(a+c)x + (b-d)y &amp; (-b-d)x + (a-c)y \end{pmatrix}^T = \begin{pmatrix} \frac{\partial u}{\partial x}x + \frac{\partial u}{\partial y}y &amp; \frac{\partial v}{\partial x}x + \frac{\partial v}{\partial y}y\end{pmatrix}^T.\]</span> This has 4 independent equations and 4 unknowns, so it can always be done.</p>
+<h2 id="section-2">3</h2>
+<p>Differentiating the expression above shows <span class="math inline">\(\alpha = \frac{\partial f}{\partial z}\)</span> and <span class="math inline">\(\beta = \frac{\partial f}{\partial \overline{z}}.\)</span></p>
+<h2 id="section-3">4</h2>
+<p>This follows from Cauchy Riemann Equations. Observe that <span class="math inline">\(\frac{\partial (u + iv)}{\partial \overline{z}} = \frac{1}{2}\left( (\frac{\partial u}{\partial x} - \frac{\partial v}{\partial y}) + i(\frac{\partial u}{\partial y} + \frac{\partial v}{\partial x}) \right).\)</span></p>
+<h2 id="section-4">5</h2>
+<p>We have that <span class="math inline">\(\frac{\partial \overline{f}}{\partial \overline{z}} = \overline{\frac{\partial f}{\partial z}}\)</span>. Thus, if <span class="math inline">\(f\)</span> is anti-holomorphic, then <span class="math inline">\(\frac{\partial \overline{f}}{\partial \overline{z}} = \overline{0} = 0.\)</span> Conversely, if <span class="math inline">\(\overline{f}\)</span> is holomorphic, then, <span class="math inline">\(\frac{\partial f}{\partial \overline{z}} = \overline{\frac{\partial \overline{f}}{\partial z}} = 0.\)</span></p>
+<h1 id="exercise-2">Exercise 2</h1>
+<h2 id="section-5">1</h2>
+<p>Let <span class="math inline">\(u(z) = x + iy\)</span> be <span class="math inline">\(\mathscr{C}^2\)</span>, <span class="math display">\[\begin{align*}
+\frac{\partial^2u}{\partial z\partial \overline{z}}
+&amp;= \frac{\partial}{\partial z}\frac12\left( \frac{\partial u}{\partial x} + i\frac{\partial u}{\partial y} \right) \\
+&amp;= \frac12\left( \frac{\partial^2u}{\partial z\partial x} + i\frac{\partial^2u}{\partial z\partial y} \right) \\
+\end{align*}\]</span> now <span class="math display">\[
+\frac{\partial^2 u}{\partial z\partial x} = \frac12\left( \frac{\partial^2 u}{\partial x\partial x} - i\frac{\partial^2 u}{\partial y\partial x} \right)
+\text{ and }
+\frac{\partial^2 u}{\partial z\partial y} = \frac12\left( \frac{\partial^2 u}{\partial x\partial y} - i\frac{\partial^2 u}{\partial y\partial y} \right)
+\]</span> so <span class="math display">\[
+\frac{\partial^2 u}{\partial z\partial\overline{z}} = \frac14\left(\frac{\partial^2 u}{\partial x\partial x} - i\frac{\partial^2 u}{\partial y\partial x} + i \frac{\partial^2 u}{\partial x\partial y} + \frac{\partial^2 u}{\partial y\partial y} \right)
+\]</span> and by Clairaut’s theorem we know that <span class="math inline">\(\frac{\partial^2 u}{\partial x\partial y} = \frac{\partial^2 u}{\partial y\partial x}\)</span> so we have <span class="math inline">\(\Delta u = 4\frac{\partial^2 }{\partial z\partial\overline{z}} u\)</span> as desired.</p>
+<p><span class="math inline">\(u\)</span> is harmonic iff <span class="math inline">\(\Delta u = 0\)</span> iff <span class="math inline">\(\frac{\partial^2 u}{\partial z\partial\overline{z}} = 0\)</span> iff (by Clairaut’s theorem again) <span class="math inline">\(\frac{\partial^2 u}{\partial\overline{z}\partial z} = \frac{\partial}{\partial\overline{z}} \frac{\partial u}{\partial z} = 0\)</span> iff (by Exercise 1.4) <span class="math inline">\(\frac{\partial u}{\partial z}\)</span> is holomorphic.</p>
+<h2 id="section-6">2</h2>
+<p>Let <span class="math inline">\(v = u(f(z))\)</span>, then in some open set where <span class="math inline">\(u(f(z))\)</span> is well-defined <span class="math display">\[ \frac{\partial v}{\partial z} = \frac{\partial u}{\partial f} f'(z) \]</span> <span class="math inline">\(\frac{\partial u}{\partial f}\)</span> makes sense and (by part 1) will be holomorphic as <span class="math inline">\(u\)</span> is harmonic. And as <span class="math inline">\(f'\)</span> is also holomorphic <span class="math inline">\(u(f(z))\)</span> harmonic.</p>
+<h2 id="section-7">3</h2>
+<p>Let <span class="math inline">\(f(x + iy) = u(x,y) + iv(x,y)\)</span>, so <span class="math inline">\(\frac{\partial f}{\partial\overline{z}} = 0\)</span>, that is <span class="math display">\[ \frac{\partial f}{\partial x} = -i \frac{\partial f}{\partial y} \]</span> <span class="math display">\[ u_x + i v_x = -i u_y + v_y \]</span> so <span class="math inline">\(u_x = v_y\)</span> and <span class="math inline">\(v_x = -u_y\)</span>. It follows that <span class="math display">\[ u_{xx} = v_{yx} \text{ and } v_{xy} = - u_{yy} \]</span> and by Clairaut theorem <span class="math display">\[ \Delta \Re(f) = u_{xx} + u_{yy} = v_{yx} - v_{xy} = 0 \]</span> similarly we can show <span class="math display">\[ \Delta \Im(f) = v_{xx} + v_{yy} = u_{xy} - u_{yx} = 0. \]</span></p>
+<h2 id="section-8">4</h2>
+<p>Outside the zero set of <span class="math inline">\(f\)</span>, we have <span class="math display">\[
+\frac{\partial}{\partial\overline{z}}\log(f\overline{f}) = \frac{\frac{\partial f}{\partial\overline{z}}\overline{f}+ f\frac{\partial\overline{f}}{\partial\overline{z}}}{f\overline{f}} = \frac{1}{\overline{f}} \frac{\partial\overline{f}}{\partial\overline{z}}
+\]</span> so <span class="math display">\[
+\frac{\partial^2 }{\partial z\partial\overline{z}}\log(f\overline{f}) = \frac{-\frac{\partial\overline{f}}{\partial z}}{(\overline{f})^2}\frac{\partial\overline{f}}{\partial\overline{z}} + \frac{1}{\overline{f}} \frac{\partial^2 \overline{f}}{\partial z\partial\overline{z}}
+= \frac{1}{\overline{f}} \frac{\partial^2 \overline{f}}{\partial z\partial\overline{z}}
+= \frac{1}{\overline{f}} \frac{\partial^2 \overline{f}}{\partial\overline{z}\partial z} = 0
+\]</span> as <span class="math inline">\(\frac{\partial\overline{f}}{\partial z} = \frac{\partial f}{\partial\overline{z}} = 0\)</span>. And therefore <span class="math display">\[\Delta\log\left\lvert f\right\rvert = \Delta \frac12 \log\left\lvert f\right\rvert^2 = \Delta\frac12\log(f\overline{f}) = 0\]</span> and <span class="math inline">\(\log\left\lvert f\right\rvert\)</span> is harmonic.</p>
+<h2 id="section-9">5</h2>
+<p>Suppose <span class="math inline">\(\left\lvert f\right\rvert^2\)</span> is harmonic. Let <span class="math inline">\(f(x+iy) = u(x,y) + iv(x,y)\)</span> and <span class="math inline">\(\left\lvert f(x+iy)\right\rvert^2 = u^2(x,y) + v^2(x,y)\)</span>. <span class="math display">\[\begin{align*}
+\Delta \left\lvert f^2\right\rvert
+&amp;= \frac{\partial^2}{\partial x^2}(u^2 + v^2) + \frac{\partial^2}{\partial y^2}(u^2 + v^2) \\
+&amp;= \frac{\partial}{\partial x}(2uu_x + 2vv_x) + \frac{\partial}{\partial y}(2uu_y + 2vv_y) \\
+&amp;= 2(u_x)^2 + 2uu_{xx} + 2vv_{xx} + 2(v_x)^2
+ + 2(u_y)^2 + 2uu_{yy} + 2vv_{yy} + 2(v_y)^2 \\
+&amp;= 2(u_x)^2 + 2(v_x)^2 + 2(u_y)^2 + 2(v_y)^2
++ 2u(u_{xx} + u_{yy}) + 2v(v_{xx} + v_{yy}) \\
+&amp;= 2(u_x)^2 + 2(v_x)^2 + 2(u_y)^2 + 2(v_y)^2
+\end{align*}\]</span> as <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> are harmonic by part 3. This means that <span class="math inline">\(u_x\)</span>, <span class="math inline">\(u_y\)</span>, <span class="math inline">\(v_x\)</span>, and <span class="math inline">\(v_y\)</span> are all zero, so <span class="math inline">\(f\)</span> is a constant function.</p>
+<p>Conversely it is trivial that <span class="math inline">\(f\)</span> constant implies <span class="math inline">\(\left\lvert f\right\rvert^2\)</span> harmonic. Therefore <span class="math inline">\(\left\lvert f\right\rvert^2\)</span> is harmonic iff <span class="math inline">\(f\)</span> is constant.</p>
+<h1 id="exercise-3">Exercise 3</h1>
+<ol type="1">
+<li><p>No. Let <span class="math inline">\(f(x,y) = e^{(x^2 + y^2)} + \cos(x^2 + y^2) - \sin(x + iy) + 2\)</span> Then, <span class="math display">\[\frac{\partial f}{\partial \overline{z}} = \frac{1}{2}(\frac{\partial f}{\partial x} + i \frac{\partial f}{\partial y}) = 2(x+iy)(e^{(x^2 + y^2)} - \cos(x^2 + y^2))\]</span> which is non-zero.</p></li>
+<li><p>No. The function is not continuous when <span class="math inline">\(z^4 = -1\)</span> as the numerator is always non-zero and denominator is.</p></li>
+</ol>
+<h1 id="exercise-4">Exercise 4</h1>
+<p>For <span class="math inline">\((x,y)\)</span> in unit disc, <span class="math display">\[\begin{align*}
+u(x,y) &amp;= \frac{x+1}{x^2+y^2+2x+1} \\
+\frac{\partial u}{\partial x} &amp;= \frac{1}{x^2+y^2+2x+1} - 2\left(\frac{x+1}{x^2+y^2+2x+1}\right)^2 \\
+&amp;= \frac{1}{x^2+y^2+2x+1} - 2u^2 \\
+\frac{\partial^2u}{\partial x^2} &amp;= - \frac{2x+2}{(x^2+y^2+2x+1)^2} - 4u\frac{\partial u}{\partial x} \\
+&amp;= 8u^3 - \frac{6}{x^2+y^2+2x+1}u \\
+\frac{\partial u}{\partial y} &amp;= -2\frac{(x+1)y}{(x^2+y^2+2x+1)^2} \\
+\frac{\partial^2u}{\partial y^2} &amp;= -2\frac{(x+1)(x^2+y^2+2x+1)^2 - (x+1)y 2g(2y)}{(x^2+y^2+2x+1)^4} \\
+&amp;= -2\frac{x+1}{(x^2+y^2+2x+1)^2} + 8 \frac{(x+1)y^2}{(x^2+y^2+2x+1)^3} \\
+&amp;= \left(\frac{8y^2 - 2(x^2+y^2+2x+1)}{(x^2+y^2+2x+1)^2}\right)u
+\end{align*}\]</span> so we have <span class="math display">\[\begin{align*}
+\Delta u &amp;= 8u^3 + u\left( \frac{8y^2 - 8y^2 - 8(x+1)^2}{(x^2+y^2+2x+1)^2} \right) \\
+&amp;= 8u^3 - 8u^3 = 0
+\end{align*}\]</span> and therefore <span class="math inline">\(u\)</span> is harmonic.</p>
+<p>By Exercise 1.3, for <span class="math inline">\(v\)</span> is a harmonic conjugate of <span class="math inline">\(u\)</span>, iff <span class="math inline">\(v\)</span> satisfies <span class="math display">\[ \frac{\partial v}{\partial x} = -\frac{\partial u}{\partial y} = \frac{2(x+1)y}{(y^2 + (x+1)^2)^2} \]</span> and <span class="math display">\[ \frac{\partial v}{\partial y} = \frac{\partial u}{\partial x} = \frac{y^2 - (x+1)^2}{(y^2+(x+1)^2)^2} \]</span> we can verify that a solution of this differential equation is <span class="math display">\[ v(x,y) = \frac{-y}{y^2 + (x+1)^2}. \]</span></p>
+<h1 id="exercise-5">Exercise 5</h1>
+<p>Let <span class="math inline">\(g(z) = zf(z)\)</span> and <span class="math inline">\(g(0) = 0\)</span>. Then <span class="math inline">\(g\)</span> is bounded near 0, and thus a removable singularity at 0. But <span class="math inline">\(\lim_{z \to 0} g(z) = \lim_{z \to 0} |\sqrt{z}| (|\sqrt{z}| f(z)) = 0\)</span>. Then, <span class="math inline">\(g(z) = zh(z)\)</span> for some analytic <span class="math inline">\(h\)</span>. But <span class="math inline">\(f = h\)</span> on the punctured unit disk, which implies <span class="math inline">\(f\)</span> is bounded near 0, which is a contradiction.</p>
+<h1 id="exercise-6">Exercise 6</h1>
+<p>By Liouville’s theorem as <span class="math inline">\(f(z) + e^z - 3z^5 + 5\)</span> is still entire and is also bounded it is constant, therefore <span class="math display">\[\begin{align*}
+f(2) + e^2 - 3(2)^5 + 5 &amp;= f(0) + e^0 + 5 \\
+&amp;= 7
+\end{align*}\]</span> so <span class="math display">\[ f(2) = 29 - e^2. \]</span></p>
+<h1 id="exercise-7">Exercise 7</h1>
+<p>No. Consider <span class="math inline">\(g(z) = e^{-z}(1+ f(z))(z+3)\)</span>. As <span class="math inline">\(g\)</span> is holomorphic and <span class="math inline">\(|g(z)| \leq 1\)</span> when <span class="math inline">\(z \neq -3\)</span>, thus <span class="math inline">\(g\)</span> is constant by Liouville’s theorem. Then, <span class="math inline">\(f(z) = ce^z(z+3)^{-1} - 1\)</span> for some <span class="math inline">\(c\)</span>, but <span class="math inline">\(f\)</span> is continuous everywhere, which is a contradiction as the limit <span class="math inline">\(\lim_{z \to -3}f(z)\)</span> does not exist unless <span class="math inline">\(c = 0\)</span>.</p>
+<h1 id="exercise-8">Exercise 8</h1>
+<p>Removable singularity at <span class="math inline">\(z=1\)</span>, poles of order 1 at <span class="math inline">\(z=e^{2k\pi i/3}\)</span> for <span class="math inline">\(k = 1,2\)</span>, and essential singularity at <span class="math inline">\(z=0\)</span>.</p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA3111S/hw2.md">MA3111S/hw2.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

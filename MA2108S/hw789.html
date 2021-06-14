@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji [A0167793L]" />
+  <meta name="dcterms.date" content="20th April 2019" />
+  <title>MA2108S Homework sets 7, 8, 9, 10</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">MA2108S Homework sets 7, 8, 9, 10</h1><p class="author">Qi Ji [A0167793L]</p>
+<p class="date">20th April 2019</p>
+</header>
+<article><h1 id="homework-7">Homework 7</h1>
+<h2 id="rudin-chapter-3-q6">Rudin Chapter 3 Q6</h2>
+<ol type="a">
+<li><p>The partial sum of first <span class="math inline">\(N\)</span> terms evaluate to <span class="math inline">\(\sqrt{N+1} - 1\)</span> which obviously diverges.</p></li>
+<li><p>For each <span class="math inline">\(n\in\mathbb{N}\)</span> we have <span class="math display">\[\begin{align*}
+a_n &amp;= \frac{\sqrt{n+1}-\sqrt{n}}n \\
+&amp;- \frac{1}{n(\sqrt{n+1}+\sqrt{n})}
+\end{align*}\]</span> and since <span class="math inline">\(n(\sqrt{n+1}+\sqrt{n}) &gt; n\sqrt{n}\)</span>, <span class="math inline">\(a_n &lt; 1/n^{3/2}\)</span>. Because <span class="math inline">\(\sum \frac{1}{n^{3/2}}\)</span> converges by comparison test <span class="math inline">\(\sum a_n\)</span> converges.</p></li>
+<li><p><span class="math inline">\(\sqrt[n]{\left\lvert a_n \right\rvert} = \sqrt[n]{n} - 1\)</span>. From Theorem 3.20 we have <span class="math inline">\(\lim_{n\to\infty} \sqrt[n]{\left\lvert a_n \right\rvert} = 1 - 1 = 0\)</span> so by root test <span class="math inline">\(\sum a_n\)</span> converges.</p></li>
+<li><p>Whenever <span class="math inline">\(\left\lvert z \right\rvert &gt; 1\)</span>, <span class="math display">\[\begin{align*}
+\lim_{n\to\infty}\left\lvert \frac{a_{n+1}}{a_n} \right\rvert
+&amp;= \lim_{n\to\infty}\left\lvert \frac{1 + z^n}{1 + z^{n+1}} \right\rvert \\
+&amp;= \lim_{n\to\infty}\frac{\left\lvert \frac{1}{z^n} + 1 \right\rvert}{\left\lvert \frac 1{z^n} + z \right\rvert} \\
+&amp;&lt; \frac1{\left\lvert z \right\rvert} &lt; 1
+\end{align*}\]</span> so <span class="math inline">\(\sum a_n\)</span> converges by ratio test.</p>
+<p>In the other case when <span class="math inline">\(\left\lvert z \right\rvert\geq 1\)</span> then <span class="math display">\[ \left\lvert 1 + z^n \right\rvert \leq 1 + \left\lvert z \right\rvert^n \leq 2 \]</span> so for all <span class="math inline">\(n\in\mathbb{N}\)</span>, <span class="math inline">\(\left\lvert a_n \right\rvert \geq \frac12\)</span> and <span class="math inline">\(\sum a_n\)</span> diverges.</p></li>
+</ol>
+<h2 id="rudin-chapter-3-q9">Rudin Chapter 3 Q9</h2>
+<ol type="a">
+<li><p><span class="math inline">\(\sum n^3 z^n\)</span> <span class="math display">\[\begin{align*}
+\lim_{n\to\infty} \left\lvert \frac{(n+1)^3z^{n+1}}{n^3z^3} \right\rvert
+&amp;= \left\lvert z \right\rvert \lim_{n\to\infty} \left\lvert \frac{n^3 + O(n^2)}{n^3} \right\rvert \\
+&amp;= \left\lvert z \right\rvert
+\end{align*}\]</span> so <span class="math inline">\(R=1\)</span>.</p></li>
+<li><p><span class="math inline">\(\sum \frac{2^n}{n!}z^n\)</span> <span class="math display">\[\begin{align*}
+\lim_{n\to\infty} \left\lvert \cfrac{\frac{2^{n+1}}{(n+1)!}}{\frac{2^n}{n!}} \right\rvert
+&amp;= \lim_{n\to\infty} \left\lvert \frac{2}{n+1} \right\rvert = 0
+\end{align*}\]</span> so <span class="math inline">\(R = \infty\)</span>, this series converges everywhere in <span class="math inline">\(\mathbb{C}\)</span>.</p></li>
+<li><p><span class="math inline">\(\sum \frac{2^n}{n^2}z^n\)</span> <span class="math display">\[\begin{align*}
+\lim_{n\to\infty} \left\lvert \cfrac{\frac{2^{n+1}}{(n+1)^2}}{\frac{2^n}{n^2}} \right\rvert
+&amp;= \lim_{n\to\infty} \left\lvert \frac{2n^2}{(n+1)^2} \right\rvert = 2
+\end{align*}\]</span> so <span class="math inline">\(R = \frac12\)</span></p></li>
+<li><p><span class="math inline">\(\sum \frac{n^3}{3^n}z^n\)</span> <span class="math display">\[\begin{align*}
+\lim_{n\to\infty} \left\lvert \cfrac{\frac{3^{n+1}}{(n+1)^3}}{\frac{3^n}{n^3}} \right\rvert
+&amp;= \lim_{n\to\infty} \left\lvert \frac{3n^3}{(n+1)^3} \right\rvert = 3
+\end{align*}\]</span> so <span class="math inline">\(R = \frac13\)</span></p></li>
+</ol>
+<h2 id="rudin-chapter-3-q10">Rudin Chapter 3 Q10</h2>
+<p>Suppose for a contradiction the power series of almost all non-zero integer coefficients <span class="math inline">\(\sum a_n z^n\)</span> converges but for some <span class="math inline">\(z\)</span> with <span class="math inline">\(\left\lvert z \right\rvert&gt;1\)</span>. By convergence it is necessary that <span class="math inline">\(\lim_{n\to\infty} \left\lvert a_n z^n \right\rvert = 0\)</span>, but by hypothesis for each <span class="math inline">\(N\in\mathbb{N}\)</span> there exists <span class="math inline">\(n&gt;N\)</span> with integer coefficient <span class="math inline">\(a_n \ne 0\)</span>, and because <span class="math inline">\(\left\lvert z \right\rvert&gt;1\)</span>, <span class="math inline">\(\left\lvert a_nz^n \right\rvert &gt;1\)</span>, which contradicts the claim that limit goes to <span class="math inline">\(0\)</span>.</p>
+<h2 id="rudin-chapter-3-q13">Rudin Chapter 3 Q13</h2>
+<p>To simplify the question we can assume terms from both series are <span class="math inline">\(\geq 0\)</span>, so given two absolutely convergent series of nonnegative terms, denote <span class="math display">\[ A_n = \sum_{i=1}^n a_i \to A,\quad B_n = \sum_{j=1}^n b_j \to B \]</span> we just have to show <span class="math inline">\(C_n := \sum_{i=0}^n \sum_{j=0}^i a_j b_{i-j}\)</span> is a bounded sequence of partial sums.</p>
+<p>For each <span class="math inline">\(i\in\mathbb{N}\)</span> denote <span class="math display">\[\begin{align*}
+c_i &amp;= \sum_{j=0}^i a_j b_{i-j} \\
+&amp;= \sum_{j=0}^{i-1} A_j(b_{i-j} - b_{i-(j+1)}) + A_ib_0 - A_{-1}b_i\\
+&amp;= \sum_{j=0}^i A_j (b_{i-j} - b_{i-j-1})
+\end{align*}\]</span> where we set <span class="math inline">\(A_{-1} = b_{-1} = 0\)</span> to simplify our term. Now for each <span class="math inline">\(n\in\mathbb{N}\)</span> <span class="math display">\[\begin{align*}
+C_n &amp;= \sum_{i=0}^n c_i \\
+&amp;= \sum_{i=0}^n \sum_{j=0}^i A_j (b_{i-j} - b_{i-j-1}) \\
+&amp;= \sum_{j=0}^n \sum_{i=j}^n A_j (b_{i-j} - b_{i-j-1}) \\
+&amp;= \sum_{j=0}^n A_j \sum_{i=j}^n (b_{i-j} - b_{i-j-1}) \\
+&amp;= \sum_{j=0}^n A_j b_{n-j} \\
+&amp;\leq \sum_{j=0}^n A b_{n-j} \\
+&amp;= A \sum_{k=0}^n b_{k} = A B_n \leq AB \\
+\end{align*}\]</span> so the partial sums are bounded.</p>
+<h1 id="homework-8">Homework 8</h1>
+<h2 id="rudin-chapter-3-q18">Rudin Chapter 3 Q18</h2>
+<p>Choose <span class="math inline">\(x_1&gt;\sqrt[p]{\alpha}\)</span>, the sequence decreases monotonically with limit <span class="math inline">\(\sqrt[p]{\alpha}\)</span>.</p>
+<p>Suppose <span class="math inline">\(x_n \geq \sqrt[p]{\alpha}\)</span> we show <span class="math inline">\(x_{n+1} \geq \sqrt[p]{\alpha}\)</span> too. By AM-GM inequality <span class="math display">\[\begin{align*}
+x_{n+1} &amp;= \frac{p-1}{p}x_n + \frac{\alpha}{p} x_n^{-p+1} \\
+&amp;= \frac{\overbrace{x_n + x_n + \dots + x_n}^{p-1\text{ copies}} + \alpha\cdot x_n^{-p+1}}p \\
+&amp;\geq \sqrt[p]{x_n^{p-1}\cdot\alpha\cdot x_n^{-p+1}} \\
+&amp;= \sqrt[p]{\alpha}
+\end{align*}\]</span> so by induction the sequence is bounded below by <span class="math inline">\(\sqrt[p]{\alpha}\)</span>.</p>
+<p>Suppose <span class="math inline">\(x_n\geq \sqrt[p]{\alpha}\)</span> we show <span class="math inline">\(x_{n+1} \leq x_n\)</span>. <span class="math display">\[\begin{align*}
+x_{n+1} &amp;= \frac{p-1}{p}x_n + \frac{\alpha}{p} x_n^{-p+1} \\
+&amp;= x_n \frac1p \left(p-1 + \frac{\alpha}{x_n^p} \right)
+\end{align*}\]</span> Since <span class="math inline">\(x_n\geq \sqrt[p]{\alpha}\)</span> by assumption we observe that <span class="math display">\[\begin{align*}
+x_n^p &amp;\geq \alpha \\
+\frac{\alpha}{x_n^p} &amp;\leq 1\\
+p - 1 + \frac{\alpha}{x_n^p} &amp;\leq p \\
+\frac1p\left(p - 1 + \frac{\alpha}{x_n^p}\right) &amp;\leq 1
+\end{align*}\]</span> where equality holds if and only if it holds in our assumption. This means <span class="math inline">\(x_{n+1} \leq x_n\)</span> where equality holds iff <span class="math inline">\(x_n = \sqrt[p]{\alpha}\)</span>.</p>
+<!---
+* \(\epsilon_{n+1} = \frac{\epsilon_n^2}{2 x^n} < \frac{\epsilon_n^2}{2\sqrt[p]{\alpha}}\)
+-->
+<h2 id="q1">Q1</h2>
+<blockquote>
+<p>Suppose <span class="math inline">\(\sum_{n=1}^\infty a_n\)</span> converges where each <span class="math inline">\(a_n\geq 0\)</span>. Determine whether <span class="math inline">\(\sum_n \sqrt{a_n a_{n+1}}\)</span> also converges.</p>
+</blockquote>
+<p>As <span class="math inline">\(\sum_{n=1}^\infty a_n\)</span> converges, we can drop the first term so <span class="math inline">\(\sum_{n=1}^\infty a_{n+1}\)</span> still converges. Then we see that <span class="math display">\[\sum_{n=1}^\infty \frac{a_n + a_{n+1}}2 \]</span> converges. Then by AM-GM inequality <span class="math display">\[ \sqrt{a_na_{n+1}} \leq \frac{a_n + a_{n+1}}2\]</span> and by comparison test <span class="math inline">\(\sum_n \sqrt{a_n a_{n+1}}\)</span> converges.</p>
+<h2 id="q2">Q2</h2>
+<blockquote>
+<p>Fix <span class="math inline">\(\alpha \in (0,1)\)</span>, show that <span class="math inline">\(\sum_{n=1}^\infty \frac{\cos nx}{n^\alpha}\)</span> converges for all <span class="math inline">\(x\)</span> except multiples of <span class="math inline">\(2\pi\)</span>.</p>
+</blockquote>
+<p>In the case that <span class="math inline">\(x\)</span> is an integer multiple of <span class="math inline">\(2\pi\)</span>, the series becomes <span class="math inline">\(\sum_{n=1}^\infty \frac1{n^\alpha}\)</span> which diverges because <span class="math inline">\(\alpha \leq 1\)</span>.</p>
+<p>In the other case assume <span class="math inline">\(x \ne 2\pi k\)</span> for all <span class="math inline">\(k\in\mathbb{Z}\)</span>. We show that <span class="math display">\[ \sum_{n=1}^\infty \frac{e^{inx}}{n^\alpha} \]</span> converges.</p>
+<p>First see that <span class="math inline">\(\frac1{n^\alpha}\)</span> is a decreasing sequence of real numbers with limit <span class="math inline">\(0\)</span>. Next we set <span class="math inline">\(b_n := e^{inx}\)</span> and <span class="math inline">\(b_N := \sum_{n=1}^N b_n\)</span>, Now we note that for each <span class="math inline">\(n\in\mathbb{N}\)</span>, as <span class="math inline">\(x\)</span> is not a multiple of <span class="math inline">\(2\pi\)</span>, we have the finite geometric sum <span class="math display">\[ \left\lvert B_n \right\rvert = \left\lvert  e^{ix}\left(\frac{1-e^{inx}}{1-e^{ix}}\right)  \right\rvert \leq \frac{2}{\left\lvert 1-e^{ix} \right\rvert} \]</span> note that <span class="math inline">\(x\)</span> is a fixed constant so the partial sums are bounded. Applying Dirichlet’s test (3.42) the series converges.</p>
+<h2 id="q3">Q3</h2>
+<h3 id="part-a">Part (a)</h3>
+<p>We can re-express our terms for readability as <span class="math display">\[ a_n = \begin{cases}
+    -\frac2{n^2} &amp;\text{if \(n\) is odd}\\
+    \frac2{n} &amp;\text{if \(n\) is even}
+\end{cases} \]</span> to show <span class="math inline">\(\sum_{n=1}^\infty a_n\)</span> diverges consider the series of every 2 terms grouped together, <span class="math display">\[ \sum_{n=1}^\infty b_n \text{ where } b_n := -\frac2{n^2} + \frac2{(n+1)} \]</span> for all <span class="math inline">\(n\geq 3\)</span> it holds that <span class="math display">\[\begin{align*}
+n^2 &amp;&gt; 2(n+1) \\
+\frac1{n^2} &amp;&lt; \frac{1}{2(n+1)} \\
+\frac1{n+1} - \frac1{n^2} &amp;&gt; \frac{1}{2(n+1)}
+b_n &gt; \frac1{n+1}
+\end{align*}\]</span> then by comparison test with harmonic series <span class="math inline">\(\sum b_n\)</span> diverges.</p>
+<h3 id="part-b">Part (b)</h3>
+<p>Given <span class="math inline">\(a_n = \frac1{(\log n)^{\log n}}\)</span> we want to find convergence of <span class="math inline">\(\sum_{n=2}^\infty a_n\)</span>. By theorem of Cauchy it converges iff this series converges <span class="math display">\[\sum_{k=1}^\infty 2^ka_k = \sum_{n=1}^\infty 2^k \frac1{(\log 2^k)^{\log 2^k}}. \]</span> Define each summand in RHS as <span class="math inline">\(c_n\)</span> and simplify <span class="math display">\[\begin{align*}
+c_n &amp;= \frac{2^n}{(n\log 2)^{n\log 2}} \\
+&amp;= \frac1{n^{n\log 2}}\cdot\left( \frac{2}{(\log 2)^{\log 2}} \right)^n
+\end{align*}\]</span> To see that <span class="math inline">\(\sum_{n=1}^\infty c_n\)</span> converges we first note that <span class="math inline">\(r :=\frac{2}{(\log 2)^{\log 2}} &lt; 1\)</span> so <span class="math inline">\(\sum_{n=1}^\infty r^n\)</span> is a convergent geometric series. Next we see that <span class="math inline">\(\sum_{i=1}^\infty \frac1{n^{n\log 2}}\)</span> also converges by ratio test, as <span class="math display">\[\begin{align*}
+\lim_{n\to\infty} \left\lvert \frac{n^{n\log 2}}{(n+1)^{(n+1)\log 2}} \right\rvert
+&amp;= \lim_{n\to\infty} \left\lvert \frac{n^{n}}{(n+1)^{(n+1)}} \right\rvert^{\log 2} \\
+&amp;= \lim_{n\to\infty} \left\lvert  \left(\frac{n}{n+1}\right)^n \frac 1{n+1}  \right\rvert^{\log 2} \\
+&amp;= \lim_{n\to\infty} \left\lvert  \frac{1}{\left(1+\frac 1n\right)^n} \frac 1{n+1}  \right\rvert^{\log 2} \\
+&amp;= 0
+\end{align*}\]</span> Therefore the original series was convergent.</p>
+<h3 id="part-c">Part (c)</h3>
+<p>We can see that whenever <span class="math inline">\(\left\lvert \alpha \right\rvert \geq 1\)</span>, <span class="math inline">\(n\mapsto \sqrt[n]{\left\lvert \alpha \right\rvert}\)</span> is decreasing, so <span class="math inline">\(\left\lvert \frac{\sqrt[n]{\left\lvert \alpha \right\rvert}}n \right\rvert\)</span> is decreasing so the conditions of 3.43 is satisfied and the series converges.</p>
+<p>When <span class="math inline">\(0 &lt; \left\lvert \alpha \right\rvert &lt; 1\)</span>, we find <span class="math inline">\(N\)</span> such that for any <span class="math inline">\(n&gt;N\)</span>, <span class="math inline">\(\sqrt[n]{\alpha} &gt; \frac12\)</span>. Now if we examine the tail of the series each term is greater than <span class="math inline">\(b_n := \frac{1}{2(N+n)}\)</span>. But <span class="math inline">\(\sum b_n\)</span> is the tail sum of (half of) harmonic series, which diverges. So by comparison test the original series diverges.</p>
+<p>Convergence is obvious for <span class="math inline">\(\alpha=0\)</span>.</p>
+<h1 id="homework-9">Homework 9</h1>
+<h2 id="rudin-chapter-4-q2">Rudin Chapter 4 Q2</h2>
+<p>Let <span class="math inline">\(y\in f(\overline{E})\)</span>, want to show <span class="math inline">\(y\in\overline{f(E)}\)</span>. Find <span class="math inline">\(x\in\overline{E}\)</span> such that <span class="math inline">\(f(x) = y\)</span>, then there exists a sequence <span class="math inline">\(x_1,x_2,\dots \in E\)</span> such that <span class="math inline">\(x_n \to x\)</span>. Note that for each <span class="math inline">\(x_n\in E\)</span>, we have <span class="math inline">\(f(x_n) \in f(E)\)</span>, then because <span class="math inline">\(f\)</span> is continuous <span class="math display">\[y = f(x) = f\left(\lim_{n\to\infty} x_n\right) = \lim_{n\to\infty} f(x_n)\]</span> which shows <span class="math inline">\(y\in\overline{f(E)}\)</span>.</p>
+<h2 id="rudin-chapter-4-q3">Rudin Chapter 4 Q3</h2>
+<p>Note that <span class="math inline">\(Z(f) := {\left\{ x\in X:f(x)=0 \right\}} = f^{-1}({\left\{ 0 \right\}})\)</span> the pre-image of <span class="math inline">\({\left\{ 0 \right\}}\)</span>. Since <span class="math inline">\({\left\{ 0 \right\}}\)</span> is closed in <span class="math inline">\(\mathbb{R}\)</span> and <span class="math inline">\(f\)</span> is continuous it follows that <span class="math inline">\(Z(f)\)</span> is closed.</p>
+<h2 id="rudin-chapter-4-q16">Rudin Chapter 4 Q16</h2>
+<p>For each integer <span class="math inline">\(n\in\mathbb{Z}\)</span>, <span class="math inline">\([x]\)</span> and <span class="math inline">\((x)\)</span> are continuous on the interval <span class="math inline">\((n,n+1)\)</span>, which is easier to see by sketching the graph.</p>
+<p>To see that <span class="math inline">\((x)\)</span> is discontinuous at all integer points, consider <span class="math inline">\(\varepsilon=\frac12\)</span>, then for any <span class="math inline">\(\delta&gt;0\)</span> there is an <span class="math inline">\(x \in (n-\delta,n+\delta)\)</span> such that <span class="math inline">\((x) \geq \frac12\)</span> (concretely maybe choose <span class="math inline">\(x=\max(n-\frac1m, n-\frac12)\)</span> where <span class="math inline">\(\frac1m &lt; \delta\)</span>).</p>
+<p>To see that case of <span class="math inline">\([x]\)</span> is similar we see that the difference between <span class="math inline">\([x]\)</span> and <span class="math inline">\((x)\)</span> is a continuous function since it was defined that <span class="math inline">\((x) = x - [x]\)</span>.</p>
+<h2 id="rudin-chapter-4-q18">Rudin Chapter 4 Q18</h2>
+<p>For any <span class="math inline">\(x\in\mathbb{R}\)</span>, we show that <span class="math inline">\(\lim_{y\to x} f(y) = 0\)</span>.</p>
+<p>Given <span class="math inline">\(\varepsilon&gt;0\)</span> we find the smallest <span class="math inline">\(N\in\mathbb{N}\)</span> such that <span class="math display">\[ \frac1{N-1}\geq \varepsilon&gt; \frac1N. \]</span></p>
+<p>Next to each <span class="math inline">\(n=1,2,\dots,N\)</span>, let <span class="math inline">\(z_n\)</span> such that <span class="math display">\[\frac{z_n}n \leq x &lt; \frac{z_n+1}n.\]</span> Then define <span class="math display">\[ \delta_n := \begin{cases}
+\min(x-\frac{z_n}n,\frac{z_n+1}n - x) &amp;\text{if } x\ne \frac{z_n}n; \\
+\frac1n &amp;\text{otherwise}.
+\end{cases} \]</span></p>
+<p>Let <span class="math inline">\(\delta=\min(\delta_1,\dots,\delta_n\)</span> and for any <span class="math inline">\(y\in (x-\delta,x+\delta)\smallsetminus{\left\{ x \right\}}\)</span>, if <span class="math inline">\(y\)</span> is irrational <span class="math inline">\(f(y)=0&lt;\varepsilon\)</span>, if <span class="math inline">\(y\)</span> is rational then <span class="math inline">\(y=\frac{a}b\)</span> for some <span class="math inline">\(a,b\in\mathbb{Z}\)</span> where <span class="math inline">\(b\ne 0,\gcd(a,b)=1\)</span>. By our previous definitions it cannot be the case that <span class="math inline">\(b&lt;N\)</span> so <span class="math inline">\(0&lt;f(y)&lt;\frac1N &lt; \varepsilon\)</span>.</p>
+<p>The claim <span class="math inline">\(\lim_{y\to x} f(y) = 0\)</span> shows both claims.</p>
+<h1 id="homework-10">Homework 10</h1>
+<h2 id="rudin-chapter-4-q9">Rudin Chapter 4 Q9</h2>
+<p>Fix metric spaces <span class="math inline">\(X,Y\)</span> and function <span class="math inline">\(f: X\to Y\)</span>. We begin by writing out definitions. <span class="math inline">\(f\)</span> is uniformly continuous means <span class="math display">\[ \forall \varepsilon&gt;0 \exists \delta&gt;0
+\forall p,q\in X \left[
+d_X(p,q)&lt;\delta \implies d_Y(f(p),f(q)) &lt; \varepsilon
+\right] \]</span></p>
+<p>The question wants to rephrase it as <span class="math display">\[ \forall \varepsilon&gt;0 \exists \delta&gt;0
+\forall E\subset X\left[
+\operatorname{diam}E &lt; \delta \implies \operatorname{diam}f(E) &lt; \varepsilon
+\right] \]</span> where <span class="math inline">\(\operatorname{diam}A := \sup_{x,y\in A} d(x,y)\)</span>. Looking at the similarity of definitions we can just show logical equivalence of <span class="math display">\[
+\forall p,q\in X \left[
+d_X(p,q)&lt;\delta \implies d_Y(f(p),f(q)) &lt; \varepsilon
+\right] \tag{1} \]</span> and <span class="math display">\[
+\forall E\subset X\left[
+\operatorname{diam}E &lt; \delta \implies \operatorname{diam}f(E) &lt; \varepsilon
+\right] \tag{2} \]</span> fixing <span class="math inline">\(\varepsilon\)</span> and <span class="math inline">\(\delta\)</span>.</p>
+<dl>
+<dt><span class="math inline">\((2)\implies (1)\)</span></dt>
+<dd>Assume <span class="math inline">\((2)\)</span>, consider <span class="math inline">\({\left\{ p,q \right\}}\subset X\)</span>.
+</dd>
+<dt><span class="math inline">\((1)\implies (2)\)</span></dt>
+<dd>Assume <span class="math inline">\((1)\)</span>, let <span class="math inline">\(E\subset X\)</span> with <span class="math inline">\(\operatorname{diam}E = \sup_{x,y\in E} d_X(x,y) &lt; \delta\)</span>. Want to show <span class="math inline">\(\sup_{x,y\in E} d_Y(f(x),f(y)) &lt; \varepsilon\)</span>. This holds because from assumption <span class="math inline">\(\operatorname{diam}E &lt; \delta\)</span>, so for all <span class="math inline">\(x,y\in E\)</span>, <span class="math inline">\(d_X(x,y) &lt; \delta\)</span> and by <span class="math inline">\((1)\)</span>, <span class="math inline">\(d_Y(f(x),f(y)) &lt; \varepsilon\)</span>. Since the bound holds for all <span class="math inline">\(x,y\in E\)</span> the bound is above the sup.
+</dd>
+</dl>
+<h2 id="rudin-chapter-4-q12">Rudin Chapter 4 Q12</h2>
+<p>More precisely the statement says given <span class="math inline">\(f:X\to Y\)</span> and <span class="math inline">\(g:Y\to Z\)</span> uniformly continuous <span class="math inline">\(g\circ f: X\to Z\)</span> is also uniformly continuous.</p>
+<p>Given <span class="math inline">\(\varepsilon&gt;0\)</span> by uniform continuity of <span class="math inline">\(g\)</span> <span class="math display">\[\exists \varepsilon_1&gt;0.~ \forall a,b\in Y.~ d_Y(a,b)&lt;\varepsilon_1 \implies d_Z(g(a),g(b)) &lt;\varepsilon.\]</span></p>
+<p>Now as <span class="math inline">\(f\)</span> is uniformly continuous, <span class="math display">\[\exists \delta&gt;0.~ \forall c,d\in X.~ d_X(c,d)&lt;\delta \implies d_Y(f(c),f(d))&lt;\varepsilon_1\]</span> and chaining the implications we get <span class="math inline">\(d_Z(g(f(c)),g(f(d))) &lt; \varepsilon\)</span>, so <span class="math inline">\(g\circ f\)</span> is uniformly continuous.</p>
+<h2 id="rudin-chapter-4-q14">Rudin Chapter 4 Q14</h2>
+<p>Define <span class="math inline">\(g(x) := f(x) - x\)</span> which is continuous. If <span class="math inline">\(g(0) = 0\)</span> or <span class="math inline">\(g(1) = 0\)</span> we are done. In the other case <span class="math inline">\(g(0) = f(0) &gt; 0\)</span> and <span class="math inline">\(g(1) = f(1)-1 &lt; 1-1 = 0\)</span>, so by IVT there is <span class="math inline">\(c\in[0,1]\)</span> with <span class="math inline">\(g(c) = 0 \implies f(c) = c\)</span>.</p>
+<h2 id="q-squeeze">Q (squeeze)</h2>
+<p>Given <span class="math inline">\(\varepsilon&gt;0\)</span> there exist <span class="math inline">\(\delta_1,\delta_2\)</span> such that <span class="math display">\[ 0&lt;\left\lvert x-a \right\rvert&lt;\delta_1\implies \left\lvert f(x)-L \right\rvert&lt;\varepsilon\]</span> <span class="math display">\[ 0&lt;\left\lvert x-a \right\rvert&lt;\delta_2\implies \left\lvert h(x)-L \right\rvert&lt;\varepsilon\]</span> so choose <span class="math inline">\(\Delta = \min(\delta,\delta_1,\delta_2)\)</span>, then for all <span class="math inline">\(x\in (x-\Delta,x+\Delta)\smallsetminus{\left\{ a \right\}}\)</span>, we have <span class="math display">\[ f(x) - L \leq g(x) - L \leq h(x) - L\]</span> which means that <span class="math display">\[\left\lvert g(x)-L \right\rvert \leq \max\left(
+\left\lvert f(x)-L \right\rvert,\left\lvert h(x)-L \right\rvert
+\right) &lt; \varepsilon\]</span></p>
+<p>To show that <span class="math inline">\(f(x)\)</span> is continuous at <span class="math inline">\(0\)</span> we first amend its definition <span class="math display">\[ f(x) := \begin{cases}
+0 &amp;\text{if } x = 0 \\
+x\sin \frac1x &amp;\text{otherwise}
+\end{cases} \]</span> To use previous result observe that for all <span class="math inline">\(x\)</span> near <span class="math inline">\(0\)</span> we have <span class="math display">\[-\left\lvert x \right\rvert \leq f(x) \leq \left\lvert x \right\rvert \]</span> and because <span class="math inline">\(\lim_{x\to 0} \left\lvert x \right\rvert = \lim_{x\to 0} -\left\lvert x \right\rvert = 0\)</span> by previous result <span class="math inline">\(\lim_{x\to 0} f(x) = 0\)</span>. From definition of <span class="math inline">\(f\)</span> we see that <span class="math inline">\(f\)</span> is continuous everywhere else hence <span class="math inline">\(f\)</span> is continuous at every point on <span class="math inline">\(\mathbb{R}\)</span>.</p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA2108S/hw789.md">MA2108S/hw789.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

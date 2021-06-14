@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="28th August 2019" />
+  <title>CS2106 tutorial 1</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">CS2106 tutorial 1</h1><p class="author">Qi Ji</p>
+<p class="date">28th August 2019</p>
+</header>
+<article><h1 data-number="1" id="section" data-number="1"><span class="header-section-number">1</span> </h1>
+<ol type="a">
+<li>junk</li>
+<li></li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode mips"><code class="sourceCode mips"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">lw</span>   <span class="dt">$2</span>, <span class="dv">-16</span>(<span class="dt">$fp</span>)   <span class="co"># put 16 in $2</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">add</span>  <span class="dt">$sp</span>, <span class="dt">$sp</span>, <span class="dt">$2</span>   <span class="co"># add 16 to $sp</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>                    <span class="co"># $sp is now pointing at -24</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="kw">lw</span>   <span class="dt">$1</span>, <span class="dv">0</span>(<span class="dt">$sp</span>)     <span class="co"># put *(-24)=7 in $1</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>call print</span></code></pre></div>
+<ol start="3" type="a">
+<li>whatever junk was in address <code>16</code></li>
+</ol>
+<h1 data-number="2" id="section-1" data-number="2"><span class="header-section-number">2</span> </h1>
+<h2 class="unnumbered" data-number id="part-a" class="unnumbered" data-number>part a</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource mips numberLines"><code class="sourceCode mips"><span id="cb2-1"><a href="#cb2-1"></a><span class="ot">iFact:</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>      <span class="co"># irrelevant stuff...</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>      <span class="kw">addi</span>  <span class="dt">$11</span>, <span class="dt">$0</span>, <span class="dv">1</span>      <span class="co"># put 1 somewhere</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>      <span class="kw">sw</span>    <span class="dt">$11</span>, <span class="dv">-24</span>(<span class="dt">$fp</span>)   <span class="co">## (a) result = 1</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a></span>
+<span id="cb2-6"><a href="#cb2-6"></a>      <span class="kw">addi</span>  <span class="dt">$12</span>, <span class="dt">$0</span>, <span class="dv">2</span>      <span class="co"># put 2 somewhere</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>      <span class="kw">sw</span>    <span class="dt">$12</span>, <span class="dv">-20</span>(<span class="dt">$fp</span>)   <span class="co">## (a) i = 2</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a></span>
+<span id="cb2-9"><a href="#cb2-9"></a>      <span class="kw">lw</span>    <span class="dt">$13</span>, <span class="dv">-16</span>(<span class="dt">$fp</span>)   <span class="co">## (a) Get N</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="ot">loop:</span> <span class="fu">bgt</span>   <span class="dt">$12</span>, <span class="dt">$13</span>, end</span>
+<span id="cb2-11"><a href="#cb2-11"></a></span>
+<span id="cb2-12"><a href="#cb2-12"></a>      <span class="fu">mul</span>   <span class="dt">$11</span>, <span class="dt">$11</span>, <span class="dt">$12</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>      <span class="kw">sw</span>    <span class="dt">$11</span>, <span class="dv">-24</span>(<span class="dt">$fp</span>)</span>
+<span id="cb2-14"><a href="#cb2-14"></a></span>
+<span id="cb2-15"><a href="#cb2-15"></a>      <span class="kw">addi</span>  <span class="dt">$12</span>, <span class="dt">$12</span>, <span class="dv">1</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a>      <span class="kw">sw</span>    <span class="dt">$12</span>, <span class="dv">-20</span>(<span class="dt">$fp</span>)</span></code></pre></div>
+<h2 class="unnumbered" data-number id="part-b" class="unnumbered" data-number>part b</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource mips numberLines"><code class="sourceCode mips"><span id="cb3-1"><a href="#cb3-1"></a><span class="ot">main:</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>      ....      <span class="co"># irrelevant crap</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a>      <span class="kw">addi</span>  <span class="dt">$13</span>, <span class="dt">$0</span>, <span class="dv">10</span>     <span class="co"># put 10 in $13</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>      <span class="kw">sw</span>    <span class="dt">$13</span>, <span class="dv">-28</span>(<span class="dt">$sp</span>)</span>
+<span id="cb3-6"><a href="#cb3-6"></a>      call  iFact, <span class="dv">0</span>(<span class="dt">$sp</span>)</span></code></pre></div>
+<h2 class="unnumbered" data-number id="part-c" class="unnumbered" data-number>part c</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource mips numberLines"><code class="sourceCode mips"><span id="cb4-1"><a href="#cb4-1"></a><span class="ot">iFact:</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>      <span class="co"># Callee enter function</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>      <span class="kw">sw</span>    <span class="dt">$11</span>, <span class="dv">-20</span>(<span class="dt">$sp</span>)   <span class="co"># save registers</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>      <span class="kw">sw</span>    <span class="dt">$12</span>, <span class="dv">-16</span>(<span class="dt">$sp</span>)</span>
+<span id="cb4-5"><a href="#cb4-5"></a>      <span class="kw">sw</span>    <span class="dt">$13</span>, <span class="dv">-12</span>(<span class="dt">$sp</span>)</span>
+<span id="cb4-6"><a href="#cb4-6"></a></span>
+<span id="cb4-7"><a href="#cb4-7"></a>      <span class="kw">sw</span>    <span class="dt">$sp</span>, <span class="dv">-8</span>(<span class="dt">$sp</span>)    <span class="co"># save $fp, $sp</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a>      <span class="kw">sw</span>    <span class="dt">$fp</span>, <span class="dv">-4</span>(<span class="dt">$sp</span>)</span>
+<span id="cb4-9"><a href="#cb4-9"></a></span>
+<span id="cb4-10"><a href="#cb4-10"></a>      <span class="kw">addi</span>  <span class="dt">$fp</span>, <span class="dt">$sp</span>, <span class="dv">-12</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a>      <span class="kw">addi</span>  <span class="dt">$sp</span>, <span class="dt">$sp</span>, <span class="dv">-40</span>   <span class="co"># move $fp, $sp to new position</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a>      <span class="co"># Callee enter function done</span></span></code></pre></div>
+<h2 class="unnumbered" data-number id="part-d" class="unnumbered" data-number>part d</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource mips numberLines"><code class="sourceCode mips"><span id="cb5-1"><a href="#cb5-1"></a><span class="ot">end:</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>      <span class="co"># Callee exit function</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>      <span class="kw">sw</span>    <span class="dt">$11</span>, <span class="dv">16</span>(<span class="dt">$sp</span>)    <span class="co"># save return result</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a></span>
+<span id="cb5-5"><a href="#cb5-5"></a>      <span class="kw">lw</span>    <span class="dt">$11</span>, <span class="dv">-8</span>(<span class="dt">$fp</span>)    <span class="co"># restore registers</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>      <span class="kw">lw</span>    <span class="dt">$12</span>, <span class="dv">-4</span>(<span class="dt">$fp</span>)</span>
+<span id="cb5-7"><a href="#cb5-7"></a>      <span class="kw">lw</span>    <span class="dt">$13</span>, <span class="dv">0</span>(<span class="dt">$fp</span>)</span>
+<span id="cb5-8"><a href="#cb5-8"></a></span>
+<span id="cb5-9"><a href="#cb5-9"></a>      <span class="kw">lw</span>    <span class="dt">$sp</span>, <span class="dv">4</span>(<span class="dt">$sp</span>)</span>
+<span id="cb5-10"><a href="#cb5-10"></a>      <span class="kw">lw</span>    <span class="dt">$fp</span>, <span class="dv">8</span>(<span class="dt">$fp</span>)</span>
+<span id="cb5-11"><a href="#cb5-11"></a></span>
+<span id="cb5-12"><a href="#cb5-12"></a>      return <span class="dv">-40</span>(<span class="dt">$sp</span>)</span></code></pre></div>
+<p>actually this doesn’t really make sense idk</p>
+<h2 class="unnumbered" data-number id="part-e-optional-recursion" class="unnumbered" data-number>part e (optional recursion)</h2>
+<p>I too sian to do.</p>
+<h1 data-number="3" id="section-2" data-number="3"><span class="header-section-number">3</span> </h1>
+<p>The 5 states are</p>
+<ul>
+<li>New</li>
+<li>Ready</li>
+<li>Running</li>
+<li>Blocked</li>
+<li>Exit</li>
+</ul>
+<p>and it is obvious.</p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/CS2106/tutorial1.md">CS2106/tutorial1.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

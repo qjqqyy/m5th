@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="14th September 2020" />
+  <title>MA4262 Homework 1</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">MA4262 Homework 1</h1><p class="author">Qi Ji</p>
+<p class="date">14th September 2020</p>
+</header>
+<article><h1 data-number="1" id="section" data-number="1"><span class="header-section-number">1</span> </h1>
+<blockquote>
+<p>Riemann integral of continuous nonnegative <span class="math inline">\(f: \mathbb{R}\to\mathbb{R}\)</span> agrees with Lebesgue integral.</p>
+</blockquote>
+<p>Following hint, without loss of generality assume <span class="math inline">\([a,b]=[0,1]\)</span>.</p>
+<p>Define <span class="math display">\[\begin{align*}
+a_k^{(n)} &amp;= \min\left\{f(x)| x\in\left[\frac{k-1}n, \frac{k}n\right]\right\} \\
+b_k^{(n)} &amp;= \max\left\{f(x)| x\in\left[\frac{k-1}n, \frac{k}n\right]\right\} \\
+\underline{f}_n(x) &amp;=
+  \begin{cases}
+    a_k^{(n)} &amp;\text{if } x\in \left[\frac{k-1}n,\frac{k}n\right) \\
+    a_n^{(n)} &amp;\text{if } x\in \left[\frac{n-1}n,1\right] \\
+  \end{cases} \\
+\overline{f}_n(x) &amp;=
+  \begin{cases}
+    b_k^{(n)} &amp;\text{if } x\in \left[\frac{k-1}n,\frac{k}n\right) \\
+    b_n^{(n)} &amp;\text{if } x\in \left[\frac{n-1}n,1\right] \\
+  \end{cases} \\
+\underline{I}_n &amp;= \frac1n \sum_{n=1}^N a_k \\
+\overline{I}_n &amp;= \frac1n \sum_{n=1}^N b_k \\
+\end{align*}\]</span></p>
+<p>For any <span class="math inline">\(n\)</span>, we can see that <span class="math display">\[\underline{f}_n(x) \leq f(x) \leq \overline{f}_n(x),\]</span> and therefore <span class="math display">\[\underline{I}_n = \int_{[0,1]} \underline{f}_n\ dx \leq \int_{[0,1]} f\ dx \leq \int_{[0,1]}\overline{f}_n\ dx = \overline{I}_n.\]</span></p>
+<p>Let <span class="math inline">\(\epsilon&gt;0\)</span> be given, as <span class="math inline">\(f\)</span> is uniformly continuous on the unit interval choose <span class="math inline">\(N\)</span> large enough such that for all <span class="math inline">\(\left\lvert x-y\right\rvert&lt;\frac1N\)</span> implies that <span class="math inline">\(\left\lvert f(x)-f(y)\right\rvert&lt;\epsilon\)</span>, then for <span class="math inline">\(n&gt;N\)</span>, <span class="math display">\[\overline{I}_n-\underline{I}_n = \int_{[0,1]} \overline{f}_n - \underline{f}_n\ dx &lt; \epsilon.\]</span> This shows that both <span class="math inline">\(\overline{I}_n\)</span> and <span class="math inline">\(\underline{I}_n\)</span> converge to the Riemann integral of <span class="math inline">\(f\)</span>.</p>
+<p>Now any step function <span class="math inline">\(s\leq f\)</span> satisfies <span class="math inline">\(\int_{[a,b]} s\ dx = \int_{[a,b]} s\ d\lambda \leq \overline{I}_n\)</span> for all <span class="math inline">\(n\)</span>, which shows that its Riemann integral coincides with Lebesgue integral.</p>
+<h1 data-number="2" id="section-1" data-number="2"><span class="header-section-number">2</span> </h1>
+<p>We use definition of Riemann integral from Rudin’s Principles of Mathematical Analysis, so a bounded <span class="math inline">\(f:[a,b]\to\mathbb{R}\)</span> is integrable if the infimum of all upper sums equal the supremum of all lower sums.</p>
+<p>For any partition <span class="math inline">\(P\)</span> of <span class="math inline">\([a,b]\)</span> (Rudin did not use tags) we can define the upper and lower step functions <span class="math display">\[\begin{align*}
+\overline{f}_P(x) = f(a)\chi_{\left\{a\right\}} + \sum_i M_i \chi_{(x_i, x_{i+1}]} \\
+\underline{f}_P(x) = f(a)\chi_{\left\{a\right\}} + \sum_i m_i \chi_{(x_i, x_{i+1}]}
+\end{align*}\]</span> where <span class="math inline">\(M_i = \sup_{x\in[x_i,x_{i+1}]} f(x)\)</span> and <span class="math inline">\(m_i = \inf{x\in[x_i,x_{i+1}]} f(x)\)</span>.</p>
+<p>It then arises from the definitions that <span class="math display">\[\begin{align*}
+U(P,f) &amp;= \int_a^b \overline{f}_P(x)\ dx \\
+L(P,f) &amp;= \int_a^b \underline{f}_P(x)\ dx
+\end{align*}\]</span> and as <span class="math inline">\(f\)</span> is Riemann integrable we have <span class="math inline">\(\sup_P L(P,f) = \inf_P U(P,f) = \int_a^b f\ dx\)</span>.</p>
+<p>Let <span class="math inline">\(P_n\)</span> be a sequence of partitions of <span class="math inline">\([a,b]\)</span> such that each <span class="math inline">\(P_{k+1}\)</span> is a refinement of <span class="math inline">\(P_k\)</span> and the mesh goes to <span class="math inline">\(0\)</span>, and it witnesses the integrability of <span class="math inline">\(f\)</span>, that is <span class="math display">\[ \lim_n L(P_n,f) = \int_a^b f\ dx = \lim_n U(P_n,f). \]</span> Then we have for all <span class="math inline">\(x\in[a,b]\)</span>, <span class="math display">\[ \underline{f}_{P_1}(x)\leq \underline{f}_{P_2}(x)\leq \dots \leq f(x) \leq \dots \leq \overline{f}_{P_2}(x) \leq \overline{f}_{P_1}(x)\]</span> by monotone convergence <span class="math display">\[\int \lim_n \underline{f}_{P_n}\ d\lambda = \lim_n \int\underline{f}_{P_n}\ d\lambda = \int_a^b f\ dx \]</span> and similarly for <span class="math inline">\(\overline{f}_{P_n}\)</span>. This implies that <span class="math display">\[ \lim_n \underline{f}_{P_n} = f = \lim_n \overline{f}_{P_n} \quad \text{a.e.} \]</span> which shows that <span class="math inline">\(f\)</span> is Lebesgue measurable and its Lebesgue integral coincides with the Riemann integral.</p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA4262/homework1.md">MA4262/homework1.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

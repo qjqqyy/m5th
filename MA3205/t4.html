@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji (A0167793L)" />
+  <meta name="dcterms.date" content="19th September 2018" />
+  <title>Exercise 4.26</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">Exercise 4.26</h1><p class="author">Qi Ji (A0167793L)</p>
+<p class="date">19th September 2018</p>
+</header>
+<article><blockquote>
+<p>Let <span class="math inline">\(n,m,k\in\mathbb{N}\)</span>, prove the following directly from the definitions.</p>
+</blockquote>
+<h2 id="n1-sn.">1. <span class="math inline">\(n+1 = S(n)\)</span>.</h2>
+<p>Proceed via induction on <span class="math inline">\(n\)</span>.</p>
+<dl>
+<dt>Base case.</dt>
+<dd><span class="math inline">\(0 + 1 = 1\)</span> by definition of <span class="math inline">\(+\)</span>, and <span class="math inline">\(S(0) = 1\)</span> by definition of <span class="math inline">\(1\)</span>.
+</dd>
+<dt>Induction.</dt>
+<dd>Suppose <span class="math inline">\(n + 1 = S(n)\)</span>, want <span class="math inline">\(S(n) + 1 = S(S(n))\)</span>. <span class="math display">\[\begin{align*}
+S(n) + 1 &amp;= S(n + 1) \tag*{definition of $+$} \\
+&amp;= S(S(n))  \tag*{inductive hypothesis \quad$\square$}
+\end{align*}\]</span>
+</dd>
+</dl>
+<h2 id="n-m-k-n-m-k">2. <span class="math inline">\(n + (m + k) = (n + m) + k\)</span></h2>
+<p>Induction on <span class="math inline">\(n\)</span>.</p>
+<dl>
+<dt>Base case.</dt>
+<dd><span class="math inline">\(0 + (m + k) = m + k\)</span> by definition of <span class="math inline">\(+\)</span>. <span class="math inline">\((0 + m) + k = m + k\)</span> also by definition of <span class="math inline">\(+\)</span>.
+</dd>
+<dt>Induction.</dt>
+<dd>Suppose <span class="math inline">\(n + (m + k) = (n + m) + k\)</span>, want <span class="math inline">\(S(n) + (m + k) = (S(n) + m) + k\)</span>. We have <span class="math display">\[\begin{align*}
+S(n) + (m + k) &amp;= S(n + (m + k)) \tag*{by definition of $+$} \\
+&amp;= S((n + m) + k)   \tag*{inductive hypothesis} \\
+&amp;= S(n + m) + k     \tag*{definition of $+$} \\
+&amp;= (S(n) + m) + k   \tag*{definition of $+$}
+\end{align*}\]</span> The induction is complete.
+</dd>
+</dl>
+<p><strong>Notation.</strong> Brackets can now be liberally omitted for equations containing <span class="math inline">\(+\)</span>.</p>
+<h2 id="n-m-m-n">3. <span class="math inline">\(n + m = m + n\)</span></h2>
+<p><strong>Lemma (plus 0).</strong> <span class="math inline">\(m = m + 0\)</span> for any <span class="math inline">\(m\in \mathbb{N}\)</span>.</p>
+<p><em>Proof.</em> Proceed by induction on <span class="math inline">\(m\)</span>.</p>
+<dl>
+<dt>Base case.</dt>
+<dd><span class="math inline">\(0 + 0 = 0\)</span> by definition of <span class="math inline">\(+\)</span>.
+</dd>
+<dt>Induction.</dt>
+<dd><p>Suppose <span class="math inline">\(m = m + 0\)</span>, want <span class="math inline">\(S(m) = S(m) + 0\)</span>.</p>
+<p><span class="math inline">\(S(m) + 0 = S(m + 0)\)</span> by definition of <span class="math inline">\(+\)</span>, applying induction hypothesis, <span class="math inline">\(S(m + 0) = S(m)\)</span>.</p>
+</dd>
+</dl>
+<p>The lemma helps establish base case of part 3.</p>
+<h3 id="addition-in-mathbbn-is-commutative.">Addition in <span class="math inline">\(\mathbb{N}\)</span> is commutative.</h3>
+<p><em>Proof.</em> Proceed by induction on <span class="math inline">\(n\)</span>.</p>
+<dl>
+<dt>Base case.</dt>
+<dd><span class="math inline">\(0 + m = m\)</span> by definition of <span class="math inline">\(+\)</span>, and <span class="math inline">\(m = m + 0\)</span> by (plus 0), this establishes base case.
+</dd>
+<dt>Induction.</dt>
+<dd>Suppose <span class="math inline">\(n + m = m + n\)</span>, want <span class="math inline">\(S(n) + m = m + S(n)\)</span>. <span class="math display">\[\begin{align*}
+S(n) + m &amp;= S(n + m) \tag*{by definition of $+$} \\
+&amp;= S(m + n) \tag*{by inductive hypothesis} \\
+&amp;= (m + n) + 1 \tag*{by part 1} \\
+&amp;= m + (n + 1) \tag*{by part 2} \\
+&amp;= m + S(n) \tag*{by part 1 \quad$\square$}
+\end{align*}\]</span>
+</dd>
+</dl>
+<h2 id="n-n-2n.">4. <span class="math inline">\(n + n = 2n\)</span>.</h2>
+<p><span class="math display">\[\begin{align*}
+    2\cdot n &amp;= S(S(0))\cdot n \tag*{definition of $2$} \\
+    &amp;= (S(0) \cdot n) + n \tag*{definition of $\cdot$} \\
+    &amp;= ((0 \cdot n) + n) + n \tag*{definition of $\cdot$} \\
+    &amp;= (0 + n) + n \tag*{definition of $\cdot$} \\
+    &amp;= n + n \tag*{definition of $+$ \quad$\square$}
+\end{align*}\]</span></p>
+<h2 id="if-2n-2m-then-n-m.">5. If <span class="math inline">\(2n = 2m\)</span>, then <span class="math inline">\(n = m\)</span>.</h2>
+<p><strong>Notation.</strong> For this part, let all implicit quantifiers range over <span class="math inline">\(\mathbb{N}\)</span>.</p>
+<p>Using part 4, reformulate the statement to prove as <span class="math display">\[\forall n \left[  \forall m \left[  n + n = m + m \implies n = m  \right] \right]. \]</span> Now we can proceed by induction on <span class="math inline">\(n\)</span>.</p>
+<dl>
+<dt>Base case.</dt>
+<dd><p>Let <span class="math inline">\(m\)</span> be arbitrary, need to show that <span class="math inline">\(0 + 0 = m + m\)</span> implies <span class="math inline">\(0 = m\)</span>.</p>
+<p>Suppose we have <span class="math inline">\(m\)</span> such that <span class="math inline">\(0 + 0 = 0 = m + m\)</span>. By exercise 4.15, we have either <span class="math inline">\(m = 0\)</span> or <span class="math inline">\(\exists k\in m\subseteq\mathbb{N}\left[ S(k) = m \right]\)</span>.</p>
+<ul>
+<li><p>Case <span class="math inline">\(m = 0\)</span> we are done.</p></li>
+<li><p>Case <span class="math inline">\(\exists k\in\mathbb{N}\left[ S(k) = m \right]\)</span>, then <span class="math inline">\(m + m = S(k) + S(k) = S(k + S(k)) = 0\)</span>, contradicting Peano axiom.</p></li>
+</ul>
+</dd>
+<dt>Induction step.</dt>
+<dd><p>Suppose for <span class="math inline">\(k\)</span>, we have <span class="math inline">\(\forall j \left[ k + k = j + j \implies k = j \right]\)</span>. Want to show that <span class="math inline">\(\forall m\left[ S(k) + S(k) = m + m \implies S(k) = m \right]\)</span>.</p>
+<p>Let <span class="math inline">\(m\)</span> be arbitrary, suppose we have <span class="math inline">\(S(k) + S(k) = m + m\)</span>, similarly by exercise 4.15, either <span class="math inline">\(m = 0\)</span> or <span class="math inline">\(\exists j\in m\subseteq\mathbb{N}\left[ S(j) = m \right]\)</span>. Note that in the case <span class="math inline">\(m = 0\)</span>, we have <span class="math inline">\(S(k) + S(k) = S(k + S(k)) = 0\)</span> which contradicts Peano axiom, so the latter statement has to hold. Then our assumption could be rewritten as <span class="math display">\[\begin{align*}
+S(k) + S(k) &amp;= S(j) + S(j)  \\
+S(k + S(k)) &amp;= S(j + S(j))  \tag*{definition of $+$} \\
+S(S(k) + k) &amp;= S(S(j) + j)  \tag*{part 3} \\
+S(S(k + k)) &amp;= S(S(j + j))  \tag*{definition of $+$} \\
+k + k &amp;= j + j  \tag*{Peano axiom twice} \\
+k &amp;= j  \tag*{induction hypothesis} \\
+S(k) &amp;= S(j) \\
+S(k) &amp;= m
+\end{align*}\]</span> This completes the induction.</p>
+</dd>
+</dl>
+<h2 id="ncdotm-k-ncdot-m-ncdot-k">6. <span class="math inline">\(n\cdot(m + k) = n\cdot m + n\cdot k\)</span></h2>
+<p>Induction on <span class="math inline">\(n\)</span>.</p>
+<dl>
+<dt>Base case.</dt>
+<dd><span class="math inline">\(0\cdot (m+k) = 0\)</span> by definition of <span class="math inline">\(\cdot\)</span>, and <span class="math inline">\(0\cdot m + 0\cdot k = 0 + 0 = 0\)</span> by definitions of <span class="math inline">\(\cdot\)</span> and <span class="math inline">\(+\)</span>.
+</dd>
+<dt>Induction.</dt>
+<dd><p>Suppose <span class="math inline">\(n\cdot(m+k) = n\cdot m + n\cdot k\)</span>, want to show <span class="math inline">\(S(n)\cdot(m+k) = S(n)\cdot m + S(n)\cdot k\)</span>.</p>
+<p>Evaluating LHS gives <span class="math display">\[\begin{align*}
+S(n) \cdot (m + k)
+&amp;= n\cdot (m + k) + (m + k) \tag*{definition of $\cdot$} \\
+&amp;= n\cdot m + n\cdot k + m + k \tag*{induction hypothesis} \\
+&amp;= n\cdot m + m + n\cdot k + k \tag*{part 3} \\
+&amp;= S(n)\cdot m + S(n)\cdot k    \tag*{definition of $+$ \quad$\square$}
+\end{align*}\]</span></p>
+</dd>
+</dl>
+<p>Before we proceed, some right-sided properties of <span class="math inline">\(\cdot\)</span> require demonstration.</p>
+<p><strong>Lemma (multiply 0).</strong> <span class="math inline">\(n\cdot 0 = 0\)</span>.</p>
+<p><em>Proof.</em> Trivial induction.</p>
+<p><strong>Lemma (multiply 1).</strong> <span class="math inline">\(n\cdot 1 = n\)</span>.</p>
+<p><em>Proof.</em> Induction on <span class="math inline">\(n\)</span>. Base case <span class="math inline">\(n = 0\)</span> is trivial, suppose <span class="math inline">\(n\cdot 1 = n\)</span>, then <span class="math display">\[\begin{align*}
+    S(n)\cdot 1 &amp;= n\cdot 1 + 1 \tag*{definition of $\cdot$} \\
+    &amp;= n + 1 \tag*{induction hypothesis} \\
+    &amp;= S(n) \tag*{part 1 \quad$\square$}
+\end{align*}\]</span></p>
+<p><strong>Corollary (multiply right successor).</strong> <span class="math inline">\(n\cdot S(m) = n\cdot m + n\)</span>.</p>
+<p><em>Proof.</em> <span class="math inline">\(n\cdot S(m) = n\cdot (m + 1) = n\cdot m + n\cdot 1 = n\cdot m + n\)</span>.</p>
+<h2 id="ncdot-mcdot-k-ncdot-mcdot-k">7. <span class="math inline">\(n\cdot (m\cdot k) = (n\cdot m)\cdot k\)</span></h2>
+<p>Induction on <span class="math inline">\(k\)</span>.</p>
+<dl>
+<dt>Base case.</dt>
+<dd><span class="math inline">\(n\cdot (m\cdot 0) = 0\)</span> by two applications of (multiply 0), and <span class="math inline">\((n\cdot m)\cdot k = 0\)</span> by 1 application of the same lemma. This establishes base case.
+</dd>
+<dt>Induction step.</dt>
+<dd>Suppose <span class="math inline">\(n\cdot (m\cdot k) = (n\cdot m)\cdot k\)</span>, want to show <span class="math inline">\(n\cdot (m\cdot S(k)) = (n\cdot m)\cdot S(k)\)</span>. <span class="math display">\[\begin{align*}
+n\cdot (m\cdot S(k)) &amp;= n\cdot (m\cdot k + m) \tag*{multiply right successor} \\
+&amp;= n\cdot (m\cdot k) + n\cdot m \tag*{part 6} \\
+&amp;= (n\cdot m)\cdot k + n\cdot m \tag*{induction hypothesis} \\
+&amp;= (n\cdot m)\cdot S(k) \tag*{multiply right successor \quad$\square$}
+\end{align*}\]</span>
+</dd>
+</dl>
+<h2 id="ncdot-m-mcdot-n">8. <span class="math inline">\(n\cdot m = m\cdot n\)</span></h2>
+<p>Induction on <span class="math inline">\(n\)</span>.</p>
+<dl>
+<dt>Base case.</dt>
+<dd><span class="math inline">\(0 \cdot m = 0\)</span> by definition of <span class="math inline">\(\cdot\)</span>, and <span class="math inline">\(m\cdot 0 = 0\)</span> by multiply 0.
+</dd>
+<dt>Induction step.</dt>
+<dd>Suppose <span class="math inline">\(n\cdot m = m\cdot n\)</span>, need to show <span class="math inline">\(S(n)\cdot m = m\cdot S(n)\)</span>. <span class="math display">\[\begin{align*}
+S(n) \cdot m &amp;= n\cdot m + m \tag*{definition of $\cdot$} \\
+&amp;= m\cdot n + m \tag*{induction hypothesis} \\
+&amp;= m\cdot S(n)  \tag*{multiply right successor \quad$\square$}
+\end{align*}\]</span>
+</dd>
+</dl>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA3205/t4.md">MA3205/t4.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

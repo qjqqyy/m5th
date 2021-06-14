@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji (A0167793L)" />
+  <meta name="dcterms.date" content="29th Aug 2018" />
+  <title>Exercise 2.44</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">Exercise 2.44</h1><p class="author">Qi Ji (A0167793L)</p>
+<p class="date">29th Aug 2018</p>
+</header>
+<article><blockquote>
+<p>For each <span class="math inline">\(n \in \mathbb{N}\)</span>, let <span class="math inline">\(A_n = \left\{ 0,\dots,n \right\}\)</span>. What are the elements of <span class="math inline">\(\displaystyle\prod_{n\in\mathbb{N}} A_n\)</span>?</p>
+</blockquote>
+<p>By definition, <span class="math display">\[\prod_{n\in\mathbb{N}} A_n = \left\{ f : f\text{ is a function } \land \operatorname{dom}(f) = \mathbb{N}\land \forall i\in\mathbb{N}\left[ f(i) \in A_i \right]  \right\} \]</span> which is the collection of all functions <span class="math inline">\(f : \mathbb{N}\to \mathbb{N}\)</span> where for each <span class="math inline">\(i\in\mathbb{N}\)</span>, <span class="math inline">\(f(i) \in \left\{ 0,\dots,i \right\}\)</span>.</p>
+<p>I think of it as the collection of all sequences bounded above by the sequence <span class="math inline">\(X_n = n\)</span>, that is, at each coordinate <span class="math inline">\(f(i) \leq X_i\)</span>.</p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA3205/t1.md">MA3205/t1.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

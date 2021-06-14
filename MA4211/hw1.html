@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="12th February 2020" />
+  <title>MA4211 Homework</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">MA4211 Homework</h1><p class="author">Qi Ji</p>
+<p class="date">12th February 2020</p>
+</header>
+<article><h1 id="problem-sheet-2-q4">Problem Sheet 2 Q4</h1>
+<p>Linearity of <span class="math inline">\(T\)</span> is obvious. For <span class="math inline">\(T\)</span> to be a bounded linear operator from <span class="math inline">\(\ell_1\)</span> to itself, it is necessary and sufficient for <span class="math inline">\(a_n\)</span> to be pointwise bounded, that is exist <span class="math inline">\(M\)</span> such that each <span class="math inline">\(\left\lvert a_n\right\rvert &lt; M\)</span>.</p>
+<p>Suppose exists <span class="math inline">\(M\)</span> such that for all <span class="math inline">\(n\)</span>, <span class="math inline">\(\left\lvert a_n\right\rvert &lt; M\)</span>. Let <span class="math inline">\(x\in \ell_1\)</span> and consider <span class="math inline">\(Tx = (a_nx_n)\)</span>. Now <span class="math display">\[\left\lVert Tx\right\rVert = \sum_n \left\lvert a_nx_n\right\rvert \leq \sum_n M\left\lvert x_n\right\rvert = M \left\lVert x\right\rVert.\]</span></p>
+<p>Conversely suppose <span class="math inline">\(T\)</span> is bounded with <span class="math inline">\(\left\lVert T\right\rVert\leq N\)</span>. For each <span class="math inline">\(j\in\mathbb{N}\)</span> consider <span class="math inline">\(e_j = (\delta_{ij})_{i\in\mathbb{N}}\)</span>, and we know that <span class="math inline">\(\left\lVert e_j\right\rVert = 1\)</span>. As <span class="math inline">\(\left\lVert T\right\rVert &lt; N\)</span>, <span class="math display">\[ \left\lVert Te_j\right\rVert = \left\lvert a_j\right\rvert \leq N \]</span> and as a result <span class="math inline">\(N\)</span> also bounds each <span class="math inline">\(\left\lvert a_j\right\rvert\)</span>.</p>
+<h1 id="problem-sheet-3-q1">Problem Sheet 3 Q1</h1>
+<p>Choose a basis <span class="math inline">\(\left\{e_1,\dots,e_n\right\}\)</span> for <span class="math inline">\(V\)</span>. To show that <span class="math inline">\(T\)</span> is continuous we just need to show that <span class="math inline">\(T\)</span> is bounded. Consider any <span class="math inline">\(v\in V\)</span> <span class="math display">\[\begin{align*}
+\left\lVert Tv\right\rVert &amp;= \left\lVert T\left( \sum_i v_i e_i \right) \right\rVert \\
+&amp;\leq \sum_i \left\lvert v_i\right\rvert \left\lVert Te_i\right\rVert
+\end{align*}\]</span> now let <span class="math inline">\(M = \max_i \left\lVert T e_i\right\rVert\)</span> and as any two finite-dimensional norms are equivalent, there exists <span class="math inline">\(N\)</span> such that <span class="math display">\[ \sum_i \left\lvert v_i\right\rvert \leq N\left\lVert v\right\rVert \]</span> and therefore <span class="math inline">\(\left\lVert Tv\right\rVert \leq MN\left\lVert v\right\rVert\)</span>.</p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA4211/hw1.md">MA4211/hw1.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

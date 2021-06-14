@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji (A0167793L)" />
+  <meta name="dcterms.date" content="17th Feb 2021" />
+  <title>PC1144 Homework 2</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">PC1144 Homework 2</h1><p class="author">Qi Ji (A0167793L)</p>
+<p class="date">17th Feb 2021</p>
+</header>
+<article><h1 id="a">(a)</h1>
+<p>First compute total energy of system, let <span class="math inline">\(\gamma\)</span> be the Lorentz factor of the positron, <span class="math display">\[ E_{\text{total}} = E + m_e c^2 = (\gamma + 1) m_e c^2. \]</span> By conservation of energy, and assuming energy of both photons are the same, <span class="math display">\[ E_{\text{photon}} = \frac{\gamma + 1}{2} m_e c^2. \]</span> Now we can compute the momentum of each photon as <span class="math display">\[ p_{\text{photon}} = \frac{E_{\text{photon}}}{c} = \frac{\gamma + 1}{2} m_e c. \]</span> As the total momentum of the system is <span class="math inline">\(\gamma m_e v\)</span> initially, by conservation of momentum (in the horizontal direction), <span class="math display">\[\begin{align*}
+    \gamma m_e v
+    &amp;= 2 \cos\left(\frac{\alpha}{2}\right) p_{\text{photon}} \\
+    &amp;= 2 \cos\left(\frac{\alpha}{2}\right) \frac{\gamma + 1}{2} m_e c \\
+    \cos\left(\frac{\alpha}{2}\right)
+    &amp;= \frac{\gamma}{\gamma+1}\frac{v}{c} \\
+    \alpha &amp;= 2\cos^{-1} \left( \frac{\gamma}{\gamma+1}\frac{v}{c} \right) \\
+           &amp;= 2\cos^{-1} \left( \frac{v}{c + \sqrt{c^2-v^2}} \right)
+\end{align*}\]</span></p>
+<h1 id="b">(b)</h1>
+<p>The minimum energy is given by <span class="math display">\[ \min_{\Delta p, \Delta x} \left[ \frac{(\Delta p)^2}{2m} + \frac12 k(\Delta x)^2 \right] \]</span> where <span class="math inline">\(\Delta p\Delta x \geq \frac{\hbar}2\)</span>. To achieve minimum, we let equality hold in the uncertainty principle, so we substitute <span class="math inline">\(\Delta p = \frac{\hbar}{2(\Delta x)}\)</span> and compute <span class="math display">\[ \min_{\Delta x} \left[ \frac{\hbar^2}{8m(\Delta x)^2} + \frac12 k(\Delta x)^2 \right]. \]</span> To minimise, differentiate the expression w.r.t. <span class="math inline">\(\Delta x\)</span> <span class="math display">\[ -\frac{\hbar^2}{4m(\Delta x)^3} + k(\Delta x) = 0 \]</span> solving, we find that <span class="math display">\[ \Delta x = \sqrt[4]{\frac{\hbar^2}{4mk}}. \]</span> To check that this point is minimum we do second derivative test <span class="math display">\[ \frac{3\hbar^2}{4m(\Delta x)^4} + k &gt; 0 \]</span> as the second derivative is always positive we have a minimum, therefore the minimum energy is <span class="math display">\[
+    \frac{\hbar^2}{8m}\sqrt{\frac{4mk}{\hbar^2}} + \frac12 k\sqrt{\frac{\hbar^2}{4mk}}
+    = \frac{\hbar}{2}\sqrt{\frac{k}{m}}.
+\]</span></p>
+<h1 id="c">(c)</h1>
+<p>Let <span class="math inline">\(A\)</span> be surface area of filament, by Stefan-Boltzmann law we have <span class="math display">\[ I = \frac{75}{A} = \sigma T^4 \]</span> solving, we have <span class="math display">\[\begin{align*}
+    A &amp;= \frac{75}{5.67\times 10^{-8} \cdot (3000)^4} \\
+      &amp;= 1.6\times 10^{-5}\ \mathrm{m}^{2}.
+\end{align*}\]</span></p>
+<h1 id="d">(d)</h1>
+<p>The maximum kinetic energy <span class="math inline">\(K_{\max}\)</span> is given by <span class="math display">\[\begin{align*}
+    K_{\max} &amp;= hf - W \\
+             &amp;= \frac{hc}{\lambda} - W \\
+             &amp;= \frac{6.626\times 10^{-34} \cdot 2.998\times 10^{8}}{350\times 10^{-9}}\ \mathrm{J} - 2.24\ \mathrm{eV} \\
+             &amp;= 5.676\times 10^{-19}\ \mathrm{J} - 2.24\ \mathrm{eV} \\
+             &amp;= 3.54\ \mathrm{eV} - 2.24\ \mathrm{eV} \\
+             &amp;= 1.30\ \mathrm{eV}
+\end{align*}\]</span></p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/PC1144/hw2.md">PC1144/hw2.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

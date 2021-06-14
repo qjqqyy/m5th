@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="15th November 2019" />
+  <title>MA3110S Homeworks 12, 13</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">MA3110S Homeworks 12, 13</h1><p class="author">Qi Ji</p>
+<p class="date">15th November 2019</p>
+</header>
+<article><h1 id="homework-12">Homework 12</h1>
+<p>Fix <span class="math inline">\(\varepsilon&gt;0\)</span> and for each <span class="math inline">\(n\in\mathbb{N}\)</span> we denote <span class="math display">\[ E_n = \left\{x\in[a,b]: f_n(x) &gt; f(x) - \varepsilon\right\}\]</span> and observe that each <span class="math inline">\(E_n\)</span>, being the preimage of the continuous function <span class="math inline">\(f - f_n\)</span> on the open interval<span class="math inline">\((-\varepsilon,\varepsilon)\)</span>, is open. By pointwise convergence <span class="math inline">\(\left\{E_n\right\}_{n\in\mathbb{N}}\)</span> forms an open cover of <span class="math inline">\([a,b]\)</span>, which is compact, so let <span class="math inline">\(E_{n_1}, E_{n_2}, \dots, E_{n_k}\)</span> be a finite subcover. Then let <span class="math inline">\(N = \max(n_1, n_2, \dots, n_k)\)</span> and whenever <span class="math inline">\(n&gt;N\)</span>, it follows from covering and <span class="math inline">\(f_n \leq f_{n+1}\)</span> pointwise that <span class="math inline">\(f(x) - f_n(x) &lt; \varepsilon\)</span>.</p>
+<h1 id="homework-13">Homework 13</h1>
+<h2 id="q1">Q1</h2>
+<h3 id="part-i">Part (i)</h3>
+<p>If RHS finite then we just use the standard Abel theorem. If RHS infinite as each <span class="math inline">\(a_n \geq 0\)</span> it follows that <span class="math display">\[ \sum_{n=1}^\infty a_nR = +\infty. \]</span> First without loss of generality assume <span class="math inline">\(R = 1\)</span>, the proof for the infinite case resembles that of the finite case. Let <span class="math inline">\(S_n = \sum_{k=0}^n a_k\)</span> and we assume that <span class="math inline">\(S_n \to \infty\)</span>. For any <span class="math inline">\(M&gt;0\)</span> there exists <span class="math inline">\(N\)</span> such that <span class="math display">\[n\geq N\implies S_n &gt; M.\]</span> Summing by parts, whenever <span class="math inline">\(n&gt;N\)</span> we have <span class="math display">\[\begin{align*}
+\sum_{k=0}^n a_kx^k
+&amp;= S_nx^n + \sum_{k=0}^{n-1}S_k(x^k - x^{k+1}) \\
+&amp;= S_nx^n + (1-x) \sum_{k=0}^{n-1}S_k x^k \\
+&amp;&gt; M x^n + (1-x)\left[ \sum_{k=0}^{N-1}S_k x^k + \sum_{k=N}^n S_k x^k \right] \\
+&amp;&gt; M x^n + (1-x)\left[ \sum_{k=0}^{N-1}S_k x^k + M \sum_{k=N}^n x^k \right] \\
+&amp;= M x^n + (1-x)\left[ \sum_{k=0}^{N-1}S_k x^k + M \frac{x^N-x^n}{1-x} \right] \\
+&amp;= M x^N + (1-x)\sum_{k=0}^{N-1} S_k x^k
+\end{align*}\]</span> and it follows that <span class="math display">\[ \sum_{n=0}^\infty a_nx^n \geq M x^N + (1-x)\sum_{k=0}^{N-1}S_k x^k. \]</span> Hence <span class="math inline">\(\lim_{x\to1^-} \sum_{n=0}^\infty a_nx^n \geq M\)</span>, and since <span class="math inline">\(M\)</span> was arbitrary the limit is actually <span class="math inline">\(+\infty\)</span> as desired.</p>
+<h3 id="part-ii">Part (ii)</h3>
+<p>To show <span class="math display">\[\sum_{n=1}^\infty \frac1n = +\infty\]</span> by part (i) we just need to show that <span class="math display">\[\lim_{x\to1^-} \sum_{n=1}^\infty \frac{x^n}{n} = +\infty\]</span> as this power series has radius of convergence <span class="math inline">\(R=1\)</span>. Denote the power series as <span class="math display">\[G(x) = \sum_{n=1}^\infty \frac{x^n}{n}\]</span> and we have <span class="math display">\[G'(x) = \sum_{n=0}^\infty x^n = \frac{1}{1-x}\]</span> for all <span class="math inline">\(x\in(-R,R)\)</span>. Therefore <span class="math display">\[\lim_{x\to 1^-} G(x) = \lim_{x\to 1^-} \int_0^x \frac1{1-t}\ dt
+= \lim_{x\to 1^-} -\ln(1-x) = +\infty. \]</span></p>
+<h2 id="q2">Q2</h2>
+<p>Let <span class="math inline">\(\varepsilon&gt;0\)</span>, as the limit <span class="math display">\[\lim_{x\to 1^-} \sum_{n=1}^\infty a_nx^n = A\]</span> we can find <span class="math inline">\(0&lt;c&lt;1\)</span> near enough to <span class="math inline">\(1\)</span> such that <span class="math display">\[\sum_{n=1}^\infty a_nc^n &gt; A-\frac\varepsilon 2 \]</span> then as the finite sum converges we can find <span class="math inline">\(N\)</span> large enough such that <span class="math display">\[\sum_{n=N+1}^\infty a_nc^n &lt; \frac\varepsilon 2 \]</span> and as a result for any <span class="math inline">\(M&gt;N\)</span>, <span class="math display">\[\sum_{n=1}^M a_nc^n &gt; A - \varepsilon\]</span> Now we have <span class="math display">\[ A = \lim \sum a_nx^n \geq \lim \sum_{n=1}^M a_nx^n
+= \sum_{n=1}^M a_n \geq \sum_{n=1}^M a_nc^n &gt; A-\varepsilon\]</span> which means <span class="math inline">\(\sum_{n=1}^\infty a_n = A\)</span> too.</p>
+<p>The condition on the coefficients was used a lot and cannot be removed. For the counter example consider <span class="math inline">\(a_n = (-1)^n\)</span>, then the series <span class="math display">\[\sum_{n=0}^\infty (-x)^n\]</span> has radius of convergence <span class="math inline">\(R=1\)</span>. However for all <span class="math inline">\(-1 &lt; x &lt; 1\)</span> this series converges to <span class="math inline">\(\frac{1}{1+x}\)</span> and the limit as <span class="math inline">\(x\to1\)</span> from the left is <span class="math inline">\(\frac12\)</span>, but the sum <span class="math inline">\(\sum_{n=0}^\infty (-1)^n\)</span> does not converge.</p>
+<h2 id="q3">Q3</h2>
+<p>As <span class="math inline">\(a_n\)</span> is strongly dominated by <span class="math inline">\(\frac1{n^{1+\alpha}}\)</span> where <span class="math inline">\(\alpha&gt;0\)</span>, then <span class="math display">\[\lim_{n\to\infty} n^\alpha n a_n = 0\]</span> from this it follows that <span class="math inline">\(\lim_{n\to\infty} n a_n = 0\)</span> too and we can directly apply Tauber’s theorem to get the result.</p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA3110S/homework1213.md">MA3110S/homework1213.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

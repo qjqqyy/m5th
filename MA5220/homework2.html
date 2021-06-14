@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="6th September 2019" />
+  <title>MA5220 Homework 2</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">MA5220 Homework 2</h1><p class="author">Qi Ji</p>
+<p class="date">6th September 2019</p>
+</header>
+<article><h1 data-number="1" id="section" data-number="1"><span class="header-section-number">1</span> </h1>
+<blockquote>
+<p>Show that if <span class="math inline">\(\alpha\cdot\alpha =\beta\cdot\beta\)</span>, then <span class="math inline">\(\alpha = \beta\)</span>.</p>
+</blockquote>
+<p>Without loss of generality assume <span class="math inline">\(\alpha &lt; \beta\)</span>, as ordinal multiplication is weakly monotonic over its left argument we have <span class="math display">\[ \alpha\cdot\beta \leq \beta\cdot\beta \]</span> ordinal multiplication is strictly increasing over the right operand so we have <span class="math display">\[ \alpha\cdot\alpha &lt; \alpha\cdot\beta \]</span> compose inequalities to get <span class="math inline">\(\alpha\cdot\alpha &lt; \beta\cdot\beta\)</span>. <span class="math inline">\(\square\)</span></p>
+<h1 data-number="2" id="section-1" data-number="2"><span class="header-section-number">2</span> </h1>
+<blockquote>
+<p>Suppose <span class="math inline">\(\kappa\)</span> is a infinite cardinal and <span class="math inline">\(\prec\)</span> is a well ordering on <span class="math inline">\(\kappa\)</span>. Show that there exists <span class="math inline">\(X\subseteq \kappa\)</span> such that <span class="math inline">\(\left\lvert X\right\rvert = \kappa\)</span> and for every <span class="math inline">\(\alpha,\beta\)</span> in <span class="math inline">\(X\)</span>, it follows that <span class="math inline">\(\alpha &lt; \beta\)</span> iff <span class="math inline">\(\alpha\prec\beta\)</span>.</p>
+</blockquote>
+<p>In the case that <span class="math inline">\(\kappa\)</span> is regular we can basically reuse the argument in Homework 1 Question 3. Without loss of generality (by only considering initial segments) we can assume <span class="math inline">\(\operatorname{type}(\kappa,\prec) = \kappa\)</span>. Let <span class="math inline">\(X\subseteq \kappa\)</span> be any maximal subset such that <span class="math inline">\(&lt;\)</span> and <span class="math inline">\(\prec\)</span> agree and suppose for a contradiction <span class="math inline">\(\left\lvert X\right\rvert &lt; \kappa\)</span>, then both the <span class="math inline">\(&lt;\)</span> and <span class="math inline">\(\prec\)</span>-downward closures of <span class="math inline">\(X\)</span> are of size strictly less than <span class="math inline">\(\kappa\)</span>, and there exists an element above <span class="math inline">\(A\)</span> under both <span class="math inline">\(&lt;\)</span> and <span class="math inline">\(\prec\)</span>, contradicting maximality.</p>
+<p>In the case where <span class="math inline">\(\kappa\)</span> is singular, Let <span class="math inline">\(\lambda = \operatorname{cf}(\kappa)\)</span> and <span class="math inline">\(f: \lambda\to\kappa\)</span> be a strictly increasing cofinal map, then because <span class="math inline">\(\kappa\)</span> is singular, we can define a cofinal map <span class="math inline">\(g: \lambda\to\kappa\)</span> in a fashion similar to lemma 6.5 as <span class="math display">\[ g(\xi) = \max\left( \left\lvert f(\xi)\right\rvert^+, \left\lvert\sup\left\{ g(\eta): \eta &lt; \xi \right\}\right\rvert^+ \right) \]</span> then <span class="math inline">\(\kappa = \bigcup_{\alpha&lt;\lambda} g(\alpha)\)</span> and note that <span class="math inline">\(g\)</span> is strictly increasing and only outputs regular cardinals. Proceed to clean up <span class="math inline">\(g\)</span> by defining <span class="math inline">\(h: \lambda\to\mathcal{P}(\kappa)\)</span> as <span class="math display">\[ h(\xi) = g(\xi)\setminus\bigcup\left\{g(\eta):\eta &lt;\xi\right\} \]</span> and we still can express <span class="math inline">\(\kappa\)</span> as the union <span class="math inline">\(\kappa = \bigcup_{\alpha&lt;\lambda} h(\alpha)\)</span>. We achieve the following</p>
+<ul>
+<li><p><span class="math inline">\(\alpha&lt;\beta\)</span> implies for every <span class="math inline">\(\gamma\in h(\alpha), \delta\in h(\beta)\)</span>, we have <span class="math inline">\(\gamma&lt;\delta\)</span>,</p></li>
+<li><p><span class="math inline">\(\left\lvert h(\alpha)\right\rvert = g(\alpha)\)</span> for each <span class="math inline">\(\alpha\)</span>.</p></li>
+</ul>
+<p>Again without loss of generality (by considering <span class="math inline">\(\prec\)</span>-initial segments) we can assume <span class="math inline">\(\operatorname{type}(\kappa,\prec) = \kappa\)</span> and <span class="math inline">\(\operatorname{type}\left(h(\alpha),\prec\right) = g(\alpha)\)</span> at each <span class="math inline">\(\alpha\)</span>. Define the order <span class="math inline">\(\triangleleft\)</span> on <span class="math inline">\(\lambda\)</span> as <span class="math display">\[ \alpha \triangleleft\beta \iff \sup_\prec(h(\alpha)) \prec \sup_\prec(h(\beta)) \]</span> the two <span class="math inline">\(\sup\)</span>s are distinct as each <span class="math inline">\(\left\lvert h(\alpha)\right\rvert\)</span> is regular, and from here it is easy to see that <span class="math inline">\(\triangleleft\)</span> is a well order.</p>
+<p>As <span class="math inline">\(\lambda\)</span> is in fact a regular cardinal, we can use the earlier case to obtain a cofinal set <span class="math inline">\(\left\{t_\alpha: \alpha&lt;\lambda\right\}\)</span> where <span class="math inline">\(&lt;\)</span> and <span class="math inline">\(\triangleleft\)</span> agree. Note that at each <span class="math inline">\(t_\alpha\)</span> there exists <span class="math inline">\(W_{t_\alpha} \subseteq h(t_\alpha)\)</span> with size <span class="math inline">\(\left\lvert h(t_\alpha)\right\rvert\)</span> where <span class="math inline">\(&lt;\)</span> and <span class="math inline">\(\prec\)</span> agree, and <span class="math inline">\(W_{t_\alpha}\)</span> is also <span class="math inline">\(\prec\)</span>-cofinal due to our assumption on <span class="math inline">\(\operatorname{type}(h(\alpha),\prec)\)</span>.</p>
+<p>Now we recursively define <span class="math inline">\(X_\alpha\)</span> for all <span class="math inline">\(\alpha&lt;\lambda\)</span> as <span class="math inline">\(\left\{x\in W_{t_\alpha}: \left(\forall\beta&lt;\alpha\right)\left(\forall w\in X_{\beta}\right)\left(w\prec x\right)\right\}\)</span>. At every <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\left\lvert X_\alpha\right\rvert = \left\lvert W_{t_\alpha}\right\rvert\)</span>, because the number of elements we deleted from <span class="math inline">\(W_{t_\alpha}\)</span> to get <span class="math inline">\(X_\alpha\)</span> is less than <span class="math inline">\(\left\lvert W_{t_\alpha}\right\rvert\)</span>, and as a result <span class="math inline">\(X_\alpha\)</span> is still <span class="math inline">\(\prec\)</span>-cofinal. The deletion forces out the property that <span class="math display">\[\alpha&lt;\beta \implies \left(\forall \gamma\in X_\alpha, \delta\in X_\beta\right)\left(\gamma\prec\delta\right).\]</span> Finally define <span class="math display">\[X = \bigcup_{\alpha&lt;\lambda} X_\alpha\]</span> which has cardinality <span class="math inline">\(\kappa\)</span> and by construction <span class="math inline">\(&lt;\)</span> agrees with <span class="math inline">\(\prec\)</span> on <span class="math inline">\(X\)</span>. <span class="math inline">\(\square\)</span></p>
+<h1 data-number="3" id="prove-schröder-bernstein-theorem-without-ac" data-number="3"><span class="header-section-number">3</span> Prove Schröder-Bernstein Theorem without AC</h1>
+<p>I shall reproduce Zermelo’s proof.</p>
+<p>Suppose <span class="math inline">\(A\subseteq B\subseteq C\)</span> are sets and suppose that <span class="math inline">\(f:C\to A\)</span> is a bijection. Define <span class="math inline">\(Q = B\setminus \operatorname{Im}_f(C)\)</span> and let <span class="math inline">\(\mathcal{F} = \left\{X\subseteq C: Q\cup \operatorname{Im}_f(X)\subseteq X\right\}\)</span>. Define <span class="math inline">\(T = \bigcap \mathcal{F}\)</span>.</p>
+<h3 class="unnumbered" data-number id="verify-that-tin-mathcalf." class="unnumbered" data-number>(1) Verify that <span class="math inline">\(T\in \mathcal{F}\)</span>.</h3>
+<p>Which is to say that <span class="math inline">\(Q\cup \operatorname{Im}_f(T)\subseteq T\)</span>. Pick <span class="math inline">\(a\in Q\cup\operatorname{Im}_f(T)\)</span>, case <span class="math inline">\(a\in Q\)</span> then <span class="math inline">\(a\in T\)</span> as we can see that for all <span class="math inline">\(X\in \mathcal{F}, Q\subseteq X\)</span>. Case <span class="math inline">\(a\in \operatorname{Im}_f(T)\)</span>, for all <span class="math inline">\(X\in\mathcal{F}\)</span>, <span class="math inline">\(a\in X\)</span>, so <span class="math inline">\(f(a)\in X\)</span>, which means <span class="math inline">\(a\in T\)</span> too.</p>
+<h3 class="unnumbered" data-number id="show-that-t-qcup-operatornameim_ft." class="unnumbered" data-number>(2) Show that <span class="math inline">\(T = Q\cup \operatorname{Im}_f(T)\)</span>.</h3>
+<p>Due to part 1 we already know that <span class="math inline">\(T\supseteq Q\cup \operatorname{Im}_f(T)\)</span>. Suppose for a contradiction the containment is proper, let <span class="math inline">\(w\in \left(T\setminus Q\right)\cap\left(T\setminus\operatorname{Im}_f(T)\right)\)</span> and we know that all of the below hold</p>
+<ol>
+<li><span class="math inline">\(w\in T\)</span></li>
+<li><span class="math inline">\(w\notin B \lor w\in \operatorname{Im}_f(C)\)</span></li>
+<li><span class="math inline">\(w\notin \operatorname{Im}_f(T) \implies \left(\forall t\in T\right)\left(f(t)\ne w\right)\)</span></li>
+</ol>
+<p>Case <span class="math inline">\(w\notin B\)</span> for 2, then <span class="math inline">\(w\)</span> lies outside the range of <span class="math inline">\(f\)</span>, and for the other case, <span class="math inline">\(f^{-1}(w) \notin T\)</span> by 3 and <span class="math inline">\(w\notin Q\)</span> by hypothesis, so we can delete <span class="math inline">\(w\)</span> from <span class="math inline">\(T\)</span> with <span class="math inline">\(T\setminus\left\{w\right\}\)</span> still in <span class="math inline">\(\mathcal{F}\)</span>, that is <span class="math inline">\(Q\cup \operatorname{Im}_f(T\setminus\left\{w\right\}) \subseteq T\setminus\left\{w\right\}\)</span>. This contradicts <span class="math inline">\(T\)</span> being minimal under set inclusion.</p>
+<h3 class="unnumbered" data-number id="show-that-b-tcup-leftoperatornameim_fcsetminus-operatornameim_ftright-and-conclude-that-leftlvert-crightrvert-leftlvert-brightrvert" class="unnumbered" data-number>(3) Show that <span class="math inline">\(B = T\cup \left(\operatorname{Im}_f(C)\setminus \operatorname{Im}_f(T)\right)\)</span> and conclude that <span class="math inline">\(\left\lvert C\right\rvert = \left\lvert B\right\rvert\)</span></h3>
+<p>Use part (2) to simplify the expression as <span class="math display">\[\begin{align*}
+T\cup \left(\operatorname{Im}_f(C)\setminus \operatorname{Im}_f(T)\right)
+&amp;= Q\cup\operatorname{Im}_f(T)\cup\left(\operatorname{Im}_f(C)\setminus \operatorname{Im}_f(T)\right) \\
+&amp;= Q\cup\operatorname{Im}_f(C) \\
+&amp;= \left(B\setminus\operatorname{Im}_f(C)\right)\cup\operatorname{Im}_f(C) \\
+&amp;= B
+\end{align*}\]</span> because <span class="math inline">\(\operatorname{Im}_f(T) \subseteq \operatorname{Im}_f(C)\)</span> and <span class="math inline">\(\operatorname{Im}_f(C)\subseteq A\subseteq B\)</span>.</p>
+<p>To see that <span class="math inline">\(\left\lvert C\right\rvert = \left\lvert B\right\rvert\)</span>, define <span class="math inline">\(g: C\to B\)</span> as <span class="math display">\[ g(c) = \begin{cases}
+f(c) &amp;\text{if } c\notin T\\
+c &amp;\text{if } c\in T
+\end{cases}\]</span> The two cases do not collide, that is <span class="math inline">\(\operatorname{Im}_g(T) = T\)</span> and <span class="math inline">\(\operatorname{Im}_g(C\setminus T) = \operatorname{Im}_f(C)\setminus\operatorname{Im}_f(T)\)</span> are disjoint, since <span class="math inline">\(x\in \operatorname{Im}_f(C)\)</span> implies <span class="math inline">\(x\notin Q\)</span> and we also have <span class="math inline">\(x\notin \operatorname{Im}_f(T)\)</span>. It is trivial to see that <span class="math inline">\(g\)</span> is injective and the decomposition of <span class="math inline">\(B\)</span> as a disjoint union <span class="math inline">\(T\cup \left(\operatorname{Im}_f(C)\setminus \operatorname{Im}_f(T)\right)\)</span> helps us see that <span class="math inline">\(g\)</span> is also surjective which completes the proof.</p>
+<h3 class="unnumbered" data-number id="schröder-bernstein-theorem-reduces-to-3" class="unnumbered" data-number>(4) Schröder-Bernstein theorem reduces to (3)</h3>
+<p>Let <span class="math inline">\(f: X\to Y\)</span> and <span class="math inline">\(g: Y\to X\)</span> be injective functions, we want to show that <span class="math inline">\(\left\lvert X\right\rvert = \left\lvert Y\right\rvert\)</span>. To use propositions above we make the following connections</p>
+<ul>
+<li>identify <span class="math inline">\(Y\)</span> with <span class="math inline">\(C\)</span></li>
+<li>identify <span class="math inline">\(\operatorname{ran}(f)\)</span> with <span class="math inline">\(B\)</span></li>
+<li>identify <span class="math inline">\(\operatorname{Im}_f\left(\operatorname{ran}\left(g\right)\right)\)</span> with <span class="math inline">\(A\)</span></li>
+</ul>
+<p>and we have <span class="math inline">\(\left\lvert Y\right\rvert = \left\lvert C\right\rvert = \left\lvert\operatorname{ran}(f)\right\rvert = \left\lvert X\right\rvert\)</span>. <span class="math inline">\(\square\)</span></p>
+<h1 data-number="4" id="section-2" data-number="4"><span class="header-section-number">4</span> </h1>
+<blockquote>
+<p>Assume CH. Show that <span class="math inline">\(\left(\omega_n\right)^\omega = \omega_n\)</span> for every <span class="math inline">\(1\leq n &lt; \omega\)</span>.</p>
+</blockquote>
+<p>By CH <span class="math inline">\(\left(\omega_1\right)^\omega = 2^{\omega^\omega} = 2^\omega = \omega_1\)</span>.</p>
+<p>Each <span class="math inline">\(\omega_n\)</span> is regular so <span class="math inline">\(\omega &lt; \operatorname{cf}(\omega_n) = \omega_n\)</span>, let <span class="math inline">\(n&gt;2\)</span> and assume result holds for <span class="math inline">\(n-1\)</span>, then <span class="math display">\[
+{}^\omega \omega_n
+= \bigcup_{\alpha&lt;\omega_n} {}^\omega\alpha
+\]</span> note that for each <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\alpha^\omega \leq \left(\omega_{n-1}\right)^\omega = \omega^{n-1}\)</span> by induction hypothesis. This means <span class="math inline">\(\left(\omega_n\right)^\omega \leq \omega_n\)</span>. <span class="math inline">\(\square\)</span></p>
+<h1 data-number="5" id="section-3" data-number="5"><span class="header-section-number">5</span> </h1>
+<blockquote>
+<p>Prove that the following statement is equivalent to CH. There exists <span class="math inline">\(X\subseteq \mathbb{R}^2\)</span> such that <span class="math inline">\(X\)</span> meets every vertical line on a countable set and <span class="math inline">\(\mathbb{R}^2\setminus X\)</span> meets every horizontal line on a countable set.</p>
+</blockquote>
+<p>Assume CH, then <span class="math inline">\(\left\lvert\mathbb{R}\right\rvert = \omega_1\)</span>. Let <span class="math inline">\(\mathbb{R}= \left\{t_{\alpha}: \alpha &lt; \omega_1\right\}\)</span> be a well ordering. Define <span class="math display">\[ X = \left\{\left(t_\alpha,t_\beta\right): \alpha \geq \beta \right\}. \]</span> To see that <span class="math inline">\(X\)</span> meets every vertical line on a countable set, fix <span class="math inline">\(x\)</span> and let <span class="math inline">\(\alpha\)</span> such that <span class="math inline">\(x = t_\alpha\)</span>, then by definition of <span class="math inline">\(X\)</span> there are exactly <span class="math inline">\(\left\lvert\alpha\right\rvert\)</span> many points with <span class="math inline">\(x = t_\alpha\)</span>, and since <span class="math inline">\(\alpha &lt; \omega_1\)</span>, it follows that the intersection is countable. Similarly fix <span class="math inline">\(y\)</span> and let <span class="math inline">\(\beta\)</span> such that <span class="math inline">\(y = t_\beta\)</span>, we observe that <span class="math inline">\(\left(t_\alpha, t_\beta\right)\in \mathbb{R}^2\setminus X\)</span> whenever <span class="math inline">\(\alpha &lt; \beta\)</span>, so <span class="math inline">\(\mathbb{R}^2\setminus X\)</span> meets the horizontal line on less than <span class="math inline">\(\left\lvert\beta\right\rvert = \omega\)</span> points too.</p>
+<p>Assume <span class="math inline">\(X\)</span> exists with the property, let <span class="math inline">\(A\subset \mathbb{R}\)</span> be of size <span class="math inline">\(\left\lvert A\right\rvert = \omega_1\)</span>. We consider the subset of the <span class="math inline">\(X\)</span> given by <span class="math display">\[ S = \left(A\times \mathbb{R}\right)\cap X \]</span> size of <span class="math inline">\(S\)</span> is <span class="math inline">\(\omega_1\cdot\omega_0 = \omega_1\)</span>. Define <span class="math inline">\(S_Y = \left\{y:\left(\exists x\in\mathbb{R}\right)\left((x,y)\in S\right)\right\}\)</span>, claim is <span class="math inline">\(S_Y = \mathbb{R}\)</span>. To see this, let <span class="math inline">\(y\in\mathbb{R}\)</span> and notice that by hypothesis, the set <span class="math display">\[ \left\{x: (x,y)\in \mathbb{R}\setminus X\right\} \]</span> is only countable which means there must exist <span class="math inline">\(x\in\mathbb{R}\)</span> with <span class="math inline">\((x,y)\in S\)</span>. Then we have <span class="math display">\[2^{\omega_0} = \left\lvert\mathbb{R}\right\rvert = \left\lvert S_Y\right\rvert \leq \left\lvert S\right\rvert \leq \left\lvert X\right\rvert = \omega_1 \]</span> which shows CH. <span class="math inline">\(\square\)</span></p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA5220/homework2.md">MA5220/homework2.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="29th October 2020" />
+  <title>MA4262 Homework 3</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">MA4262 Homework 3</h1><p class="author">Qi Ji</p>
+<p class="date">29th October 2020</p>
+</header>
+<article><h1 data-number="1" id="section" data-number="1"><span class="header-section-number">1</span> </h1>
+<p>We first use basic Hölder’s inequality to show Hölder’s inequality for two nonnegative simple functions <span class="math inline">\(\varphi\)</span> and <span class="math inline">\(\psi\)</span>. Suppose we decompose these simple functions as <span class="math display">\[ \varphi= \sum_{i=1}^n x_i \chi_{E_i} \text{ and } \psi = \sum_{i=1}^n y_j \chi_{E_i} \]</span> with <span class="math inline">\(E_1,\dots,E_n\)</span> pairwise disjoint measurable subsets, Then we have <span class="math display">\[\begin{align*}
+\left\lVert\varphi\psi\right\rVert_1
+&amp;= \int \varphi\psi\ d\mu \\
+&amp;= \sum_{i=1}^n x_i\;y_i\;\mu(E_i) \\
+&amp;= \sum_{i=1}^n x_i\;\mu(E_i)^{1/p}\;y_i\;\mu(E_i)^{1/q} \\
+&amp;\leq \left(\sum_{i=1}^n {x_i}^p\; \mu(E_i)\right)^{1/p} \left(\sum_{i=1}^n {y_i}^q\;\mu(E_i)\right)^{1/q} \\
+&amp;= \left(\int \varphi^p\ d\mu\right)^{1/p} \left(\int \varphi^q\ d\mu\right)^{1/q} \\
+&amp;= \left\lVert\varphi\right\rVert_p \left\lVert\psi\right\rVert_q.
+\end{align*}\]</span></p>
+<p>Following hint, without loss of generality assume <span class="math inline">\(f,g\)</span> are nonnegative.</p>
+<p>Let <span class="math inline">\(\varphi_n\)</span> and <span class="math inline">\(\psi_n\)</span> be two monotonically increasing sequences of nonnegative simple functions converging to <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> respectively. Basic Hölder inequality for simple functions gives us that <span class="math display">\[ \left\lVert\varphi_n\psi_n\right\rVert_1 \leq \left\lVert\varphi_n\right\rVert_p\left\lVert\psi_n\right\rVert_q \]</span> for each <span class="math inline">\(n\)</span>.</p>
+<p>Now <span class="math inline">\(\varphi_n\psi_n \to fg\)</span> and <span class="math inline">\(\varphi_1\psi_1\leq \varphi_2\psi_2\leq \dots\)</span>, so by monotone convergence (thrice) <span class="math display">\[\begin{align*}
+\left\lVert fg\right\rVert_1
+&amp;= \lim_{n\to\infty} \left\lVert\varphi_n\psi_n\right\rVert \\
+&amp;= \lim_{n\to\infty} \left\lVert\varphi_n\right\rVert_p\left\lVert\psi_n\right\rVert_q \\
+&amp;= \left\lVert f\right\rVert_p\left\lVert g\right\rVert_q.
+\end{align*}\]</span></p>
+<h1 data-number="2" id="section-1" data-number="2"><span class="header-section-number">2</span> </h1>
+<p>Similarly we use basic Minkowski inequality to show the case for nonnegative simple functions <span class="math inline">\(\varphi\)</span> and <span class="math inline">\(\varphi\)</span>. Decompose them similarly as previous question with <span class="math inline">\(E_1,\dots,E_n\)</span> measurable satisfying the same disjoint conditions. Then we have <span class="math display">\[\begin{align*}
+\left\lVert\varphi+\psi\right\rVert_p
+&amp;=
+\left(
+\int \left(\varphi+\psi\right)^p\ d\mu
+\right)^{1/p} \\
+&amp;=
+\left(
+\sum_{i=1}^n \left(x_i + y_i\right)^p\;\mu(E_i)
+\right)^{1/p} \\
+&amp;=
+\left(
+\sum_{i=1}^n \left(x_i\;\mu(E_i)^{1/p} + y_i\;\mu(E_i)^{1/p}\right)^p
+\right)^{1/p} \\
+&amp;\leq
+\left( \sum_{i=1}^n {x_i}^p\mu(E_i) \right)^{1/p} +
+\left( \sum_{i=1}^n {y_i}^p\mu(E_i) \right)^{1/p} \\
+&amp;=
+\left(
+\int \varphi^p\ d\mu
+\right)^{1/p} +
+\left(
+\int \psi^p\ d\mu
+\right)^{1/p} \\
+&amp;= \left\lVert\varphi\right\rVert_p + \left\lVert\psi\right\rVert_p.
+\end{align*}\]</span></p>
+<p>Similarly applying monotone convergence we get the result for the general case.</p>
+<h1 data-number="3" id="section-2" data-number="3"><span class="header-section-number">3</span> </h1>
+<p>By the definition of <span class="math inline">\(L^p\)</span> we see that it is closed under scalar multiplication. From Minkowski inequality we can deduce that <span class="math inline">\(L^p\)</span> is closed under addition.</p>
+<p>We proceed to show that <span class="math inline">\(\left\lVert\cdot\right\rVert_p\)</span> is a norm. Positivity and definiteness easily arise from the definitions, same for homogeneity. The triangle inequality for <span class="math inline">\(\left\lVert\cdot\right\rVert_p\)</span> is just Minkowski’s inequality.</p>
+<h1 data-number="4" id="section-3" data-number="4"><span class="header-section-number">4</span> </h1>
+<p>Let <span class="math inline">\((f_n)\)</span> be a Cauchy sequence in <span class="math inline">\(L^p\)</span>. Without loss of generality we can assume that it contracts quickly enough in the sense that <span class="math inline">\(\left\lVert f_n - f_m\right\rVert_p &lt; 2^{-N}\)</span> whenever <span class="math inline">\(n,m&gt;N\)</span>.</p>
+<p>By the condition that <span class="math inline">\(\left\lVert f_n - f_{n+1}\right\rVert_p &lt; 2^{1-n}\)</span>, it follows that the set <span class="math inline">\(E_n := \left\{x\in X: \left\lvert f_n- f_{n+1}&gt;2^{-\frac{n}{2}}\right\rvert\right\}\)</span> satisfies <span class="math inline">\(\mu(E_n) &lt; 2^p\cdot 2^{1-\frac{n}{2}}\)</span>. Since <span class="math inline">\(\sum_{n=1}^\infty \mu(E_n)\)</span> is finite, by Borel-Cantelli lemma <span class="math inline">\(N = \limsup E_n\)</span> has measure zero. Define <span class="math inline">\(f\)</span> to be the pointwise limit of <span class="math inline">\(f_n\)</span> on <span class="math inline">\(X\setminus N\)</span> and <span class="math inline">\(0\)</span> everywhere else.</p>
+<p>Next we show the <span class="math inline">\(\mu\)</span>-a.e. pointwise limit <span class="math inline">\(f\)</span> is also the limit in <span class="math inline">\(L^p\)</span>, we have <span class="math display">\[
+\left\lvert f(x)\right\rvert \leq g(x) := \begin{cases}
+\left\lvert f_1(x)\right\rvert + \sum_{i=1}^\infty \left\lvert f_{i+1}(x) - f_i(x)\right\rvert &amp;\text{for } x\notin N, \\
++\infty &amp;\text{for } x\in N.
+\end{cases}
+\]</span> which means <span class="math inline">\(f\in L^p\)</span> because <span class="math inline">\(\left\lVert f\right\rVert_p \leq \left\lVert g\right\rVert_p \leq \left\lVert f_1\right\rVert_p + 2\)</span>.</p>
+<p>Now as <span class="math inline">\(\left\lvert f_n-f\right\rvert^p\)</span> is dominated by <span class="math inline">\(g^p\)</span>, by dominated convergence, <span class="math display">\[ \lim_{n\to\infty} {\left\lVert f_n-f\right\rVert_p}^p = \lim_{n\to\infty} \int \left\lvert f_n-f\right\rvert^p\ d\mu = 0 \]</span> which shows that <span class="math inline">\(f\)</span> is also the limit in <span class="math inline">\(\left\lVert\cdot\right\rVert_p\)</span>.</p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA4262/homework3.md">MA4262/homework3.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

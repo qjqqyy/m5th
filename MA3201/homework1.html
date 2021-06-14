@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="10th February 2020" />
+  <title>Homework 1</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">Homework 1</h1><p class="author">Qi Ji</p>
+<p class="date">10th February 2020</p>
+</header>
+<article><h1 id="question-6">Question 6</h1>
+<h2 id="a">(a)</h2>
+<p>Let <span class="math inline">\(\alpha = a + bi + cj + dk\)</span>. Note that <span class="math display">\[\begin{align*}
+N(\overline{\alpha}) &amp;= a^2 + (-b)^2 + (-c)^2 + (-d)^2 \\
+&amp;= a^2 + b^2 + c^2 + d^2 \\
+&amp;= N(\alpha)
+\end{align*}\]</span> and <span class="math display">\[\begin{align*}
+\alpha\overline{\alpha}&amp;= (a + bi + cj + dk)(a - bi - cj - dk) \\
+&amp;= a^2 - abi - acj - adk \\ &amp;\quad
++ bia - b^2i^2 - bicj - bidk \\ &amp;\quad
++ cja - cjbi - c^2j^2 - cjdk \\ &amp;\quad
++ dka - dkbi - dkcj - d^2k^2 \\
+&amp;= a^2 + b^2 + c^2 + d^2 \\
+&amp;= N(\alpha)
+\end{align*}\]</span> also, as <span class="math inline">\(\overline{\overline{\alpha}} = \alpha\)</span>, we have <span class="math inline">\(N(\overline{\alpha}) = \overline{\alpha}\overline{\overline{\alpha}} = \overline{\alpha}\alpha\)</span>.</p>
+<h2 id="b">(b)</h2>
+<p>Let <span class="math inline">\(\beta = p + qi + rj + sk\)</span>, then <span class="math display">\[\begin{align*}
+\alpha\beta &amp;= (a + bi + cj + dk)(p + qi + rj + sk) \\
+&amp;= ap + aqi + arj + ask \\ &amp;\quad
++ pbi - bq + brk - bsj \\ &amp;\quad
++ pcj - cqk - cr + csi \\ &amp;\quad
++ pdk + dqj - dri - ds \\
+&amp;= ap - bq - cr - ds \\ &amp;\quad
++ (aq + pb + cs - rd)i \\ &amp;\quad
++ (ar + pc - bs + qd)j \\ &amp;\quad
++ (as + pd + br - qc)k \\
+\end{align*}\]</span></p>
+<p>Define <span class="math inline">\(h: H_\mathbb{R} \to M_2(\mathbb{C})\)</span> as <span class="math display">\[
+a + bi + cj + dk \mapsto \begin{pmatrix}
+a + bi &amp; -c - di \\
+c - di &amp; a - bi
+\end{pmatrix}
+\]</span> Let <span class="math inline">\(w = a + bi, x = c + di, y = p + qi, z = r + si\)</span> and <span class="math inline">\(w^*\)</span> denote its complex conjugate, we have <span class="math display">\[\begin{align*}
+\begin{pmatrix}
+w &amp; -x \\
+x^* &amp; w^*
+\end{pmatrix}
+\begin{pmatrix}
+y &amp; -z \\
+z^* &amp; y^*
+\end{pmatrix}
+&amp;=
+\begin{pmatrix}
+wy - xz* &amp; -wz - xy^* \\
+x^*y + w^*z^* &amp; -x^*z + w^*y^*
+\end{pmatrix} \\
+&amp;=
+\begin{pmatrix}
+wy - xz* &amp; -wz - xy^* \\
+(wz + xy^*)^* &amp; (wy - xz^*)^*
+\end{pmatrix} \\
+wy - xz^* &amp;= (a+bi)(p+qi) - (c+di)(r-si) \\
+&amp;= ap - bq - cr - ds + (aq + bp + cs - rd)i \\
+wz + xy* &amp;= (a+bi)(r+si) + (c+di)(p-qi) \\
+&amp;= ar - bs + pc + dq + (as + br + pd - qc)i
+\end{align*}\]</span> therefore <span class="math inline">\(h(\alpha\beta) = h(\alpha)h(\beta)\)</span> (<span class="math inline">\(h\)</span> preserving addition is obvious).</p>
+<p>Now observe that <span class="math inline">\(N(\alpha) = \det(h(\alpha))\)</span> and result follows.</p>
+<h2 id="c">(c)</h2>
+<p>Suppose <span class="math inline">\(\alpha \in H_\mathbb{Z}\)</span> is a unit, let <span class="math inline">\(\beta\)</span> such that <span class="math inline">\(\alpha\beta = 1\)</span>, then <span class="math inline">\(N(\alpha)N(\beta) = 1\)</span> and since <span class="math inline">\(N(H_\mathbb{Z}) \subseteq \left\{0,1,2,\dots\right\}\)</span> we have <span class="math inline">\(N(\alpha) = N(\beta) = 1\)</span>. Conversely suppose <span class="math inline">\(N(\alpha) = 1\)</span>, we know that <span class="math display">\[
+\alpha^{-1} = \frac{\overline{\alpha}}{N(\alpha)} \in H_\mathbb{Q}
+\]</span> and as <span class="math inline">\(N(\alpha) = 1\)</span>, it turns out that <span class="math inline">\(\alpha^{-1} = \overline{\alpha}\in H_\mathbb{Z}\)</span>, so <span class="math inline">\(\alpha\)</span> is a unit. Observe that the only possible elements in <span class="math inline">\(H_\mathbb{Z}\)</span> with norm 1 are precisely <span class="math inline">\(\left\{\pm 1,\pm i,\pm j,\pm k\right\}\)</span>, so the set of units is the quaternion group.</p>
+<h1 id="question-7">Question 7</h1>
+<h2 id="a-1">(a)</h2>
+<p>As addition is defined pointwise the properties easily carry from <span class="math inline">\(R\)</span>. We still need to check the properties of multiplication.</p>
+<dl>
+<dt>Cauchy product commutative when <span class="math inline">\(R\)</span> is</dt>
+<dd>it follows from commutativity of <span class="math inline">\(\cdot\)</span> in <span class="math inline">\(R\)</span> that <span class="math display">\[ \sum_{i=0}^n a_ib_{n-i} = \sum_{j=0}^n b_ja_{n-j} \]</span>
+</dd>
+<dt>Cauchy product associative</dt>
+<dd>applying commutativity of <span class="math inline">\(+\)</span> and associativity of <span class="math inline">\(\cdot\)</span> and distributivity in <span class="math inline">\(R\)</span> to coefficients, we get
+</dd>
+</dl>
+<p><span class="math display">\[\begin{align*}
+\left(\left(\sum a_nx^n\right)\left(\sum b_nx^n\right)\right) \left(\sum c_nx^n\right)
+&amp;= \sum_n \left(\sum_{j=0}^n \left(
+\sum_{i=0}^j a_ib_{j-i}
+\right) c_{n-j}\right) x^n \\
+&amp;= \sum_n \left(\sum_{j=0}^n \sum_{i=0}^j a_ib_{j-i}c_{n-j}\right) x^n \\
+&amp;= \sum_n \left(\sum_{i=0}^n \sum_{j=i}^n a_ib_{j-i}c_{n-j}\right) x^n \\
+% k = j-i
+&amp;= \sum_n \left(\sum_{i=0}^n \sum_{k=0}^{n-i} a_ib_{k}c_{n-i-k}\right) x^n \\
+&amp;= \sum_n \left(\sum_{i=0}^n a_i \left(\sum_{k=0}^{n-i} b_{k}c_{n-i-k}\right)\right) x^n \\
+&amp;= \left(\sum a_nx^n\right)\left(\left(\sum b_nx^n\right) \left(\sum c_nx^n\right)\right)
+\end{align*}\]</span></p>
+<dl>
+<dt>Cauchy product distributes</dt>
+<dd>By commutativity we just show <span class="math inline">\((A+B)C = AC + BC\)</span>
+</dd>
+</dl>
+<p><span class="math display">\[\begin{align*}
+\left(\sum (a_n+b_n)x^n\right) \sum c_nx^n
+&amp;= \sum_n \left(\sum_{i=0}^n (a_i+b_i)c_{n-i} \right) x^n \\
+&amp;= \sum_n \left(\sum_{i=0}^n a_ic_{n-i} + b_ic_{n-i} \right) x^n \\
+&amp;= \left(\sum a_nx^n\right) \left(\sum c_nx^n\right)
++ \left(\sum b_nx^n\right) \left(\sum c_nx^n\right)
+\end{align*}\]</span></p>
+<dl>
+<dt><span class="math inline">\(1_R\)</span> is <span class="math inline">\(1_{R[[x]]}\)</span></dt>
+<dd>easy to check that <span class="math display">\[\left(1 + 0x + 0x^2 + \dots\right) \sum_n a_nx^n
+= \sum_n \left(\sum_{i=0}^n \delta_{i0}a_{n-i}\right) x^n = \sum_n a_nx^n
+\]</span> where <span class="math inline">\(\delta_{ij}\)</span> is <span class="math inline">\(1\)</span> if <span class="math inline">\(i=j\)</span> else <span class="math inline">\(0\)</span>
+</dd>
+</dl>
+<h2 id="b-1">(b)</h2>
+<p>We just multiply out <span class="math inline">\(1-x\)</span> and <span class="math inline">\(\sum_{j=0}^\infty x^j\)</span>. <span class="math display">\[\begin{align*}
+(1-x)\sum_{j=0}^\infty x^j
+&amp;= \sum_{j=0}^\infty x^j - x\sum_{j=0}^\infty x^j \\
+&amp;= \sum_{j=0}^\infty x^j - \sum_{j=1}^\infty x^j \\
+&amp;= 1
+\end{align*}\]</span></p>
+<h2 id="c-1">(c)</h2>
+<p>Suppose <span class="math inline">\(f=\sum a_nx^n\)</span> is a unit in <span class="math inline">\(R[[x]]\)</span>, let <span class="math inline">\(g=\sum b_nx^n\)</span> such that <span class="math inline">\(1 = fg\)</span>, <span class="math display">\[ 1 = fg = \sum_n \left(\sum_{j=0}^n a_{j}b_{n-j}\right) x^n \]</span> by comparing coefficients, <span class="math inline">\(1 = a_0b_0\)</span> and for all <span class="math inline">\(n&gt;1\)</span>, <span class="math display">\[ \sum_{j=0}^n a_jb_{n-j} = 0 \]</span> so in particular <span class="math inline">\(a_0\)</span> is a unit in <span class="math inline">\(R\)</span>.</p>
+<p>Conversely suppose <span class="math inline">\(a_0\)</span> is a unit, let <span class="math inline">\(a_0b_0 = 1 = b_0a_0\)</span>, recursively define for all <span class="math inline">\(n&gt;1\)</span> <span class="math display">\[ b_n = -b_0\sum_{j=1}^n a_jb_{n-j}. \]</span> Now we have <span class="math inline">\(a_0b_0 = 1\)</span> and for all <span class="math inline">\(n&gt;1\)</span>, <span class="math display">\[\begin{align*}
+a_0b_n &amp;= -\sum_{j=1}^n a_jb_{n-j} \\
+0 &amp;= \sum_{j=0}^n a_jb_{n-j}
+\end{align*}\]</span> which shows that <span class="math inline">\(fg = 1\)</span>.</p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA3201/homework1.md">MA3201/homework1.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

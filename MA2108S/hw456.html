@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji [A0167793L]" />
+  <meta name="dcterms.date" content="26th March 2019" />
+  <title>MA2108S Homework sets 4, 5, 6</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">MA2108S Homework sets 4, 5, 6</h1><p class="author">Qi Ji [A0167793L]</p>
+<p class="date">26th March 2019</p>
+</header>
+<article><h1 id="homework-set-4">Homework set 4</h1>
+<h2 id="question-1">Question 1</h2>
+<p>Let <span class="math inline">\(A, B\subset \mathbb{R}\)</span> be compact. We show that <span class="math inline">\(A\times B\)</span> the product space is sequentially compact in <span class="math inline">\(\mathbb{R}^2\)</span>. Consider any sequence <span class="math inline">\(((a_i, b_i))_{i \in \mathbb{N}}\)</span>. The projected sequence <span class="math inline">\((a_i)_{i\in\mathbb{N}}\)</span> has a convergent subsequence because <span class="math inline">\(A\)</span> is a compact set, so call it <span class="math inline">\((a_{i_k})_{k\in\mathbb{N}}\)</span>. Now we have a subsequence <span class="math inline">\(((a_{i_k}, b_{i_k}))_{k\in\mathbb{N}}\)</span>, the next step is to project its second coordinate, so we consider the sequence <span class="math inline">\((b_{i_k})_{k\in\mathbb{N}}\)</span> in <span class="math inline">\(B\)</span>. Now because <span class="math inline">\(B\)</span> is compact, <span class="math inline">\((b_{i_k})_{k\in\mathbb{N}}\)</span> has a further convergent subsequence <span class="math inline">\((b_{i_{k_l}})_{l\in\mathbb{N}}\)</span>. Finally we can see that <span class="math inline">\(((a_{i_{k_l}}, b_{i_{k_l}}))_{l\in\mathbb{N}}\)</span> is a convergent subsequence of <span class="math inline">\(A\times B\)</span>. <span class="math inline">\(\square\)</span></p>
+<h2 id="question-2">Question 2</h2>
+<p>Fix <span class="math inline">\(x\in X\)</span>, we have <span class="math inline">\(d(x,A) := \inf_{y\in A} d(x,y)\)</span>. Either we already have <span class="math inline">\(y^*\in A\)</span> such that <span class="math inline">\(d(x,A) = d(x,y^*)\)</span> in which case we are done, or we have a sequence of points <span class="math inline">\((y_n)_{n\in\mathbb{N}}\)</span> such that <span class="math inline">\(\lim_{n\to\infty} d(x,y_n) = d(x, A)\)</span>. By compactness of <span class="math inline">\(A\)</span>, we find a subsequence <span class="math inline">\(n_1 &lt; n_2 &lt; \dots\)</span> such that <span class="math inline">\(y_{n_k} \to y^*\)</span> for some <span class="math inline">\(y^*\in A\)</span>. Claim is that <span class="math inline">\(d(x,y^*) = d(x, A)\)</span>. Note that because <span class="math inline">\(y^*\in A\)</span>, it is already established that <span class="math inline">\(d(x,y^*) \geq d(x,A)\)</span>. For each <span class="math inline">\(k\in\mathbb{N}\)</span>, by triangle inequality <span class="math display">\[ d(x,y^*) \leq d(x, y_{n_k}) + d(y_{n_k}, y^*) \]</span> taking limit as <span class="math inline">\(k\to\infty\)</span> we obtain <span class="math display">\[ d(x,y^*) \leq d(x, A) + 0 \]</span> which shows that <span class="math inline">\(d(x,y^*) = d(x, A)\)</span>.<span class="math inline">\(\square\)</span></p>
+<h2 id="question-3">Question 3</h2>
+<p>Let <span class="math inline">\(A,B \in \mathcal{H}(X)\)</span> and we can define the Hausdorff distance as <span class="math display">\[ d_H(A,B) := \max{\left\{  \sup_{x\in A} d(x,B), \sup_{y\in B} d(y,A)  \right\}}. \]</span></p>
+<p>By reading off the definition we can see that it’s symmetric, so <span class="math inline">\(d_H(A,B) = d_H(B,A)\)</span>.</p>
+<p>The property that <span class="math inline">\(d_H(A,B)\geq 0\)</span> is inherited from that of <span class="math inline">\(d(-,-)\)</span>.</p>
+<p>Now we show <span class="math inline">\(A = B\)</span> iff <span class="math inline">\(d_H(A,B) = 0\)</span>. Suppose <span class="math inline">\(A = B\)</span>, then it is easy to see that for any <span class="math inline">\(x\in A\)</span> <span class="math inline">\(d(x,A) = \inf_{y\in A} d(x,y) = d(x,x) = 0\)</span>. This means <span class="math inline">\(d_H(A,B) = \max{\left\{ 0,0 \right\}} = 0\)</span>. Conversely assume <span class="math inline">\(d_H(A,B) = 0\)</span>. By positiveness of <span class="math inline">\(d(-,-)\)</span>, we have <span class="math display">\[ \sup_{x\in A} d(x,B) = \sup_{y\in B} d(y, A) = 0 \]</span> again using positiveness we can deduce that <span class="math display">\[ \forall x\in A.~ d(x,B) = 0 \text{ and } \forall y\in B.~ d(y,A) = 0. \]</span> Now we have enough results to prove the equality. Let <span class="math inline">\(x\in A\)</span>, then <span class="math inline">\(d(x,B) = \inf_{y\in B} d(x,y) = 0\)</span>. Use Q2 to get existence of <span class="math inline">\(y^* \in B\)</span> such that <span class="math inline">\(d(x,y^*) = 0\)</span>. By definiteness of <span class="math inline">\(d(-,-)\)</span> we have <span class="math inline">\(x = y^*\)</span> which shows <span class="math inline">\(x\in B\)</span>. Therefore <span class="math inline">\(A\subset B\)</span>. The proof of the reverse containment is the same, so <span class="math inline">\(A = B\)</span>.</p>
+<p>Note that this property breaks down if <span class="math inline">\(A\)</span> or <span class="math inline">\(B\)</span> is not compact. Let <span class="math inline">\(A\)</span> be the open unit ball in <span class="math inline">\(R^k\)</span> and <span class="math inline">\(B\)</span> be the closure of <span class="math inline">\(A\)</span>. We have for any <span class="math inline">\(x\in A\)</span>, <span class="math inline">\(d(x, B) = 0\)</span> because <span class="math inline">\(A\subset B\)</span>. Also for any <span class="math inline">\(x\in B\)</span>, <span class="math inline">\(d(x, A) = \inf_{y\in B} d(x,y) = 0\)</span> in both cases where <span class="math inline">\(x\in A\)</span> and <span class="math inline">\(x\)</span> is a limit point of <span class="math inline">\(A\)</span>. Then in this example <span class="math inline">\(d_H(A,B) = 0\)</span> but by construction <span class="math inline">\(A \ne B\)</span>.</p>
+<p>Now we show the triangle inequality holds. Let <span class="math inline">\(A,B,C\subset X\)</span> be nonempty and bounded so that their distance is real. Note that compactness was not assumed. We want to show that <span class="math display">\[ d_H(A,B) \leq d_H(A,C) + d_H(C,B) \]</span> although <span class="math inline">\(d_H(A,B) := \max{\left\{ \sup_{x\in A} d(x,B), \sup_{y\in B} d(y,A) \right\}}\)</span>, we assume without loss of generality that we are in the case <span class="math inline">\(d_H(A,B) = \sup_{x\in A} d(x,B)\)</span>, as interchanging role of <span class="math inline">\(A,B\)</span> will cover the other case. Let <span class="math inline">\(a\in A\)</span> be arbitrary, we have <span class="math display">\[ d(a,B) = \inf_{b\in B} d(a,b) \]</span> for all <span class="math inline">\(c\in C\)</span>, by triangle inequality each <span class="math inline">\(d(a,b) \leq d(a,c) + d(c,b)\)</span>, so for all <span class="math inline">\(c\in C\)</span>, <span class="math display">\[\begin{align*}
+d(a,B) &amp;\leq \inf_{b\in B} ( d(a,c) + d(c,b) ) \\
+&amp;= d(a,c) + \inf_{b\in B} d(c,b) \\
+&amp;= d(a,c) + d(c,B) \\
+&amp;\leq d(a,c) + d(C,B)
+\end{align*}\]</span> since this bound holds for all <span class="math inline">\(c\in C\)</span>, <span class="math display">\[\begin{align*}
+d(a,B) &amp;\leq (\inf_{c\in C} d(a,c) + d(C,B)) \\
+&amp;= \inf_{c\in C} d(a,c) + d(C,B) \\
+&amp;= d(a,C) + d(C,B) \\
+&amp;\leq d(A,C) + d(C,B)
+\end{align*}\]</span> Since <span class="math inline">\(a\in A\)</span> was arbitrary, <span class="math display">\[ \sup_{a\in A} d(a,B) = d(A,B) \leq d(A,C) + d(C,B). \tag*{$\square$}\]</span> As compactness was not invoked in the proof triangle inequality holds as long as <span class="math inline">\(d_H\)</span> between the sets are defined.</p>
+<h1 id="homework-set-5">Homework set 5</h1>
+<h2 id="rudin-chapter-3-q1">Rudin Chapter 3 Q1</h2>
+<p>We can assume the sequence is complex. Suppose <span class="math inline">\((s_n)\)</span> converges, to see that <span class="math inline">\((\left\lvert s_n \right\rvert)\)</span> converges, let <span class="math inline">\(\varepsilon&gt;0\)</span>, by convergence of <span class="math inline">\((s_n)\)</span> there exists <span class="math inline">\(s\in\mathbb{C}, N\in\mathbb{N}\)</span> such that <span class="math display">\[ n\geq N\implies \left\lvert s_n - s \right\rvert &lt; \varepsilon. \]</span> We now claim that <span class="math inline">\((\left\lvert s_n \right\rvert) \to \left\lvert s \right\rvert\)</span>, to see why, note that whenever <span class="math inline">\(n\in\mathbb{N}, n &gt; N\)</span>, we have by Chapter 1 Q13 (from Homework 2) <span class="math display">\[ \left\lvert \left\lvert s_n \right\rvert - \left\lvert s \right\rvert \right\rvert \leq \left\lvert s_n - s \right\rvert &lt; \varepsilon. \tag*{$\square$}\]</span></p>
+<p>The converse can be seen to be false if we consider the sequence <span class="math inline">\((s_n)\)</span> where for each <span class="math inline">\(n\in\mathbb{N}\)</span>, <span class="math inline">\(s_n = (-1)^n\)</span>. In this case <span class="math inline">\(\left\lvert s_n \right\rvert \to 1\)</span> but <span class="math inline">\(s_n\)</span> oscillates.</p>
+<h2 id="rudin-chapter-3-q20">Rudin Chapter 3 Q20</h2>
+<p>Suppose <span class="math inline">\((p_n)_{n\in\mathbb{N}}\)</span> is a Cauchy sequence in a metric space <span class="math inline">\(X\)</span> and we have a subsequence <span class="math inline">\(n_1 &lt; n_2 &lt; \dots\)</span> such that <span class="math inline">\((p_{n_i})_{i\in\mathbb{N}} \to p\)</span> in <span class="math inline">\(X\)</span>. We need to show that the original sequence converges to <span class="math inline">\(p\)</span>, so fix <span class="math inline">\(\varepsilon&gt;0\)</span>. By convergence of the subsequence, we can find <span class="math inline">\(M_0\in\mathbb{N}\)</span> such that <span class="math display">\[ m\geq M_0 \implies d(p_{n_m}, p) &lt; \varepsilon/5. \]</span> Also because the sequence <span class="math inline">\((p_n)\)</span> itself is Cauchy, we can find <span class="math inline">\(M_1\in \mathbb{N}\)</span> such that <span class="math display">\[ n,m\geq M_1 \implies d(p_n, p_m) &lt; \varepsilon/5. \]</span> Now let <span class="math inline">\(N := \max(n_{M_0}, M_1)\)</span>, whenever <span class="math inline">\(n\in\mathbb{N}, n\geq N\)</span>, we can define <span class="math inline">\(k\)</span> to be the smallest number such that <span class="math inline">\(n_k \geq n\)</span>. Note that by our choice of <span class="math inline">\(N\)</span>, <span class="math inline">\(k \geq M_0\)</span> and both <span class="math inline">\(n_k, n \geq M_1\)</span>, then <span class="math display">\[\begin{align*}
+d(p_n, p) &amp;\leq d(p_n, p_{n_k}) + d(p_{n_k}, p) \\
+&amp;&lt; \frac{\varepsilon}5 + \frac{\varepsilon}5 &lt; \varepsilon\tag*{$\square$}
+\end{align*}\]</span></p>
+<h2 id="rudin-chapter-3-q21">Rudin Chapter 3 Q21</h2>
+<p>For each <span class="math inline">\(n\in\mathbb{N}\)</span> we choose a point <span class="math inline">\(p_n \in E_n\)</span>. We first claim that <span class="math inline">\((p_n)_{n\in\mathbb{N}}\)</span> is Cauchy. For any <span class="math inline">\(\varepsilon&gt;0\)</span>, since <span class="math inline">\(\lim_{n\to\infty}\operatorname{diam}E_n = 0\)</span>, find large enough <span class="math inline">\(N\in\mathbb{N}\)</span> such that <span class="math inline">\(\operatorname{diam}E_N &lt; \varepsilon\)</span>, then since we have a descending chain of sets, for any <span class="math inline">\(m,n&gt; N\)</span>, <span class="math inline">\(p_m, p_n\in E_N\)</span>, so <span class="math inline">\(d(p_m, p_n) \leq \operatorname{diam}E_N &lt; \varepsilon\)</span>. Since our metric space <span class="math inline">\(X\)</span> is complete, let <span class="math inline">\(p\in X\)</span> such that <span class="math inline">\((p_n)_{n\in\mathbb{N}} \to p\)</span>. The immediate observation we can make here is that <span class="math inline">\(p \in \bigcap E_n\)</span>. This is because for each <span class="math inline">\(n\in\mathbb{N}\)</span>, <span class="math inline">\(E_n\)</span> is closed and <span class="math inline">\(p_{n+1}, p_{n+2}, \dots\)</span> is a sequence of points converging at <span class="math inline">\(p\)</span>, so <span class="math inline">\(p\)</span> is a limit point of <span class="math inline">\(E_n\)</span> and <span class="math inline">\(p\in E_n\)</span>.</p>
+<p>Now we show that no other point <span class="math inline">\(p'\)</span> can exist in the intersection. Suppose <span class="math inline">\(p' \ne p\)</span> lies in the intersection, then we have a contradiction as by choosing a large enough <span class="math inline">\(M\)</span> we can have <span class="math inline">\(E_M\)</span> such that <span class="math inline">\(\operatorname{diam}E_M &lt; d(p',p)\)</span>, a contradiction. <span class="math inline">\(\square\)</span></p>
+<h2 id="q">Q</h2>
+<blockquote>
+<p>Use the definition of Cauchy sequences to prove that if <span class="math inline">\((x_n)_{n\in\mathbb{N}}\)</span> and<span class="math inline">\((y_n)_{n\in\mathbb{N}}\)</span> are two Cauchy sequences of real numbers, then <span class="math inline">\((x_ny_n)_{n\in\mathbb{N}}\)</span> is also a Cauchy sequence.</p>
+</blockquote>
+<p>We first note that the Cauchy sequences are convergent, thus bounded. Let <span class="math inline">\(X&gt;0\)</span> be a bound for <span class="math inline">\((x_n)_{n\in\mathbb{N}}\)</span> and <span class="math inline">\(Y&gt;0\)</span> a bound for <span class="math inline">\((y_n)_{n\in\mathbb{N}}\)</span>, so for any <span class="math inline">\(n\in\mathbb{N}\)</span> we have <span class="math display">\[ \left\lvert x_n \right\rvert &lt; X, \left\lvert y_n \right\rvert &lt; Y. \]</span> To show that <span class="math inline">\((x_ny_n)_{n\in\mathbb{N}}\)</span> is a Cauchy sequence, first fix any <span class="math inline">\(\varepsilon&gt;0\)</span>, we want to find <span class="math inline">\(N\in\mathbb{N}\)</span> such that <span class="math display">\[m,n&gt;N \implies \left\lvert x_ny_n - x_my_m \right\rvert &lt; \varepsilon. \tag{5.1}\]</span> <!---
+We first note that we can assume
+\( x_ny_n - x_my_m \geq 0 \) in (5.1),
+without loss of generality,
+as swapping the roles of \(m\) and \(n\) will cover the other half of the inequality.
+--> By Cauchy criterion applied to <span class="math inline">\((x_n)_{n\in\mathbb{N}}\)</span> and <span class="math inline">\((y_n)_{n\in\mathbb{N}}\)</span>, we get existence of <span class="math inline">\(N_1, N_2\in\mathbb{N}\)</span> such that <span class="math display">\[\begin{align*}
+m,n&gt;N_1 &amp;\implies \left\lvert x_n - x_m \right\rvert &lt; \frac{\varepsilon}{2X} \\
+m,n&gt;N_2 &amp;\implies \left\lvert y_n - y_m \right\rvert &lt; \frac{\varepsilon}{2Y}.
+\end{align*}\]</span> Choose <span class="math inline">\(N = \max(N_1, N_2)\)</span>, then for any <span class="math inline">\(m,n&gt;N\)</span>, <span class="math display">\[\begin{align*}
+\left\lvert x_ny_n - x_my_m \right\rvert
+&amp;= \left\lvert (x_ny_n - x_ny_m) + (x_ny_m - x_my_m) \right\rvert \\
+&amp;\leq \left\lvert x_n(y_n - y_m) \right\rvert + \left\lvert y_m(x_n - x_m) \right\rvert \\
+&amp;= \left\lvert x_n \right\rvert\left\lvert y_n - y_m \right\rvert + \left\lvert y_m \right\rvert\left\lvert x_n - x_m \right\rvert \\
+&amp;&lt; X\frac{\varepsilon}{2X} + Y\frac{\varepsilon}{2Y} \\
+&amp;= \varepsilon\tag*{$\square$}
+\end{align*}\]</span></p>
+<h1 id="homework-set-6">Homework set 6</h1>
+<h2 id="rudin-chapter-3-q2">Rudin Chapter 3 Q2</h2>
+<p>Observe that <span class="math display">\[\begin{align*}
+\sqrt{n^2 + n} - n
+&amp;= \frac{ n^2 + n - n^2 }{ \sqrt{n^2 + n} + n } \\
+&amp;= \frac{ 1  }{ \frac{\sqrt{n^2 + n}}n + 1 } \\
+&amp;= \frac{ 1  }{ \sqrt{1 + \frac1n} + 1 } \\
+\end{align*}\]</span> so the limit as <span class="math inline">\(n\to\infty\)</span> is <span class="math inline">\(\frac12\)</span>. <span class="math inline">\(\square\)</span></p>
+<h2 id="question-a">Question A</h2>
+<p>Define <span class="math display">\[ S := {\left\{ f(x,y): x\in X, y\in Y \right\}}. \]</span> We show that <span class="math display">\[ \inf_{x\in X} \inf_{y\in Y} f(x,y) = \inf S. \]</span> We can see that <span class="math display">\[ S_1 := \inf_{x\in X} (\inf_{y\in Y} f(x,y)) \geq \inf S. \]</span> To show the reverse inequality, we show that for all <span class="math inline">\(x\in X, y\in Y\)</span>, <span class="math inline">\(f(x,y) \geq S_1\)</span>, this is true because <span class="math display">\[ f(x,y) \geq \inf_{y'\in Y} f(x,y') \geq \inf_{x'\in X} \inf_{y'\in Y} f(x',y') = S_1. \]</span> A similar argument proves <span class="math inline">\(S = S_2 := \inf_{y\in Y}\inf_{x\in X} f(x,y)\)</span>. <span class="math inline">\(\square\)</span></p>
+<p>In general we cannot interchange the order of <span class="math inline">\(\liminf_{m\to\infty}\)</span> and <span class="math inline">\(\liminf_{n\to\infty}\)</span>. If the limit exists, then <span class="math inline">\(\liminf\)</span> and limit are equal, so a counterexample similar to the tutorial question, like <span class="math inline">\(\left(1/n\right)^{1/m}\)</span> can be applied.</p>
+<h2 id="question-b">Question B</h2>
+<p>Given a real sequence <span class="math inline">\((x_n)_{n\in\mathbb{N}}\)</span>. Suppose <span class="math inline">\(x = \liminf_{n\to\infty} x_n\)</span>. By definition, <span class="math inline">\(x = \inf E\)</span> where <span class="math inline">\(E\)</span> is the set of subsequential limits. Since <span class="math inline">\(E\)</span> is closed we see that <span class="math inline">\(x\)</span> is also a subsequential limit of <span class="math inline">\((x_n)_{n\in\mathbb{N}}\)</span>. Now let <span class="math inline">\(\varepsilon&gt;0\)</span>, we want to show that there exists <span class="math inline">\(N\)</span> such that for all <span class="math inline">\(n&gt;N\)</span>, <span class="math inline">\(x_n &gt; x - \varepsilon\)</span>. Suppose not, then we have a number <span class="math inline">\(\varepsilon_0 &gt; 0\)</span> such that for all <span class="math inline">\(N\)</span>, there exists <span class="math inline">\(n&gt;N\)</span> such that <span class="math inline">\(x_n \leq x - \varepsilon_0\)</span>. This property will allow us to create a subsequence bounded above by <span class="math inline">\(x -\varepsilon_0\)</span>, which contradicts the definition.</p>
+<p>Conversely suppose <span class="math inline">\(x\)</span> is a subsequential limit of <span class="math inline">\((x_n)_{n\in\mathbb{N}}\)</span> and it has the property <span class="math display">\[\forall\varepsilon&gt;0.~ \exists N\in\mathbb{N}.~ \forall n &gt; N.~ x_n &gt; x - \varepsilon.\]</span> We want to show that <span class="math inline">\(x = \inf E\)</span>. Since <span class="math inline">\(x\in E\)</span> already we just have to show that there cannot be an <span class="math inline">\(x' &lt; x\)</span> with <span class="math inline">\(x' \in E\)</span>. Suppose not, so we have a subsequence <span class="math inline">\(n_1 &lt; n_2 &lt; \dots\)</span> such that <span class="math inline">\((x_{n_i})_{i\in\mathbb{N}} \to x'\)</span>. Because it converges, we can just consider the tail of the subsequence, so without loss of generality <span class="math inline">\(\left\lvert x_{n_1} - x' \right\rvert &lt; r\)</span> where <span class="math inline">\(r = (x - x')/2\)</span>. Now we see that the property of <span class="math inline">\(x\)</span> is violated, consider the number <span class="math inline">\(r\)</span>, for all <span class="math inline">\(N &gt; n_1\)</span>, we can find the next term in the subsequence <span class="math inline">\(x_{n_k}\)</span> where <span class="math inline">\(n_k &gt; N\)</span> and <span class="math display">\[ \left\lvert x_{n_k} - x' \right\rvert &lt; r \]</span> so in particular <span class="math display">\[ x_{n_k} - x' &lt; (x - x')/2 \]</span> so <span class="math inline">\(x_{n_k} &lt; (x + x')/2 = x - r\)</span> which is a contradiction. <span class="math inline">\(\square\)</span></p>
+<h2 id="question-c">Question C</h2>
+<p>Suppose <span class="math inline">\((x_n)_{n\in\mathbb{N}}\to x\)</span>, where <span class="math inline">\(x \in \overline{\mathbb{R}}\)</span>. Case <span class="math inline">\(x = \infty\)</span>, We want to show that <span class="math inline">\((y_n) \to \infty\)</span>. Fix any real <span class="math inline">\(M&gt;0\)</span>, there is a <span class="math inline">\(N\in\mathbb{N}\)</span> such that <span class="math display">\[ n &gt; N \implies x_n \geq 4M.\]</span> Now we consider the sequence <span class="math display">\[ z_n = \frac\alpha{n} \text{ where } \alpha = x_1 + \dots + x_N \]</span> which clearly converges to <span class="math inline">\(0\)</span>. By convergence let <span class="math inline">\(L\in\mathbb{N}\)</span> such that <span class="math display">\[n &gt; L \implies \left\lvert z_n \right\rvert &lt; M\]</span></p>
+<p>So for all sufficiently large <span class="math inline">\(n\)</span> (<span class="math inline">\(n &gt; \max(2N, L)\)</span>), we have <span class="math display">\[\begin{align*}
+y_n
+&amp;= \frac{x_1 + x_2 + \dots + x_n}{n} \\
+&amp;= \frac{x_1 + \dots + x_N}{n} + \frac{x_{N+1} + \dots + x_n}{n} \\
+&amp;\geq \frac{x_1 + \dots + x_N}{n} + \frac{(n-N)(4M)}{n} \\
+&amp;\geq \frac{x_1 + \dots + x_N}{n} + \frac{n(4M)}{2} \\
+&amp;= \frac{x_1 + \dots + x_N}{n} + 2nM \\
+&amp;&gt; -M + 2nM = (2n-1)M \geq M
+\end{align*}\]</span> The case where <span class="math inline">\(x = -\infty\)</span> is symmetric but similar.</p>
+<hr />
+<p>Case <span class="math inline">\(x\in\mathbb{R}\)</span>, we show <span class="math inline">\(y_n \to x\)</span>. Fix any <span class="math inline">\(\varepsilon&gt;0\)</span> and by convergence of <span class="math inline">\(x_n\)</span>, we can find <span class="math inline">\(N\in\mathbb{N}\)</span> such that <span class="math display">\[ n&gt;N \implies \left\lvert x_n - x \right\rvert &lt; \varepsilon/2. \]</span></p>
+<p>Again we consider the sequence <span class="math display">\[z'_n = \frac{\alpha'}{n} \text{ where } \alpha' = (x_1 - x) + (x_2 - x) + \dots + (x_N - x). \]</span> Similarly let <span class="math inline">\(L'\in\mathbb{N}\)</span> such that <span class="math display">\[ n &gt; L' \implies \left\lvert z'_n \right\rvert &lt; \varepsilon. \]</span></p>
+<p>Then for any sufficiently large <span class="math inline">\(n\)</span> (<span class="math inline">\(n &gt; \max(N,L)\)</span>) <span class="math display">\[\begin{align*}
+\left\lvert y_n - x \right\rvert
+&amp;= \left\lvert \frac{x_1 + \dots + x_N + x_{N+1} + \dots + x_n}{n} - \frac{\overbrace{x + \dots + x}^{n \text{copies}}}{n} \right\rvert \\
+&amp;= \left\lvert \frac{(x_1-x) + \dots + (x_N-x) + (x_{N+1}-x) + \dots + (x_n-x)}n \right\rvert \\
+&amp;&lt; \frac{\varepsilon}2
++ \left\lvert \frac{(x_{N+1}-x) + \dots + (x_n-x)}n  \right\rvert \\
+&amp;\leq \frac{\varepsilon}2
++ \left\lvert \frac{(x_{N+1}-x) + \dots + (x_n-x)}n  \right\rvert \\
+&amp;&lt; \frac{\varepsilon}2
++ \frac{(n-N)(\varepsilon/2)}{n} \\
+&amp;\leq \frac{\varepsilon}2
++ \frac{n\varepsilon}{2n} \\
+&amp;\leq \frac{\varepsilon}2
++ \frac{\varepsilon}2 = \varepsilon
+\tag*{$\square$}
+\end{align*}\]</span></p>
+<hr />
+<p>As for the counter example, consider <span class="math inline">\(x_n = (-1)^n\)</span> which is not convergent, but the Cesaro average of this sequence converges to 0.</p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA2108S/hw456.md">MA2108S/hw456.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

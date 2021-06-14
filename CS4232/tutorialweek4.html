@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="6th September 2019" />
+  <title>Exercise 3.23</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">Exercise 3.23</h1><p class="author">Qi Ji</p>
+<p class="date">6th September 2019</p>
+</header>
+<article><blockquote>
+<p>Find a language which needs for Jaffe’s Matching Pumping Lemma at least constant <span class="math inline">\(k = 100\)</span> and can be recognised by a deterministic finite automaton with <span class="math inline">\(100\)</span> states. Prove your answer.</p>
+</blockquote>
+<p>Let <span class="math inline">\(\Sigma = \left\{0\right\}\)</span> (doesn’t matter much here), and let <span class="math inline">\(L = \left\{w\in\Sigma^*: \left\lvert w\right\rvert \text{ is a multiple of }100\right\}\)</span>. <span class="math inline">\(L\)</span> can be recognised by a dfa with <span class="math inline">\(100\)</span> states, specifically one where the state corresponds to number of characters read modulo 100, and accepts when it is <span class="math inline">\(0\)</span>.</p>
+<p><span class="math inline">\(L\)</span> satisfies Jaffe’s Matching Pumping Lemma with <span class="math inline">\(k = 100\)</span>. To see why, fix any <span class="math inline">\(x\in \Sigma^*\)</span> and <span class="math inline">\(y \in \Sigma^{100}\)</span> and it is easy to see that for any <span class="math inline">\(h\in\mathbb{N}\)</span>, <span class="math inline">\(L_{xy} = L_{xy^h} = \left\{w\in\Sigma^*: \left\lvert w\right\rvert + \left\lvert x\right\rvert \text{ is a multiple of }100\right\}\)</span>.</p>
+<p>Suppose <span class="math inline">\(L\)</span> satisfies Jaffe’s Matching Pumping Lemma with <span class="math inline">\(k &lt; 100\)</span>, then there exists <span class="math inline">\(y\in\Sigma^k\)</span> such that for all <span class="math inline">\(h\in\mathbb{N}\)</span>, <span class="math inline">\(L_{y^h} = L\)</span> so in particular <span class="math inline">\(L_y = L\)</span>, but <span class="math inline">\(\left\lvert y\right\rvert &lt; 100\)</span> so <span class="math inline">\(0^{100-\left\lvert y\right\rvert} \in L_y\)</span> but clearly is not in <span class="math inline">\(L\)</span>.</p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/CS4232/tutorialweek4.md">CS4232/tutorialweek4.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

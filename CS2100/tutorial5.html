@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="Week 6 also" />
+  <title>CS2100 Tutorial 5</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">CS2100 Tutorial 5</h1><p class="author">Qi Ji</p>
+<p class="date">Week 6 also</p>
+</header>
+<article><h1 class="unnumbered" data-number id="d1" class="unnumbered" data-number>D1</h1>
+<p>do later</p>
+<h1 data-number="1" id="tracing-data-control" data-number="1"><span class="header-section-number">1</span> Tracing data &amp; control</h1>
+<h2 data-number="1.1" id="x8df80000-lw-24-015" data-number="1.1"><span class="header-section-number">1.1</span> <code>0x8df80000: lw $24, 0($15)</code></h2>
+<p>In binary, get <code>100011 01111 11000 0000000000000000</code>.</p>
+<table>
+<caption>Register File</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">RR1</th>
+<th style="text-align: center;">RR2</th>
+<th style="text-align: center;">WR</th>
+<th style="text-align: center;">WD</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>$15</code></td>
+<td style="text-align: center;"><code>$24</code></td>
+<td style="text-align: center;"><code>$24</code></td>
+<td style="text-align: center;"><code>M([$15])</code></td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>ALU</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Opr1</th>
+<th style="text-align: center;">Opr2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>[$15]</code></td>
+<td style="text-align: center;"><code>0</code></td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>Data Memory</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Address</th>
+<th style="text-align: center;">Write Data</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>[$15]</code></td>
+<td style="text-align: center;"><code>[$24]</code></td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>Control</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">RegDst</th>
+<th style="text-align: center;">RegWr</th>
+<th style="text-align: center;">AluSrc</th>
+<th style="text-align: center;">MemRead</th>
+<th style="text-align: center;">MemWrite</th>
+<th style="text-align: center;">MemToReg</th>
+<th style="text-align: center;">Branch</th>
+<th style="text-align: center;">ALUop</th>
+<th style="text-align: center;">ALUctrl</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">00</td>
+<td style="text-align: center;">0010</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[PC = PC + 4\]</span></p>
+<h2 data-number="1.2" id="x1023000c-beq-1-3-12" data-number="1.2"><span class="header-section-number">1.2</span> <code>0x1023000c: beq $1, $3, 12</code></h2>
+<p>Converting to binary, get <code>000100 00001 00011 0000000000001100</code>.</p>
+<table>
+<caption>Register File</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">RR1</th>
+<th style="text-align: center;">RR2</th>
+<th style="text-align: center;">WR</th>
+<th style="text-align: center;">WD</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>$1</code></td>
+<td style="text-align: center;"><code>$3</code></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">X</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>ALU</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Opr1</th>
+<th style="text-align: center;">Opr2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>[$1]</code></td>
+<td style="text-align: center;"><code>[$3]</code></td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>Data Memory</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Address</th>
+<th style="text-align: center;">Write Data</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>[$1] - [$3]</code></td>
+<td style="text-align: center;"><code>[$3]</code></td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>Control</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">RegDst</th>
+<th style="text-align: center;">RegWr</th>
+<th style="text-align: center;">AluSrc</th>
+<th style="text-align: center;">MemRead</th>
+<th style="text-align: center;">MemWrite</th>
+<th style="text-align: center;">MemToReg</th>
+<th style="text-align: center;">Branch</th>
+<th style="text-align: center;">ALUop</th>
+<th style="text-align: center;">ALUctrl</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">01</td>
+<td style="text-align: center;">0110</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[ PC = \begin{cases}
+PC + 4 &amp;\text{if branch not taken} \\
+PC + 4 + 4\cdot 12 &amp;\text{if branch taken}
+\end{cases}\]</span></p>
+<h2 data-number="1.3" id="x0285c822-sub-25-20-5" data-number="1.3"><span class="header-section-number">1.3</span> <code>0x0285c822: sub $25, $20, $5</code></h2>
+<p>Convert to binary, get <code>000000 10100 00101 11001 00000 100010</code>.</p>
+<table>
+<caption>Register File</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">RR1</th>
+<th style="text-align: center;">RR2</th>
+<th style="text-align: center;">WR</th>
+<th style="text-align: center;">WD</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>$20</code></td>
+<td style="text-align: center;"><code>$5</code></td>
+<td style="text-align: center;"><code>$25</code></td>
+<td style="text-align: center;"><code>[$20] - [$25]</code></td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>ALU</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Opr1</th>
+<th style="text-align: center;">Opr2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>[$20]</code></td>
+<td style="text-align: center;"><code>[$5]</code></td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>Data Memory</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Address</th>
+<th style="text-align: center;">Write Data</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>[$20] - [$25]</code></td>
+<td style="text-align: center;"><code>[$5]</code></td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>Control</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">RegDst</th>
+<th style="text-align: center;">RegWr</th>
+<th style="text-align: center;">AluSrc</th>
+<th style="text-align: center;">MemRead</th>
+<th style="text-align: center;">MemWrite</th>
+<th style="text-align: center;">MemToReg</th>
+<th style="text-align: center;">Branch</th>
+<th style="text-align: center;">ALUop</th>
+<th style="text-align: center;">ALUctrl</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">0110</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[ PC = PC + 4 \]</span></p>
+<h1 data-number="2" id="estimating-times" data-number="2"><span class="header-section-number">2</span> Estimating times</h1>
+<h2 data-number="2.1" id="sub-instruction" data-number="2.1"><span class="header-section-number">2.1</span> SUB instruction</h2>
+<p>Relevant paths</p>
+<ul>
+<li>Inst-mem <span class="math inline">\(\to\)</span> Control <span class="math inline">\(\to\)</span> ALUControl <span class="math inline">\(\to\)</span> ALU <span class="math inline">\(\to\)</span> Mux(MemToReg) <span class="math inline">\(\to\)</span> Registers.</li>
+<li>Inst-mem <span class="math inline">\(\to\)</span> Regs <span class="math inline">\(\to\)</span> Mux(ALUSrc) <span class="math inline">\(\to\)</span> ALU <span class="math inline">\(\to\)</span> Mux(MemToReg) <span class="math inline">\(\to\)</span> Registers. (critical)</li>
+<li>Inst-mem <span class="math inline">\(\to\)</span> Control <span class="math inline">\(\to\)</span> Mux(PCSrc)</li>
+</ul>
+<p><span class="math display">\[\text{time} = 400 + 200 + 30 + 120 + 30 + 200 = 980ps. \]</span></p>
+<h2 data-number="2.2" id="lw-instruction" data-number="2.2"><span class="header-section-number">2.2</span> LW Instruction</h2>
+<p>Critical path is Inst-mem <span class="math inline">\(\to\)</span> Regs <span class="math inline">\(\to\)</span> ALU <span class="math inline">\(\to\)</span> Data Memory <span class="math inline">\(\to\)</span> Mux(MemToReg) <span class="math inline">\(\to\)</span> Regs.</p>
+<p>Note: the paths</p>
+<ul>
+<li>Inst-mem <span class="math inline">\(\to\)</span> Sign Extend <span class="math inline">\(\to\)</span> Mux(ALUSrc) <span class="math inline">\(\to\)</span> ALU is faster.</li>
+<li>Inst-mem <span class="math inline">\(\to\)</span> Control <span class="math inline">\(\to\)</span> ALUSrc</li>
+</ul>
+<p>are both faster, so not critical.</p>
+<p><span class="math display">\[\text{time} = 400 + 200 + 120 + 350 + 30 + 200 = 1300ps.\]</span></p>
+<h2 data-number="2.3" id="beq-instruction" data-number="2.3"><span class="header-section-number">2.3</span> BEQ instruction</h2>
+<p>Critical path is Inst-mem <span class="math inline">\(\to\)</span> Regs <span class="math inline">\(\to\)</span> Mux(ALUSrc) <span class="math inline">\(\to\)</span> ALU <span class="math inline">\(\to\)</span> And(Branch, is0?) <span class="math inline">\(\to\)</span> Mux(PCSrc).</p>
+<p><span class="math display">\[\text{time} = 400 + 200 + 30 + 120 + 20 + 30 = 800ps.\]</span></p>
+<p>Cycle time should be longer than <span class="math inline">\(1300ps\)</span>.</p>
+<h1 data-number="3" id="mistake" data-number="3"><span class="header-section-number">3</span> Mistake!</h1>
+<p>RegDst mux inputs are swapped.</p>
+<h2 data-number="3.1" id="add-instruction" data-number="3.1"><span class="header-section-number">3.1</span> <code>add</code> instruction</h2>
+<ul>
+<li><code>add $3, $4, $3</code> will still produce correct result</li>
+<li><code>add $1, $4, $3</code> will place <code>[$4] + [$3]</code> in <code>$3</code> instead of <code>$1</code> which is wrong.</li>
+</ul>
+<h2 data-number="3.2" id="lw-instruction-1" data-number="3.2"><span class="header-section-number">3.2</span> <code>lw</code> instruction</h2>
+<ul>
+<li>Cancerously come up with the instruction such that the first 5 bits of immediate field and <code>rt</code> hold the same value, then it’s correct.</li>
+<li>Literally anythng else like <code>lw $3, 9999($0)</code> will be wrong.</li>
+</ul>
+<h2 data-number="3.3" id="beq-instruction-1" data-number="3.3"><span class="header-section-number">3.3</span> <code>beq</code> instruction</h2>
+<p><code>beq</code> does not write so any <code>beq</code> instruction will be correct</p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/CS2100/tutorial5.md">CS2100/tutorial5.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

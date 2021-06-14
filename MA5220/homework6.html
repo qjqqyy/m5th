@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="11th October 2019" />
+  <title>MA5220 Homework 6</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">MA5220 Homework 6</h1><p class="author">Qi Ji</p>
+<p class="date">11th October 2019</p>
+</header>
+<article><h1 data-number="1" id="section" data-number="1"><span class="header-section-number">1</span> </h1>
+<p>Let <span class="math inline">\(\overline{y}\)</span> abbreviate <span class="math inline">\(y_1,\dots,y_n\)</span> where how many variables there are doesn’t matter.</p>
+<blockquote>
+<p>Let <span class="math inline">\(\phi(\overline{y})\)</span> be a formula with free variables as shown. Show that <span class="math display">\[ C_\phi = \left\{\alpha&lt;\omega_1: \left(\forall\overline{y}\in L_\alpha\right)\left[\phi^{L_\alpha}(\overline{y}) \iff \phi^{L_{\omega_1}}(\overline{y})\right]\right\} \]</span> is closed and unbounded in <span class="math inline">\({\omega_1}\)</span>.</p>
+</blockquote>
+<!---
+I found a even more general version of reflection theorem [here](http://ozark.hendrix.edu/~yorgey/settheory/15-reflection-principle.pdf)
+which asserts that whenever \(\angle{A_\alpha:\alpha \in \mathbf{ORD}}\) is a hierarchy,
+the class \(\mathbf{C} \subseteq \mathbf{ORD}\) where every \(\alpha\in \mathbf{C}\) satisfies
+\[ \fa{\ybar\in A_\alpha}{\phi^{A_\alpha}(\ybar) \iff \phi^{\mathbf{A}}(\ybar)} \]
+is closed unbounded (which is not exactly stateable in ZFC).
+This question appears to be the above theorem restricted to \(\omega_1\)
+(which makes life a lot easier since everything is a set and has cofinality at most \(\omega\)).
+-->
+<p>We proceed just like the reflection theorem. When <span class="math inline">\(\phi\)</span> is atomic it is absolute, so we can take the set to be <span class="math inline">\(\omega_1\)</span>. When <span class="math inline">\(\phi = \lnot \theta\)</span> we just reuse <span class="math inline">\(C_\theta\)</span>. When <span class="math inline">\(\phi = \psi \land \theta\)</span> we let <span class="math inline">\(C_\phi = C_\psi \cap C_\theta\)</span> which is still closed unbounded, and an easy check shows that <span class="math inline">\(C_\phi\)</span> agrees with the condition.</p>
+<p>When <span class="math inline">\(\phi = \left(\exists x\right)\psi(x,\overline{y})\)</span> let <span class="math inline">\(C_\psi\)</span> be the club given by induction hypothesis. Define <span class="math inline">\(F:L_{\omega_1}^n \to \omega_1\)</span> as follows. In the case that <span class="math inline">\(\left(\exists x\in L_{\omega_1}\right) \psi^{L_{\omega_1}}(x,\overline{y})\)</span>, define <span class="math inline">\(F(\overline{y})\)</span> to be the least <span class="math inline">\(\alpha\in\omega_1\)</span> such that <span class="math inline">\(\left(\exists x\in L_\alpha\right) \psi^{L_{\omega_1}}(x,\overline{y})\)</span>, and let <span class="math inline">\(F(\overline{y}) = 0\)</span> otherwise. Next define <span class="math inline">\(G:\omega_1\to \omega_1\)</span> as <span class="math inline">\(G(\alpha) = \sup_{\overline{y}\in L_{\alpha}} F(\overline{y})\)</span>, note that <span class="math inline">\(G(\alpha)\)</span> exists as <span class="math inline">\(\left\lvert L_\alpha\right\rvert = \left\lvert\alpha\right\rvert &lt; \omega_1\)</span>. Now let <span class="math display">\[C_\phi = C_\psi \cap \operatorname{Lim}(\omega_1) \cap \left\{\alpha \in \omega_1: \alpha\text{ is closed under }G\right\} \]</span> which is the intersection of 3 clubs, and therefore a club.</p>
+<p>It remains to show that for every <span class="math inline">\(\alpha \in C_\phi, \overline{y}\in L_\alpha\)</span> <span class="math display">\[
+\left(\exists x\in L_\alpha\right) \psi^{L_\alpha}(x,\overline{y}) \iff
+\left(\exists x\in L_{\omega_1}\right) \psi^{L_{\omega_1}}(x,\overline{y})
+\]</span></p>
+<p>Suppose there is <span class="math inline">\(x\in L_\alpha\)</span> satisfying <span class="math inline">\(\psi^{L_\alpha}(x,\overline{y})\)</span>, then as <span class="math inline">\(\alpha \in C_\psi\)</span>, it follows that <span class="math inline">\(\psi^{L_{\omega_1}}(x,\overline{y})\)</span> holds, and since <span class="math inline">\(L_\alpha \subseteq L_{\omega_1}\)</span> we complete the proof.</p>
+<p>Conversely suppose there exists <span class="math inline">\(x\in L_{\omega_1}\)</span> such that <span class="math inline">\(\psi^{L_{\omega_1}}(x,\overline{y})\)</span>, we need to produce an <span class="math inline">\(x'\in L_\alpha\)</span> such that <span class="math inline">\(\psi^{L_\alpha}(x',\overline{y})\)</span>. First find <span class="math inline">\(\beta &lt; \alpha\)</span> such that all <span class="math inline">\(\overline{y}\in L_\beta\)</span>, which we can since <span class="math inline">\(\overline{y}\)</span> is finite and <span class="math inline">\(\alpha\)</span> is limit. Note that from definition <span class="math inline">\(0 &lt; F(\overline{y}) \leq G(\beta)\)</span>, and closure gives <span class="math inline">\(G(\beta) &lt; \alpha\)</span>. So there exists <span class="math inline">\(x' \in L_{F(\overline{y})} \subseteq L_\alpha\)</span> satisfying <span class="math inline">\(\psi^{L_{\omega_1}}(x',\overline{y})\)</span>. Since <span class="math inline">\(\alpha \in C_\psi\)</span> this means that <span class="math inline">\(\psi^{L_\alpha}(x',\overline{y})\)</span> holds as well.</p>
+<h1 data-number="2" id="section-1" data-number="2"><span class="header-section-number">2</span> </h1>
+<blockquote>
+<p>Find a sentence <span class="math inline">\(\psi\)</span> such that <span class="math inline">\(\psi^{V_{\omega_1}}\)</span> holds but at every <span class="math inline">\(\alpha &lt; \omega_1\)</span>, <span class="math inline">\(\psi^{V_\alpha}\)</span> fails.</p>
+</blockquote>
+<p>This sentence holds in <span class="math inline">\(V_{\omega_1}\)</span> but fails when relativised to <span class="math inline">\(V_\alpha\)</span> whenever <span class="math inline">\(\alpha &lt; \omega_1\)</span> is a successor, <span class="math display">\[ \psi_1 \equiv \left(\forall x\right)\left(\exists y\right)\left(x\in y\right). \]</span> Also, the axiom of infinity holds in <span class="math inline">\(V_{\omega_1}\)</span> but fails for all <span class="math inline">\(\alpha \leq \omega\)</span>. It remains to produce a sentence which fails for all stages <span class="math inline">\(\alpha \in (\omega,\omega_1) \cap \operatorname{Lim}(\omega_1)\)</span> but holds at stage <span class="math inline">\(\omega_1\)</span>. We claim that this sentence works <span class="math display">\[
+\psi_2 \equiv
+\left(\forall X,R\right)
+\left(\exists \gamma, g\right) \left(
+\begin{aligned}
+&amp;\left\lvert X\right\rvert \leq \omega \land R \text{ well-orders } X \\&amp;\qquad
+\implies
+\gamma\in\mathbf{ORD} \land
+g \text{ witnesses }
+(X,R) \cong (\gamma, \in)
+\end{aligned}
+\right).
+\]</span></p>
+<p><strong>Claim.</strong> <span class="math inline">\(\left\lvert X\right\rvert \leq \omega\)</span> is absolute between <span class="math inline">\(V_\alpha\)</span> and <span class="math inline">\(\mathbf{V}\)</span> whenever <span class="math inline">\(\alpha &gt; \omega\)</span> is a limit ordinal.</p>
+<p>First note that <span class="math inline">\(\omega\)</span> is absolute for <span class="math inline">\(V_\alpha\)</span>, and <span class="math inline">\(\left\lvert X\right\rvert \leq \omega\)</span> is <span class="math inline">\(\Sigma_1\)</span>. So by the Tarski-Vaught criterion we just have to show that for any <span class="math inline">\(X\in V_{\alpha}\)</span>, <span class="math display">\[
+\left(\exists f\right)\left(f: X \to \omega \text{ is injective}\right)
+\implies
+\left(\exists f\in V_\alpha\right)\left(f: X \to \omega \text{ is injective}\right)
+\]</span> and this holds because all functions <span class="math inline">\(f: X\to \omega\)</span> are enumerated finitely many stages after <span class="math inline">\(X\)</span>, that is if <span class="math inline">\(X\in V_\beta\)</span> for some <span class="math inline">\(\beta &lt; \alpha\)</span>, the witness <span class="math inline">\(f\)</span> still remains in <span class="math inline">\(V_\alpha\)</span>.</p>
+<p><strong>Claim.</strong> “<span class="math inline">\(R\)</span> well-orders <span class="math inline">\(X\)</span>” is absolute between <span class="math inline">\(V_\alpha\)</span> and <span class="math inline">\(\mathbf{V}\)</span> whenever <span class="math inline">\(\alpha &gt; \omega\)</span> is a limit ordinal.</p>
+<p>“<span class="math inline">\(R\)</span> well-orders <span class="math inline">\(X\)</span>” is <span class="math inline">\(\Pi_1\)</span>, so we only need to show that for any <span class="math inline">\(X,R\in V_\alpha\)</span>, <span class="math display">\[\begin{align*}
+&amp;\left(\forall Y\in V_\alpha\right)\left(Y\subseteq X \implies Y \text{ has an } R\text{-minimal element}\right)
+\\
+&amp;\qquad\implies
+\left(\forall Y\right)\left(Y\subseteq X \implies Y \text{ has an } R\text{-minimal element}\right).
+\end{align*}\]</span> as the other clauses that form “<span class="math inline">\(R\)</span> well-orders <span class="math inline">\(X\)</span>” are all <span class="math inline">\(\Delta_0\)</span>. This statement also holds since <span class="math inline">\(\alpha\)</span> is limit, and when <span class="math inline">\(X\in V_\alpha\)</span>, all <span class="math inline">\(Y\)</span> satisfying <span class="math inline">\(Y\subseteq X\)</span> are also in <span class="math inline">\(V_\alpha\)</span>.</p>
+<p>Also note that <span class="math inline">\(\gamma \in \mathbf{ORD}\)</span> and “<span class="math inline">\(g\)</span> witnesses <span class="math inline">\((X,R) \cong (\gamma, \in)\)</span>” are <span class="math inline">\(\Delta_0\)</span>.</p>
+<p><strong><span class="math inline">\(\psi_2^{V_{\omega_1}}\)</span> holds.</strong></p>
+<p>Let <span class="math inline">\(X,R\in V_{\omega_1}\)</span> with <span class="math inline">\(\left\lvert X\right\rvert \leq \omega\)</span> and <span class="math inline">\(R\)</span> a well ordering on <span class="math inline">\(X\)</span>, then let <span class="math inline">\(\gamma = \operatorname{type}(X,R) &lt; \omega_1\)</span> so <span class="math inline">\(\gamma \in V_{\omega_1}\)</span>. In addition the (unique) witness <span class="math inline">\(g: X\to \gamma\)</span> has rank below <span class="math inline">\(\max(\operatorname{rank}(X),\gamma) + \omega &lt; \omega_1\)</span>, as similar to argument above all functions <span class="math inline">\(X\to\gamma\)</span> are enumerated in finitely many stages after <span class="math inline">\(\beta &lt; \omega_1\)</span> where both <span class="math inline">\(\gamma, X \in V_\beta\)</span>.</p>
+<p><strong>Let <span class="math inline">\(\alpha&lt;\omega_1\)</span> be a limit ordinal greater than <span class="math inline">\(\omega\)</span>, then <span class="math inline">\(\psi_2^{V_\alpha}\)</span> fails.</strong></p>
+<p>Fix <span class="math inline">\(X\in V_\alpha\)</span> a countably infinite set (<span class="math inline">\(\omega\)</span> will do), all possible relations on <span class="math inline">\(X\)</span> are enumerated in finitely many stages after <span class="math inline">\(X\)</span>. Since all well orderings of <span class="math inline">\(X\)</span> are in <span class="math inline">\(V_\alpha\)</span>, let <span class="math inline">\(R \in V_\alpha\)</span> well order <span class="math inline">\(X\)</span> such that <span class="math inline">\(\gamma = \operatorname{type}(X,R) &gt; \alpha\)</span>, then we can see that <span class="math inline">\(\gamma \notin V_\alpha\)</span>, and it follows from the uniqueness of <span class="math inline">\(\operatorname{type}\)</span> that no <span class="math inline">\(\gamma, g\)</span> can exist in <span class="math inline">\(V_\alpha\)</span>.</p>
+<p>Finally, let <span class="math inline">\(\psi = \psi_1 \land \psi_2 \land \text{Inf}\)</span> and <span class="math inline">\(\psi^{V_\alpha}\)</span> will fail for all <span class="math inline">\(\alpha &lt; \omega_1\)</span> but <span class="math inline">\(\psi^{V_{\omega_1}}\)</span> will hold.</p>
+<h1 data-number="3" id="section-2" data-number="3"><span class="header-section-number">3</span> </h1>
+<blockquote>
+<p>Assume <span class="math inline">\(\mathbf{V} = \mathbf{L}\)</span>. Show that for every infinite <span class="math inline">\(\kappa\)</span>, <span class="math inline">\(L_\kappa = H_\kappa\)</span>.</p>
+</blockquote>
+<p>It is known that <span class="math inline">\(L_\omega = V_\omega = H_\omega\)</span>, so assume <span class="math inline">\(\kappa &gt; \omega\)</span>.</p>
+<p>We first show that <span class="math inline">\(L_\kappa \subseteq H_\kappa\)</span>. Let <span class="math inline">\(x\in L_\kappa\)</span>, so <span class="math inline">\(x\in L_\alpha\)</span> for some <span class="math inline">\(\alpha &lt;\kappa\)</span>, then <span class="math inline">\(x\subseteq \operatorname{trcl}(x)\subseteq L_\alpha\)</span>, therefore <span class="math inline">\(\left\lvert\operatorname{trcl}(x)\right\rvert\leq \left\lvert L_\alpha\right\rvert \leq \left\lvert\alpha\right\rvert &lt; \kappa\)</span>.</p>
+<p>Before we show <span class="math inline">\(H_\kappa \subseteq L_\kappa\)</span>, we cite the following results.</p>
+<p><strong>Lemma 14.7.</strong> There is a finite conjunction <span class="math inline">\(\psi\)</span> of axioms of ZF such that for every transitive <span class="math inline">\(M\)</span>, <span class="math display">\[\psi^M \land \left(\mathbf{V} = \mathbf{L}\right)^M \implies M = L_{o(M)}. \]</span></p>
+<p><strong>Downward Löwenheim-Skolem (Kunen IV 7.10).</strong> Let <span class="math inline">\(\mathbf{Z}\)</span> be any transitive class and <span class="math inline">\(\phi\)</span> a sentence, then <span class="math display">\[ \left(\forall X\subseteq \mathbf{Z}\right)\left[
+X\text{ is transitive} \Rightarrow
+\left(\exists M\right)\left(
+X\subseteq M \land
+\phi^M\Leftrightarrow\phi \land
+M\text{ is transitive} \land
+\left\lvert M\right\rvert \leq \max\left(\omega,\left\lvert X\right\rvert\right)
+\right)
+\right]. \]</span> This statement can be proven by applying the standard Löwenheim-Skolem theorem followed by Mostowski collapse.</p>
+<p>Now assume <span class="math inline">\(\mathbf{V} = \mathbf{L}\)</span> and let <span class="math inline">\(x \in H_\kappa\)</span>, define <span class="math inline">\(X = \left\{x\right\}\cup \operatorname{trcl}(x)\)</span> which is transitive and <span class="math inline">\(\left\lvert X\right\rvert = \left\lvert\operatorname{trcl}(x)\right\rvert + 1 &lt; \kappa\)</span>. In the case that <span class="math inline">\(X\)</span> is finite we have <span class="math inline">\(x\in X\in L_\omega\subseteq L_\kappa\)</span> and we are done. So assume <span class="math inline">\(\left\lvert X\right\rvert \geq \omega\)</span> and let <span class="math inline">\(\psi\)</span> be given by Lemma 14.7. By downward Löwenheim-Skolem theorem there exists transitive <span class="math inline">\(M\supseteq X\)</span> with <span class="math inline">\(\left\lvert M\right\rvert = \left\lvert X\right\rvert &lt; \kappa\)</span> such that <span class="math display">\[
+\psi \land \left(\mathbf{V} = \mathbf{L}\right) \iff
+\psi^M\land\left(\mathbf{V} = \mathbf{L}\right)^M
+\]</span> and so <span class="math inline">\(M = L_{o(M)}\)</span>. Now <span class="math inline">\(\left\lvert o(M)\right\rvert = \left\lvert L_{o(M)}\right\rvert = \left\lvert M\right\rvert = \left\lvert X\right\rvert &lt;\kappa\)</span> which gives <span class="math inline">\(o(M) &lt; \kappa\)</span>, this means that <span class="math inline">\(x\in X\subseteq M = L_{o(M)} \subseteq L_\kappa\)</span>.</p>
+<h1 data-number="4" id="section-3" data-number="4"><span class="header-section-number">4</span> </h1>
+<blockquote>
+<p>Let <span class="math inline">\(S\)</span> be any set of axioms extending ZF. Suppose <span class="math inline">\(\phi_1,\dots,\phi_n\in S\)</span>. Show that, if <span class="math inline">\(\phi_1,\dots,\phi_n\vdash \phi\)</span> for each <span class="math inline">\(\phi\in S\)</span>, then <span class="math inline">\(S\)</span> is inconsistent. Conclude that ZF is not finitely axiomatizable.</p>
+</blockquote>
+<p>Let <span class="math inline">\(\chi = \phi_1\land\cdots\land\phi_n\)</span>, and we know that for every statement <span class="math inline">\(\phi\)</span> of <span class="math inline">\(S\)</span>, the statement <span class="math inline">\(\chi\Rightarrow\phi\)</span> is logically valid, then for every transitive class <span class="math inline">\(\mathbf{M}\)</span>, by Fact 10.2 <span class="math inline">\(\chi^\mathbf{M}\Rightarrow\phi^\mathbf{M}\)</span> is also logically valid. We reflect on <span class="math inline">\(\chi\)</span> and let <span class="math inline">\(\alpha\)</span> be the smallest such that <span class="math inline">\(\chi^{V_\alpha} \Leftrightarrow \chi\)</span>. Then since <span class="math inline">\(\chi\)</span> are axioms, <span class="math inline">\(\chi^{V_\alpha}\)</span> holds and for each statement <span class="math inline">\(\phi\)</span> in <span class="math inline">\(S\)</span>, <span class="math inline">\(\phi^{V_\alpha}\)</span> holds too. As <span class="math inline">\(S\)</span> extends ZF, all the basic absoluteness results hold for <span class="math inline">\(V_\alpha\)</span> and <span class="math inline">\((\)</span>Reflection theorem<span class="math inline">\()^{V_\alpha}\)</span> holds too, so in particular <span class="math display">\[
+\left(\exists \beta \in V_\alpha\right)\left(\chi^{V_\beta} \iff \chi^{V_\alpha}\right)
+\]</span> as by Lemma 11.12, <span class="math inline">\(\left(V_\beta\right)^{V_\alpha} = V_\beta\cap V_\alpha = V_\beta\)</span>. This means <span class="math inline">\(\chi^{V_\beta}\)</span> also holds which contradicts minimality of <span class="math inline">\(\alpha\)</span>, therefore <span class="math inline">\(S\)</span> is inconsistent. This means that if any finite collection of statements <span class="math inline">\(S\)</span> proves ZF, then <span class="math inline">\(\text{ZF}\cup S\)</span> is inconsistent, so any attempt to axiomatize ZF in a finite manner gives rise to an inconsistent theory.</p>
+<h1 data-number="5" id="section-4" data-number="5"><span class="header-section-number">5</span> </h1>
+<blockquote>
+<p>Show that there is a finite conjunction <span class="math inline">\(\phi\)</span> of axioms of ZF, such that whenever <span class="math inline">\(\mathbf{M}\)</span> is a transitive <strong>proper</strong> class satisfying <span class="math inline">\(\phi\)</span>, <span class="math inline">\(\mathbf{M}\)</span> satisfies all the axioms of ZF.</p>
+</blockquote>
+<p>The only axiom schemes in ZF are replacement and comprehension. We first let <span class="math inline">\(\phi\)</span> be a conjunction of all the other axioms, plus whatever instances of replacement and comprehension needed to prove all the absoluteness results I invoke below.</p>
+<p>For any <span class="math inline">\(s\in B^m, t\in B^n\)</span>, we let <span class="math inline">\(s*t\)</span> denote <span class="math inline">\(\left\langle s(0),\dots,s(m-1),t(0),\dots,t(n-1)\right\rangle\in B^{m+n}\)</span>. Using <span class="math inline">\(\operatorname{En}(m,A,n)\)</span> as in Definition 14.1, we add to <span class="math inline">\(\phi\)</span> the following statements, <span class="math display">\[ \texttt{C} \equiv
+\left(\forall m,n\in\omega\right)
+\left(\forall B\right)
+\left(\forall A\in B, s\in B^n\right)
+\left(\exists y\right)
+\left(\forall t\right)
+\left[ t\in y \Leftrightarrow
+t\in B\land \left\langle t,A\right\rangle*s \in \operatorname{En}(m,B,n+2)
+\right]
+\]</span> and <span class="math display">\[ \texttt{R} \equiv
+\left(\forall m,n\in\omega\right)
+\left(\forall B\right)
+\left(\forall A\in B, s\in B^n\right)
+\left[
+\left(\forall t\in A\right)
+\left(\exists ! y\right)
+\left(y\in B \land \left\langle t,y,A\right\rangle \in \operatorname{En}(m,B,n+3)\right) \\
+\Rightarrow
+\left(\exists Y\right)
+\left(\forall t\in A\right)
+\left(\exists y\in Y\right)
+\left(y\in B \land \left\langle t,y,A\right\rangle \in \operatorname{En}(m,B,n+3)\right)
+\right]
+\]</span></p>
+<p>Let <span class="math inline">\(\mathbf{M}\)</span> be a transitive proper class satisfying <span class="math inline">\(\phi\)</span>, we only need to check instances of Comprehension and Replacement. Let <span class="math inline">\(M_\alpha = \mathbf{M} \cap V_\alpha\)</span> and note that <span class="math inline">\(\mathbf{M} = \bigcup_{\alpha\in \mathbf{ORD}} M_\alpha\)</span> is a continuous hierarchy.</p>
+<p>Let <span class="math inline">\(\theta(t,A,\overline{v})\)</span> be a formula with free variables as shown. Let <span class="math inline">\(\overline{v}, A\in \mathbf{M}\)</span> and we want <span class="math display">\[ X = \left\{t\in A: \theta^\mathbf{M}(t,A,\overline{v})\right\} \in \mathbf{M}. \]</span> First note that <span class="math inline">\(\mathbf{M}\)</span> satisfies enough of ZF for tuples to exist, so <span class="math inline">\(\left\langle v_1,\dots,v_n\right\rangle\in \mathbf{M}\)</span> too. Reflect on <span class="math inline">\(\theta\land\phi\)</span> to find <span class="math inline">\(\beta\)</span> above the ranks of <span class="math inline">\(X,A,s,\omega\)</span> such that <span class="math inline">\(\theta\)</span> and <span class="math inline">\(\phi\)</span> are absolute between <span class="math inline">\(M_\beta\)</span> and <span class="math inline">\(\mathbf{M}\)</span>. Now <span class="math inline">\(M_\beta\)</span> is a transitive set and <span class="math inline">\(\phi^{M_\beta}\)</span> holds, also note that <span class="math inline">\(A,s,\overline{v},\omega \in M_\beta\)</span>, <span class="math inline">\(X\subseteq M_\beta\)</span> and <span class="math inline">\(M_\beta = \left(V_\beta\right)^\mathbf{M} \in \mathbf{M}\)</span>. Appealing to Gödel’s construction there is a number <span class="math inline">\(q\in \omega\)</span> such that <span class="math inline">\(\operatorname{En}(q,M_\beta,n+2)\)</span> is precisely the set of all <span class="math inline">\((n+2)\)</span>-tuples over <span class="math inline">\(M_\beta\)</span> where <span class="math inline">\(\theta^{M_\beta}\)</span> holds. Then applying <span class="math inline">\(\texttt{C}\)</span> with <span class="math inline">\(m = q\)</span> and <span class="math inline">\(B = M_\beta\)</span> gives a <span class="math inline">\(y\in M\)</span> containing precisely the members <span class="math inline">\(t\in M_\beta\)</span> satisfying <span class="math inline">\(t\in A\)</span> and <span class="math inline">\(\theta^{M_\beta}(t,A,\overline{v})\)</span>, but <span class="math inline">\(\theta\)</span> is absolute between <span class="math inline">\(M_\beta\)</span> and <span class="math inline">\(\mathbf{M}\)</span> so <span class="math inline">\(y = X \in \mathbf{M}\)</span> as desired.</p>
+<p>The proof for any instance of foundation uses exactly the same reflection argument, just that we invoke <span class="math inline">\(\texttt{R}\)</span>.</p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA5220/homework6.md">MA5220/homework6.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

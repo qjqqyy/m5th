@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="25th August 2019" />
+  <title>Exercise 1.19</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">Exercise 1.19</h1><p class="author">Qi Ji</p>
+<p class="date">25th August 2019</p>
+</header>
+<article><blockquote>
+<p>Make a regular expression which contains all those decimal natural numbers which start with <span class="math inline">\(3\)</span> or <span class="math inline">\(8\)</span> and have an even number of digits and end with <span class="math inline">\(5\)</span> or <span class="math inline">\(7\)</span>.</p>
+</blockquote>
+<p><span class="math display">\[\left\{3,8\right\}\cdot \left(\Sigma\cdot\Sigma\right)^* \cdot\left\{5,7\right\}\]</span> where <span class="math inline">\(\Sigma = \left\{0,\dots,9\right\}\)</span>.</p>
+<blockquote>
+<p>Make a further regular expression which contains all odd ternary numbers without leading <span class="math inline">\(0\)</span>s.</p>
+</blockquote>
+<p>First observe that a ternary number is odd iff the sum of all its digits is odd. Define <span class="math display">\[\begin{align*}
+\texttt{TWO} &amp;= \left\{2\right\}\cdot\left\{0,2\right\}^* \\
+\texttt{ODD} &amp;= \texttt{TWO}^*\cdot \left\{1\right\} \\
+\texttt{EVEN} &amp;= \left\{0,2\right\}\cup\left(\left\{1\right\}\cdot\left\{0,2\right\}^*\cdot\left\{1\right\}\right)
+\end{align*}\]</span> and we match all ternary numbers with the expression <span class="math display">\[ \texttt{ODD}\cdot\texttt{EVEN}^*. \]</span></p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/CS4232/tutorialweek2.md">CS4232/tutorialweek2.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

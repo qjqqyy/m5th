@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="Week 4" />
+  <title>CS2100 Tutorial 2</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">CS2100 Tutorial 2</h1><p class="author">Qi Ji</p>
+<p class="date">Week 4</p>
+</header>
+<article><h1 data-number="1" id="bitwise-ops" data-number="1"><span class="header-section-number">1</span> Bitwise ops</h1>
+<p>trivial.</p>
+<h1 data-number="2" id="swapping" data-number="2"><span class="header-section-number">2</span> Swapping</h1>
+<p>Let <span class="math inline">\(\otimes\)</span> denote coordinate-wise XOR in <span class="math inline">\(\mathbb{F}_2^n\)</span>. Notice that <span class="math inline">\((\mathbb{F}_2^n, \otimes)\)</span> forms an Abelian group, where for any vector <span class="math inline">\(p\)</span>, <span class="math inline">\(p\otimes p = 0\)</span>, that is every element is its own inverse. Additionally, <span class="math inline">\(0\)</span> is the identity element. Therefore, to swap two bits, first note that for any <span class="math inline">\(a,b \in \mathbb{F}_2^n\)</span> <span class="math display">\[\begin{align*}
+    a &amp;= a \otimes 0 = a \otimes b \otimes b \\
+    b &amp;= 0 \otimes b = a \otimes a \otimes b
+\end{align*}\]</span> so in code</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1"></a><span class="dt">void</span> swap(<span class="dt">int</span> *a, <span class="dt">int</span> *b) {</span>
+<span id="cb1-2"><a href="#cb1-2"></a>    *a ^= *b;   <span class="co">// *a = a ^ b</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>    *b ^= *a;   <span class="co">// *b = a ^ b ^ b = a ^ 0 = a</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>    *a ^= *b;   <span class="co">// *a = a ^ b ^ a = b ^ 0 = b</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>}</span></code></pre></div>
+<p>an alternative is using <span class="math inline">\(+\)</span> since machines do addition modulo <span class="math inline">\(\mathbb{Z}/2^w\mathbb{Z}\)</span>.</p>
+<h1 data-number="3" id="bit-masks" data-number="3"><span class="header-section-number">3</span> Bit masks</h1>
+<ol type="a">
+<li><p><code>b = a % 16;</code></p>
+<p>Note that <span class="math inline">\(16 = 2^4\)</span>, so we mask it with the bit sequence <span class="math inline">\(1111 = 15 = (F)_{16}\)</span>, obtaining</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode mips"><code class="sourceCode mips"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">andi</span>   <span class="dt">$s1</span>, <span class="dt">$s0</span>, <span class="bn">0xF</span></span></code></pre></div></li>
+<li><p><code>b = (a / 8) * 8;</code></p>
+<p>This effectively zeroes the lowest <span class="math inline">\(3\)</span> bits. I could either</p>
+<ul>
+<li>And-mask the lowest 3 bits then bitwise xor;</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode mips"><code class="sourceCode mips"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">andi</span>    <span class="dt">$t0</span>, <span class="dt">$s0</span>, <span class="bn">0x7</span>       <span class="co"># lowest 3 bits go to $t0</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="kw">xor</span>     <span class="dt">$s1</span>, <span class="dt">$s0</span>, <span class="dt">$t0</span></span></code></pre></div>
+<ul>
+<li>Shift right, then shift left.</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode mips"><code class="sourceCode mips"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">srl</span>     <span class="dt">$s1</span>, <span class="dt">$s0</span>, <span class="dv">3</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="kw">sll</span>     <span class="dt">$s1</span>, <span class="dt">$s1</span>, <span class="dv">3</span></span></code></pre></div>
+<p>Which is better?</p></li>
+</ol>
+<h1 data-number="4" id="bit-twiddling" data-number="4"><span class="header-section-number">4</span> Bit twiddling</h1>
+<ol type="a">
+<li><ol type="i">
+<li><code>$s0 = 0x8000001F</code></li>
+<li><code>$s0 = 0x0AAAAAAA</code></li>
+</ol></li>
+<li>For every <span class="math inline">\(1\)</span> in the sequence <code>$s0</code> <span class="math inline">\(\in \mathbb{F}_2^{32}\)</span>, it toggles the MSB of <code>$s0</code>.</li>
+</ol>
+<h1 data-number="5" id="loop-through-array" data-number="5"><span class="header-section-number">5</span> Loop through array</h1>
+<ol type="a">
+<li><p>Tracing. In iterations…</p>
+<ol type="1">
+<li>First iteration. <span class="math display">\[\begin{align*}
+t_1 &amp;\leftarrow M[112] = 108 \\
+s_1 &amp;\leftarrow 0 + 108 = 108 \\
+t_0 &amp;\leftarrow M[4 + 112] = M[116] = 124
+\end{align*}\]</span></li>
+<li>Second iteration. <span class="math display">\[\begin{align*}
+t_1 &amp;\leftarrow M[124] = 104 \\
+s_1 &amp;\leftarrow 108 + 104 = 212 \\
+t_0 &amp;\leftarrow M[4 + 124] = M[128] = 100
+\end{align*}\]</span></li>
+<li>Third iteration. <span class="math display">\[\begin{align*}
+t_1 &amp;\leftarrow M[100] = 120 \\
+s_1 &amp;\leftarrow 212 + 120 = 332 \\
+t_0 &amp;\leftarrow M[4 + 100] = M[104] = 132
+\end{align*}\]</span></li>
+</ol></li>
+<li><p>Set <span class="math inline">\(M[104] \leftarrow 0\)</span> will cause it to terminate.</p></li>
+<li><p>“High-level” code</p></li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1"></a><span class="dt">int</span> t0 = <span class="dv">112</span>, t1, s1 = <span class="dv">0</span>;</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="cf">while</span> (t0 != <span class="dv">0</span>) {</span>
+<span id="cb5-3"><a href="#cb5-3"></a>    t1 = M[t0];</span>
+<span id="cb5-4"><a href="#cb5-4"></a>    s1 += t1;</span>
+<span id="cb5-5"><a href="#cb5-5"></a>    t0 = M[t0+<span class="dv">1</span>];</span>
+<span id="cb5-6"><a href="#cb5-6"></a>}</span></code></pre></div>
+<p>or in pointer notation,</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1"></a><span class="dt">int</span> *t0 = <span class="dv">112</span>, t1, s1 = <span class="dv">0</span>;</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="cf">while</span> (t0 != <span class="dv">0</span>) {</span>
+<span id="cb6-3"><a href="#cb6-3"></a>    t1 = *t0;</span>
+<span id="cb6-4"><a href="#cb6-4"></a>    s1 += t1;</span>
+<span id="cb6-5"><a href="#cb6-5"></a>    t0 = *(t0+<span class="dv">1</span>);</span>
+<span id="cb6-6"><a href="#cb6-6"></a>}</span></code></pre></div>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/CS2100/tutorial2.md">CS2100/tutorial2.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

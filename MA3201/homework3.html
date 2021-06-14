@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="16th March 2020" />
+  <title>Homework 3</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">Homework 3</h1><p class="author">Qi Ji</p>
+<p class="date">16th March 2020</p>
+</header>
+<article><h1 id="question-5">Question 5</h1>
+<p>Given <span class="math inline">\(R = \mathbb{Z}[i]\)</span> and <span class="math inline">\(N(a+bi) = a^2 + b^2 = \left\lvert a+bi\right\rvert^2\)</span> where <span class="math inline">\(\left\lvert\cdot\right\rvert\)</span> denotes complex modulus, considering the natural inclusion <span class="math inline">\(\mathbb{Z}[i]\subset \mathbb{C}\)</span>.</p>
+<p>To show that <span class="math inline">\(R\)</span> is an Euclidean domain, let <span class="math inline">\(z, w\in R\)</span> be arbitrary and we want to know if there exists solution for <span class="math display">\[ z = qw + r \]</span> where <span class="math inline">\(q,r\in R\)</span> with <span class="math inline">\(r = 0\)</span> or <span class="math inline">\(\left\lvert r\right\rvert &lt; \left\lvert w\right\rvert\)</span>.</p>
+<p>Solving in <span class="math inline">\(\mathbb{C}\)</span>, a priori we know that <span class="math display">\[ \frac{z}{w} = q + \frac{r}{w} \]</span> with <span class="math inline">\(\left\lvert\frac{r}{w}\right\rvert &lt; 1\)</span>. Now treat <span class="math inline">\(\frac{z}{w}\)</span> as just a complex number and we know that we can choose <span class="math inline">\(q\in \mathbb{Z}[i]\)</span> satisfying <span class="math inline">\(\left\lvert\frac{z}{w} - q\right\rvert &lt; 1\)</span> (in fact it can be <span class="math inline">\(\frac{\sqrt{2}}{2}\)</span>). Now we choose <span class="math inline">\(r = z - qw\)</span> and as <span class="math inline">\(\left\lvert\frac{r}{w}\right\rvert &lt; 1\)</span>, the condition is satisfied.</p>
+<h1 id="question-6">Question 6</h1>
+<p>For both finding gcd and solving for Bézout’s inequality, we do Division algorithm,</p>
+<p><span class="math display">\[\begin{align*}
+11 + 7i &amp;= (1 - i)(3 + 7i) + (1 + 3i) \\
+3 + 7i &amp;= 2(1 + 3i) + (1 + i) \\
+1 + 3i &amp;= (2 + i)(1 + i)
+\end{align*}\]</span></p>
+<ol type="a">
+<li><p><span class="math inline">\(\gcd(11 + 7i, 3 + 7i) = 1 + i\)</span></p></li>
+<li><p><span class="math display">\[\begin{align*}
+1 + i &amp;= (3 + 7i) - 2(1 + 3i) \\
+&amp;= (3 + 7i) + 2(1 - i)(3 + 7i) - 2(11 + 7i) \\
+&amp;= (3 - 2i)(3 + 7i) - 2(11 + 7i)
+\end{align*}\]</span></p></li>
+</ol>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA3201/homework3.md">MA3201/homework3.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="15th October 2020" />
+  <title>MA4262 Homework 2</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">MA4262 Homework 2</h1><p class="author">Qi Ji</p>
+<p class="date">15th October 2020</p>
+</header>
+<article><h1 data-number="1" id="section" data-number="1"><span class="header-section-number">1</span> </h1>
+<p>Fix an arbitrary <span class="math inline">\(t_0 \in [a,b]\)</span> and we show that <span class="math inline">\(F\)</span> is continuous at <span class="math inline">\(t_0\)</span>. Let <span class="math inline">\((t_n)\)</span> be a sequence of numbers in <span class="math inline">\([a,b]\)</span> that converges to <span class="math inline">\(t_0\)</span>.</p>
+<p>Since <span class="math inline">\(f\)</span> is continuous in its second coordinate, for each <span class="math inline">\(x\in X\)</span>, we have <span class="math display">\[\lim_{n\to\infty} f(x,t_n) = f(x,t_0).\]</span></p>
+<p>As for each <span class="math inline">\(t_n\)</span>, we have <span class="math inline">\(\left\lvert f(x,t_n)\right\rvert\leq g(x)\)</span> we can apply dominated convergence to show that <span class="math display">\[ F(t_0) = \lim_{n\to\infty} F(t_n) = \lim_{n\to\infty} \int f(x,t_n)\ d\mu(x). \]</span></p>
+<h1 data-number="2" id="section-1" data-number="2"><span class="header-section-number">2</span> </h1>
+<p>Fix <span class="math inline">\(t\in[a,b]\)</span>.</p>
+<p>For any sequence <span class="math inline">\((t_n)\subseteq [a,b]\)</span> with <span class="math inline">\(t_n\neq t\)</span>, we have <span class="math display">\[
+\frac{\partial f}{\partial t}(x,t) = \lim_{t_n\to t} \frac{f(x,t_n)-f(x,t)}{t_n-t}
+\]</span> so that <span class="math inline">\(x\mapsto \frac{\partial f}{\partial t}(x,t)\)</span> is a pointwise limit of measurable functions and therefore measurable.</p>
+<p>For any <span class="math inline">\(x\in X\)</span> we can apply mean value theorem to <span class="math inline">\(t\mapsto \frac{\partial f}{\partial t}(x,t)\)</span> to obtain existence of <span class="math inline">\(s\)</span> between <span class="math inline">\(t_0\)</span> and <span class="math inline">\(t\)</span> such that <span class="math display">\[ f(x,t) - f(x,t_0) = (t - t_0)\frac{\partial f}{\partial t}(x,s) \]</span> then we have <span class="math display">\[ \left\lvert f(x,t)\right\rvert \leq \left\lvert f(x,t_0)\right\rvert + \left\lvert t-t_0\right\rvert g(x) \]</span> which means that <span class="math inline">\(x\mapsto f(x,t)\)</span> is integrable for each <span class="math inline">\(t\)</span>, not just <span class="math inline">\(t_0\)</span>.</p>
+<p>Now for each <span class="math inline">\(n\)</span>, <span class="math display">\[ \frac{F(t_n) - F(t)}{t_n - t} = \int \frac{f(x,t_n) - f(x,t)}{t_n-t}\ d\mu(x) \]</span> and the integrated is dominated by <span class="math inline">\(g\)</span>, so by dominated convergence, <span class="math display">\[ \frac{dF}{dt}(t) = \lim_{n\to\infty} \frac{F(t_n) - F(t)}{t_n - t}  = \int \frac{\partial f}{\partial t}(x,t)\ d\mu(x). \]</span></p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA4262/homework2.md">MA4262/homework2.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

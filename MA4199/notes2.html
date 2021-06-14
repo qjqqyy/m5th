@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="19th August 2020" />
+  <title>Kunen IV Exercise 18 to 24</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">Kunen IV Exercise 18 to 24</h1><p class="author">Qi Ji</p>
+<p class="date">19th August 2020</p>
+</header>
+<article><p>We follow through exercises 18 to 24 from Chapter IV of Kunen (1980) to show a result of Fraenkel-Mostowski.</p>
+<h1 id="exercise-18">Exercise 18</h1>
+<blockquote>
+<p>Let <span class="math inline">\(\mathbf{F}: \mathbf{V}\to \mathbf{V}\)</span> be 1-1 and onto. Define <span class="math inline">\(\mathbf{E} \subseteq \mathbf{V}\times\mathbf{V}\)</span> by <span class="math inline">\(x \mathbf{E} y\)</span> iff <span class="math inline">\(x \in \mathbf{F}(y)\)</span>. Show (in ZFC) that <span class="math inline">\(\mathbf{V},\mathbf{E}\)</span> is a model of <span class="math inline">\(\text{ZFC}^-\)</span>.</p>
+</blockquote>
+<p><em>Sketch.</em> Think of <span class="math inline">\(\mathbf{F}\)</span> as a permutation on <span class="math inline">\(\mathbf{V}\)</span>, then relativising to <span class="math inline">\(\mathbf{V},\mathbf{E}\)</span> basically means replacing the membership relation with <span class="math inline">\(\mathbf{E}\)</span>.</p>
+<p>We take all the <span class="math inline">\(\text{ZFC}^-\)</span> axioms, replace all occurrences of <span class="math inline">\(x\in y\)</span> with <span class="math inline">\(x\in\mathbf{F}(y)\)</span> and show that they are theorems of <span class="math inline">\(\text{ZFC}^-\)</span>.</p>
+<ul>
+<li><p><span class="math inline">\(\text{extensionality}^{\mathbf{V},\mathbf{E}}\)</span> is <span class="math display">\[ \forall x~\forall y \left(
+\forall z \left(z\in \mathbf{F}(x) \leftrightarrow z\in \mathbf{F}(y)\right) \rightarrow x = y
+\right),\]</span> let <span class="math inline">\(x, y\in \mathbf{V}\)</span>, using extensionality, <span class="math inline">\(\mathbf{F}(x) = \mathbf{F}(y)\)</span>, and as <span class="math inline">\(\mathbf{F}\)</span> is 1-1 we know <span class="math inline">\(x = y\)</span>,</p></li>
+<li><p>let <span class="math inline">\(\phi\)</span> be a formula with free variables <span class="math inline">\(x,z,\overline{w}\)</span>, its instance of <span class="math inline">\(\text{Comprehension}^{\mathbf{V},\mathbf{E}}\)</span> is <span class="math display">\[ \forall z~\forall \overline{w}~\exists y~\forall x \left(
+  x \in \mathbf{F}(y) \leftrightarrow x\in \mathbf{F}(z) \land \phi
+\right),\]</span> let <span class="math inline">\(z,\overline{w}\in \mathbf{V}\)</span>, comprehension gives us existence of <span class="math inline">\(\mathbf{F}(y)\)</span> and use fact that <span class="math inline">\(\mathbf{F}\)</span> is a permutation to get existence of <span class="math inline">\(y\)</span>,</p></li>
+<li><p>pairing looks easy</p></li>
+<li><p>for <span class="math inline">\(\text{union}^{\mathbf{V},\mathbf{E}}\)</span> which is <span class="math display">\[
+\forall \mathscr{F}~\exists A~\forall Y~\forall x\left(x\in \mathbf{F}(Y)\land Y\in\mathbf{F}(\mathscr{F}) \rightarrow x\in\mathbf{F}(A)\right)
+\]</span> let <span class="math inline">\(\mathscr{F}\in\mathbf{V}\)</span>, apply union to <span class="math inline">\(\operatorname{Im}_{\mathbf{F}}(\mathbf{F}(\mathscr{F}))\)</span> (appealing to replacement), then there exists <span class="math inline">\(B\)</span> satisfying <span class="math display">\[
+\forall Z~\forall w\left(w\in Z\land Z\in \operatorname{Im}_{\mathbf{F}}(\mathbf{F}(\mathscr{F})) \rightarrow w\in B\right)
+\]</span> Let <span class="math inline">\(A = \mathbf{F}^{-1}(B)\)</span> and let <span class="math inline">\(Y,x\in\mathbf{V}\)</span>, assume <span class="math inline">\(x\in \mathbf{F}(Y)\)</span> and <span class="math inline">\(Y\in\mathbf{F}(\mathscr{F})\)</span>, let <span class="math inline">\(Z = \mathbf{F}(Y)\)</span> and <span class="math inline">\(w = x\)</span>, apply previous statement to conclude that <span class="math inline">\(x\in \mathbf{F}(A) = B\)</span>.</p></li>
+</ul>
+<p>other axioms should be similar (read: I’m lazy).</p>
+<p>maybe do replacement sometime</p>
+<h1 id="exercise-19">Exercise 19</h1>
+<blockquote>
+<p>Use the preceding exercise to show the consistency of <span class="math inline">\(\text{ZFC}^- + \exists x\left(x = \left\{x\right\}\right)\)</span>, assuming consistency of ZFC.</p>
+</blockquote>
+<p>Follow hint, define <span class="math inline">\(\mathbf{F}\)</span> such that <span class="math inline">\(\mathbf{F}(0) = 1\)</span>, <span class="math inline">\(\mathbf{F}(1) = 0\)</span> and <span class="math inline">\(\mathbf{F}\)</span> is identity everywhere else. Define <span class="math inline">\(\mathbf{E}\)</span> similarly as previous exercise and we show that <span class="math inline">\(\exists x\left(x = \left\{x\right\}\right)\)</span> relativised to <span class="math inline">\(\mathbf{V},\mathbf{E}\)</span> holds.</p>
+<p>Work in <span class="math inline">\(\mathbf{V},\mathbf{E}\)</span>, because <span class="math inline">\(0\in 0\)</span> we can conclude both <span class="math inline">\(0 \subseteq \left\{0\right\}\)</span> and <span class="math inline">\(\left\{0\right\} \subseteq 0\)</span> and therefore <span class="math inline">\(0 = 1\)</span>.</p>
+<blockquote>
+<p>Likewise show the relative consistency of <span class="math inline">\(\text{ZFC}^- + \exists x~\exists y\left(x = \left\{y\right\} \land y = \left\{x\right\} \land x \ne y\right)\)</span>.</p>
+</blockquote>
+<p>Similarly, define <span class="math inline">\(\mathbf{F}\)</span> such that <span class="math inline">\(\mathbf{F}\)</span> swaps <span class="math inline">\(0\)</span> and <span class="math inline">\(\left\{\left\{0\right\}\right\}\)</span>. Now working in <span class="math inline">\(\mathbf{V},\mathbf{E}\)</span>, <span class="math inline">\(0 \in \left\{0\right\}\)</span> and <span class="math inline">\(\left\{0\right\} \in 0\)</span>, let <span class="math inline">\(x = \left\{0\right\}\)</span> and <span class="math inline">\(y = 0\)</span>.</p>
+<h1 id="exercise-20">Exercise 20</h1>
+<blockquote>
+<p>Assume consistency of ZFC and show the consistency of <span class="math inline">\(\text{ZFC}^-\)</span> plus the following modified Mostowski Collapsing Theorem: If <span class="math inline">\(R\)</span> is an extensional relation on the set <span class="math inline">\(A\)</span>, then <span class="math inline">\(\left\langle A, R\right\rangle\)</span> is isomorphic to <span class="math inline">\(\left\langle M, \in\right\rangle\)</span> for some transitive set <span class="math inline">\(M\)</span>. Note <span class="math inline">\(R\)</span> is <em>not</em> assumed to be well-founded.</p>
+</blockquote>
+<p>TODO: Induct at <span class="math inline">\(V_\alpha\)</span> and force everything out…</p>
+<h1 id="exercise-21">Exercise 21</h1>
+<blockquote>
+<p>Show that there is no finite <span class="math inline">\(S\subset \text{ZFC}^-\)</span> such that one can prove in <span class="math inline">\(\text{ZFC}^-\)</span> that “<span class="math inline">\(R\)</span> well-orders <span class="math inline">\(A\)</span>” is absolute for transitive models of <span class="math inline">\(S\)</span>.</p>
+</blockquote>
+<p>Follow hint, we use previous exercise. Suppose not, then let <span class="math inline">\(S \subset \text{ZFC}^-\)</span> be finite such that for all transitive models <span class="math inline">\(M\vDash S\)</span>, “<span class="math inline">\(R\)</span> well-orders <span class="math inline">\(A\)</span>” is absolute.</p>
+<p>Do model theory.</p>
+<h1 id="exercise-22">Exercise 22</h1>
+<blockquote>
+<p>For any set <span class="math inline">\(A\)</span>, define <span class="math inline">\(R(\alpha,A)\)</span> by:</p>
+<ul>
+<li><span class="math inline">\(R(0, A) = A \cup \operatorname{trcl}(A)\)</span>,</li>
+<li><span class="math inline">\(R(\alpha+1, A) = \mathcal{P}(R(\alpha, A))\)</span>, and</li>
+<li><span class="math inline">\(R(\alpha, A) = \bigcup_{\xi&lt;\alpha} R(\xi, A)\)</span> when <span class="math inline">\(\alpha\)</span> is a limit ordinal.</li>
+</ul>
+<p>Let <span class="math inline">\(\mathbf{WF}(A) = \bigcup_{\alpha\in\mathbf{ON}} R(\alpha, A)\)</span>. Show that in <span class="math inline">\(\text{ZF}^-\)</span> that <span class="math inline">\(\mathbf{WF}(A)\)</span> is a transitive model of <span class="math inline">\(\text{ZF}^-\)</span> and that AC implies <span class="math inline">\(\text{AC}^{\mathbf{WF}(A)}\)</span>.</p>
+</blockquote>
+<ul>
+<li><span class="math inline">\(\mathbf{WF}(A)\)</span> being transitive is obvious.</li>
+<li>All transitive models satisfy Extensionality.</li>
+<li>Comprehension follows from <span class="math inline">\(\mathbf{WF}(A)\)</span> being closed under power set.</li>
+<li>Powerset follows from Lemma 2.9.</li>
+<li>Pairing and Union looks easy.</li>
+<li>Replacement - For any definable class function <span class="math inline">\(\mathbf{F}\)</span> and any set <span class="math inline">\(X\in\mathbf{WF}(A)\)</span>, take minimum <span class="math inline">\(\alpha\)</span> such that <span class="math inline">\(\mathbf{F}\)</span> image of <span class="math inline">\(X\)</span> is contained in <span class="math inline">\(R(\alpha, A)\)</span>.</li>
+<li>Infinity looks obvious.</li>
+</ul>
+<p>Assume choice and <span class="math inline">\(\text{choice}^{\mathbf{WF}(A)}\)</span> follows from Lemma 3.14 (universal statements relativise down).</p>
+<h1 id="exercise-23">Exercise 23</h1>
+<p>Use a nice enough <span class="math inline">\(\mathbf{F}\)</span> to get a <span class="math inline">\(U\)</span> satisfying <span class="math inline">\(\forall x\in U.~ x = \left\{x\right\}\)</span> (argument in 18 should work in a model of just <span class="math inline">\(\text{ZF}^-\)</span>), then plug 22.</p>
+<h1 id="exercise-24">Exercise 24</h1>
+<p>doable</p>
+<div style="height:50vh">
+
+</div>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA4199/notes2.md">MA4199/notes2.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

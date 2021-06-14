@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Pek Yu-Xuan Sean, Qi Ji" />
+  <meta name="dcterms.date" content="26th March 2020" />
+  <title>MA3111S Homework 3</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">MA3111S Homework 3</h1><p class="author">Pek Yu-Xuan Sean, Qi Ji</p>
+<p class="date">26th March 2020</p>
+</header>
+<article><h1 id="exercise-2">Exercise 2</h1>
+<p>Substitute <span class="math inline">\(z = e^{i\theta}\)</span>, so <span class="math inline">\(2\cos\theta = e^{i\theta} + e^{-i\theta} = z + z^{-1}\)</span>, now we compute</p>
+<p><span class="math inline">\(dz = ie^{i\theta}\ d\theta = iz\ d\theta\)</span> so <span class="math inline">\(d\theta = \frac{1}{iz}\ dz\)</span> <span class="math display">\[\begin{align*}
+\int_0^{2\pi} \frac{1+2\cos\theta}{4-2\cos\theta}\ d\theta
+&amp;= \int_{\left\lvert z\right\rvert = 1} \frac{1 + z + \frac1z}{4 - z - \frac1z} \frac{1}{iz}\ dz \\
+&amp;= \int_{\left\lvert z\right\rvert = 1} \frac{z^2 + z + 1}{- z^2 + 4z - 1} \frac{1}{iz}\ dz \\
+&amp;= i \int_{\left\lvert z\right\rvert = 1} \frac{z^2 + z + 1}{(z^2 - 4z + 1)z} \ dz \\
+&amp;= i \int_{\left\lvert z\right\rvert = 1} \frac{z^2+z+1}{z(z-(2-\sqrt{3}))(z-(2+\sqrt{3}))} \ dz
+\end{align*}\]</span> simple pole at <span class="math inline">\(p = 2-\sqrt{3}\)</span>. So residue at <span class="math inline">\(p\)</span> is <span class="math display">\[\begin{align*}
+\lim_{z\to p} \frac{z^2+z+1}{z(z-(2+\sqrt{3}))}
+&amp;= \frac{p^2+p+1}{p(p-(2+\sqrt{3}))} \\
+&amp;= -\frac5{2\sqrt{3}}
+\end{align*}\]</span> another simple pole at <span class="math inline">\(p_2 = 0\)</span>, whose residue is <span class="math display">\[\begin{align*}
+\lim_{z\to 0} \frac{z^2+z+1}{(z-(2-\sqrt{3}))(z-(2+\sqrt{3}))}
+&amp;= 1
+\end{align*}\]</span> so the integral is <span class="math display">\[ i (2\pi i)\left(-\frac5{2\sqrt{3}} + 1\right) = \pi\left(\frac5{\sqrt{3}} - 2\right) \]</span></p>
+<h1 id="exercise-4">Exercise 4</h1>
+<p>Let <span class="math display">\[ f(x) = \frac{2-3x}{(x^2+1)(4x^2-4x+2)} = \frac{2-3x}{(x+i)(x-i)(2x-1-i)(2x-1+i)}. \]</span> Let <span class="math inline">\(S(R)\)</span> denote the upper semicircle of radius <span class="math inline">\(R\)</span> and <span class="math inline">\(A(R)\)</span> denote its arc <span class="math inline">\(S(R) \setminus [-R,R]\)</span>. Now as <span class="math inline">\(\left\lvert R\right\rvert\)</span> gets large we can see that <span class="math inline">\(f\)</span> on <span class="math inline">\(A(R)\)</span> is <span class="math inline">\(o(\frac1{\left\lvert R\right\rvert})\)</span>, so the integral on the arc vanishes, so actually <span class="math display">\[ \int_{-\infty}^\infty f(x)\ dx = \lim_{R\to\infty} \int_{S(R)} f(z)\ dz. \]</span> Now use residues to compute the semicircle integral. Simple pole at <span class="math inline">\(i\)</span>, residue at <span class="math inline">\(i\)</span> is <span class="math display">\[ \lim_{z\to i} \frac{2-3z}{(z+i)(2z-1-i)(2z-1+i)} = \frac{7}{20} - \frac{i}{5} \]</span> another simple pole at <span class="math inline">\(\frac12 - \frac{i}2\)</span>, with its residue being <span class="math display">\[ \lim_{z\to \frac12 - \frac{i}2} \frac12 \frac{2-3z}{(z-i)(z+i)(2z-1-i)} = -\frac7{20} - \frac{i}{20} \]</span> and the integral is <span class="math display">\[ (2\pi i)(-\frac{i}{5} - \frac{i}{20}) = \frac{3\pi}{10}. \]</span></p>
+<h1 id="exercise-6">Exercise 6</h1>
+<p>Let <span class="math inline">\(u\)</span> also be a harmonic conjugate such that <span class="math inline">\(f = v + iu\)</span> is holomorphic on some neighbourhood of <span class="math inline">\(\overline{\Omega}\)</span>. Then <span class="math inline">\(e^{f(z)}\)</span> is also holomorphic and <span class="math inline">\(e^{f(z)} \leq 1\)</span> for <span class="math inline">\(z\)</span> on the boundary of <span class="math inline">\(\Omega\)</span>. Also for <span class="math inline">\(z\in\overline{\Omega}\)</span> we have <span class="math display">\[ \left\lvert e^{f(z)}\right\rvert = e^{v(z)} \leq e^{\sqrt{\left\lvert z\right\rvert}} \]</span> and tutorial 4 exercise 4 gives <span class="math inline">\(\left\lvert e^{f(z)}\right\rvert \leq 1\)</span> for <span class="math inline">\(z\in\Omega\)</span> which gives <span class="math inline">\(v\leq 0\)</span>.</p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA3111S/hw3.md">MA3111S/hw3.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

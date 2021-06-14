@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="2nd March 2020" />
+  <title>Homework 2</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">Homework 2</h1><p class="author">Qi Ji</p>
+<p class="date">2nd March 2020</p>
+</header>
+<article><h1 id="question-6">Question 6</h1>
+<h2 id="a">(a)</h2>
+<p>Consider the composition <span class="math inline">\(\varphi: \mathbb{Z}[x] \to \mathbb{Z}/2\mathbb{Z}\)</span> <span class="math display">\[
+\begin{array}{mmmm}
+\mathbb{Z}[x] &amp;\to      &amp; \mathbb{Z}&amp;\to    &amp;\mathbb{Z}/2\mathbb{Z}\\
+f(x)  &amp;\mapsto  &amp; f(0)  &amp;\mapsto&amp;\overline{f(0)} = f(0) + 2\mathbb{Z}
+\end{array}
+\]</span> Now <span class="math inline">\(\varphi(f(x)) = \overline{0}\)</span> iff <span class="math inline">\(\overline{f(0)} = \overline{0}\)</span> iff <span class="math inline">\(f(0) \in 2\mathbb{Z}\)</span>, which means <span class="math inline">\(f(x)\)</span> is of the form <span class="math inline">\(g(x)\cdot x + 2k\)</span>, so <span class="math inline">\(f(x) \in (2,x)\)</span>, therefore <span class="math inline">\(\ker(\varphi) = (2,x)\)</span>. As <span class="math inline">\(\mathbb{Z}/2\mathbb{Z}= \mathbb{Z}[x]/(2,x)\)</span> is a field it follows that <span class="math inline">\((2,x)\)</span> is a maximal ideal.</p>
+<p>Suppose for a contradiction that <span class="math inline">\((2,x)\)</span> is a principal ideal, so let <span class="math inline">\(g(x)\in\mathbb{Z}[x]\)</span> such that <span class="math inline">\((2,x) = (g(x))\)</span>. Let <span class="math inline">\(2 = g(x)a(x)\)</span> and <span class="math inline">\(x = g(x)b(x)\)</span>, then comparing degrees we have <span class="math inline">\(\deg(g) = \deg(a) = 0\)</span> and <span class="math inline">\(\deg(b) = 1\)</span>. As <span class="math inline">\(2\)</span> is prime in <span class="math inline">\(\mathbb{Z}\)</span> solving we get <span class="math inline">\(g(x) = 2\)</span>, <span class="math inline">\(a(x) = 1\)</span>, and <span class="math inline">\(x = 2b(x)\)</span> has no solution in <span class="math inline">\(\mathbb{Z}[x]\)</span>, contradiction.</p>
+<h2 id="b">(b)</h2>
+<p>As <span class="math inline">\(1 = 2\frac{1}{2} \in (2,x)\)</span> it follows that <span class="math inline">\((2,x) = (1) = S\)</span>. Not maximal as <span class="math inline">\((2,x)\)</span> is exactly the whole ring, but principal <span class="math inline">\((1)\)</span>.</p>
+<h1 id="question-7">Question 7</h1>
+<h2 id="a-1">(a)</h2>
+<p>Let <span class="math inline">\(P\subseteq S\)</span> be prime ideal and consider <span class="math inline">\(\varphi^{-1}(P)\)</span>. Suppose we have <span class="math inline">\(ab \in \varphi^{-1}(P)\)</span>, then <span class="math inline">\(\varphi(ab) = \varphi(a)\varphi(b) \in P\)</span> and as <span class="math inline">\(P\)</span> is a prime ideal we have <span class="math inline">\(\varphi(a)\in P\)</span> or <span class="math inline">\(\varphi(b)\in P\)</span>, and <span class="math inline">\(a\in \varphi^{-1}(P)\)</span> or <span class="math inline">\(b\in \varphi^{-1}(P)\)</span> as desired.</p>
+<p>When <span class="math inline">\(\varphi\)</span> is onto, by basic set theory <span class="math inline">\(R = \varphi^{-1}(S) = \varphi^{-1}(P \sqcup (S\setminus P)) = \varphi^{-1}(P) \sqcup \varphi^{-1}(S\setminus P)\)</span> and the second term in the disjoint union is nonempty.</p>
+<p>When <span class="math inline">\(1_R\in R\)</span> and <span class="math inline">\(\varphi(1_R) = 1_S\)</span>. Suppose for contradiction <span class="math inline">\(\varphi^{-1}(P) = R\)</span>, then <span class="math inline">\(1_R \in \varphi^{-1}(P)\)</span> and <span class="math inline">\(\varphi(1_R) = 1_S \in P\)</span> which means <span class="math inline">\(P = S\)</span>.</p>
+<h2 id="b-1">(b)</h2>
+<p>Consider the composition <span class="math display">\[ \begin{array}{mmmm}
+R &amp;\to &amp;S &amp;\to &amp;S/M \\
+r &amp;\mapsto &amp;\varphi(r) &amp;\mapsto &amp;\overline{\varphi(r)}
+\end{array} \]</span> which is a surjective composition of surjective maps. Observe that its kernel is exactly <span class="math inline">\(\varphi^{-1}(M)\)</span> and by first isomorphism theorem we have <span class="math inline">\(R/\varphi^{-1}(M) \cong S/M\)</span>. As <span class="math inline">\(M\)</span> is a maximal ideal <span class="math inline">\(S/M\)</span> is a field, and so is <span class="math inline">\(R/\varphi^{-1}(M)\)</span>, so <span class="math inline">\(\varphi^{-1}(M)\)</span> is a maximal ideal too.</p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA3201/homework2.md">MA3201/homework2.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

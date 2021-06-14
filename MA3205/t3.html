@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji (A0167793L)" />
+  <meta name="dcterms.date" content="12th September 2018" />
+  <title>Exercise 4.16</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">Exercise 4.16</h1><p class="author">Qi Ji (A0167793L)</p>
+<p class="date">12th September 2018</p>
+</header>
+<article><blockquote>
+<p>Let <span class="math inline">\(X \subseteq \mathbb{N}\)</span>. Suppose <span class="math inline">\(X\)</span> has the property that <span class="math inline">\(\forall n\in X \left[ n\subseteq X \right]\)</span>. Show that either <span class="math inline">\(X=\mathbb{N}\)</span> or there exists <span class="math inline">\(n\in \mathbb{N}\)</span> such that <span class="math inline">\(X = n\)</span>.</p>
+</blockquote>
+<p><em>Proof.</em> Let <span class="math inline">\(X\subseteq \mathbb{N}\)</span>, we consider <span class="math inline">\(\mathbb{N}\smallsetminus X\)</span> which is also a subset of <span class="math inline">\(\mathbb{N}\)</span>. If <span class="math inline">\(\mathbb{N}\smallsetminus X\)</span> is empty, then <span class="math inline">\(X = \mathbb{N}\)</span>, so <em>go on vacation</em>. Otherwise suppose <span class="math inline">\(\mathbb{N}\smallsetminus X\)</span> non-empty, then by Lemma 4.11, <span class="math display">\[\exists n\in \mathbb{N}, n\notin X \left[ (\mathbb{N}\smallsetminus X) \cap n = \emptyset \right].\]</span></p>
+<p><strong>Claim.</strong> <span class="math inline">\(X = n\)</span>.</p>
+<ul>
+<li><p>Let <span class="math inline">\(x\in n\)</span>, and since <span class="math inline">\(n\in \mathbb{N}\)</span>, <span class="math inline">\(x \in n \subseteq \mathbb{N}\)</span>. If <span class="math inline">\(x \notin X\)</span>, then <span class="math inline">\(x \in \mathbb{N}\smallsetminus X\)</span>, contradicting fact that <span class="math inline">\(\mathbb{N}\smallsetminus X\)</span> is empty, so <span class="math inline">\(x\in X\)</span> and <span class="math inline">\(n \subseteq X\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(x\in X \subseteq \mathbb{N}\)</span>. Since <span class="math inline">\(x, n\in \mathbb{N}\)</span>, by Lemma 4.10 we have the trichotomy of either <span class="math inline">\(x = n\)</span> or <span class="math inline">\(x \in n\)</span> or <span class="math inline">\(n \in x\)</span></p>
+<ol type="1">
+<li><p>Case <span class="math inline">\(x=n\)</span>, then it implies <span class="math inline">\(n\in X\)</span> which contradicts fact that <span class="math inline">\(n\notin X\)</span>.</p></li>
+<li><p>Case <span class="math inline">\(n \in x\)</span>, by characterising property of <span class="math inline">\(X\)</span> we have <span class="math inline">\(x\subseteq X\)</span>, so <span class="math inline">\(n\in X\)</span>, which again is a contradiction.</p></li>
+</ol>
+<p>So <span class="math inline">\(x \in n\)</span>, then <span class="math inline">\(X \subseteq n\)</span> so <span class="math inline">\(X = n\)</span>. <span class="math inline">\(\square\)</span></p></li>
+</ul>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA3205/t3.md">MA3205/t3.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

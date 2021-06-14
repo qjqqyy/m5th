@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji (A0167793L)" />
+  <meta name="dcterms.date" content="11th March 2021" />
+  <title>PC1144 Homework 3</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">PC1144 Homework 3</h1><p class="author">Qi Ji (A0167793L)</p>
+<p class="date">11th March 2021</p>
+</header>
+<article><h1 id="a">(a)</h1>
+<p>For particle in ground state of infinite square well potential (particle in a box), we have its wavefunction given by <span class="math display">\[ u(x) = \sqrt{\frac2L}\sin\left(\frac{\pi x}{L}\right) \]</span> for <span class="math inline">\(0 \leq x \leq L\)</span>.</p>
+<p>The probability that the particle will be found in the region <span class="math inline">\(0 &lt; x &lt; \frac{L}3\)</span> is given by <span class="math display">\[\begin{align*}
+    \int_0^{L/3} \left\lvert u(x) \right\rvert^2\ dx
+    &amp;= \frac2L \int_0^{L/3} \sin^2 \left( \frac{\pi x}{L} \right)\ dx \\
+    &amp;= \frac2L \left[ \frac{x}{2} - \frac{L\sin \left( \frac{2\pi x}{L} \right)}{4\pi} \right]_0^{L/3} \\
+    &amp;= \frac2L \left[ \frac{L}{6} - \frac{L\sin \left( \frac{2\pi}{3} \right)}{4\pi} \right] \\
+    &amp;= \frac{1}{3} - \frac{\sqrt{3}}{4\pi}.
+\end{align*}\]</span></p>
+<h1 id="b">(b)</h1>
+<p>We have <span class="math display">\[\begin{align*}
+    u(x) &amp;= Ae^{-\beta x^2} \\
+    u'(x) &amp;= -2A\beta x e^{-\beta x^2} \\
+    u''(x) &amp;= 2A\beta (2\beta x^2 - 1) e^{-\beta x^2} \\
+           &amp;= 2\beta(2\beta x^2 - 1) u(x)
+\end{align*}\]</span> solving time-independent Schrödinger equation we have <span class="math display">\[\begin{align*}
+    -\frac{\hbar^2}{2m} 2\beta(2\beta x^2 - 1)  + V(x) &amp;= E \\
+    V(x) - \frac{\hbar^2}{m}(2\beta^2 x^2 - \beta) &amp;= E
+\end{align*}\]</span> substituting <span class="math inline">\(V(0) = 0\)</span> we obtain <span class="math inline">\(E = \frac{\hbar^2\beta}{m}\)</span>, then we have expression for <span class="math inline">\(V(x)\)</span> as <span class="math display">\[ V(x) = \frac{2\hbar^2\beta^2}{m}x^2. \]</span></p>
+<h1 id="c">(c)</h1>
+<p>In each region the solution to time-independent Schrödinger equation takes the form <span class="math display">\[
+    \psi(x) = \begin{cases}
+        Ae^{i k_1 x} + Be^{-i k_1 x} &amp;\text{ in region 1} \\
+        Ce^{i k_2 x} + De^{-i k_2 x} &amp;\text{ in region 2} \\
+        Fe^{i k_1 x} &amp;\text{ in region 3}
+    \end{cases}
+\]</span></p>
+<p>where the wave number in region 1 and 3 is <span class="math inline">\(k_1 = \frac{\sqrt{2mE}}{\hbar}\)</span>, in region two we have <span class="math inline">\(k_2 = \frac{\sqrt{2m(E + V_0)}}{\hbar} = \frac{2\pi}{\lambda_2}\)</span>. As the beam is incident in the positive <span class="math inline">\(x\)</span>-direction, there is only right-moving wave in region 3.</p>
+<p>As <span class="math inline">\(\phi(x)\)</span> is continuous and differentiable at <span class="math inline">\(x =0\)</span> and <span class="math inline">\(x=L\)</span> we have <span class="math display">\[\begin{align*}
+    A + B &amp;= C + D \\
+    i k_1 A - i k_1 B &amp;= i k_2 C - i k_2 D \\
+    Ce^{i k_2 L} + D e^{-i k_2 L} &amp;= F e^{i k_1 L} \\
+    i k_2 Ce^{i k_2 L} - i k_2 D e^{-i k_2 L} &amp;= i k_1 F e^{i k_1 L}
+\end{align*}\]</span> transmission coefficient is given by <span class="math inline">\(T = \left\lvert F/A \right\rvert^2\)</span>. Solving these equations then rewriting <span class="math inline">\(k_1,k_2\)</span> in terms of <span class="math inline">\(E, V_0, \lambda_2\)</span> we obtain <span class="math display">\[ T = \frac{4E(E+V_0)}{4E(E+V_0) + V_0^2\sin^2\left( \frac{2\pi L}{\lambda_2} \right)}. \]</span> as <span class="math inline">\(2L = \lambda_2\)</span> it follows that <span class="math inline">\(T = 1\)</span> and <span class="math inline">\(R = 0\)</span>.</p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/PC1144/hw3.md">PC1144/hw3.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="4th October 2019" />
+  <title>Exercise 6.25</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">Exercise 6.25</h1><p class="author">Qi Ji</p>
+<p class="date">4th October 2019</p>
+</header>
+<article><p><strong>Lemma.</strong> Let <span class="math inline">\(h\)</span> be a generalised homomorphism, then <span class="math inline">\(h(\left\{\varepsilon\right\}) = \left\{\varepsilon\right\}\)</span>.</p>
+<p><em>Proof.</em> Note that <span class="math inline">\(\emptyset^* = \left\{\varepsilon\right\}\)</span>, and <span class="math inline">\(\emptyset^* = h(\emptyset)^* = h(\emptyset^*) = h(\left\{\varepsilon\right\})\)</span>.</p>
+<blockquote>
+<p>Let <span class="math inline">\(h\)</span> be any given generalised homomorphism. Show by structural induction that <span class="math inline">\(h(L) = \bigcup_{u\in L} h(\left\{u\right\})\)</span> for all regular languages <span class="math inline">\(L\)</span>.</p>
+</blockquote>
+<p>In the case that <span class="math inline">\(L\)</span> is finite, then <span class="math inline">\(h(L) = \bigcup_{u\in L} h(\left\{u\right\})\)</span> follows from finite applications of <span class="math inline">\(h(\left\{u,v\right\}) = h(\left\{u\right\})\cup h(\left\{v\right\})\)</span>.</p>
+<p>Suppose <span class="math inline">\(h(L) = \bigcup_{u\in L} h(\left\{u\right\})\)</span> and <span class="math inline">\(h(H) = \bigcup_{v\in H} h(\left\{v\right\})\)</span>.</p>
+<ul>
+<li><p>We first want <span class="math inline">\(h(L\cup H) = \bigcup_{w\in L\cup H} h(\left\{w\right\})\)</span>. As <span class="math inline">\(h\)</span> is a generalised homomorphism we have <span class="math display">\[h(L\cup H) = h(L)\cup h(H) = \bigcup_{u\in L}h(\left\{u\right\}) \cup \bigcup_{v\in H} h(\left\{v\right\}) \]</span> and the result follows by set theory.</p></li>
+<li><p>Next we want to show <span class="math inline">\(h(L\cdot H) = \bigcup_{w\in L\cdot H} h(\left\{w\right\})\)</span>. Again as <span class="math inline">\(h\)</span> is a generalised homomorphism we have <span class="math display">\[h(L\cdot H) = h(L)\cdot h(H) = \bigcup_{u\in L}h(\left\{u\right\}) \cdot \bigcup_{v\in H} h(\left\{v\right\}) \]</span> and it suffices to show that for all <span class="math inline">\(u\in L, v\in H\)</span>, we have <span class="math inline">\(h(\left\{uv\right\}) = h(\left\{u\right\})\cdot h(\left\{v\right\})\)</span>, this holds because <span class="math inline">\(h\)</span> is a generalised homomorphism and <span class="math inline">\(\left\{uv\right\} = \left\{u\right\}\cdot\left\{v\right\}\)</span>.</p></li>
+<li><p>We still need to show that <span class="math inline">\(h(L^*) = \bigcup_{v\in L^*} h(\left\{v\right\})\)</span>. As <span class="math inline">\(h\)</span> is a generalised homomorphism we have <span class="math display">\[h(L^*) = h(L)^* = \left(\bigcup_{u\in L} h(\left\{u\right\})\right)^*. \]</span> Now we show <span class="math display">\[\bigcup_{v\in L^*} h(\left\{v\right\}) = \left(\bigcup_{u\in L} h(\left\{u\right\})\right)^*.\]</span> Let <span class="math inline">\(v\in L^*\)</span>, if <span class="math inline">\(v = \varepsilon\)</span> then <span class="math inline">\(h(\left\{\varepsilon\right\}) = \left\{\varepsilon\right\} \subseteq \left(\bigcup_{u\in L} h(\left\{u\right\})\right)^*\)</span>. In the other case let <span class="math inline">\(l_1,l_2,\dots,l_n\in L\)</span> such that <span class="math inline">\(v = l_1l_2\cdots l_n\)</span>, then <span class="math inline">\(h(\left\{v\right\}) = h(\left\{l_1\right\})\cdot h(\left\{l_2\right\})\cdots h(\left\{l_n\right\}) \subseteq \left(\bigcup_{u\in L} h(\left\{u\right\})\right)^*\)</span> too.</p>
+<p>The argument for the other side of containment is similar, just chase elements.</p></li>
+</ul>
+<blockquote>
+<p>Furthermore, show that every mapping <span class="math inline">\(h\)</span> satisfying <span class="math inline">\(h(\left\{\varepsilon\right\}) = \left\{\varepsilon\right\}\)</span>, <span class="math inline">\(h(L) = \bigcup_{u\in L} h(\left\{u\right\})\)</span> and <span class="math inline">\(h(L\cdot H) = h(L)\cdot h(H)\)</span> for all regular subsets <span class="math inline">\(L, H\subseteq \Sigma^*\)</span> is a generalised homomorphism.</p>
+</blockquote>
+<p>To show <span class="math inline">\(h(L\cup H) = h(L)\cup h(H)\)</span>, we mostly reuse the equations earlier <span class="math display">\[ h(L)\cup h(H) = \bigcup_{u\in L}h(\left\{u\right\}) \cup \bigcup_{v\in H} h(\left\{v\right\})
+= \bigcup_{w\in L\cup H} h(\left\{w\right\}) = h(L\cup H). \]</span></p>
+<p>To show <span class="math inline">\(h(\emptyset) = \emptyset\)</span> consider <span class="math inline">\(h(\emptyset) = \bigcup_{u\in \emptyset} h(\left\{u\right\}) = \emptyset\)</span>.</p>
+<p>To show <span class="math inline">\(h(L^*) = h(L)^*\)</span> it suffices to show that <span class="math display">\[\bigcup_{v\in L^*} h(\left\{v\right\}) = \left(\bigcup_{u\in L} h(\left\{u\right\})\right)^*\]</span> and we can reuse the argument from earlier part.</p>
+<blockquote>
+<p>Is the same true if one weakens the condition <span class="math inline">\(h(\left\{\varepsilon\right\}) = \left\{\varepsilon\right\}\)</span> to <span class="math inline">\(\varepsilon\in h(\left\{\varepsilon\right\})\)</span>?</p>
+</blockquote>
+<p>No. Let <span class="math inline">\(h\)</span> send <span class="math inline">\(\left\{\varepsilon\right\}\)</span> to <span class="math inline">\(\left\{\varepsilon, 0\right\}\)</span>. Then <span class="math inline">\(h\)</span> cannot be a generalised homomorphism because <span class="math display">\[ \left\{\varepsilon, 0\right\} \ne h(\left\{\varepsilon\right\}) = h(\left\{\varepsilon\right\}^*) = \left\{\varepsilon, 0\right\}^* = 0^*. \]</span></p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/CS4232/tutorialweek7.md">CS4232/tutorialweek7.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

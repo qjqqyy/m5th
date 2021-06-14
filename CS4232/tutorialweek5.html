@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="13th September 2019" />
+  <title>Exercise 4.7</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">Exercise 4.7</h1><p class="author">Qi Ji</p>
+<p class="date">13th September 2019</p>
+</header>
+<article><blockquote>
+<p>Consider the language <span class="math inline">\(\left\{0,1\right\}^*\cdot 0\cdot\left\{0,1\right\}^{n-1}\)</span>.</p>
+</blockquote>
+<p>Observe that this language matches all words iff its <span class="math inline">\(n\)</span>-th last character is <span class="math inline">\(0\)</span>.</p>
+<blockquote>
+<ol start="2" type="a">
+<li>Make an nfa recognising it with at most <span class="math inline">\(n+1\)</span> states</li>
+</ol>
+</blockquote>
+<figure>
+<img src="exercise4-7_nfa.png" alt /><figcaption>nfa with n-1 states</figcaption>
+</figure>
+<p>Start at state <span class="math inline">\(S\)</span>.</p>
+<blockquote>
+<ol start="3" type="a">
+<li>Make a dfa recognising it with exactly <span class="math inline">\(2^n\)</span> states</li>
+</ol>
+</blockquote>
+<p>As the dfa is large, I will illustrate the idea when <span class="math inline">\(n=3\)</span>.</p>
+<figure>
+<img src="exercise4-7_dfa.png" alt /><figcaption>dfa for n=3</figcaption>
+</figure>
+<p>Start at state <span class="math inline">\(111\)</span>.</p>
+<p>Note that the transitions follow the rule that the state labelled <span class="math inline">\(abc\)</span> on character <span class="math inline">\(d\)</span> transitions to state <span class="math inline">\(bcd\)</span> for <span class="math inline">\(a,b,c,d\in\left\{0,1\right\}\)</span>.</p>
+<blockquote>
+<ol type="a">
+<li>Show that a dfa recognising it needs at least <span class="math inline">\(2^n\)</span> states.</li>
+</ol>
+</blockquote>
+<p>The basic idea is that the dfa must remember the last <span class="math inline">\(n\)</span>-many characters in order to decide whether a word is in the language or not, this principle is illustrated in my answer for part (c), where the states correspond to <span class="math inline">\(\left\{0,1\right\}^n\)</span>.</p>
+<p>To formally prove the lower bound we proceed by showing that <span class="math inline">\(L = \left\{0,1\right\}^*\cdot 0\cdot\left\{0,1\right\}^{n-1}\)</span> at least has <span class="math inline">\(2^n\)</span> derivatives, then by theorem of Myhill and Nerode the result follows. Let <span class="math inline">\(w, w' \in \left\{0,1\right\}^n\)</span>, we want to show that <span class="math inline">\(L_w \ne L_{w'}\)</span>. Without loss of generality let <span class="math inline">\(u,v,u',v'\)</span> such that <span class="math display">\[\begin{align*}
+w &amp;= u0v  \\
+w' &amp;= u'1v'  \\
+\left\lvert u\right\rvert &amp;= \left\lvert u'\right\rvert  \\
+\left\lvert v\right\rvert &amp;= \left\lvert v'\right\rvert
+\end{align*}\]</span> then we see that <span class="math inline">\(0^{\left\lvert u\right\rvert} \in L_w\)</span> but <span class="math inline">\(0^{\left\lvert u\right\rvert} \notin L_{w'}\)</span>.</p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/CS4232/tutorialweek5.md">CS4232/tutorialweek5.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

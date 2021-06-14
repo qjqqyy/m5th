@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="4th February 2020" />
+  <title>MA3111S Homework 1</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">MA3111S Homework 1</h1><p class="author">Qi Ji</p>
+<p class="date">4th February 2020</p>
+</header>
+<article><h1 id="exercise-1">Exercise 1</h1>
+<h2 id="section">(1)</h2>
+<p>Suppose <span class="math inline">\(f\)</span> is continuous and let <span class="math inline">\(x_n \to x\)</span> be a sequence. For any <span class="math inline">\(\epsilon&gt;0\)</span>, <span class="math inline">\(B_Y(f(x), \epsilon)\)</span> the <span class="math inline">\(\epsilon\)</span>-ball around <span class="math inline">\(f(x_n)\)</span> in <span class="math inline">\(Y\)</span> is a neighbourhood and as <span class="math inline">\(f\)</span> is continuous there is a <span class="math inline">\(\delta\)</span> such that <span class="math inline">\(f(B_X(x,\delta)) \subseteq B_Y(f(x), \epsilon)\)</span>. As <span class="math inline">\(x_n\to x\)</span> there is some <span class="math inline">\(N\)</span> such that <span class="math inline">\(n\geq N \implies d(x_n, x) &lt; \delta\)</span>, therefore <span class="math inline">\(f(x_n) \to f(x)\)</span>.</p>
+<p>Conversely suppose that <span class="math inline">\(f\)</span> fails to be continuous at <span class="math inline">\(x\in X\)</span>, then there exists a neighbourhood <span class="math inline">\(M\)</span> of <span class="math inline">\(f(x)\)</span> such that for all neighbourhoods of <span class="math inline">\(x\)</span> <span class="math inline">\(N\)</span> we have <span class="math inline">\(f(N) \nsubseteq M\)</span>. Fix <span class="math inline">\(x, M\)</span> as above and for each <span class="math inline">\(n\)</span>, we choose a point <span class="math inline">\(x_n \in B(x, \frac1n)\)</span> such that <span class="math inline">\(f(x_n) \notin M\)</span>. Then this sequence <span class="math inline">\(x_n \to x\)</span> but each <span class="math inline">\(f(x_n) \notin M\)</span> so <span class="math inline">\(f(x_n) \to f(x)\)</span> is impossible.</p>
+<h2 id="section-1">(2)</h2>
+<p>For any <span class="math inline">\(U\subseteq Z\)</span> we have <span class="math inline">\((g\circ f)^{-1}(U) = g^{-1}(f^{-1}(U))\)</span>. So in particular, when <span class="math inline">\(U\)</span> is open <span class="math inline">\((g\circ f)^{-1}(U)\)</span> is also open by continuity of <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span>.</p>
+<h1 id="exercise-2">Exercise 2</h1>
+<h2 id="section-2">(1)</h2>
+<p>Positivity, definiteness and symmetry easily carry from the fact that <span class="math inline">\(X_1, X_2\)</span> are metric spaces. Triangle inequality also carries over, consider any <span class="math inline">\(x_1,y_1,z_1\in X_1\)</span> and <span class="math inline">\(x_2,y_2,z_2\in X_2\)</span>, <span class="math display">\[\begin{align*}
+d((x_1, x_2), (z_1, z_2))
+&amp;= d_1(x_1, z_1) + d_2(x_2, z_2) \\
+&amp;\leq d_1(x_1, y_1) + d_1(y_1,z_1) + d_2(x_2, y_2) + d_2(x_2,z_2) \\
+&amp;= d((x_1, x_2), (y_1,y_2)) + d((y_1,y_2), (z_1,z_2))
+\end{align*}\]</span></p>
+<h2 id="section-3">(2)</h2>
+<p>Let <span class="math inline">\((X,\tau)\)</span> denote the product topology and <span class="math inline">\((X,\sigma)\)</span> denote the one induced by the metric <span class="math inline">\((X,d)\)</span>. We know that <span class="math display">\[
+\mathcal{B} = \left\{ B(x_1,r_1)\times B(x_2,r_2): x_1\in X_1, x_2\in X_2, r_1,r_2&gt;0 \right\}
+\]</span> is a base for <span class="math inline">\((X,\tau)\)</span>. Fix <span class="math inline">\(B(x_1,r_1)\times B(x_2,r_2)\in\mathcal{B}\)</span> and it suffices to show that this set is open in <span class="math inline">\((X,\sigma)\)</span>. Let <span class="math inline">\((y_1,y_2) \in B(x_1,r_1)\times B(x_2,r_2)\)</span> choose <span class="math inline">\(0 &lt; \delta &lt; \min\left\{r_1 - d(x_1,y_1), r_2 - d(x_2, y_2)\right\}\)</span> and we can see that <span class="math inline">\(B\left((y_1,y_2), \delta\right) \subseteq B(x_1,r_1)\times B(x_2,r_2)\)</span> which shows that <span class="math inline">\(B(x_1,r_1)\times B(x_2,r_2)\)</span> is open in <span class="math inline">\((X,\sigma)\)</span>.</p>
+<p>Conversely fix <span class="math inline">\((x_1,x_2)\in X, r&gt;0\)</span> and we want to show that <span class="math inline">\(B((x_1,x_2), r)\)</span> is open in the product topology. Let <span class="math inline">\((y_1,y_2)\in B((x_1,x_2), r)\)</span>, and let <span class="math display">\[m = r - d_1(x_1,y_1) - d_2(x_2,y_2) &gt; 0\]</span> choose <span class="math inline">\(\delta &lt; \frac{m}2\)</span> and we can see that <span class="math inline">\(B(y_1,\delta)\times B(y_2,\delta) \subseteq B((x_1,x_2),r)\)</span>, so <span class="math inline">\(B((x_1,x_2),r)\)</span> is also open in <span class="math inline">\(\tau\)</span>.</p>
+<h1 id="exercise-3">Exercise 3</h1>
+<h2 id="section-4">(1)</h2>
+<p>To show that <span class="math inline">\(\phi\)</span> is Lipschitz we want to find an upper bound for <span class="math display">\[
+\frac{\left\lVert\phi\lambda - \phi\mu\right\rVert}{\left\lvert\lambda -\mu\right\rvert}
+= \frac{\max_{x\in[0,1]}\left\lvert\lambda - \mu\right\rvert x^2}{\left\lvert\lambda -\mu\right\rvert}
+= 1
+\]</span></p>
+<h2 id="section-5">(2)</h2>
+<p>The closed unit ball is not compact. We just need to see that <span class="math inline">\(\mathscr{C}^0\)</span> is an infinite-dimensional vector space. We consider the set <span class="math inline">\(\left\{x\mapsto 1,x\mapsto x,x\mapsto x^2,\dots\right\}\)</span> which is an infinite set that is linearly independent.</p>
+<h2 id="section-6">(3)</h2>
+<p>Let <span class="math inline">\(g\in\overline{\mathscr{F}}\setminus\mathscr{F}\)</span>, then every neighbourhood of <span class="math inline">\(g\)</span> contains some <span class="math inline">\(f\in\mathscr{F}\)</span>. In particular for all strictly positive integer <span class="math inline">\(n\)</span> choose <span class="math inline">\(f_n \in \mathscr{F}\)</span> such that <span class="math inline">\(\left\lVert g-f_n\right\rVert &lt; \frac1n\)</span>. Now for any <span class="math inline">\(x,y\in[0,1]\)</span>, by triangle inequality for all <span class="math inline">\(n\)</span> <span class="math display">\[\begin{align*}
+\left\lvert g(y)-g(x)\right\rvert &amp;\leq \left\lvert g(y)-f_n(y)\right\rvert + \left\lvert f_n(y)-f_n(x)\right\rvert + \left\lvert f_n(x)-g(x)\right\rvert \\
+&amp;&lt; \frac2n + \left\lvert f_n(y)-f_n(x)\right\rvert \\
+&amp;\leq \frac2n + \left\lvert y-x\right\rvert
+\end{align*}\]</span> so it turns out that <span class="math inline">\(g\in\mathscr{F}\)</span>. Hence <span class="math inline">\(\mathscr{F}\)</span> is closed.</p>
+<h2 id="section-7">(4)</h2>
+<p>Choose any sequence <span class="math inline">\(f_n\)</span> in <span class="math inline">\(\mathscr{F}_1\)</span>, we see that the sequence <span class="math inline">\((f_n)\)</span> is uniformly bounded as <span class="math inline">\(\left\lVert f_n\right\rVert_0 \leq 1\)</span>. The sequence is also uniformly equicontinuous as each <span class="math inline">\(f_n\)</span> is 1-Lipschitz. By Arzelà–Ascoli theorem <span class="math inline">\((f_n)\)</span> has a convergent (wrt <span class="math inline">\(\left\lVert\cdot\right\rVert\)</span>) subsequence, hence <span class="math inline">\(\mathscr{F}_1\)</span> is sequentially compact, and therefore compact (in the metric space <span class="math inline">\(\mathscr{C}^0\)</span>).</p>
+<p><strong>FIXUP: also state that the convergent subsequence converges to some function in <span class="math inline">\(\mathscr{F}_1\)</span>.</strong></p>
+<h2 id="section-8">(5)</h2>
+<p>Choose any <span class="math inline">\(f\in\mathscr{F}_2\)</span>, if <span class="math inline">\(f\not\equiv 0\)</span> since <span class="math inline">\(f\)</span> is continuous, intermediate value property gives us <span class="math inline">\(c\in[0,1]\)</span> with <span class="math inline">\(f(c) = 0\)</span>. Then as <span class="math inline">\(f\)</span> is 1-Lipschitz we still have a uniform bound <span class="math inline">\(\left\lVert f\right\rVert_0\leq 1\)</span>. Now repeat the argument in (4).</p>
+<h2 id="section-9">(6)</h2>
+<p>For any <span class="math inline">\(f\in\mathscr{F}_3\)</span> by mean value theorem for any <span class="math inline">\(x,y\in[0,1]\)</span>, we have <span class="math display">\[ \left\lvert f(y) - f(x)\right\rvert\leq\left\lvert y-x\right\rvert \]</span> due to the uniform bound on <span class="math inline">\(f'\)</span>. Repeat the argument in (4).</p>
+<p><strong>FIXUP: this is wrong</strong></p>
+<h1 id="exercise-4">Exercise 4</h1>
+<p>Let <span class="math inline">\(U^c\)</span> denote <span class="math inline">\(X\setminus U\)</span>, note that <span class="math inline">\(U^c\)</span> is closed and disjoint from <span class="math inline">\(K\)</span> as assumed. Choose <span class="math inline">\(\delta&gt;0\)</span> such that <span class="math inline">\(d(x,U^c) \geq\delta\)</span> for all <span class="math inline">\(x\in K\)</span>. Define <span class="math inline">\(f\)</span> as <span class="math display">\[ f(x) = \frac{\max\left\{d(x,U^c),\delta\right\}}\delta \]</span> and it follows from our choice of <span class="math inline">\(\delta\)</span> that <span class="math inline">\(f=0\)</span> on <span class="math inline">\(X\setminus U\)</span> and <span class="math inline">\(f=1\)</span> on <span class="math inline">\(K\)</span>.</p>
+<p>We first show that <span class="math inline">\(d(-,U^c)\)</span> is Lipschitz. Let <span class="math inline">\(x,y\in X\)</span> and for all <span class="math inline">\(z\in U^c\)</span>, <span class="math display">\[\begin{align*}
+d(x,U^c) &amp;\leq d(x,z) \\
+&amp;\leq d(x,y) + d(y,z) \\
+d(x,U^c) - d(x,y) &amp;\leq d(y,z)
+\end{align*}\]</span> therefore <span class="math inline">\(d(x,U^c) - d(y,U^c) \leq d(x,y)\)</span>. Symmetric argument shows <span class="math inline">\(d(y,U^c) - d(x,U^c) \leq d(x,y)\)</span>.</p>
+<p>To see that <span class="math inline">\(f\)</span> is Lipschitz fix <span class="math inline">\(x,y\in X\)</span> and consider the following cases,</p>
+<dl>
+<dt>Both <span class="math inline">\(d(x,U^c)\)</span> and <span class="math inline">\(d(y,U^c)\)</span> bounded below by <span class="math inline">\(\delta\)</span></dt>
+<dd>then <span class="math inline">\(\left\lvert f(y) - f(x)\right\rvert = 0 \leq d(x,y)\)</span>.
+</dd>
+<dt>Both <span class="math inline">\(d(x,U^c)\)</span> and <span class="math inline">\(d(y,U^c)\)</span> less than <span class="math inline">\(\delta\)</span></dt>
+<dd>by earlier result <span class="math display">\[\left\lvert f(y) - f(x)\right\rvert = \frac1\delta\left\lvert d(y,U^c) - d(x,U^c)\right\rvert \leq \frac{d(x,y)}{\delta}.\]</span>
+</dd>
+<dt>WLOG <span class="math inline">\(d(x,U^c)\geq\delta\)</span> and <span class="math inline">\(d(y,U^c)&lt;\delta\)</span></dt>
+<dd><span class="math display">\[
+\left\lvert f(y)-f(x)\right\rvert = \frac1\delta\left\lvert d(y,U^c)-\delta\right\rvert \leq \frac1\delta\left\lvert d(y,U^c)-d(x,U^c)\right\rvert\leq \frac{d(x,y)}\delta.
+\]</span>
+</dd>
+</dl>
+<p>Hence <span class="math inline">\(f\)</span> is <span class="math inline">\(\frac1\delta\)</span>-Lipschitz as desired.</p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA3111S/hw1.md">MA3111S/hw1.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

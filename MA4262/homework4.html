@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="12th November 2020" />
+  <title>MA4262 Homework 4</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">MA4262 Homework 4</h1><p class="author">Qi Ji</p>
+<p class="date">12th November 2020</p>
+</header>
+<article><h1 data-number="1" id="section" data-number="1"><span class="header-section-number">1</span> </h1>
+<p><span class="math inline">\(G\)</span> is a linear functional due to linearity of integration. To see that <span class="math inline">\(G\)</span> is bounded we can check that <span class="math inline">\(G(f) = \int fg\ d\mu = \left\lVert fg\right\rVert_1 \leq \left\lVert f\right\rVert_p\left\lVert g\right\rVert_q\)</span> by Hölder’s inequality, which also shows the bound <span class="math inline">\(\left\lVert G\right\rVert\leq\left\lVert g\right\rVert_q\)</span>.</p>
+<p>To finish the proof we choose <span class="math display">\[ f = c\cdot\operatorname{sgn}(g)\cdot\left\lvert g\right\rvert^{q-1} \]</span> where <span class="math inline">\(c = {\left\lVert g\right\rVert_q}^{-q/p}\)</span>, note that <span class="math inline">\(\frac{q}{p} = q-1\)</span>.</p>
+<p>First we show <span class="math inline">\(f\)</span> is <span class="math inline">\(L^p\)</span> and <span class="math inline">\(\left\lVert f\right\rVert_p = 1\)</span>, <span class="math display">\[\begin{align*}
+{\left\lVert f\right\rVert_p}^p &amp;= \int \left\lvert f\right\rvert^p\ d\mu \\
+&amp;= c^p \int \left\lvert g\right\rvert^{p(q-1)}\ d\mu \\
+&amp;= c^p \int \left\lvert g\right\rvert^{q}\ d\mu \\
+{\left\lVert f\right\rVert_p} &amp;= c\cdot{\left\lVert g\right\rVert_q}^{q/p} \\
+&amp;= 1
+\end{align*}\]</span> then computing <span class="math inline">\(G(f)\)</span> we have <span class="math display">\[\begin{align*}
+G(f) &amp;= \int fg\ d\mu \\
+&amp;= c \int \left\lvert g\right\rvert^p\ d\mu \\
+&amp;= {\left\lVert g\right\rVert_q}^{1-q}\cdot{\left\lVert g\right\rVert_q}^q \\
+&amp;= \left\lVert g\right\rVert_q
+\end{align*}\]</span> which shows the equality in <span class="math inline">\(\left\lVert G\right\rVert = \left\lVert g\right\rVert_p\)</span>.</p>
+<h1 data-number="2" id="section-1" data-number="2"><span class="header-section-number">2</span> </h1>
+<h2 class="unnumbered" data-number id="a" class="unnumbered" data-number>(a)</h2>
+<p><span class="math inline">\(\nu(\emptyset) = 0\)</span> as <span class="math inline">\(G\)</span> is bounded.</p>
+<p>Let <span class="math inline">\(E_1,E_2,\dots \in \mathcal{X}\)</span> be disjoint, as <span class="math inline">\(X\)</span> is a finite measure space only finitely many sets have nonzero measure, so additivity of <span class="math inline">\(\nu\)</span> carries over from linearity of <span class="math inline">\(G\)</span>.</p>
+<h2 class="unnumbered" data-number id="b" class="unnumbered" data-number>(b)</h2>
+<p>Use Hahn decomposition theorem to express <span class="math inline">\(X = P \sqcup N\)</span> where <span class="math inline">\(P\)</span> is positive for <span class="math inline">\(\nu\)</span> and <span class="math inline">\(N\)</span> negative. Define <span class="math inline">\(\nu^+(E) = \nu(E\cap P)\)</span> and <span class="math inline">\(\nu^-(E) = -\nu(E\cap N)\)</span>. Positivity of each measure comes from the definitions, while definiteness and countable additivity inherits from <span class="math inline">\(\nu\)</span>.</p>
+<h2 class="unnumbered" data-number id="c" class="unnumbered" data-number>(c)</h2>
+<p>Suppose <span class="math inline">\(\mu(E) = 0\)</span>, then <span class="math inline">\(\nu^{+}(E) = \nu(E\cap P) = G(\chi_{E\cap P}) = 0\)</span> because <span class="math inline">\(\left\lVert\chi_{E\cap P}\right\rVert = 0\)</span>, so <span class="math inline">\(\nu^+ \ll \mu\)</span>, similarly we can show <span class="math inline">\(\nu^- \ll \mu\)</span>.</p>
+<p>Applying Radon-Nikodýn theorem, let <span class="math inline">\(g^+, g^-: X\to [0,\infty)\)</span> such that for any <span class="math inline">\(A\in\mathcal{X}\)</span>, <span class="math display">\[\begin{align*}
+\nu^+(A) &amp;= \int_A g^+\ d\mu, \\
+\nu^-(A) &amp;= \int_A g^-\ d\mu.
+\end{align*}\]</span></p>
+<h2 class="unnumbered" data-number id="d" class="unnumbered" data-number>(d)</h2>
+<p>For <span class="math inline">\(g^+\)</span> we restrict our attention to measurable subsets of <span class="math inline">\(P\)</span>, let <span class="math inline">\(E\in \mathcal{X}, E\subseteq P\)</span>, then <span class="math display">\[\nu^+(E) = \nu(E) = G(\chi_E) = \int \chi_E g^+\ d\mu \]</span> so by linearity for all nonnegative simple functions <span class="math inline">\(\varphi\)</span> with support in <span class="math inline">\(P\)</span>, we have <span class="math display">\[ G(\varphi) = \int \varphi g^+\ d\mu \]</span> then by Monotone Convergence we can generalise this equality to apply to all (nonnegative) <span class="math inline">\(f\in L^p\)</span> with support in <span class="math inline">\(P\)</span> <span class="math display">\[ G(f) = \int f g^+\ d\mu \]</span> this can be generalised to all <span class="math inline">\(f\in L^p\)</span> with support in <span class="math inline">\(P\)</span> by applying linearity of <span class="math inline">\(G\)</span>, then we can use a similar trick to Q1 to produce a <span class="math inline">\(f\)</span> satisfying <span class="math inline">\(G(f)\geq \left\lVert g^+\right\rVert_q\)</span>.</p>
+<p>Case of <span class="math inline">\(g^-\)</span> is similar, except that <span class="math inline">\(G(f) = -\int fg^-\ d\mu\)</span>.</p>
+<h2 class="unnumbered" data-number id="e" class="unnumbered" data-number>(e)</h2>
+<p>Let <span class="math inline">\(g = g^+ - g^-\)</span>, then <span class="math display">\[\begin{align*}
+\int fg\ d\mu &amp;= \int fg^+\ d\mu - \int fg^-\ d\mu \\
+&amp;= \int (f\cdot\chi_P)g^+\ d\mu - \int (f\cdot\chi_N)g^-\ d\mu \\
+&amp;= G(f\cdot\chi_P) + G(f\cdot\chi_N) \\
+&amp;= G(f\cdot\chi_P + f\cdot\chi_N) = G(f)
+\end{align*}\]</span> seeing that <span class="math inline">\(\left\lVert g\right\rVert_q = \left\lVert G\right\rVert\)</span> is basically Q1 again.</p>
+<h2 class="unnumbered" data-number id="f" class="unnumbered" data-number>(f)</h2>
+<p>Suppose <span class="math inline">\(g'\)</span> also represents <span class="math inline">\(G\)</span>, without loss of generality let <span class="math display">\[ E = \left\{x: g(x) &gt; g'(x)\right\} \]</span> be non-null, let <span class="math inline">\(E_\epsilon\)</span> denote <span class="math inline">\(\left\{x: g(x) &gt; g'(x) + \epsilon\right\}\)</span> and as <span class="math inline">\(E = \bigcup_{n=1}^\infty E_{1/n}\)</span> we have <span class="math inline">\(E_\epsilon\)</span> non-null for some <span class="math inline">\(\epsilon\)</span>. As our measure space is finite we can see that <span class="math inline">\(\chi_{E_\epsilon}\)</span> is in <span class="math inline">\(L^p\)</span> and <span class="math display">\[ \int \chi_{E_\epsilon} g\ d\mu \ne \int \chi_{E_\epsilon} g'\ d\mu \]</span> which is a contradiction.</p>
+<h1 data-number="3" id="section-2" data-number="3"><span class="header-section-number">3</span> </h1>
+<h2 class="unnumbered" data-number id="a-1" class="unnumbered" data-number>(a)</h2>
+<p>As <span class="math inline">\(f = \operatorname{sgn}(f)\left\lvert f\right\rvert\)</span> we can just show the case for nonnegative <span class="math inline">\(\left\lvert f\right\rvert\)</span>.</p>
+<h2 class="unnumbered" data-number id="b-1" class="unnumbered" data-number>(b)</h2>
+<p>Let <span class="math inline">\(\varphi_n\)</span> be a sequence of simple functions that converge to <span class="math inline">\(f\)</span> almost everywhere.</p>
+<h2 class="unnumbered" data-number id="c-1" class="unnumbered" data-number>(c)</h2>
+<p>Applying Egorov theorem as <span class="math inline">\(\lambda([a,b])\)</span> is finite, there exists <span class="math inline">\(E_\delta\subseteq [a,b]\)</span> with <span class="math inline">\(\lambda(E_\delta) &lt; \delta/3\)</span> where <span class="math inline">\(\varphi_n\)</span> converges uniformly to <span class="math inline">\(f\)</span> on <span class="math inline">\([a,b]\setminus E_\delta\)</span>.</p>
+<h2 class="unnumbered" data-number id="d-1" class="unnumbered" data-number>(d)</h2>
+<p>Fix <span class="math inline">\(\delta &gt; 0\)</span>, For each <span class="math inline">\(\varphi_n\)</span>, express it as <span class="math display">\[ \varphi_n(x) = \sum_{j=1}^N a_{n,j} \chi_{E_{n,j}} \]</span> where <span class="math inline">\(E_{n,j}\)</span> are disjoint.</p>
+<p>As each <span class="math inline">\(E_{n,j}\)</span> is measurable by approximating it with a closed set then approximating the resulting complement with an open set, we can find <span class="math inline">\(G_{n,j}\)</span> where <span class="math inline">\(\lambda(G_{n,j}) &lt; \frac{2^{-n}\delta/3}{N}\)</span> and <span class="math inline">\(\varphi_n\)</span> is constant on <span class="math inline">\(E_{n,j}\setminus G_{n,j}\)</span>.</p>
+<p>As each <span class="math inline">\(E_{n,j}\setminus G_{n,j}\)</span> is compact their pairwise Hausdorff distance is nonzero, then <span class="math inline">\(\varphi_n\)</span> is continuous on <span class="math inline">\([a,b]\setminus G_n\)</span> where <span class="math inline">\(G_n = \bigcup_{n=1}^N G_{n,j}\)</span> and <span class="math inline">\(\lambda(G_n) &lt; 2^{-n}\delta/3\)</span>. Then <span class="math inline">\(\tilde{G}_\delta = \bigcup_{n=1}^\infty G_n\)</span> has measure less than <span class="math inline">\(\delta/3\)</span>.</p>
+<h2 class="unnumbered" data-number id="e-1" class="unnumbered" data-number>(e)</h2>
+<p>As both <span class="math inline">\(E_\delta\)</span> and <span class="math inline">\(\tilde{G}_\delta\)</span> are Lebesgue measurable we approximate their union with an open set to get <span class="math inline">\(G_\delta\)</span> which contains both and has measure less than <span class="math inline">\(\delta\)</span>.</p>
+<h2 class="unnumbered" data-number id="f-1" class="unnumbered" data-number>(f)</h2>
+<p>For each <span class="math inline">\(n\)</span> consider <span class="math inline">\(\tilde{\varphi}_n = \varphi_n \cdot \chi_{G_\delta}\)</span>.</p>
+<h2 class="unnumbered" data-number id="g" class="unnumbered" data-number>(g)</h2>
+<p>We have now shown that on <span class="math inline">\([a,b]\setminus G_\delta\)</span>, the convergence <span class="math inline">\(\varphi_n \to f\)</span> is uniform, so <span class="math inline">\(f\)</span> on <span class="math inline">\(\chi_{G_\delta}\)</span> is a uniform limit of continuous functions and therefore continuous.</p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA4262/homework4.md">MA4262/homework4.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="May 2018" />
+  <title>MA2104 Reference</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">MA2104 Reference</h1><p class="author">Qi Ji</p>
+<p class="date">May 2018</p>
+</header>
+<article><h2 data-number="0.1" id="important-notions" data-number="0.1"><span class="header-section-number">0.1</span> Important notions</h2>
+<dl>
+<dt>Functions. <span class="math inline">\(\mathbb{R}^n\to \mathbb{R}\)</span></dt>
+<dd>send <em>points</em> to <em>numbers</em> (scalars)
+</dd>
+<dt>Curves. <span class="math inline">\(I \to \mathbb{R}^n\)</span></dt>
+<dd>send <em>numbers</em> to <em>points</em> (in space)
+</dd>
+<dt>Vector fields. <span class="math inline">\(\mathbb{R}^n \to \mathbb{R}^n\)</span></dt>
+<dd>sends <em>points</em> to <em>vectors</em> (in the <strong>same</strong> dimension)
+</dd>
+</dl>
+<h1 data-number="1" id="baby-linear-algebra-and-geometry" data-number="1"><span class="header-section-number">1</span> Baby linear algebra and geometry</h1>
+<h2 data-number="1.1" id="babbys-first-vectors" data-number="1.1"><span class="header-section-number">1.1</span> Babby’s first vectors</h2>
+<p>Read <span class="math inline">\(\operatorname{comp}_{\mathbf{a}} \mathbf{b}, \operatorname{proj}_{\mathbf{a}} \mathbf{b}\)</span> leftwards as component/projection of <span class="math inline">\(\mathbf{b}\)</span> on <span class="math inline">\(\mathbf{a}\)</span>. <span class="math display">\[\begin{align*}
+    \operatorname{comp}_{\mathbf{a}} \mathbf{b} &amp;= \frac{\mathbf{a}\cdot\mathbf{b}}{\left\lVert \mathbf{a} \right\rVert} \\
+    \operatorname{proj}_{\mathbf{a}} \mathbf{b} &amp;= \frac{\mathbf{a}\cdot\mathbf{b}}{\mathbf{a}\cdot\mathbf{a}}  \\
+    \mathbf{a}\cdot\mathbf{b} &amp;= \left\lVert \mathbf{a} \right\rVert\left\lVert \mathbf{b} \right\rVert \cos \theta \\
+    \left\lVert \mathbf{a} \right\rVert^2 &amp;= \mathbf{a}\cdot\mathbf{a} \\
+    \left\lVert \mathbf{a}\times\mathbf{b} \right\rVert &amp;= \left\lVert \mathbf{a} \right\rVert\left\lVert \mathbf{b} \right\rVert \sin\theta
+\end{align*}\]</span></p>
+<ul>
+<li>Use <span class="math inline">\(\times\)</span> to find area of parallelogram or shortest distance to line from point (divide by <span class="math inline">\(\left\lVert \mathbf{a} \right\rVert\)</span>).</li>
+<li>When doing cross product remember to <strong>minus</strong> the <span class="math inline">\(\mathbf{j}\)</span> term!</li>
+<li>The <span class="math inline">\(\cdot\)</span> and <span class="math inline">\(\times\)</span> operators are bilinear.</li>
+<li>Triple product = determinant of <span class="math inline">\(3\)</span> vectors.</li>
+</ul>
+<h2 data-number="1.2" id="translated-subspaces" data-number="1.2"><span class="header-section-number">1.2</span> (Translated) subspaces</h2>
+<p>Any hyperspace can be described by a normal vector <span class="math inline">\(\mathbf{n}\)</span>. Equation of any hyperspace can be given by <span class="math inline">\(\mathbf{r}\cdot\mathbf{n} = 0\)</span>, translation gives <span class="math inline">\(\mathbf{n}\cdot\mathbf{r} = \mathbf{n}\cdot\mathbf{r}_0\)</span> where <span class="math inline">\(\mathbf{r}_0\)</span> is the position vector of any given point in the hyperspace.</p>
+<ul>
+<li>Angle between hyperspaces = angle between their normals.</li>
+<li>Shortest distance between <span class="math inline">\(Q\)</span> and <span class="math inline">\(\Pi\)</span> = <span class="math inline">\(\operatorname{comp}_{\mathbf{n}} \overrightarrow{AQ}\)</span> on <span class="math inline">\(\mathbf{n}\)</span> where <span class="math inline">\(A\in \Pi\)</span>.</li>
+</ul>
+<h2 data-number="1.3" id="vector-functions" data-number="1.3"><span class="header-section-number">1.3</span> Vector functions</h2>
+<ul>
+<li>Differentiate vector <span class="math inline">\(\mathbf{r}(t)\)</span> component-wise.</li>
+<li>Product rule generalises to <span class="math inline">\(\cdot\)</span> and <span class="math inline">\(\times\)</span>, proof by bloody expansion.</li>
+<li>Arc length formula. For arc traced by <span class="math inline">\(\mathbf{r}(t)\)</span>, from <span class="math inline">\(a \leq t \leq b\)</span>, arc length is <span class="math inline">\(\int_a^b \left\lVert \mathbf{r}'(t) \right\rVert \ dt\)</span>.</li>
+</ul>
+<h1 data-number="2" id="surfaces-multivariable-functions" data-number="2"><span class="header-section-number">2</span> Surfaces &amp; Multivariable functions</h1>
+<dl>
+<dt>Cylinder.</dt>
+<dd>Exists plane <span class="math inline">\(\Pi\)</span> such that all planes parallel to <span class="math inline">\(\Pi\)</span> intersect <span class="math inline">\(S\)</span> in the same curve. (Common cylinders are those with a free variable.)
+</dd>
+</dl>
+<table>
+<caption>Scaling denominators are omitted. If they are negative for linear terms, like <span class="math inline">\(z/-c\)</span>, mentally flip everything.</caption>
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 23%" />
+<col style="width: 51%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Quadric surface</th>
+<th style="text-align: center;">Shape</th>
+<th style="text-align: left;">Properties</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(x^2 + y^2 = z\)</span></td>
+<td style="text-align: center;">Elliptic paraboloid</td>
+<td style="text-align: left;">Opens up on the axis of the linear variable</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(x^2 - y^2 = z\)</span></td>
+<td style="text-align: center;">Hyperbolic paraboloid</td>
+<td style="text-align: left;">“Saddle” opens up the direction of the linear variable</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(x^2 + y^2 + z^2=1\)</span></td>
+<td style="text-align: center;">Ellipsoid</td>
+<td style="text-align: left;">Nothing special</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(x^2 + y^2 - z^2=0\)</span></td>
+<td style="text-align: center;">(Elliptic) cone</td>
+<td style="text-align: left;">Opens up on the axis with negative coefficient</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(x^2 + y^2 - z^2=1\)</span></td>
+<td style="text-align: center;">1-sheet hyperboloid</td>
+<td style="text-align: left;"><span class="math inline">\(\uparrow\)</span> same</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(x^2 + y^2 - z^2=-1\)</span></td>
+<td style="text-align: center;">2-sheet hyperboloid</td>
+<td style="text-align: left;"><span class="math inline">\(\uparrow\)</span> same</td>
+</tr>
+</tbody>
+</table>
+<p>If all else fails, fix <span class="math inline">\(1\)</span> variable and trace the other two.</p>
+<h1 data-number="3" id="limits-continuity" data-number="3"><span class="header-section-number">3</span> Limits &amp; Continuity</h1>
+<ul>
+<li>To show limit does not exist at <span class="math inline">\(\mathbf{a}\)</span>, trace along several different paths (<em>any</em> line that passes through <span class="math inline">\(\mathbf{a}\)</span> will do) and get a contradiction (not well-defined).</li>
+<li>To show limit exist, use limit laws or squeeze. <br />
+On limit laws: for <span class="math inline">\(\left\{\, \text{functions of }\mathbf{x}\text{ with limit at }\mathbf{a} \,\right\}\)</span>,
+<ul>
+<li><span class="math inline">\(\lim_{\mathbf{x}\to\mathbf{a}}\)</span> is <strong>linear</strong>.</li>
+<li><span class="math inline">\(\lim_{\mathbf{x}\to\mathbf{a}}\)</span> respects <span class="math inline">\(\cdot\)</span> and <span class="math inline">\(/\)</span> provided <span class="math inline">\(\lim\)</span> denominator is not <span class="math inline">\(0\)</span>.</li>
+</ul></li>
+<li><span class="math inline">\(f\)</span> is continuous at <span class="math inline">\(\mathbf{a}\)</span> iff substitution property <span class="math display">\[ \lim_{\mathbf{x} \to \mathbf{a}} f(\mathbf{x}) = f(\mathbf{a}) \]</span></li>
+<li>Subspace of continuous functions is <strong>closed</strong> under <span class="math inline">\(\pm,\cdot,/\)</span> and <span class="math inline">\(\circ\)</span>.</li>
+<li>Standard continuous functions are polynomials, trig, exp and rational functions.</li>
+</ul>
+<h1 data-number="4" id="differential-calculus" data-number="4"><span class="header-section-number">4</span> Differential Calculus</h1>
+<h2 data-number="4.1" id="partial-derivatives" data-number="4.1"><span class="header-section-number">4.1</span> Partial derivatives</h2>
+<p>Suppose <span class="math inline">\(f: \mathbb{R}^n \to \mathbb{R}\)</span>, let <span class="math inline">\((e_i)_{i=1,2,\dots,n}\)</span> be standard basis for <span class="math inline">\(\mathbb{R}^n\)</span>. <span class="math display">\[D_i f = \frac{\partial f}{\partial e_i} =_{\text{def}} \lim_{h\to 0} \frac{f(\mathbf{v} + he_i) - f(\mathbf{v})}{h}.\]</span> When differentiating normally is too hard use <span class="math inline">\(\uparrow\)</span>.</p>
+<p><strong>Clairaut’s Theorem.</strong> Partial differentiation operators <em>commute</em>. <span class="math inline">\(\forall i,j.~ D_i D_j = D_j D_i\)</span>.</p>
+<h2 data-number="4.2" id="differentiability-and-linear-approximation" data-number="4.2"><span class="header-section-number">4.2</span> Differentiability and linear approximation</h2>
+<p><span class="math inline">\(f: \mathbb{R}^n \to \mathbb{R}\)</span> is <strong>differentiable</strong> at <span class="math inline">\(\mathbf{a}\)</span> iff</p>
+<ul>
+<li><em>all</em> the partial derivatives <span class="math inline">\(D_1 f,\dots,D_n f\)</span> (these terms are in fact limits) exist at the point <span class="math inline">\(\mathbf{a}\)</span>, <strong>and</strong></li>
+<li>there exists a function <span class="math inline">\(\varepsilon: \mathbb{R}^n \to \mathbb{R}^n\)</span> (defined for small <span class="math inline">\(\mathbf{h}\)</span> such that) <span class="math display">\[\lim_{\mathbf{h}\to\mathbf{0}} \varepsilon(\mathbf{h}) = \mathbf{0},\quad\textbf{and}\]</span> <span class="math display">\[f(\mathbf{a} + \mathbf{h}) - f(\mathbf{a}) = \nabla f(\mathbf{a})\cdot \mathbf{h} + \varepsilon(\mathbf{h})\cdot \mathbf{h}\]</span> post-composing <span class="math inline">\(\varepsilon\)</span> with tuple-selection map will give <span class="math inline">\(n\)</span> functions, and</li>
+<li>in <span class="math inline">\(2\)</span> variables where <span class="math inline">\(\mathbf{h} = (\Delta x, \Delta y)\)</span>, it simplifies to Stewart’s shit-tier definition <span class="math display">\[\Delta z = f_x \Delta x + f_y \Delta y + \varepsilon_1(\mathbf{h}) \Delta x + \varepsilon_2(\mathbf{h}) \Delta y\]</span></li>
+</ul>
+<p>On differentiability, <strong>only</strong> these implications hold, at a point <span class="math inline">\(\mathbf{x}\in \mathbb{R}^n\)</span>,</p>
+<ol type="1">
+<li>all partial derivatives <em>continuous</em> at <span class="math inline">\(\mathbf{x}\)</span> <span class="math inline">\(\implies\)</span> <span class="math inline">\(f\)</span> differentiable at <span class="math inline">\(\mathbf{x}\)</span>,</li>
+<li><span class="math inline">\(f\)</span> differentiable <span class="math inline">\(\implies\)</span> <span class="math inline">\(f\)</span> continuous,</li>
+<li><span class="math inline">\(f\)</span> differentiable <span class="math inline">\(\implies\)</span> all partial derivatives exist.</li>
+</ol>
+<p>Suppose <span class="math inline">\(f\)</span> is differentiable at <span class="math inline">\(\mathbf{a}\)</span>, then for a small vector <span class="math inline">\(\mathbf{h}\)</span>, <span class="math display">\[ f(\mathbf{a} + \mathbf{h}) \approx f(\mathbf{a}) + \nabla f(\mathbf{a}) \cdot \mathbf{h} \]</span></p>
+<h2 data-number="4.3" id="chain-rule" data-number="4.3"><span class="header-section-number">4.3</span> Chain rule</h2>
+<p><span class="math inline">\(f\)</span> is a differentiable function, <span class="math inline">\(\mathbf{r}(t)\)</span> is a differentiable curve. Then <span class="math inline">\(f(\mathbf{r}(t))\)</span> is differentiable and <span class="math display">\[ \frac{df(\mathbf{r}(t))}{dt} = \nabla f(\mathbf{r}(t))\cdot \mathbf{r}'(t),\]</span> or in terms of coordinates, if <span class="math inline">\(\mathbf{r}(t) = \left\langle r_1(t),\dots,r_n(t) \right\rangle\)</span>, <span class="math display">\[ \frac{df(\mathbf{r}(t))}{dt} = \frac{\partial f}{\partial r_1}\frac{d r_1}{d t} + \dots + \frac{\partial f}{\partial r_n}\frac{d r_n}{d t}.\]</span></p>
+<p>In general, suppose <span class="math inline">\(f(\mathbf{x}(\mathbf{t}))\)</span> is differentiable and <span class="math inline">\(\mathbf{x}(\mathbf{t}) = \left\langle x_1(\mathbf{t}),\dots,x_n(\mathbf{t}) \right\rangle\)</span>, then <span class="math display">\[ \frac{\partial f}{\partial t_i} = \frac{\partial f}{\partial x_1}\frac{\partial x_1}{\partial t_i} + \dots + \frac{\partial f}{\partial x_n}\frac{\partial x_n}{\partial t_i}.\]</span> (remember as adding all paths traced from <span class="math inline">\(f\)</span> to <span class="math inline">\(t_i\)</span>.)</p>
+<dl>
+<dt>Corollary.</dt>
+<dd><span class="math inline">\(\nabla f =_{\text{def}} \left\langle  D_1f , \dots , D_nf  \right\rangle\)</span> is <em>always</em> normal to the level curve/surface of <span class="math inline">\(f\)</span>.
+</dd>
+<dt>Implicit differentiation.</dt>
+<dd>Suppose <span class="math inline">\(F(x,y,z) = 0\)</span> implicitly defines <span class="math inline">\(z = \phi(x)\)</span>, then by chain rule (assuming <span class="math inline">\(y\)</span> independent) <span class="math display">\[\frac{\partial F}{\partial x} + \frac{\partial F}{\partial z}\frac{\partial z}{\partial x} = 0.\]</span>
+</dd>
+<dt>Tangent Plane shortcut.</dt>
+<dd>For <span class="math inline">\(f: \mathbb{R}^2\to \mathbb{R}\)</span>, vector normal to tangent plane at <span class="math inline">\((a,b)\)</span> is given by <span class="math display">\[ \left\langle 1,0,f_x(a,b) \right\rangle \times \left\langle 0,1,f_y(a,b) \right\rangle = \left\langle -f_x(a,b),-f_y(a,b), 1 \right\rangle. \]</span>
+</dd>
+</dl>
+<h2 data-number="4.4" id="directional-derivatives" data-number="4.4"><span class="header-section-number">4.4</span> Directional derivatives</h2>
+<p>Given a <strong>unit vector</strong> <span class="math inline">\(\mathbf{u}\)</span>, the derivative of <span class="math inline">\(f\)</span> in the direction of <span class="math inline">\(\mathbf{u}\)</span> is <span class="math display">\[ D_{\mathbf{u}} f =_\text{def} \nabla f \cdot \mathbf{u}.\]</span></p>
+<p>Min/max rate of change of <span class="math inline">\(f\)</span> at a point <span class="math inline">\(P\)</span>,</p>
+<ul>
+<li>max rate of change is in direction <span class="math inline">\(\nabla f\)</span>, with magnitude <span class="math inline">\(\left\lVert \nabla f(P) \right\rVert\)</span>, conversely</li>
+<li>min rate of change is in direction <span class="math inline">\(-\nabla f\)</span>, with magnitude <span class="math inline">\(-\left\lVert \nabla f(P) \right\rVert\)</span></li>
+</ul>
+<h2 data-number="4.5" id="extrema" data-number="4.5"><span class="header-section-number">4.5</span> Extrema</h2>
+<p>(Local min/max was not defined rigorously so I assume no1cur.)</p>
+<dl>
+<dt>Critical point.</dt>
+<dd><span class="math inline">\(P\)</span> is a critical point of <span class="math inline">\(f\)</span> if <span class="math inline">\(\nabla f(P) = \mathbf{0}\)</span>.
+</dd>
+<dt>Boundary point.</dt>
+<dd><span class="math inline">\(P\)</span> is a boundary point of <span class="math inline">\(S\)</span> if every open ball centered at <span class="math inline">\(P\)</span> contains a point in <span class="math inline">\(S\)</span> and a point not in <span class="math inline">\(S\)</span>.
+</dd>
+<dt>Closed set.</dt>
+<dd><span class="math inline">\(S\)</span> is closed if it contains all boundary points.
+</dd>
+<dt>Bounded.</dt>
+<dd>There exists <span class="math inline">\(b\)</span> such that for any point <span class="math inline">\(X\)</span> in set, we have <span class="math inline">\(\left\lVert X \right\rVert \leq b\)</span>.
+</dd>
+</dl>
+<p><strong>Extreme Value Theorem.</strong> For a function <span class="math inline">\(f\)</span> defined on a closed and bounded set <span class="math inline">\(S\)</span>, <span class="math inline">\(f\)</span> has global maximum and minimum in <span class="math inline">\(S\)</span>.</p>
+<p><strong>Closed Interval Method</strong> for <span class="math inline">\(f:D\to \mathbb{R}\)</span>, where <span class="math inline">\(D\)</span> is closed and bounded.</p>
+<ol type="1">
+<li>Find values of <span class="math inline">\(f\)</span> at all critical points in <span class="math inline">\(D\)</span>.</li>
+<li>Trace values of <span class="math inline">\(f\)</span> at each boundary of <span class="math inline">\(D\)</span>.</li>
+<li>min/max</li>
+</ol>
+<h3 data-number="4.5.1" id="lagrange-multipliers" data-number="4.5.1"><span class="header-section-number">4.5.1</span> Lagrange Multipliers</h3>
+<p>Suppose <span class="math inline">\(f,g\)</span> are differentiable functions where <span class="math inline">\(\nabla g \ne \mathbf{0}\)</span>. Optimisation: find min/max <span class="math inline">\(f\)</span> (objective) given <span class="math inline">\(g(x,y) = k\)</span> (constraint).</p>
+<ol type="1">
+<li>solve <span class="math inline">\(\nabla f(x,y) = \lambda \nabla g(x,y)\)</span>, where <span class="math inline">\(\lambda\)</span> is Lagrange Multiplier to be determined.</li>
+<li>Evaluate <span class="math inline">\(f\)</span> at all points found, proceed to min/max.</li>
+</ol>
+<p>Higher-dimensional cases are analogous.</p>
+<h1 data-number="5" id="integral-calculus" data-number="5"><span class="header-section-number">5</span> Integral Calculus</h1>
+<h2 data-number="5.1" id="additive-property-of-integrals" data-number="5.1"><span class="header-section-number">5.1</span> Additive property of integrals</h2>
+<!---
+Finite regions.
+:   Whenever $D\in \R^2$ is a finite disjoint union of smaller regions, say
+$D = \bigsqcup_{i=1}^k D_i$, then
+$$\iint_D f(x,y)\ dA = \sum_{i=1}^k \iint_{D_i} f(x,y)\ dA.$$
+
+Sequence of curves.
+:   A __path__ $\mathcal{C}$ is a finite sequence of curves $\set{C_1,\dots,C_m}$
+where end point of each $C_i$ is start point of $C_{i+1}$.
+The path integral is then defined to be
+$$\int_{\mathcal{C}} \vec{F} = \int_{C_1} \vec{F} + \dots + \int_{C_m} \vec{F}.$$
+
+Union of surfaces.
+:   blabla surface = union of surfaces only touching at boundary $\implies$ integral = sum of integrals
+-->
+<p>Let <span class="math inline">\(\mathcal{F} = \left\{\, R_i \,\right\}_{i\in I}\)</span> be a finite family of sets (regions, curves, surfaces) such that <span class="math inline">\(R_i\cap R_j\)</span> is of measure <span class="math inline">\(0\)</span> whenever <span class="math inline">\(i\ne j\)</span>, then <span class="math display">\[\int_{\mathcal{F}} = \sum_{i\in I} \int_{R_i}\]</span> (obvious from Riemann sum definition).</p>
+<h2 data-number="5.2" id="double-integrals" data-number="5.2"><span class="header-section-number">5.2</span> Double Integrals</h2>
+<p>If domain of <span class="math inline">\(f\)</span> can be represented as <span class="math inline">\(D = \left\{\, (x,y): a\leq x\leq b, h_1(x)\leq y\leq h_2(x) \,\right\}\)</span>, then <span class="math display">\[ \iint_D f(x,y)\ dA = \int_a^b \int_{h_1(x)}^{h_2(x)} f(x,y)\ dy\ dx.\]</span></p>
+<h3 data-number="5.2.1" id="polar-regions" data-number="5.2.1"><span class="header-section-number">5.2.1</span> Polar Regions</h3>
+<p>If the polar region of integral is given as <span class="math inline">\(D = \left\{\, (r,\theta): 0\leq a\leq r\leq b, h_1(r)\leq \theta\leq h_2(r) \,\right\}\)</span> (angle depends on radius), then <span class="math display">\[\iint_D f(r,\theta)\ dA = \int_a^b \int_{h_1(r)}^{h_2(r)} f(r, \theta)r \ d\theta\ dr.\]</span> On the other hand when radius depends on angle, say <span class="math inline">\(D = \left\{\, (r,\theta): \alpha\leq\theta\leq\beta, h_1(\theta)\leq r\leq h_2(\theta) \,\right\}\)</span>, <span class="math display">\[\iint_D f(r,\theta)\ dA = \int_\alpha^\beta \int_{h_1(\theta)}^{h_2(\theta)} f(r, \theta)r \ dr\ d\theta.\]</span></p>
+<h2 data-number="5.3" id="triple-integrals" data-number="5.3"><span class="header-section-number">5.3</span> Triple Integrals</h2>
+<p><em>Synopsis.</em> Reduce the triple integral into a double integral by projecting the domain of integration on a coordinate plane.</p>
+<p>Suppose <span class="math inline">\(D\in\mathbb{R}^2\)</span> such that <span class="math inline">\(E = \left\{\, (x,y,z): (x,y)\in D, h_1(x,y) \leq z \leq h_2(x,y) \,\right\}\)</span>, then an integral over <span class="math inline">\(E\)</span> can be reduced to a double integral by doing <span class="math display">\[\iiint_E f(x,y,z)\ dV = \iint_D\left[ \int_{h_1(x,y)}^{h_2(x,y)} f(x,y,z)\ dz\right]\ dA.\]</span></p>
+<h3 data-number="5.3.1" id="cylindrical-coordinates" data-number="5.3.1"><span class="header-section-number">5.3.1</span> Cylindrical coordinates</h3>
+<p>Nothing much, use <span class="math inline">\(\uparrow\)</span> to reduce into a double integral over polar region.</p>
+<h3 data-number="5.3.2" id="spherical-coordinates" data-number="5.3.2"><span class="header-section-number">5.3.2</span> Spherical coordinates</h3>
+<p><span class="math display">\[(\rho,\theta,\phi)\mapsto (\rho\sin\phi\cos\theta,\rho\sin\phi\sin\theta,\rho\cos\phi)\]</span></p>
+<ol type="1">
+<li>This shit simplifies computations involving <strong>spheres</strong> (no shit) and <strong>cones</strong>.</li>
+<li>the Jacobian is <span class="math display">\[dx\ dy\ dz = \rho^2\sin\phi\ d\rho\ d\theta\ d\phi\]</span></li>
+</ol>
+<h1 data-number="6" id="interlude-on-linear-algebra" data-number="6"><span class="header-section-number">6</span> Interlude on Linear Algebra</h1>
+<p>Suppose <span class="math inline">\(T: (u,v)\mapsto (x,y)\)</span>, then <span class="math display">\[\iint_{T(R)} f(x,y)\ dx\ dy = \iint_{R} (f\circ T)(u,v)\left\lvert \det(T') \right\rvert\ du\ dv\]</span> where <span class="math inline">\(T' = \displaystyle\frac{\partial (x,y)}{\partial (u,v)}\)</span>. (I need a commutative diagram for this shit.)</p>
+<p>Find <span class="math inline">\(R\)</span> by tracing <span class="math inline">\(T^{-1}\)</span> along boundary regions of <span class="math inline">\(T(R)\)</span>. Higher-dimensional cases are analogous.</p>
+<h1 data-number="7" id="vector-calculus" data-number="7"><span class="header-section-number">7</span> Vector Calculus</h1>
+<h2 data-number="7.1" id="potential-functions" data-number="7.1"><span class="header-section-number">7.1</span> Potential functions</h2>
+<dl>
+<dt>Conservative.</dt>
+<dd><span class="math inline">\(\mathbf{F}\)</span> is a conservative vector field if there exists <span class="math inline">\(\varphi: \mathbb{R}^n\to\mathbb{R}\)</span> such that <span class="math inline">\(\mathbf{F} = \nabla \varphi\)</span>.
+</dd>
+<dt>Test for conservativeness.</dt>
+<dd>Whenever <span class="math inline">\(\mathbf{F}\)</span> is defined in an <em>open</em> and <em>simply-connected</em> (no holes) region. Suppose <span class="math inline">\(\mathbf{F} = \left\langle D_1\varphi,D_2\varphi,\dots,D_n\varphi \right\rangle\)</span> for some <span class="math inline">\(\varphi\)</span>, then test if all 2nd-order partial derivatives of <span class="math inline">\(\varphi\)</span> indeed commute.
+</dd>
+<dd>In short, <span class="math inline">\(\nabla\times\mathbf{F} = \mathbf{0}\)</span>.
+</dd>
+<dt>Find potential function when <span class="math inline">\(\mathbf{F}\)</span> is defined on box.</dt>
+<dd>If eye power fails, do partial integrations on <span class="math inline">\(\mathbf{F}\)</span>.
+</dd>
+<dt>Fundamental Theorem for Curve Integrals.</dt>
+<dd>If there exists <span class="math inline">\(\varphi: \mathbb{R}^n\to\mathbb{R}\)</span> such that <span class="math inline">\(\mathbf{F} = \nabla \varphi\)</span>, let <span class="math inline">\(P,Q\)</span> be start and end of curve <span class="math inline">\(C\)</span> respectively, then <span class="math display">\[\int_{P,C}^Q \mathbf{F}\cdot d\mathbf{r} = \varphi(Q) - \varphi(P).\]</span>
+</dd>
+<dd><strong>Corollaries.</strong>
+</dd>
+<dd><ol type="1">
+<li>When <span class="math inline">\(\mathbf{F}\)</span> admits a potential function, integral of <span class="math inline">\(F\)</span> is independent of the path <span class="math inline">\(C\)</span> joining <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span>.</li>
+<li>If <span class="math inline">\(C\)</span> is a closed path (same start/end point) and <span class="math inline">\(\int_C \mathbf{F} \ne 0\)</span>, then <span class="math inline">\(\mathbf{F}\)</span> is not conservative. (contrapositive)</li>
+</ol>
+</dd>
+</dl>
+<h2 data-number="7.2" id="line-surface-integrals" data-number="7.2"><span class="header-section-number">7.2</span> Line &amp; Surface integrals</h2>
+<p><strong>Notation.</strong> Let everything be as differentiable as needed.</p>
+<ol type="1">
+<li><span class="math inline">\(f\)</span> denotes a scalar field.</li>
+<li><span class="math inline">\(\mathbf{F}\)</span> denotes a vector field.</li>
+<li><span class="math inline">\(C\)</span> denotes a smooth (<span class="math inline">\(C^1\)</span>) curve.
+<ul>
+<li>Let <span class="math inline">\(\mathbf{r}(t): I\to\mathbb{R}^n\)</span> be a parametrisation.</li>
+</ul></li>
+<li><span class="math inline">\(S\)</span> denotes a surface.
+<ul>
+<li>Let <span class="math inline">\(\mathbf{r}(u,v): D \to\mathbb{R}^3\)</span> be a parametrisation.</li>
+<li>Then <span class="math inline">\(\mathbf{n} = \pm \displaystyle\frac{\mathbf{r}_u \times \mathbf{r}_v}{\left\lVert \mathbf{r}_u \times \mathbf{r}_v \right\rVert}\)</span> is a unit normal vector</li>
+</ul></li>
+</ol>
+<p>Formulas will be <span class="math display">\[\begin{gather*}
+    \int_C f \ d\mathbf{r} = \int_I f(\mathbf{r}(t)) \left\lVert \mathbf{r}'(t) \right\rVert\ dt 
+    \tag*{(1)} \\
+    \int_C \mathbf{F}\cdot d\mathbf{r} = \int_I \mathbf{F}(\mathbf{r}(t))\cdot\mathbf{r}'(t)\ dt
+    \tag*{(2)} \\
+    \iint_S f \ dS = \iint_D f(\mathbf{r}(u,v)) \left\lVert \mathbf{r}_u \times \mathbf{r}_v \right\rVert\ dA
+    \tag*{(3)} \\
+    \iint_S \mathbf{F}\cdot \ d\mathbf{S} = \iint_D \mathbf{F}(\mathbf{r}(u,v))\cdot \left(\mathbf{r}_u \times \mathbf{r}_v\right) \ dA
+    \tag*{(4)}
+\end{gather*}\]</span></p>
+<h4 class="unnumbered" data-number id="notes." class="unnumbered" data-number>Notes.</h4>
+<ol start="2" type="1">
+<li><p>Computationally we write (example in <span class="math inline">\(2\)</span>-space) as symbolic shorthand <span class="math display">\[\int_C \mathbf{F}\cdot d\mathbf{r} = \int_I f_1\ dx + f_2\ dy.\]</span></p></li>
+<li><p>Computations can be skipped if <span class="math inline">\(\mathbf{F}\)</span> is conservative, refer to section above.</p></li>
+<li><p>Be careful of orientation conventions for <span class="math inline">\(\mathbf{n}\)</span>, possibly switching the cross product.</p>
+<p>When <span class="math inline">\(\mathbf{r}(x,y) = \left\langle x,y,g\left(x,y\right) \right\rangle\)</span>, <span class="math inline">\(\mathbf{r}_x \times \mathbf{r}_y = \left\langle -g_x, -g_y, 1 \right\rangle\)</span>. Computationally rewrite (4) as <span class="math display">\[\iint_S \mathbf{F}\cdot \ d\mathbf{S} = \pm \iint_D -f_1 g_x - f_2 g_y + f_3 \ dy\ dx.\]</span></p></li>
+</ol>
+<h2 data-number="7.3" id="divergence-and-curl" data-number="7.3"><span class="header-section-number">7.3</span> Divergence and curl</h2>
+<dl>
+<dt>Divergence.</dt>
+<dd><span class="math display">\[\nabla\cdot \mathbf{F} = \frac{\partial f_1}{\partial x} + \frac{\partial f_2}{\partial y} + \frac{\partial f_3}{\partial z}\]</span>
+</dd>
+<dt>Curl.</dt>
+<dd><span class="math display">\[\nabla\times \mathbf{F} = \begin{vmatrix}
+\mathbf{i}&amp;\mathbf{j}&amp;\mathbf{k}\\
+\frac{\partial }{\partial x}&amp;\frac{\partial }{\partial y}&amp;\frac{\partial }{\partial z}\\
+f_1&amp;f_2&amp;f_3
+\end{vmatrix}\]</span>
+</dd>
+</dl>
+<p>For any vector field <span class="math inline">\(\mathbf{F}\)</span>, <span class="math inline">\(\nabla\cdot\left(\nabla\times\mathbf{F}\right) = 0\)</span></p>
+<h2 data-number="7.4" id="theorems-that-let-you-interchange-stuff" data-number="7.4"><span class="header-section-number">7.4</span> Theorems that let you interchange stuff</h2>
+<dl>
+<dt>Green’s Theorem (2d).</dt>
+<dd>Let <span class="math inline">\(C\)</span> be a closed path and <span class="math inline">\(A\)</span> be region bounded by <span class="math inline">\(C\)</span>, <span class="math inline">\(\mathbf{F} = \left\langle f_1,f_2 \right\rangle\)</span>, <span class="math display">\[\oint_C \mathbf{F} = \oint_C f_1\ dx + f_2\ dy = \iint_A \left(\frac{\partial f_2}{\partial x} - \frac{\partial f_1}{\partial y}\right) \ dy\ dx.\]</span> Convention: <span class="math inline">\(A\)</span> lies to the left of the curve <span class="math inline">\(C\)</span>.
+</dd>
+<dt>Gauss’ Divergence Theorem.</dt>
+<dd>Let <span class="math inline">\(S\)</span> be boundary surface of <span class="math inline">\(E\)</span> with outward orientation, then <span class="math display">\[\iint_S \mathbf{F}\cdot d\mathbf{S} = \iiint_E \nabla\cdot\mathbf{F} \ dV.\]</span>
+</dd>
+<dt>Stokes’ Theorem.</dt>
+<dd>Let <span class="math inline">\(C\)</span> be boundary curve of surface <span class="math inline">\(S\)</span> with unit normal <span class="math inline">\(\mathbf{n}\)</span>. Let <span class="math inline">\(C\)</span> be positively oriented (<span class="math inline">\(\mathbf{r}'(t)\times \mathbf{n}\)</span> points <strong>out</strong>), then <span class="math display">\[\oint_C \mathbf{F}\cdot d\mathbf{r} = \iint_S \nabla\times\mathbf{F}\cdot d\mathbf{S}.\]</span>
+</dd>
+</dl>
+<h1 data-number="8" id="trig-identities" data-number="8"><span class="header-section-number">8</span> Trig identities</h1>
+<p><span class="math display">\[
+\begin{pmatrix}
+    \cos(\alpha+\beta) &amp;-\sin(\alpha+\beta) \\
+    \sin(\alpha+\beta) &amp; \cos(\alpha+\beta)
+\end{pmatrix}
+=
+\begin{pmatrix}
+    \cos\alpha &amp; -\sin\alpha \\
+    \sin\alpha &amp; \cos\alpha
+\end{pmatrix}
+\begin{pmatrix}
+    \cos\beta &amp; -\sin\beta \\
+    \sin\beta &amp; \cos\beta
+\end{pmatrix}\]</span></p>
+<h2 data-number="8.1" id="pre-computing-spherical-stuff" data-number="8.1"><span class="header-section-number">8.1</span> Pre-computing spherical stuff</h2>
+<p>Fix <span class="math inline">\(\rho\)</span>, let <span class="math inline">\(\mathbf{r}\)</span> parametrise something, <span class="math display">\[\begin{align*}
+    \mathbf{r}(\phi,\theta) &amp;= \rho\begin{pmatrix}
+        \sin\phi\cos\theta\\
+        \sin\phi\sin\theta\\
+        \cos\phi
+    \end{pmatrix}; &amp;
+    \mathbf{r}_{\phi} &amp;= \rho\begin{pmatrix}
+        \cos\phi\cos\theta \\
+        \cos\phi\sin\theta \\
+        -\sin\phi
+    \end{pmatrix} &amp;
+    \mathbf{r}_{\theta} &amp;= \rho\begin{pmatrix}
+        -\sin\phi\sin\theta \\
+        \sin\phi\cos\theta \\
+        0
+    \end{pmatrix}
+\end{align*}\]</span> then <span class="math inline">\(\mathbf{r}_{\phi}\times \mathbf{r}_{\theta}\)</span> points <strong>outwards</strong>, and <span class="math display">\[\begin{align*}
+    \mathbf{r}_{\phi}\times \mathbf{r}_{\theta}
+    &amp;= \rho^2 \begin{pmatrix}
+        -\sin^2\phi \cos\theta \\
+        \sin^2\phi\sin\theta \\
+        \cos\phi\sin\phi
+    \end{pmatrix}
+\end{align*}\]</span></p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA2104/summary.md">MA2104/summary.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

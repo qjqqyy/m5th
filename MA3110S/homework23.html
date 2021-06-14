@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="5th September 2019" />
+  <title>MA3110S Homeworks 2 & 3</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">MA3110S Homeworks 2 & 3</h1><p class="author">Qi Ji</p>
+<p class="date">5th September 2019</p>
+</header>
+<article><h1 id="homework-2">Homework 2</h1>
+<h2 id="q1">Q1</h2>
+<h3 id="i">(i)</h3>
+<p>Suppose <span class="math inline">\(f: \mathbb{R}^n \to \mathbb{R}^m\)</span> is continuous and let <span class="math inline">\(A\subset \mathbb{R}^n\)</span>. Note that <span class="math inline">\(A\subseteq f^{-1}(\overline{f(A)})\)</span>, but preimage of closed map is closed so in fact we have <span class="math inline">\(\overline{A}\subseteq f^{-1}(\overline{f(A)})\)</span>, this means <span class="math inline">\(f(\overline{A}) \subseteq \overline{f(A)}\)</span>.</p>
+<p>Now suppose for any <span class="math inline">\(A\subset \mathbb{R}^n\)</span>, we have <span class="math inline">\(f(\overline{A}) \subseteq \overline{f(A)}\)</span>. Fix a closed set <span class="math inline">\(Y\subseteq \mathbb{R}^m\)</span>, we want <span class="math inline">\(X = f^{-1}(Y)\)</span> to be closed. By assumption <span class="math inline">\(f(\overline{X}) \subseteq \overline{f(X)} = \overline{f(f^{-1}(Y))} = \overline{Y} = Y\)</span>, which means that <span class="math inline">\(\overline{X} \subseteq f^{-1}(Y) = X\)</span>, therefore <span class="math inline">\(X\)</span> is closed.</p>
+<h3 id="ii">(ii)</h3>
+<p>Consider <span class="math inline">\(\arctan\)</span> with <span class="math inline">\(A = \mathbb{R}\)</span>. We know that <span class="math inline">\(\overline{\mathbb{R}} = \mathbb{R}\)</span> and <span class="math inline">\(\arctan(\mathbb{R}) = \left(-\dfrac\pi2, \dfrac\pi2\right) \ne \left[-\dfrac\pi2, \dfrac\pi2\right]\)</span>.</p>
+<h2 id="q2">Q2</h2>
+<p>In <span class="math inline">\(\mathbb{R}^n\)</span> a set is compact iff it is closed and bounded. Intersection of arbitrarily many closed sets is closed (easy to see that union of arbitrarily many open sets remains open). The bound for any set also works for the intersection so the intersection is also bounded, therefore it is compact.</p>
+<h2 id="q3">Q3</h2>
+<p>Fix <span class="math inline">\(b\in B\)</span>, we can for every <span class="math inline">\(a\in A\)</span> choose open sets <span class="math inline">\(U_a, V_a\subseteq \mathbb{R}^n\)</span> such that <span class="math inline">\(a\in U_a, b\in V_a\)</span> and <span class="math inline">\(U_a \cap V_a = \emptyset\)</span>. Since <span class="math inline">\(\left\{U_a: a\in A\right\}\)</span> form an open cover of <span class="math inline">\(A\)</span> we use compactness to choose a finite subcover <span class="math inline">\(U_{a_1},\dots, U_{a_k}\)</span>. Define <span class="math inline">\(U_b = \bigcup_{i=1}^k U_{a_i}\)</span> and <span class="math inline">\(V_b = \bigcap_{i=1}^k V_{a_i}\)</span>, note that <span class="math inline">\(V_b\)</span> is an intersection of only finitely many open sets so <span class="math inline">\(V_b\)</span> is open.</p>
+<p>Now <span class="math inline">\(\left\{V_b: b\in B\right\}\)</span> is an open cover of <span class="math inline">\(B\)</span>, we can proceed similarly. By compactness of <span class="math inline">\(B\)</span> we have a finite subcover <span class="math inline">\(V_{b_1},\dots,V_{b_l}\)</span>. Let <span class="math inline">\(V = \bigcup_{i=1}^l V_{b_i}\)</span> and <span class="math inline">\(U = \bigcap_{i=1}^l U_{b_i}\)</span>. Note that <span class="math inline">\(A\subseteq U\)</span> (as <span class="math inline">\(A\subseteq U_b\)</span> for each <span class="math inline">\(b\in B\)</span>) and <span class="math inline">\(B\subseteq V\)</span> and <span class="math inline">\(U \cap V = \emptyset\)</span> by construction, additionally <span class="math inline">\(U\)</span> is open as it is an intersection of finitely many open sets, while <span class="math inline">\(V\)</span> is clearly open.</p>
+<h2 id="q4">Q4</h2>
+<p>Suppose there exists bijective continuous <span class="math inline">\(f: [0,1] \to U\)</span> where <span class="math inline">\(U\)</span> is unit circle. Let <span class="math inline">\(p,q\)</span> be opposite each other in the unit circle while also being equal to neither <span class="math inline">\(f(0)\)</span> nor <span class="math inline">\(f(1)\)</span>. Let <span class="math inline">\(a,b\in [0,1]\)</span> such that <span class="math inline">\(f(a) = p\)</span> and <span class="math inline">\(f(b) = q\)</span> where without loss of generality <span class="math inline">\(0&lt;a&lt;b&lt;1\)</span>, consider <span class="math inline">\(f([a,b]) \subseteq U\)</span> which has to be connected, so <span class="math inline">\(f([a,b])\)</span> has to contain either <span class="math inline">\(f(0)\)</span> or <span class="math inline">\(f(1)\)</span>. In both cases <span class="math inline">\(f\)</span> cannot be injective.</p>
+<h1 id="homework-3">Homework 3</h1>
+<h2 id="q1-1">Q1</h2>
+<p>Set <span class="math inline">\(x=0\)</span> to get the result that <span class="math inline">\(\left\lvert c\right\rvert \leq 1\)</span>.</p>
+<p>Case <span class="math inline">\(a = 0\)</span> then <span class="math inline">\(\left\lvert f(1)\right\rvert = \left\lvert b+c\right\rvert \leq 1\)</span>, observe that <span class="math display">\[\left\lvert f'(x)\right\rvert = \left\lvert b\right\rvert = \left\lvert b + c - c\right\rvert \leq \left\lvert b + c\right\rvert + \left\lvert c\right\rvert \leq 2.\]</span></p>
+<p><strong>Useful statement.</strong> Let <span class="math inline">\(p,q\)</span> have the same sign, then <span class="math inline">\(\left\lvert p+q\right\rvert\leq 2\implies \left\lvert 2p + q\right\rvert \leq \left\lvert p\right\rvert + \left\lvert p + q\right\rvert \leq 4\)</span>.</p>
+<p>Case <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> have the same sign, then <span class="math display">\[ \left\lvert f'(x)\right\rvert = \left\lvert 2ax + b\right\rvert \leq \left\lvert 2a + b\right\rvert \]</span> for contradiction, if <span class="math inline">\(\left\lvert 2a + b\right\rvert &gt; 4\)</span> then <span class="math inline">\(\left\lvert a + b\right\rvert &gt; 2\)</span> so <span class="math inline">\(\left\lvert a + b +c\right\rvert \geq \left\lvert\left\lvert a + b\right\rvert - \left\lvert c\right\rvert\right\rvert &gt; 2 - 1 = 1\)</span> which contradicts <span class="math inline">\(\left\lvert f(1)\right\rvert = \left\lvert a + b + c\right\rvert \leq 1\)</span>.</p>
+<p>Case <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> have different sign, then similarly <span class="math display">\[ \left\lvert f'(x)\right\rvert = \left\lvert 2ax + b\right\rvert \leq \left\lvert 2a - b\right\rvert \]</span> for contradiction, if <span class="math inline">\(\left\lvert 2a - b\right\rvert &gt; 4\)</span> then <span class="math inline">\(\left\lvert a - b\right\rvert &gt; 2\)</span> so <span class="math inline">\(\left\lvert a - b +c\right\rvert \geq \left\lvert\left\lvert a - b\right\rvert - \left\lvert c\right\rvert\right\rvert &gt; 2 - 1 = 1\)</span> which contradicts <span class="math inline">\(\left\lvert f(-1)\right\rvert = \left\lvert a - b + c\right\rvert \leq 1\)</span>.</p>
+<h2 id="q2-1">Q2</h2>
+<p>Without loss of generality we can consider the case that <span class="math inline">\(\forall x\in(0,1)\)</span>, we have <span class="math inline">\(f(x)&gt;0\)</span>. Fix <span class="math inline">\(n\in\mathbb{N}\)</span> and define <span class="math inline">\(g(x) = f(x)^n f(1-x)\)</span>. Then <span class="math inline">\(g(0) = 0\)</span> and <span class="math inline">\(g(1) = 0\)</span>, let <span class="math inline">\(\xi\in (0,1)\)</span> such that <span class="math display">\[g'(\xi) = n f(\xi)^{n-1} f'(\xi)f(1-\xi) - f(\xi)^n f'(1-\xi) = 0 \]</span> rearranging gives <span class="math display">\[\begin{align*}
+n f(\xi)^{n-1} f'(\xi)f(1-\xi) &amp;= f(\xi)^n f'(1-\xi) \\
+n f'(\xi)f(1-\xi) &amp;= f(\xi) f'(1-\xi) \\
+\frac{nf'(\xi)}{f(\xi)} &amp;= \frac{f'(1-\xi)}{f(1-\xi)}
+\end{align*}\]</span></p>
+<h2 id="q3-1">Q3</h2>
+<p>Suppose <span class="math inline">\(f\)</span> has no zero, then we have <span class="math inline">\(f(x) &lt; 0\)</span> for all <span class="math inline">\(x\in [a,\infty)\)</span>. For any <span class="math inline">\(y&gt;a\)</span> by mean value theorem, there exists <span class="math inline">\(c\in (a,y)\)</span> satisfying <span class="math display">\[ f'(c) = \frac{f(y) - f(a)}{y-a} &lt; \frac{-f(a)}{y-a}. \]</span> By choosing large enough <span class="math inline">\(y\)</span>, we can make <span class="math inline">\(f'(c) &lt; k\)</span> which is a contradiction. Suppose <span class="math inline">\(f\)</span> has at least two zeroes then Rolle’s theorem gives <span class="math inline">\(c\)</span> with <span class="math inline">\(f'(c) = 0\)</span> which cannot happen. Therefore <span class="math inline">\(f\)</span> has exactly <span class="math inline">\(1\)</span> zero point.</p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA3110S/homework23.md">MA3110S/homework23.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="30th August 2019" />
+  <title>MA3110S Tutorial 3</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">MA3110S Tutorial 3</h1><p class="author">Qi Ji</p>
+<p class="date">30th August 2019</p>
+</header>
+<article><h1 data-number="1" id="section" data-number="1"><span class="header-section-number">1</span> </h1>
+<blockquote>
+<p>Given <span class="math inline">\(A,B\)</span> two disjoint compact sets in <span class="math inline">\(\mathbb{R}^n\)</span> prove that there exists continuous function from <span class="math inline">\(\mathbb{R}^n\to\mathbb{R}\)</span> that sends <span class="math inline">\(A\)</span> to <span class="math inline">\(1\)</span> and <span class="math inline">\(B\)</span> to <span class="math inline">\(0\)</span>.</p>
+</blockquote>
+<p>Explicitly construct <span class="math display">\[f(x) = \frac{d(x,B)}{d(x,A) + d(x,B)}\]</span> where <span class="math inline">\(d(x,A) := \inf\left\{d(x,a):a\in A\right\}\)</span>. Easy check: <span class="math inline">\(f\)</span> satisfies <span class="math inline">\(f\upharpoonright A = 1\)</span> and <span class="math inline">\(f\upharpoonright B = 0\)</span>. It suffices to show that for any compact set <span class="math inline">\(A\)</span>, the map <span class="math display">\[ x \mapsto d(x,A) = \inf\left\{d(x,a):a\in A\right\} \]</span> is continuous. Let <span class="math inline">\(x_n \to x\)</span>, want <span class="math inline">\(\lim d(x_n, A) = d(x, A)\)</span>. Note that for any <span class="math inline">\(n \in \mathbb{N}, a\in A\)</span>, <span class="math display">\[\begin{align*}
+d(x_n,a)\leq d(x_n, x) + d(x, a) \\
+d(x_n,A)\leq d(x_n, x) + d(x, A)
+\end{align*}\]</span> and similarly <span class="math display">\[ d(x,A)\leq d(x_n, x) + d(x_n, A) \]</span> which gives <span class="math display">\[ \left\lvert d(x,A) - d(x_n,A)\right\rvert \leq d(x_n, x). \tag*{$\square$}\]</span></p>
+<h1 data-number="2" id="section-1" data-number="2"><span class="header-section-number">2</span> </h1>
+<ol type="i">
+<li><p>Suppose the graph is closed, we take the preimage of the function <span class="math inline">\(\operatorname{id}\times f\)</span> (which is continuous and injective by the way, so a homeomorphism) to get <span class="math inline">\(E\times E\)</span> being closed.</p></li>
+<li><p>image of <span class="math inline">\(f\)</span> is compact and we express <span class="math inline">\(G(f)\)</span> as <span class="math inline">\(E\times \operatorname{range}(f)\)</span>.</p></li>
+<li><p>If <span class="math inline">\(G(f)\)</span> compact then both <span class="math inline">\(E\)</span> and image <span class="math inline">\(f(E)\)</span> are compact. Suppose for contradiction <span class="math inline">\(f\)</span> is not continuous, then there exists a sequence <span class="math inline">\(x_n \to x\)</span> where <span class="math inline">\(\lim f(x_n) \ne f(x)\)</span>. Now we look at the sequence <span class="math inline">\(\left(x_n, f\left(x_n\right)\right)\)</span> of elements in <span class="math inline">\(G(f)\)</span>, observe that its limit is not in the graph of <span class="math inline">\(f\)</span>.</p></li>
+<li><p>Counterexample shouldn’t be hard</p></li>
+</ol>
+<h1 data-number="3" id="orthogonal-matrix-path-connected" data-number="3"><span class="header-section-number">3</span> Orthogonal matrix path-connected</h1>
+<p>hard, do later</p>
+<h1 data-number="4" id="riemann-function-is-nowhere-differentiable" data-number="4"><span class="header-section-number">4</span> Riemann function is nowhere differentiable</h1>
+<p><span class="math display">\[\begin{align*}
+R&amp;: \mathbb{R}\to\mathbb{R}\\
+R(x) &amp;= \begin{cases}
+\frac1q &amp;\text{if }x=\frac{p}q, (p,q)=1, p&gt;0 \\
+0 &amp;\text{if }x\notin \mathbb{Q}
+\end{cases}
+\end{align*}\]</span></p>
+<h1 data-number="5" id="construct-stuff" data-number="5"><span class="header-section-number">5</span> Construct stuff</h1>
+<ol type="i">
+<li><p>continuous function <span class="math inline">\(\mathbb{R}\to\mathbb{R}\)</span> differentiable at almost all points in <span class="math inline">\(\mathbb{R}\)</span> except <span class="math inline">\(a_1,a_2,\dots,a_n\)</span></p>
+<p>just make it bendy at each <span class="math inline">\(a_i\)</span></p></li>
+<li><p>function <span class="math inline">\(\mathbb{R}\to\mathbb{R}\)</span> (not necessarily continuous) only differentiable at <span class="math inline">\(a_1,\dots,a_n\)</span></p></li>
+</ol>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA3110S/tutorial3.md">MA3110S/tutorial3.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="30th September 2020" />
+  <title>Kunen VII Exercises E</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">Kunen VII Exercises E</h1><p class="author">Qi Ji</p>
+<p class="date">30th September 2020</p>
+</header>
+<article><!--- \mathbb{1} -->
+<h1 id="e-1">E 1</h1>
+<blockquote>
+<p>If <span class="math inline">\(\mathbb{P}\)</span> is a poset, an <em>automorphism</em> of <span class="math inline">\(\mathbb{P}\)</span> is a <span class="math inline">\(1-1\)</span> and onto <span class="math inline">\(i: \mathbb{P}\to\mathbb{P}\)</span> which preserves <span class="math inline">\(\leq\)</span> and satisfies <span class="math inline">\(i(\unicode{x1D7D9}) = \unicode{x1D7D9}\)</span>; thus also <span class="math inline">\(i_*(\check{x}) = \check{x}\)</span> for each <span class="math inline">\(x\)</span>. <span class="math inline">\(\mathbb{P}\)</span> is called <em>almost homogeneous</em> iff for all <span class="math inline">\(p,q\in\mathbb{P}\)</span>, there is an automorphism <span class="math inline">\(i\)</span> of <span class="math inline">\(\mathbb{P}\)</span> such that <span class="math inline">\(i(p)\)</span> and <span class="math inline">\(q\)</span> are compatible. Suppose that <span class="math inline">\(\mathbb{P}\in M\)</span> and <span class="math inline">\(\mathbb{P}\)</span> is almost homogeneous in <span class="math inline">\(M\)</span>. Show that if <span class="math inline">\(p\Vdash\phi(\check{x}_1,\dots,\check{x}_n)\)</span>, then <span class="math inline">\(\unicode{x1D7D9}\Vdash\phi(\check{x}_1,\dots,\check{x}_n)\)</span>; thus, either <span class="math inline">\(\unicode{x1D7D9}\Vdash\phi(\check{x}_1,\dots,\check{x}_n)\)</span> or <span class="math inline">\(\unicode{x1D7D9}\Vdash\lnot\phi(\check{x}_1,\dots,\check{x}_n)\)</span>.</p>
+</blockquote>
+<p>By 7.13 (c) if <span class="math inline">\(p\Vdash\phi(\tau_1,\dots,\tau_n)\)</span>, then <span class="math inline">\(i(p)\Vdash\phi(i_*(\tau_1),\dots,i_*(\tau_n))\)</span> for any automorphism <span class="math inline">\(i\)</span>.</p>
+<p>Assume <span class="math inline">\(p\Vdash\phi(\check{x}_1,\dots,\check{x}_n)\)</span>, want <span class="math inline">\(\unicode{x1D7D9}\Vdash\phi(\check{x}_1,\dots,\check{x}_n)\)</span>. Let <span class="math inline">\(G\)</span> be any generic filter, suppose <span class="math inline">\(M[G]\)</span> thinks <span class="math inline">\(\lnot\phi(x_1,\dots,x_n)\)</span>, and let it be forced by <span class="math inline">\(q\in G\)</span>, then there is an automorphism such that <span class="math inline">\(i(p)\)</span> and <span class="math inline">\(q\)</span> are compatible, but <span class="math inline">\(i(p)\)</span> forces <span class="math inline">\(\phi(x_1,\dots,x_n)\)</span>.</p>
+<h1 id="e-2">E 2</h1>
+<blockquote>
+<p>Show that any <span class="math inline">\(\operatorname{Fn}(I,J,\kappa)\)</span> is almost homogeneous.</p>
+</blockquote>
+<p>Let <span class="math inline">\(p,q\in \mathbb{P}=\operatorname{Fn}(I,J,\kappa)\)</span>, just define <span class="math inline">\(i\)</span> such that <span class="math inline">\(\operatorname{dom}(i(p))\cap \operatorname{dom}(q) = 0\)</span>.</p>
+<h1 id="e-3">E 3</h1>
+<blockquote>
+<p>In <span class="math inline">\(M\)</span>, let <span class="math inline">\(I\)</span> and <span class="math inline">\(J\)</span> be uncountable, <span class="math inline">\(\mathbb{P}= \operatorname{Fn}(I,2)\)</span> and <span class="math inline">\(\mathbb{Q}= \operatorname{Fn}(J,2)\)</span>. Let <span class="math inline">\(\phi(x)\)</span> be a formula. Show that <span class="math display">\[
+\unicode{x1D7D9}\Vdash_\mathbb{P}\phi(\check{\alpha})^{\mathbf{L}(\mathcal{P}(\omega))} \text{ iff }
+\unicode{x1D7D9}\Vdash_\mathbb{Q}\phi(\check{\alpha})^{\mathbf{L}(\mathcal{P}(\omega))}.
+\]</span></p>
+</blockquote>
+<p>Follow hint, if <span class="math inline">\(M\)</span> thinks <span class="math inline">\(I\)</span> and <span class="math inline">\(J\)</span> are equinumerous, directly apply Lemma 7.13 (c) since <span class="math inline">\(M\)</span> will contain the isomorphism <span class="math inline">\(i: \mathbb{P}\to\mathbb{Q}\)</span>.</p>
+<p>More generally say <span class="math inline">\(M\models \left\lvert I\right\rvert\leq \left\lvert J\right\rvert\)</span> and let <span class="math inline">\(H\)</span> be <span class="math inline">\(\operatorname{Fn}(I,J,\omega_1)^M\)</span>-generic over <span class="math inline">\(M\)</span>; then <span class="math inline">\(M[H]\models \left\lvert I\right\rvert=\left\lvert J\right\rvert\)</span>. Witnessed by <span class="math inline">\(\bigcup H\)</span> by Lemma 6.2.</p>
+<p>If <span class="math inline">\(G\)</span> if <span class="math inline">\(\mathbb{P}\)</span>-generic over <span class="math inline">\(M[H]\)</span>, then <span class="math inline">\(G\)</span> is <span class="math inline">\(\mathbb{P}\)</span>-generic over <span class="math inline">\(M\)</span> because being generic relativises down.</p>
+<p><span class="math inline">\(\mathcal{P}(\omega)\cap M[H][G] = \mathcal{P}(\omega) \cap M[G]\)</span> (why no new subsets of <span class="math inline">\(\omega\)</span> because <span class="math inline">\(\operatorname{Fn}(I,J,\omega_1)^M\)</span> is countably closed)</p>
+<p>So <span class="math inline">\(M[H][G]\)</span> and <span class="math inline">\(M[H]\)</span> see the same <span class="math inline">\(\mathbf{L}(\mathcal{P}(\omega))\)</span> (need to confirm with definition of <span class="math inline">\(L(X)\)</span>).</p>
+<p>Since <span class="math inline">\(G\)</span> was arbitrary this shows that if <span class="math inline">\(\mathbb{P},M\)</span> forces, <span class="math inline">\(\mathbb{P},M[H]\)</span> also forces.</p>
+<p>Use E1 and repeat the argument with negation to show the reverse.</p>
+<p>Likewise for <span class="math inline">\(\mathbb{Q}\)</span>.</p>
+<p>This allows us to reduce to the easy case that directly applied Lemma 7.13 (c).</p>
+<h1 id="e-4">E 4</h1>
+<p>Follow hint. Let <span class="math inline">\(M\models \left\lvert I\right\rvert\geq \omega_1\)</span>, let <span class="math inline">\(G\)</span> be <span class="math inline">\(\mathbb{P}=\operatorname{Fn}(I,2)\)</span>-generic over <span class="math inline">\(M\)</span>, and let <span class="math inline">\(N = (L(\mathcal{P}\left(\omega\right)))^{M[G]}\)</span>. If choice holds in <span class="math inline">\(N\)</span>, let <span class="math inline">\(N\models \kappa = \left\lvert\mathcal{P}\left(\omega\right)\right\rvert\)</span>, by E1 <span class="math display">\[ \unicode{x1D7D9}\Vdash_\mathbb{P}\left( \check{\kappa} = \left\lvert\mathcal{P}\left(\omega\right)\right\rvert \right)^{\mathbf{L}(\mathcal{P}\left(\omega\right))}. \]</span></p>
+<p>Take <span class="math inline">\(J\)</span> such that <span class="math inline">\(M\models \left\lvert J\right\rvert&gt;\kappa\)</span>, and let <span class="math inline">\(\mathbb{Q}=\operatorname{Fn}(J\times\omega,2)\)</span> and by E3, <span class="math display">\[ \unicode{x1D7D9}\Vdash_\mathbb{Q}\left( \check{\kappa} = \left\lvert\mathcal{P}\left(\omega\right)\right\rvert \right)^{\mathbf{L}(\mathcal{P}\left(\omega\right))}. \]</span> so let <span class="math inline">\(H\)</span> be <span class="math inline">\(\mathbb{Q}\)</span>-generic over <span class="math inline">\(M\)</span>, then <span class="math inline">\(M[H] \models \left(\kappa = \left\lvert\mathcal{P}\left(\omega\right)\right\rvert\right)^{L(\mathcal{P}\left(\omega\right))}\)</span>. The problem here is this forcing notion adds at least <span class="math inline">\(\left\lvert J\right\rvert\)</span> many reals to <span class="math inline">\(M[H]\)</span>, that is <span class="math inline">\(M[H]\models \left\lvert\mathcal{P}\left(\omega\right)\right\rvert \geq \left\lvert J\right\rvert\)</span>. As <span class="math inline">\(\mathbb{Q}\)</span> is ccc, the forcing preserves cardinals which gives the contradiction.</p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA4199/notes7.md">MA4199/notes7.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

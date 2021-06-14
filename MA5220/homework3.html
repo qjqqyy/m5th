@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="6th September 2019" />
+  <title>MA5220 Homework 3</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">MA5220 Homework 3</h1><p class="author">Qi Ji</p>
+<p class="date">6th September 2019</p>
+</header>
+<article><h1 data-number="1" id="section" data-number="1"><span class="header-section-number">1</span> </h1>
+<blockquote>
+<p>Suppose <span class="math inline">\(\left\langle X_n:n&lt;\omega\right\rangle\)</span> is a sequence of infinite sets. Show that there is a sequence <span class="math inline">\(\left\langle Y_n:n&lt;\omega\right\rangle\)</span> of pairwise disjoint sets such that for every <span class="math inline">\(n&lt;\omega\)</span>, <span class="math inline">\(Y_n\subseteq X_n\)</span> and <span class="math inline">\(\left\lvert Y_n\right\rvert = \left\lvert X_n\right\rvert\)</span>.</p>
+</blockquote>
+<p>Let the cardinalities of the sets in the sequence be <span class="math inline">\(\omega\leq \kappa_1 &lt; \kappa_2 &lt; \kappa_3 &lt; \dots\)</span>, then we can easily obtain a sequence where <span class="math inline">\(Y_i\subseteq X_i\)</span> and <span class="math inline">\(\left\lvert Y_i\right\rvert \ne \left\lvert Y_j\right\rvert \implies Y_i \cap Y_j = 0\)</span>. This can be achieved by doing</p>
+<ul>
+<li><p>for all <span class="math inline">\(i\)</span> where <span class="math inline">\(\left\lvert X_i\right\rvert = \kappa_1\)</span>, set <span class="math inline">\(Y_i = X_i\)</span>,</p></li>
+<li><p>for each <span class="math inline">\(n &gt; 2\)</span>, for all <span class="math inline">\(i\)</span> where <span class="math inline">\(\left\lvert X_i\right\rvert = \kappa_n\)</span>, set <span class="math inline">\(Y_i = X_i \setminus\bigcup\left\{X_j: \left\lvert X_j\right\rvert \leq \kappa_{n-1}\right\}\)</span>.</p></li>
+</ul>
+<p>Hence without loss of generality we can assume that in the sequence, sets of different cardinalities do not intersect. By refining the resultant sequence at each cardinality, we can reduce to the case where all the <span class="math inline">\(X_i\)</span> are of the same size <span class="math inline">\(\kappa\)</span>. Then it suffices to prove that given a sequence <span class="math inline">\(\left\langle X_n:n&lt;\omega\right\rangle\)</span> of subsets of <span class="math inline">\(\kappa\)</span> where <span class="math inline">\(\left\lvert X_i\right\rvert = \kappa\)</span> for all <span class="math inline">\(i\)</span>, we can create a disjoint refinement.</p>
+<p>Given two sequences <span class="math inline">\(A = \left\langle A_n:n&lt;\omega\right\rangle\)</span> and <span class="math inline">\(B = \left\langle b_n:n&lt;\omega\right\rangle\)</span> we let <span class="math inline">\(\operatorname{acc}(A,B) = \left\langle A_n\cup\left\{b_n\right\}: n&lt;\omega\right\rangle\)</span>.</p>
+<p>Define <span class="math inline">\(f:\kappa \to {}^\omega\kappa\)</span> by</p>
+<p><span class="math display">\[\begin{align*}
+f(0) &amp;= \left\langle\left\{\min(X_0)\right\},0, 0, \dots\right\rangle \\
+f(n+1) &amp;=
+\left(
+\begin{aligned}
+\textbf{ let } D &amp;= \bigcup \operatorname{range}(f(n)) \\
+y_0 &amp;= \min(X_0\setminus D) \\
+y_1 &amp;= \min(X_1\setminus D\setminus\left\{y_0\right\}) \\
+y_2 &amp;= \min(X_2\setminus D\setminus\left\{y_0,y_1\right\}) \\
+&amp;\dots\\
+y_{n+1} &amp;= \min(X_{n+1}\setminus D\setminus\left\{y_0,y_1,\dots,y_n\right\}) \textbf{ in }\\
+ &amp;\operatorname{acc}\left(f(n), \left\langle{y_0},{y_1},\dots,{y_{n+1}},0,0,\dots\right\rangle\right)
+\end{aligned}
+\right)
+\end{align*}\]</span> whenever <span class="math inline">\(n&lt;\omega\)</span>, <span class="math display">\[ f(\alpha)(i) = \bigcup_{\beta&lt;\alpha} f(\beta)(i) \]</span> whenever <span class="math inline">\(\alpha\)</span> is a limit ordinal and <span class="math inline">\(i&lt;\omega\)</span>, and <span class="math display">\[\begin{align*}
+f(\alpha+1) &amp;=
+\left(
+\begin{aligned}
+\textbf{ let } D &amp;= \bigcup \operatorname{range}(f(\alpha)) \\
+y_0 &amp;= \min(X_0\setminus D) \\
+y_{n+1} &amp;= \min\left(X_{n+1}\setminus\left(D\cup\left\{y_0,y_1,\dots,y_n\right\}\right)\right) \textbf{ in }\\
+&amp;\operatorname{acc}\left(f(\alpha), \left\langle y_i: i&lt;\omega\right\rangle\right)
+\end{aligned}
+\right)
+\end{align*}\]</span> whenever <span class="math inline">\(\alpha\geq\omega\)</span>.</p>
+<p>Finally let <span class="math inline">\(Y_i = \bigcup_{\beta&lt;\kappa} f(\beta)(i)\)</span> and the pairwise disjointedness and containment properties arise from construction.</p>
+<p>For each <span class="math inline">\(n&lt;\omega\)</span>, we see that <span class="math inline">\(f(n+1)\)</span> is well-defined, as <span class="math inline">\(\left\lvert D\right\rvert &lt; \omega \leq \left\lvert X_i\right\rvert\)</span> for any <span class="math inline">\(X_i\)</span>. Next we see that in the sequence <span class="math inline">\(f(\omega)\)</span>, each <span class="math inline">\(f(\omega)(i)\)</span> has size <span class="math inline">\(\omega\)</span>, this observation also completes the proof in the case <span class="math inline">\(\kappa=\omega\)</span>.</p>
+<p>For any <span class="math inline">\(i&lt;\omega\)</span> we want to show that <span class="math inline">\(\left\lvert\alpha\right\rvert \geq \left\lvert f(\alpha)(i)\right\rvert\)</span> for all <span class="math inline">\(\alpha\geq\omega\)</span>. Proceed by induction and the successor case is obvious. When <span class="math inline">\(\alpha\)</span> is a limit, then <span class="math display">\[
+\left\lvert f(\alpha)(i)\right\rvert = \left\lvert\bigcup_{\beta&lt;\alpha} f(\beta)(i)\right\rvert
+= \left\lvert\alpha\right\rvert
+\]</span> as each <span class="math inline">\(\left\lvert f(\beta)(i)\right\rvert \leq \left\lvert\beta\right\rvert\leq\left\lvert\alpha\right\rvert\)</span>. This means <span class="math inline">\(f(\alpha+1)\)</span> is also well defined for any <span class="math inline">\(\alpha\geq\omega\)</span> as <span class="math inline">\(\left\lvert D\right\rvert \leq \left\lvert\alpha\right\rvert &lt; \kappa\)</span>.</p>
+<p>Note that we are in the case that <span class="math inline">\(\kappa&gt;\omega\)</span> and we still need to prove that for each <span class="math inline">\(i&lt;\omega\)</span>, <span class="math inline">\(\left\lvert Y_i\right\rvert = \left\lvert\kappa\right\rvert\)</span>, it suffices to define an injective function <span class="math inline">\(g: \left(\kappa\setminus\omega\right) \to Y_i\)</span>, which we can do by defining <span class="math inline">\(g(\alpha)\)</span> to be the only element of <span class="math inline">\(f(\alpha+1)(i)\setminus f(\alpha)(i)\)</span>.</p>
+<h1 data-number="2" id="section-1" data-number="2"><span class="header-section-number">2</span> </h1>
+<blockquote>
+<p>Use transfinite recursion to construct <span class="math inline">\(X \subseteq \mathbb{R}^2\)</span> such that <span class="math inline">\(X\)</span> intersects every line in <span class="math inline">\(\mathbb{R}^2\)</span> at exactly two points.</p>
+</blockquote>
+<p>Let <span class="math inline">\(&lt;\)</span> be a well ordering of lines in <span class="math inline">\(\mathbb{R}^2\)</span> with the order type exactly <span class="math inline">\(\left\lvert\mathbb{R}\right\rvert\)</span> and <span class="math inline">\(\prec\)</span> a well ordering of points in <span class="math inline">\(\mathbb{R}^2\)</span>.</p>
+<p>Suppose <span class="math inline">\(l\)</span> is a line and at stage <span class="math inline">\(l\)</span>, <span class="math inline">\(X_l\)</span> is a set of points satisfying</p>
+<ul>
+<li><p>no 3 points in <span class="math inline">\(X_l\)</span> are colinear,</p></li>
+<li><p><span class="math inline">\(l'&lt;l\)</span> implies <span class="math inline">\(l' \in L(X_l)\)</span> the set of all lines generated by points in <span class="math inline">\(X_l\)</span>.</p></li>
+</ul>
+<p>First note that for any line <span class="math inline">\(l\)</span>, let <span class="math inline">\(Y_l = \bigcup L(X_l)\)</span> denote the span and we have <span class="math display">\[ \left\lvert Y_l \cap l\right\rvert = \left\lvert\bigcup_{l'\in L(X_l)} l'\cap l\right\rvert \leq \left\lvert L(X_l)\right\rvert
+\leq [X_l]^2 &lt; \left\lvert\mathbb{R}\right\rvert = \left\lvert l\right\rvert \]</span> whenever <span class="math inline">\(l\notin L(X_l)\)</span>.</p>
+<p>Then we define <span class="math inline">\(X_{S(l)}\)</span> as</p>
+<ul>
+<li><p>if <span class="math inline">\(l \in L(X_l)\)</span> then <span class="math inline">\(X_{S(l)} = X_l\)</span>,</p></li>
+<li><p>if <span class="math inline">\(l\cap Y_l \ne 0\)</span> then choose a minimum point <span class="math inline">\(a\in l\setminus Y_l\)</span> and set <span class="math inline">\(X_{S(l)} = X_l\cup\left\{a\right\}\)</span>,</p></li>
+<li><p>if <span class="math inline">\(l\cap Y_l = 0\)</span> then choose two minimum points <span class="math inline">\(a,b\in l\setminus Y_l\)</span> and set <span class="math inline">\(X_{S(l)} = X_l\cup\left\{a,b\right\}\)</span>,</p></li>
+</ul>
+<p>and when <span class="math inline">\(l\)</span> corresponds to a limit ordinal, then define <span class="math display">\[ X_l = \bigcup_{l'&lt;l} X_{l'}. \]</span></p>
+<p>We start the induction by setting, where <span class="math inline">\(m\)</span> is the minimal line <span class="math inline">\(X_m = 0\)</span>, and notice that the invariant is preserved throughout.</p>
+<p>Define <span class="math inline">\(X\)</span> as the final union and observe that no 3 points are colinear in <span class="math inline">\(X\)</span>, otherwise they would occur in some <span class="math inline">\(X_l\)</span>. Also all lines are taken care of so <span class="math inline">\(X\)</span> intersects every line at exactly two points.</p>
+<h1 data-number="3" id="section-2" data-number="3"><span class="header-section-number">3</span> </h1>
+<blockquote>
+<p>Let <span class="math inline">\(\kappa\)</span> be an infinite cardinal and suppose <span class="math inline">\(\lambda\)</span> is the least cardinal such that <span class="math inline">\(\kappa^\lambda &gt; \kappa\)</span>. Show that <span class="math inline">\(\lambda\)</span> is a regular cardinal.</p>
+</blockquote>
+<p>Suppose <span class="math inline">\(\lambda\)</span> is singular (<span class="math inline">\(\lambda\)</span> obviously cannot be finite), we can decompose <span class="math inline">\(\lambda\)</span> (in a fashion similar to Homework 2 Q2) as <span class="math display">\[ \lambda = \bigcup_{\eta&lt;\operatorname{cf}(\lambda)} X_\eta \]</span> where each <span class="math inline">\(\left\lvert X_\eta\right\rvert &lt; \lambda\)</span>. We can verify by chasing elements that <span class="math display">\[ \left\lvert{}^\lambda\kappa\right\rvert \leq \left\lvert\prod_{\eta&lt;\operatorname{cf}(\lambda)} {}^{X_\eta}\kappa\right\rvert \]</span> and at each <span class="math inline">\(\eta\)</span>, we have <span class="math inline">\(\left\lvert{}^{X_\eta}\kappa\right\rvert \leq \kappa\)</span> which can be used to get the bound <span class="math inline">\(\kappa^\lambda \leq \kappa^{\operatorname{cf}(\lambda)} \leq \kappa\)</span>, a contradiction.</p>
+<h1 data-number="4" id="section-3" data-number="4"><span class="header-section-number">4</span> </h1>
+<blockquote>
+<p>Let <span class="math inline">\(\kappa\)</span> be an infinite cardinal. Show that there is a family <span class="math inline">\(\mathcal{A}\)</span> of subsets of <span class="math inline">\(\kappa\)</span> such that <span class="math inline">\(\left\lvert\mathcal{A}\right\rvert = \kappa^+\)</span> and for every <span class="math inline">\(X,Y\in\mathcal{A}\)</span>, either <span class="math inline">\(X\subseteq Y\)</span> or <span class="math inline">\(Y\subseteq X\)</span>.</p>
+</blockquote>
+<p>Following hint, let <span class="math inline">\(\lambda\)</span> be the least cardinal such that <span class="math inline">\(2^\lambda &gt; \kappa\)</span>. Let <span class="math inline">\(\prec\)</span> be the following linear order on <span class="math inline">\({}^\lambda 2\)</span>: <span class="math inline">\(f\prec g\)</span> iff <span class="math inline">\(\left(\exists \alpha&lt;\lambda\right)\left(f\upharpoonright\alpha = g\upharpoonright\alpha \land f(\alpha) &lt; g(\alpha)\right)\)</span>. Let <span class="math inline">\(D\)</span> be the set of all <span class="math inline">\(f\in{}^\lambda 2\)</span> such that <span class="math inline">\(f\)</span> is eventually <span class="math inline">\(0\)</span>. For <span class="math inline">\(f\in {}^\lambda2\)</span>, let <span class="math inline">\(A_f = \left\{g\in D: g\preccurlyeq f\right\}\)</span>.</p>
+<p>First let <span class="math inline">\(f, g\in{}^\lambda2\)</span> where <span class="math inline">\(f\prec g\)</span>, and we want to show that <span class="math inline">\(A_f \subsetneq A_g\)</span>. The containment is clear as <span class="math inline">\(h\in D, h\preccurlyeq f\implies h\preccurlyeq g\)</span>. Case <span class="math inline">\(g\in D\)</span> then clearly <span class="math inline">\(g\notin A_f\)</span>, when <span class="math inline">\(g\notin D\)</span> let <span class="math inline">\(\alpha&lt;\lambda\)</span> such that <span class="math inline">\(f\upharpoonright\alpha = g\upharpoonright\alpha\)</span> and <span class="math inline">\(f(\alpha) &lt; g(\alpha)\)</span>, let <span class="math inline">\(\beta&gt;\alpha\)</span> be minimal such that <span class="math inline">\(g(\beta) = 1\)</span>, we produce <span class="math inline">\(h\in D\)</span> by <span class="math display">\[
+h(\gamma) = \begin{cases}
+g(\gamma)&amp;\text{if }\gamma &lt; \beta\\
+0&amp;\text{if }\gamma \geq \beta
+\end{cases}
+\]</span> and note that <span class="math inline">\(f\prec h\)</span> because <span class="math inline">\(h(\alpha) = g(\alpha)\)</span>, also <span class="math inline">\(h\prec g\)</span> since <span class="math inline">\(g\notin D\)</span>, this shows properness of containment.</p>
+<p>Note that since <span class="math inline">\(\kappa &lt; 2^\kappa\)</span>, <span class="math inline">\(\lambda \leq \kappa\)</span>. In addition, by definition we can see a natural injection from <span class="math inline">\(D\)</span> into <span class="math inline">\(\bigcup_{\alpha&lt;\lambda} {}^\alpha2\)</span>, and for each <span class="math inline">\(\alpha&lt;\lambda\)</span>, we have <span class="math inline">\(2^\alpha \leq \kappa\)</span> by minimality of <span class="math inline">\(\lambda\)</span>. Then <span class="math display">\[ \left\lvert D\right\rvert \leq \left\lvert\bigcup_{\alpha&lt;\lambda} 2^\alpha\right\rvert \leq \kappa \]</span> and let <span class="math inline">\(i:D\to\kappa\)</span> be injective.</p>
+<p>Define <span class="math inline">\(F:{}^\lambda2\to\mathcal{P}(\kappa)\)</span> as <span class="math inline">\(f\mapsto i(A_f)\)</span> which is injective, so <span class="math inline">\(\left\lvert\operatorname{range}(F)\right\rvert = 2^\lambda &gt; \kappa\)</span>. For any <span class="math inline">\(i(A_f), i(A_g) \in \operatorname{range}(F)\)</span>, we have <span class="math inline">\(A_f\subseteq A_g\)</span> or <span class="math inline">\(A_g \subseteq A_f\)</span> and this property is still preserved after taking the image of an injective mapping, so <span class="math inline">\(\operatorname{range}(F)\)</span> is a family with size at least <span class="math inline">\(\kappa^+\)</span> satisfying the property. We let <span class="math inline">\(\mathcal{A}\)</span> be any subset of <span class="math inline">\(\operatorname{range}(F)\)</span> with size exactly <span class="math inline">\(\kappa^+\)</span> and complete the proof by making the observation that the property still holds for any infinite subset of <span class="math inline">\(\operatorname{range}(F)\)</span>.</p>
+<h1 data-number="5" id="section-4" data-number="5"><span class="header-section-number">5</span> </h1>
+<blockquote>
+<p>Let <span class="math inline">\(\mathcal{F}\)</span> be a filter on <span class="math inline">\(X\)</span>. Show that there is a filter <span class="math inline">\(\mathcal{U}\)</span> on <span class="math inline">\(X\)</span> such that <span class="math inline">\(\mathcal{F}\subseteq \mathcal{U}\)</span> and for every <span class="math inline">\(Y\subseteq X\)</span>, either <span class="math inline">\(Y\in\mathcal{U}\)</span> or <span class="math inline">\(X\setminus Y\in \mathcal{U}\)</span>.</p>
+</blockquote>
+<p>Define <span class="math inline">\(\mathscr{A} = \left\{\mathcal{G}: \mathcal{G}\text{ is a filter on }X\right\}\)</span>, which is partially ordered by inclusion. Let <span class="math inline">\(C\subseteq \mathscr{A}\)</span> be a chain and we want to show that <span class="math inline">\(\bigcup C \in \mathscr{A}\)</span>, that is <span class="math inline">\(\bigcup C\)</span> is a filter on <span class="math inline">\(X\)</span>, </p>
+<ol type="i">
+<li><p>for all <span class="math inline">\(\mathcal{G}\in C\)</span>, <span class="math inline">\(0\notin \mathcal{G}\)</span> and <span class="math inline">\(X\in \mathcal{G}\)</span>, so <span class="math inline">\(0\notin \bigcup C\)</span> and <span class="math inline">\(X\in \bigcup C\)</span>,</p></li>
+<li><p>for all <span class="math inline">\(A,B\in\bigcup C\)</span>, let <span class="math inline">\(A\in \mathcal{G}_A\in C\)</span> and <span class="math inline">\(B\in \mathcal{G}_B\in C\)</span>, since <span class="math inline">\(C\)</span> is a chain without loss of generality let <span class="math inline">\(\mathcal{G}_A\subseteq \mathcal{G}_B\)</span>, then <span class="math inline">\(A\cap B\in \mathcal{G}_B\)</span> which means <span class="math inline">\(A \cap B \in \bigcup C\)</span>,</p></li>
+<li><p>for all <span class="math inline">\(A\subseteq B\subseteq X\)</span>, if <span class="math inline">\(A\in\bigcup C\)</span> then let <span class="math inline">\(A\in \mathcal{G}_A\in C\)</span>, then <span class="math inline">\(B\in G_A\)</span> which means <span class="math inline">\(B \in \bigcup C\)</span>.</p></li>
+</ol>
+<p>As every chain <span class="math inline">\(C\)</span> is bounded above by <span class="math inline">\(\bigcup C\)</span> in <span class="math inline">\(\mathscr{A}\)</span>, we can apply Zorn’s lemma and let <span class="math inline">\(\mathcal{U}\supseteq\mathcal{F}\)</span> be the maximal element above <span class="math inline">\(\mathcal{F}\)</span> in <span class="math inline">\(\mathscr{A}\)</span>.</p>
+<p>We now show that <span class="math inline">\(\mathcal{U}\)</span> has the ultrafilter property. Suppose not, let <span class="math inline">\(Y\subseteq X\)</span> with <span class="math inline">\(Y\notin \mathcal{U}\)</span> and <span class="math inline">\(X\setminus Y\notin \mathcal{U}\)</span>. Let <span class="math inline">\(Z\in\mathcal{U}\)</span> and we have <span class="math inline">\(Z\cap Y \ne 0\)</span>, otherwise <span class="math inline">\(Z \subseteq X\setminus Y\)</span>. Since <span class="math inline">\(Y\)</span> meets every <span class="math inline">\(Y\in\mathcal{U}\)</span> on a nonempty set the upward closure of <span class="math inline">\(\mathcal{U}\cup\left\{Z\right\}\)</span> is a filter which contradicts maximality of <span class="math inline">\(\mathcal{U}\)</span>.</p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA5220/homework3.md">MA5220/homework3.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

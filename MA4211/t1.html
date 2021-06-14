@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="29th January 2020" />
+  <title>MA4211 Problem Sheet 1</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">MA4211 Problem Sheet 1</h1><p class="author">Qi Ji</p>
+<p class="date">29th January 2020</p>
+</header>
+<article><h1 data-number="1" id="section" data-number="1"><span class="header-section-number">1</span> </h1>
+<p>skip</p>
+<h1 data-number="2" id="section-1" data-number="2"><span class="header-section-number">2</span> </h1>
+<p>Use a strong form of Zorn</p>
+<ol type="i">
+<li><p>Zorn</p></li>
+<li><p>Zorn applied to <span class="math inline">\(\mathcal{P}(S)\)</span></p></li>
+</ol>
+<h1 data-number="3" id="section-2" data-number="3"><span class="header-section-number">3</span> </h1>
+<blockquote>
+<p>Show <span class="math inline">\(\mathbb{R}^\mathbb{N}\)</span> does not have a countable basis.</p>
+</blockquote>
+<p>Following hint for each <span class="math inline">\(x\in\mathbb{R}\)</span> we look at the vector <span class="math display">\[ v_x = (1, x, x^2, x^3,\dots)\]</span> and we claim that the set <span class="math inline">\(\left\{V_x\right\}_{x\in\mathbb{R}}\)</span> is linearly independent.</p>
+<p>Suppose not, then there exists <span class="math inline">\(c_1,\dots,c_n\)</span> coefficients such that <span class="math display">\[c_1 v_{x_1} + \dots + c_n v_{x_n} = 0\]</span> but this implies that <span class="math inline">\(v_{x_1}, \dots, v_{x_n}\)</span> are linearly dependent, in particular this Vandermonte matrix <span class="math display">\[ \begin{pmatrix}
+1 &amp; x_1 &amp; x_1^2 &amp; \dots &amp; x_1^{n-1} \\
+1 &amp; x_2 &amp; x_2^2 &amp; \dots &amp; x_2^{n-1} \\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+1 &amp; x_n &amp; x_n^2 &amp; \dots &amp; x_n^{n-1} \\
+\end{pmatrix} \]</span> has determinant <span class="math inline">\(0\)</span> despite <span class="math inline">\(x_i \ne x_j\)</span> for all <span class="math inline">\(i\ne j\)</span>.</p>
+<h1 data-number="4" id="section-3" data-number="4"><span class="header-section-number">4</span> </h1>
+<p><span class="math inline">\(\ell^\infty\)</span> is definitely equivalent to neither <span class="math inline">\(\ell^1\)</span> or <span class="math inline">\(\ell^2\)</span>.</p>
+<p>Constant bound between sum and sum of square seems impossible as number of summands, despite being finite, is still unbounded.</p>
+<p>In fact from <a href="https://math.stackexchange.com/questions/439220/what-is-the-difference-between-square-of-sum-and-sum-of-square">this stackexchange post</a> sum of squares is below sum squared which is below n sum of squares.</p>
+<h1 data-number="5" id="section-4" data-number="5"><span class="header-section-number">5</span> </h1>
+<h2 data-number="5.1" id="section-5" data-number="5.1"><span class="header-section-number">5.1</span> </h2>
+<p>obvious</p>
+<h2 data-number="5.2" id="section-6" data-number="5.2"><span class="header-section-number">5.2</span> </h2>
+<p>positive check, definite check, scalability follows from that of <span class="math inline">\(\left\lvert-\right\rvert\)</span> and properties of integration, triangle also follows from abs on <span class="math inline">\(\mathbb{R}\)</span> and properties of integration.</p>
+<h1 data-number="6" id="section-7" data-number="6"><span class="header-section-number">6</span> </h1>
+<h2 data-number="6.1" id="section-8" data-number="6.1"><span class="header-section-number">6.1</span> </h2>
+<p>trivial</p>
+<h2 data-number="6.2" id="section-9" data-number="6.2"><span class="header-section-number">6.2</span> </h2>
+<ol type="a">
+<li><p>too hard</p></li>
+<li><p>by geometric intuition if <span class="math inline">\(U = V\)</span> then <span class="math inline">\(\lVert P \rVert = 0\)</span> otherwise <span class="math inline">\(1\)</span></p></li>
+<li><p>too hard</p></li>
+</ol>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA4211/t1.md">MA4211/t1.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

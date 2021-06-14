@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="27th September 2019" />
+  <title>MA3110S Homeworks 4, 5, 6</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">MA3110S Homeworks 4, 5, 6</h1><p class="author">Qi Ji</p>
+<p class="date">27th September 2019</p>
+</header>
+<article><h1 id="homework-4">Homework 4</h1>
+<h2 id="q1">Q1</h2>
+<p>If <span class="math inline">\(f\)</span> has no zeroes on <span class="math inline">\([a,+\infty)\)</span>, by IVT for all <span class="math inline">\(x &gt; a\)</span>, we have <span class="math inline">\(f(x) &gt; 0\)</span>. Choose <span class="math inline">\(y\)</span> large enough (specifically <span class="math inline">\(y &gt; \frac{-f(a)}{f'(a)} + a\)</span>) such that by mean value theorem, there exists <span class="math inline">\(c\in (a,y)\)</span> <span class="math display">\[ \frac{f(y) - f(a)}{y - a} = f'(c) &gt; \frac{-f(a)}{y-a} &gt; f'(a) \]</span> then by mean value theorem again there exists <span class="math inline">\(d\in (a,c)\)</span> such that <span class="math display">\[ f''(d) = \frac{f'(c) - f'(a)}{c - a} &gt; 0 \]</span> contradicting hypothesis.</p>
+<p>If <span class="math inline">\(f\)</span> has two zeroes <span class="math inline">\(x_1, x_2\in (a,+\infty)\)</span>, then by mean value theorem there exists <span class="math inline">\(c\in (x_1, x_2)\)</span> with <span class="math inline">\(f'(c) = 0\)</span>, then by mean value theorem there exists <span class="math inline">\(d\in (a,c)\)</span> with <span class="math display">\[f''(d) = \frac{f'(c) - f'(a)}{c - a} &gt; 0\]</span> which contradicts hypothesis again.</p>
+<h2 id="q2">Q2</h2>
+<p>By induction on <span class="math inline">\(n\)</span> we show for all <span class="math inline">\(n\in\mathbb{N}\)</span>, for all <span class="math inline">\(f, x_0\)</span> such that <span class="math inline">\(f\)</span> is <span class="math inline">\(n\)</span>-th differentiable at <span class="math inline">\(x_0\)</span>, we have <span class="math display">\[ f^{(n)}(x_0) = \lim_{h\to 0} \frac1{h^n} \sum_{k=0}^n (-1)^{n-k}\binom{n}{k} f(x_0 + kh) \]</span> if the limit exists.</p>
+<p>When <span class="math inline">\(n = 0\)</span> result trivially holds. Suppose result holds for <span class="math inline">\(n\)</span>, and <span class="math inline">\(f\)</span> is <span class="math inline">\(n+1\)</span>-th differentiable at <span class="math inline">\(x_0\)</span>, we want to show that <span class="math display">\[f^{(n+1)}(x_0) = 
+\lim_{h\to 0} \frac1{h^{n+1}} \sum_{k=0}^{n+1} (-1)^{n+1-k}\binom{n+1}{k} f(x_0 + kh) \]</span> provided that the limit exists. First we rewrite some terms <span class="math display">\[\begin{align*}
+&amp;\quad\ \sum_{k=1}^{n} (-1)^{n+1-k}\binom{n+1}{k} f(x_0 + kh) \\
+&amp;= \sum_{k=1}^n (-1)^{n+1-k}\binom{n}{k} f(x_0 + kh) + \sum_{k=1}^n (-1)^{n-(k-1)} \binom{n}{k-1}f(x_0 + (k-1)h + h) \\
+&amp;= -\sum_{k=1}^n (-1)^{n-k}\binom{n}{k} f(x_0 + kh) + \sum_{k=0}^{n-1} (-1)^{n-k} \binom{n}{k}f(x_0 + kh + h)
+\end{align*}\]</span> so that <span class="math display">\[\begin{align*}
+\sum_{k=0}^{n+1} (-1)^{n+1-k}\binom{n+1}{k} f(x_0 + kh)
+&amp;=
+\sum_{k=0}^{n-1} (-1)^{n-k} \binom{n}{k}f(x_0 + kh + h)
++ f(x_0 + kh + h) \\
+&amp;\qquad -(-1)^{n} f(x_0)
+-\sum_{k=1}^n (-1)^{n-k}\binom{n}{k} f(x_0 + kh) \\
+&amp;=
+\sum_{k=0}^{n} (-1)^{n-k} \binom{n}{k}f(x_0 + kh + h) - \sum_{k=0}^n (-1)^{n-k}\binom{n}{k} f(x_0 + kh)
+\end{align*}\]</span> armed with this we can examine the limit (which is assumed to exist) <span class="math display">\[\begin{align*}
+&amp;\quad\ \lim_{h\to 0} \frac1{h^{n+1}} \sum_{k=0}^{n+1} (-1)^{n+1-k}\binom{n+1}{k} f(x_0 + kh) \\
+&amp;= \lim_{h\to 0} \frac1h \frac1{h^n} \left[
+\sum_{k=0}^{n} (-1)^{n-k} \binom{n}{k}f(x_0 + kh + h) - \sum_{k=0}^n (-1)^{n-k}\binom{n}{k} f(x_0 + kh)
+\right] \\
+&amp;= \lim_{(h_1,h_2)\to(0,0)}
+\frac1{h_1} \left[
+\frac1{h_2^n}
+\sum_{k=0}^{n} (-1)^{n-k} \binom{n}{k}f(x_0 + h_1 + kh_2) -
+\frac1{h_2^n}\sum_{k=0}^n (-1)^{n-k}\binom{n}{k} f(x_0 + kh_2)
+\right] \\
+&amp;= \lim_{h_1\to 0} \frac1{h_1} \left[
+\lim_{h_2\to 0} \frac1{h_2^n}
+\sum_{k=0}^{n} (-1)^{n-k} \binom{n}{k}f(x_0 + h_1 + kh_2) -
+\lim_{h_2\to 0} \frac1{h_2^n}\sum_{k=0}^n (-1)^{n-k}\binom{n}{k} f(x_0 + kh_2)
+\right] \\
+&amp;= \lim_{h_1\to 0} \frac1{h_1} \left(
+f^{(n)}(x_0+h_1) - f^{(n)} (x_0)
+\right) = f^{(n+1)}(x_0)
+\end{align*}\]</span></p>
+<h2 id="q3">Q3</h2>
+<p>Let <span class="math inline">\(h\)</span> be small and without loss of generality positive such that <span class="math inline">\(f\)</span> is continuous at <span class="math inline">\([x_0-h, x_0+h]\)</span> and twice differentiable at <span class="math inline">\((x_0-h, x_0+h)\)</span>, define <span class="math inline">\(g(t) = f(x_0 + t) + f(x_0 - t)\)</span> and it suffices to show that <span class="math display">\[ \frac{g(h) - g(0)}{h^2} = \frac{g''(c)}2 \]</span> for some <span class="math inline">\(c\in (-h,h)\)</span>. By Taylor’s theorem on <span class="math inline">\([0,h]\)</span> there exists <span class="math inline">\(c\in(0,h)\)</span> such that <span class="math display">\[g(h) = g(0) + g'(0)h + \frac{g''(c)}2 h^2 \]</span> and since <span class="math inline">\(g'(t) = f'(x_0+t) - f'(x_0 -t)\)</span> is an odd function <span class="math inline">\(g'(0) = 0\)</span>, then the result follows.</p>
+<h1 id="homework-5">Homework 5</h1>
+<h2 id="q1-1">Q1</h2>
+<p>By Taylor expansion on <span class="math inline">\(\ln(1+x)\)</span> for any <span class="math inline">\(x\)</span> there exists <span class="math inline">\(c\in(0,x)\)</span> such that <span class="math display">\[ \ln(1+x) = x - \frac{x^2}{2(1+c)^2}. \]</span> Then for any <span class="math inline">\(n\)</span>, there exists <span class="math inline">\(c_1\in(0,\frac1{n+1}), c_2\in(0,\frac1n)\)</span> such that <span class="math display">\[\begin{align*}
+n^s\left(
+\left( 1 + \frac1{n+1}\right)^{n+1} -
+\left( 1 + \frac1{n}\right)^{n}
+\right)
+&amp;= n^s\left(
+e^{(n+1)\ln(1+\frac1{n+1})} -
+e^{n\ln(1+\frac1{n})}
+\right) \\
+&amp;= n^s e \left(
+\exp\left(- \frac{1}{2(1+c_1)^2(n+1)}\right)-
+\exp\left(- \frac{1}{2(1+c_1)^2n}\right)
+\right) \\
+\end{align*}\]</span> then there exists <span class="math inline">\(d_1\in \left(- \frac{1}{2(1+c_1)^2(n+1)},0\right), d_2\in \left(- \frac{1}{2(1+c_1)^2n)},0\right)\)</span> such that <span class="math display">\[\begin{align*}
+n^s\left(
+\left( 1 + \frac1{n+1}\right)^{n+1} -
+\left( 1 + \frac1{n}\right)^{n}
+\right)
+&amp;= n^s e \left(
+1 - \frac{e^{d_1}}{2(1+c_1)^2(n+1)}
+- 1 + \frac{e^{d_2}}{2(1+c_2)^2n}
+\right) \\
+&amp;= n^s \frac{e}2 \left(
+\frac{e^{d_2}}{n(1+c_2)^2}
+- \frac{e^{d_1}}{(n+1)(1+c_1)^2}
+\right) \\
+&amp;= \frac{n^s}{n(n+1)} \frac{e}2 \left(
+\frac{e^{d_2}(n+1)}{(1+c_2)^2}
+- \frac{e^{d_1}n}{(1+c_1)^2}
+\right) \\
+&amp;= \frac{n^s}{n(n+1)} \frac{e}2 \left(
+n\left(\frac{e^{d_2}}{(1+c_2)^2}
+- \frac{e^{d_1}}{(1+c_1)^2}\right)
++ \frac{e^{d_2}}{(1+c_2)^2}
+\right)
+\end{align*}\]</span> as <span class="math inline">\(n\to\infty\)</span>, each <span class="math inline">\(c_i, d_i\to 0\)</span> and <span class="math inline">\(\frac{e^{d_i}}{(1+c_i)^2} \to 1\)</span>, so <span class="math inline">\(f(2) = \frac{e}2\)</span> and <span class="math inline">\(f(s) = 0\)</span> for all <span class="math inline">\(s &lt; 2\)</span>, while the limit diverges for all <span class="math inline">\(s &gt; 2\)</span>, and the domain is <span class="math inline">\((-\infty, 2]\)</span> and range <span class="math inline">\(\left\{0,\frac{e}2\right\}\)</span>.</p>
+<h2 id="q2-1">Q2</h2>
+<p>First we note that for all <span class="math inline">\(n\)</span>, as long as <span class="math inline">\(x \geq 0\)</span>, <span class="math inline">\(P_n(x) &gt; 0\)</span>. Also by Taylor’s theorem on <span class="math inline">\(e^{-x}\)</span> we have for any <span class="math inline">\(n\)</span>, there exists <span class="math inline">\(c\in (0,x)\)</span> such that <span class="math display">\[ e^{-x} = P_n(-x) + \frac{(-1)^{n+1} e^{-c}}{(n+1)!}x^{n+1}. \]</span></p>
+<h3 id="i">(i)</h3>
+<p>If <span class="math inline">\(n\)</span> is even, for any <span class="math inline">\(x &gt; 0\)</span> then there exists <span class="math inline">\(c\in (0,x)\)</span> such that <span class="math display">\[ P_n(-x) = e^{-x} + \frac{e^{-c}}{(n+1)!}x^{n+1} &gt;0 \]</span> which completes the proof.</p>
+<h3 id="ii">(ii)</h3>
+<p>If <span class="math inline">\(n\)</span> is odd, then we can evaluate the derivative of <span class="math inline">\(P_n(x)\)</span>, which turns out to be <span class="math inline">\(P_{n-1}(x)\)</span> (case <span class="math inline">\(n=1\)</span> is obvious). By our earlier result in part (i) <span class="math inline">\(P_{n-1} &gt; 0\)</span> so <span class="math inline">\(P_n(x)\)</span> cannot have two or more zeroes. <span class="math inline">\(P_n\)</span> has to have a root though, since it is an odd degree polynomial.</p>
+<h3 id="iii">(iii)</h3>
+<p>Fix <span class="math inline">\(n\)</span> and we compare <span class="math inline">\(P_{2n+1}\)</span> with <span class="math inline">\(P_{2n-1}\)</span>, specifically <span class="math display">\[ P_{2n+1}(x) = P_{2n-1}(x) + \frac{x^{2n}}{(2n)!} + \frac{x^{2n+1}}{(2n+1)!} \]</span> it suffices to show that <span class="math inline">\(P_{2n+1}(x_{n-1}) &gt; 0\)</span>, then by earlier result that <span class="math inline">\(P_{2n+1}\)</span> has strictly positive derivative we can conclude that <span class="math inline">\(x_n &lt; x_{n-1}\)</span>. To show that <span class="math inline">\(P_{2n+1}(x_{n-1}) &gt; 0\)</span> we only have to check that <span class="math display">\[ x_{n-1}^{2n}(2n+1) + x_{n-1}^{2n+1} &gt; 0 \]</span> which can be reduced to just showing that <span class="math inline">\(-(2n+1) &lt; x_{n-1} &lt; 0\)</span>, and note that <span class="math inline">\(x_{n-1}\)</span> being negative was shown earlier.</p>
+<p>Suppose for a contradiction <span class="math inline">\(x_{n-1} \leq -(2n+1)\)</span>, then there exists <span class="math inline">\(c \in (x_{n-1}, 0)\)</span> such that <span class="math display">\[ P_{2n-1}(x_{n-1}) = e^{x_{n-1}} - \frac{e^c}{(2n)!} x_{n-1}^{2n} \]</span> but <span class="math inline">\(e^c \geq e^{x_{n-1}}\)</span> so <span class="math display">\[ P_{2n-1}(x_{n-1}) \leq e^{x_{n-1}}\left[
+1 - \frac{x_{n-1}^{2n}}{(2n)!}
+\right]\]</span> and <span class="math inline">\(x_{n-1}^{2n} \geq (2n+1)^{2n} \geq (2n)^{2n} &gt; (2n)!\)</span> for all <span class="math inline">\(n&gt;0\)</span>, which means <span class="math inline">\(P_{2n-1}(x_{n-1}) &lt; 0\)</span>.</p>
+<h2 id="q3-1">Q3</h2>
+<p>By taking Taylor’s expansions at <span class="math inline">\(\frac{a+b}2\)</span>, there exists <span class="math inline">\(c\in (\frac{a+b}2, b), d\in (a,\frac{a+b}2)\)</span> such that <span class="math display">\[\begin{align*}
+f(b) &amp;= f\left(\frac{a+b}2\right) + \frac{f''(c)}2 \cdot\left(\frac{b-a}2\right)^2 \\
+f(a) &amp;= f\left(\frac{a+b}2\right) + \frac{f''(d)}2 \cdot\left(\frac{b-a}2\right)^2
+\end{align*}\]</span> then <span class="math display">\[\begin{align*}
+f(b) - f(a) &amp;= \frac{f''(d) - f''(c)}8 (b-a)^2 \\
+\left\lvert f''(d) - f''(c)\right\rvert &amp;= \frac{8}{(b-a)^2}\left\lvert f(b)-f(a)\right\rvert
+\end{align*}\]</span> and since <span class="math inline">\(\max\left(\left\lvert f''(c)\right\rvert,\left\lvert f''(d)\right\rvert\right) \geq \dfrac12\left\lvert f''(d)-f''(c)\right\rvert\)</span>, and by choosing <span class="math inline">\(\xi\in\left\{c,d\right\}\)</span> such that <span class="math inline">\(\left\lvert f''(\xi)\right\rvert = \max\left(\left\lvert f''(c)\right\rvert,\left\lvert f''(d)\right\rvert\right)\)</span> we complete the proof.</p>
+<h1 id="homework-6">Homework 6</h1>
+<h2 id="q1-2">Q1</h2>
+<p>Let <span class="math inline">\(P\)</span> be any partition <span class="math inline">\(a = x_0 &lt; x_1 &lt; \dots &lt; x_{p-1} &lt; x_p = b\)</span>, then for all <span class="math inline">\(j\)</span>, by mean value theorem there exists <span class="math inline">\(d_j \in [x_{j-1}, x_j]\)</span> such that <span class="math display">\[\begin{align*}
+x_j^{m+1} - x_{j-1}^{m+1} &amp;= (m+1) d_j^m (x_j - x_{j-1}) \\
+d_j^m &amp;= \frac1{m+1}(x_j^{m+1} - x_{j-1}^{m+1})
+\end{align*}\]</span> and when we let <span class="math inline">\(\mathbf{d}\)</span> denote <span class="math inline">\((d_1,d_2,\dots,d_p)\)</span> this sum will telescope as follows <span class="math display">\[\begin{align*}
+R(x^m, x, P, \mathbf{d})
+&amp;= \sum_{j=1}^p d_j^m (x_j - x_{j-1}) \\
+&amp;= \frac1{m+1} \sum_{j=1}^p (x_j^{m+1} - x_{j-1}^{m+1}) \\
+&amp;= \frac1{m+1} \left(b^{m+1} - a^{m+1}\right)
+\end{align*}\]</span> This reduces our problem to showing that for any <span class="math inline">\(\varepsilon&gt;0\)</span>, there exists <span class="math inline">\(\delta&gt;0\)</span> such that when <span class="math inline">\(\left\lvert P\right\rvert \leq \delta\)</span> and <span class="math inline">\(\mathbf{t} = (t_1, t_2, \dots, t_p)\)</span> such that each <span class="math inline">\(t_j \in [x_{j-1}, x_j]\)</span> <span class="math display">\[ \left\lvert R(x^m, x, P, \mathbf{t}) - R(x^m, x, P, \mathbf{d})\right\rvert &lt; \varepsilon. \]</span></p>
+<p>First observe that <span class="math inline">\(x^m\)</span> is continuous on <span class="math inline">\([a,b]\)</span>, and is hence uniformly continuous. Fix <span class="math inline">\(\varepsilon&gt; 0\)</span> and use uniform continuity of <span class="math inline">\(x^m\)</span> to get a <span class="math inline">\(\delta_1\)</span> such that whenever <span class="math inline">\(a \leq x &lt; y \leq b\)</span>, <span class="math display">\[ \left\lvert x-y\right\rvert &lt; \delta_1 \implies \left\lvert x^m - y^m\right\rvert &lt; \frac{\varepsilon}{2(b-a)} \]</span> choose <span class="math inline">\(\delta = \delta_1\)</span> and consider any partition <span class="math inline">\(\left\lvert P\right\rvert \leq \delta\)</span> that is uniform enough, in the sense that <span class="math inline">\(p &lt; \frac{2(b-a)}{\delta}\)</span>. Let <span class="math inline">\(\mathbf{t}\)</span> be any set of tags, then <span class="math display">\[\begin{align*}
+\left\lvert R(x^m,x,P,\mathbf{t}) - R(x^m,x,P,\mathbf{d})\right\rvert
+&amp;= \left\lvert\sum_{j=1}^p\left(t_j^m - d_j^m\right)(x_j-x_{j-1})\right\rvert \\
+&amp;\leq p\delta\frac{\varepsilon}{2(b-a)} &lt; \varepsilon
+\end{align*}\]</span> then reusing the fact proven in Proposition 3.3 (regarding refinements) we get the general case for arbitrary partitions. In greater detail, when <span class="math inline">\(P^* \supset P\)</span> is a refinement and <span class="math inline">\(\mathbf{t}^*\)</span> is a set of tags for <span class="math inline">\(P^*\)</span>, we can check that there are tag assignments <span class="math inline">\(\mathbf{t}_1, \mathbf{t}_2\)</span> satisfying <span class="math display">\[ R(x^m,x,P,\mathbf{t}_1) \leq R(x^m,x,P^*,\mathbf{t}^*) \leq R(x^m,x,P,\mathbf{t}_2). \]</span></p>
+<h2 id="q2-2">Q2</h2>
+<p>Suppose <span class="math inline">\(f\)</span> is continuous at <span class="math inline">\(x\)</span> but <span class="math inline">\(f(x) \ne 0\)</span>, then by continuity there exists <span class="math inline">\(\delta_0&gt;0\)</span> such that for all <span class="math inline">\(y \in (x-\delta_0, x+\delta_0)\)</span>, we have <span class="math inline">\(f(y) \in (\frac{f(x)}2, \frac{3f(x)}2)\)</span>, so in particular <span class="math inline">\(f(y) &gt; \frac{f(x)}2\)</span>.</p>
+<p>We now show that the integral <span class="math inline">\(\int_a^b f\ dx\)</span> cannot be <span class="math inline">\(0\)</span>. Let <span class="math inline">\(\varepsilon= \frac{\delta_0 f(x)}2\)</span> and for any <span class="math inline">\(\delta&gt;0\)</span>, we can produce a mesh <span class="math inline">\(P\)</span> with <span class="math inline">\(\left\lvert P\right\rvert &lt; \delta\)</span> such that <span class="math inline">\(\left\lvert R(f,x,P)\right\rvert &gt; \varepsilon\)</span>. Specifically let <span class="math inline">\(P\)</span> be <span class="math inline">\(a = x_0 &lt; x_1 &lt; \dots &lt; x_i = x - \delta_0 &lt; \dots &lt; x_j = x + \delta_0 &lt; \dots &lt; x_p = b\)</span> and <span class="math inline">\(P\)</span> just have to be fine enough, then <span class="math display">\[\begin{align*}
+\left\lvert R(f,x,P)\right\rvert
+&amp;= \sum_{k=1}^p f(t_k)(x_k-x_{k-1}) \\
+&amp;\geq \sum_{k=i}^j f(t_k)(x_k-x_{k-1}) \\
+&amp;\geq \frac{f(x)}2 \sum_{k=i}^j (x_k-x_{k-1}) \\
+&amp;\geq \frac{f(x)}2 (x_j - x_i) &gt; \varepsilon
+\end{align*}\]</span></p>
+<h2 id="q3-2">Q3</h2>
+<p>Let <span class="math inline">\(c_1, c_2, \dots, c_r \in [a,b]\)</span> enumerate all points which <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> differ and let <span class="math inline">\(d = \max\left\lvert g(c_i) - f(c_i)\right\rvert\)</span>.</p>
+<p>Suppose <span class="math inline">\(f\)</span> is Riemann integrable on <span class="math inline">\([a,b]\)</span> and let <span class="math inline">\(\varepsilon&gt; 0\)</span> let <span class="math display">\[ L = \int_a^b f(x)\ dx \]</span> then by integrability of <span class="math inline">\(f\)</span> there exists <span class="math inline">\(\delta_0&gt;0\)</span> such that for all partitions <span class="math inline">\(P\)</span> with <span class="math inline">\(\left\lvert P\right\rvert &lt; \delta_0\)</span> <span class="math display">\[ \left\lvert R(f,x,P) - L\right\rvert &lt; \frac\varepsilon 2 \]</span> choose <span class="math inline">\(\delta = \min(\delta_0, \frac{\varepsilon}{2rd})\)</span> and let <span class="math inline">\(P\)</span> be a partition such that <span class="math inline">\(\left\lvert P\right\rvert &lt; \delta\)</span>, let <span class="math inline">\(\mathbf{t} = \left\{t_1, t_2, \dots, t_p\right\}\)</span> be any tag set <span class="math display">\[\begin{align*}
+R(g,x,P,\mathbf{t})
+&amp;= \sum_{k=1}^p g(t_k) (x_k - x_{k-1}) \\
+&amp;= \sum_{k=1}^p \left(f(t_k) + g(t_k) - f(t_k) \right) (x_k - x_{k-1}) \\
+&amp;= R(f,x,P,\mathbf{t}) + \sum_{k=1}^p \left(g(t_k) - f(t_k) \right) (x_k - x_{k-1}) \\
+\left\lvert R(g,x,P,\mathbf{t}) - L\right\rvert
+&amp;\leq \left\lvert R(f,x,P,\mathbf{t}) - L\right\rvert + \sum_{k=1}^p \left\lvert g(t_k) - f(t_k)\right\rvert (x_k - x_{k-1}) \\
+\end{align*}\]</span> note that in the worst case <span class="math inline">\(\{t_k\}_{k\in\left\{1,\dots,p\right\}}\)</span> covers <span class="math inline">\(\{c_l\}_{l\in\left\{1,\dots,r\right\}}\)</span>, but we still have the bound <span class="math display">\[
+\sum_{k=1}^p \left\lvert g(t_k) - f(t_k)\right\rvert(x_k-x_{k-1})
+\leq \delta \sum_{l=1}^r \left\lvert g(c_l) - f(c_l)\right\rvert
+\leq \delta r d
+\]</span> which substituted back gives <span class="math display">\[ \left\lvert R(g,x,P,\mathbf{t}) -L\right\rvert &lt; \frac{\varepsilon}2 + \delta rd \leq \varepsilon. \]</span></p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA3110S/homework456.md">MA3110S/homework456.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

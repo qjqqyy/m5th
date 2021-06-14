@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="26th August 2020" />
+  <title>MA4262 Tutorial 1</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">MA4262 Tutorial 1</h1><p class="author">Qi Ji</p>
+<p class="date">26th August 2020</p>
+</header>
+<article><h1 data-number="1" id="section" data-number="1"><span class="header-section-number">1</span> </h1>
+<p>We show the Borel <span class="math inline">\(\sigma\)</span>-algebra <span class="math inline">\(\mathcal{B}\)</span> is the smallest <span class="math inline">\(\sigma\)</span>-algebra containing the family of all half-open intervals <span class="math inline">\((a,b] = \left\{x\in\mathbb{R}| a&lt;x\leq b\right\}\)</span>.</p>
+<p>First for any <span class="math inline">\((a,b]\)</span> we show it’s Borel. Observe that <span class="math display">\[(a,b] = (a,b) \cup \left[\frac{a+b}2,b\right]\]</span> where <span class="math inline">\(\left[\frac{a+b}2,b\right] = \mathbb{R}\setminus ((-\infty,\frac{a+b}2)\cup(b,+\infty))\)</span>.</p>
+<p>Since any open set in <span class="math inline">\(\mathbb{R}\)</span> can be expressed as a countable union of open intervals, we just need to show that any open interval <span class="math inline">\((a,b)\)</span> can be generated from the <span class="math inline">\(\sigma\)</span>-algebra containing all half-open intervals. Similarly, <span class="math display">\[(a,b) = \bigcup_i (a,b_i]\]</span> where <span class="math inline">\(b_i\)</span> is some monotone increasing rational sequence that converges to <span class="math inline">\(b\)</span>.</p>
+<h1 data-number="2" id="section-1" data-number="2"><span class="header-section-number">2</span> </h1>
+<p>Follow hint and chase elements, just set theory.</p>
+<h1 data-number="3" id="section-2" data-number="3"><span class="header-section-number">3</span> </h1>
+<p>For <span class="math inline">\(n=1,2,\dots\)</span> define <span class="math inline">\(\varphi_n(x)\)</span> using <span class="math display">\[\begin{align*}
+E_{k,n} &amp;= f^{-1} [k 2^{-n}, (k+1) 2^{-n}] \text{ for } k = 0, 1, 2, \dots, n 2^n -1 \\
+E_{n2^n,n} &amp;= f^{-1} [n, +\infty)
+\end{align*}\]</span> and <span class="math display">\[ \varphi_n(x) = k 2^{-n} \text{ for } x\in E_{k,n}. \]</span></p>
+<h2 data-number="3.1" id="part-a" data-number="3.1"><span class="header-section-number">3.1</span> part (a)</h2>
+<p>Fix <span class="math inline">\(n\)</span> and we show <span class="math inline">\(\varphi_n^{-1} (\alpha,+\infty)\)</span> is <span class="math inline">\(\mathcal{X}\)</span>-measurable. By definition of <span class="math inline">\(\varphi_n\)</span> we can compute the pullback as <span class="math display">\[ \bigcup_{k&gt;\alpha 2^n} E_{k,n} \]</span> and each <span class="math inline">\(E_{k,n}\)</span> is <span class="math inline">\(\mathcal{X}\)</span>-measurable as <span class="math inline">\(f\)</span> is measurable.</p>
+<h2 data-number="3.2" id="part-b" data-number="3.2"><span class="header-section-number">3.2</span> part (b)</h2>
+<p>Given <span class="math inline">\(\epsilon\)</span> let <span class="math inline">\(N\)</span> such that forall <span class="math inline">\(n&gt;N\)</span>, <span class="math inline">\(2^{-n} &lt; \epsilon\)</span> and <span class="math inline">\(n2^n &gt; K\)</span>, then etc etc etc.</p>
+<h1 data-number="4" id="section-3" data-number="4"><span class="header-section-number">4</span> </h1>
+<p><span class="math inline">\(\lambda(\emptyset) = 0\)</span> is trivial.</p>
+<p>Enough to show countable additivity for case <span class="math inline">\(n=2\)</span>. Closure under linear combination follows from same behaviour of convergent real sequences.</p>
+<h1 data-number="5" id="section-4" data-number="5"><span class="header-section-number">5</span> </h1>
+<ol type="a">
+<li><p>Countable additivity breaks.</p></li>
+<li><p>This is basically some sort of cardinal measure. We know by axiom of choice that countable union of at most countable set is at most countable, no closure problems so this is a measure.</p></li>
+</ol>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA4262/tutorial1.md">MA4262/tutorial1.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

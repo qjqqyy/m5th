@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="19th October 2020" />
+  <title>GET1004 Tutorial 2</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">GET1004 Tutorial 2</h1><p class="author">Qi Ji</p>
+<p class="date">19th October 2020</p>
+</header>
+<article><h1 data-number="1" id="section" data-number="1"><span class="header-section-number">1</span> </h1>
+<p>For parts a and b simply press calculator</p>
+<ol type="a">
+<li><p><span class="math inline">\(7972 \equiv 16 \pmod{17}\)</span></p></li>
+<li><p><span class="math inline">\(-36883 \equiv 126 \pmod{311}\)</span></p></li>
+<li><p>we can compute each part first <span class="math display">\[\begin{align*}
+231345678 &amp;\equiv 2761 \pmod{3211} \\
+121439870 &amp;\equiv 3061 \pmod{3211} \\
+231345678 \times 121439870 &amp;\equiv 2761 \times 3061 \pmod{3211} \\
+&amp;\equiv 69 \pmod{3211}
+\end{align*}\]</span></p></li>
+<li><p>note <span class="math inline">\(24 = 2\cdot2\cdot2\cdot 3\)</span> so we can compute in stages <span class="math display">\[\begin{align*}
+5^2 &amp;\equiv 25 \pmod{91} \\
+5^4 &amp;\equiv 25\times 25 \pmod{91} \\
+&amp;\equiv 79 \pmod{91} \\
+5^8 &amp;\equiv 79\times 79 \pmod{91} \\
+&amp;\equiv 53 \pmod{91} \\
+5^{24} &amp;\equiv 53\times 53\times 53 \pmod{91} \\
+&amp;\equiv 1 \pmod{91}
+\end{align*}\]</span></p></li>
+<li><p>similar to d we express <span class="math inline">\(100 = 2\cdot 2\cdot 5\cdot 5\)</span> <span class="math display">\[\begin{align*}
+2^5 &amp;\equiv 32\pmod{119} \\
+2^{25} &amp;\equiv 32 \times 32 \times 32 \times 32\times 32\pmod{119} \\
+&amp;\equiv 2\pmod{119} \\
+2^{100} &amp;\equiv 2^{4} \pmod{119} \\
+&amp;\equiv 16\pmod{119}
+\end{align*}\]</span></p></li>
+<li><p>bruteforce, want to solve <span class="math display">\[ 8x = 49k+3 \]</span> try <span class="math inline">\(k=1,2,\dots\)</span> one by one, will get <span class="math inline">\(x=31, k=3\)</span>.</p></li>
+</ol>
+<h1 data-number="2" id="section-1" data-number="2"><span class="header-section-number">2</span> </h1>
+<p>Encrypt function is <span class="math display">\[ f(x) = 15x + 7\mod{26}. \]</span> We find its inverse <span class="math display">\[\begin{align*}
+y &amp;= 15x + 7 \mod{26} \\
+15x &amp;\equiv y + 19 \pmod{26}
+\end{align*}\]</span> now the multiplicative inverse of <span class="math inline">\(15\)</span> is <span class="math inline">\(7 \pmod{26}\)</span>, and since <span class="math inline">\(7\times 19\equiv 3\pmod{26}\)</span>, the inverse is <span class="math display">\[ g(x) = 7x + 3 \mod{26}. \]</span></p>
+<p>Using <span class="math inline">\(g\)</span> to decrypt we get plaintext to be <code>gxhyp</code>.</p>
+<h1 data-number="3" id="section-2" data-number="3"><span class="header-section-number">3</span> </h1>
+<p><span class="math display">\[\mathbb{Z}^*_{18} = \left\{ n\in\left\{ 1,\dots,17 \right\}: \gcd(n,18)=1 \right\} \]</span> as <span class="math inline">\(18 = 2\cdot 3^2\)</span>, we exclude all multiples of <span class="math inline">\(2\)</span> and <span class="math inline">\(3\)</span> to get <span class="math display">\[\mathbb{Z}^*_{18} = \left\{ 1,5,7,11,13,17 \right\}.\]</span></p>
+<h1 data-number="4" id="section-3" data-number="4"><span class="header-section-number">4</span> </h1>
+<ol type="a">
+<li><p>Computing powers of <span class="math inline">\(2\)</span> mod <span class="math inline">\(11\)</span> we get <span class="math display">\[2,4,8,5,10,9,7,3,6,1\]</span> so <span class="math inline">\(2\)</span> is a generator.</p></li>
+<li><p>Computing powers of <span class="math inline">\(3\)</span> mod <span class="math inline">\(11\)</span> we get <span class="math display">\[3,9,5,4,1\]</span> so <span class="math inline">\(3\)</span> is not a generator.</p></li>
+</ol>
+<h1 data-number="5" id="section-4" data-number="5"><span class="header-section-number">5</span> </h1>
+<ol type="i">
+<li><p>To encrypt we compute <span class="math inline">\(7^{13}\mod{6497}\)</span> <span class="math display">\[\begin{align*}
+7^{4} &amp;\equiv 2401\pmod{6497} \\
+7^{5} &amp;\equiv 2401\times 7 \\ &amp;\equiv 703\pmod{6497} \\
+7^{8} &amp;\equiv 2401\times 2401 \\ &amp;\equiv 1962\pmod{6497} \\
+7^{13} &amp;\equiv 2401\times 703 \\ &amp;\equiv 3059\pmod{6497}
+\end{align*}\]</span></p></li>
+<li><p><span class="math inline">\(\phi(n) = 88\times 72 = 6336\)</span> to find multiplicative inverse of <span class="math inline">\(13\)</span> mod <span class="math inline">\(6336\)</span> we use extended gcd <span class="math display">\[\begin{align*}
+6336 &amp;= 487\cdot 13 + 5 \\
+13 &amp;= 2\cdot 5 + 3 \\
+5 &amp;= 3 + 2\\
+3 &amp;= 2 + 1\\
+1 &amp;= 3 - 2 \\
+&amp;= 3 - (5-3)\\
+&amp;= 2\cdot3 - 5\\
+&amp;= 2\cdot(13-2\cdot5) - 5\\
+&amp;= 2\cdot13 -5\cdot5\\
+&amp;= 2\cdot13 - 5\cdot(6336-487\cdot13)\\
+&amp;= 2437\cdot13 - 5\cdot6336
+\end{align*}\]</span> to get <span class="math inline">\(13\cdot2437\equiv 1\pmod{6336}\)</span>.</p></li>
+<li><p>To decrypt <span class="math inline">\(9\)</span> we compute <span class="math inline">\(9^{2437}\mod n\)</span>, which is <span class="math inline">\(507870\mod 6497 = 1104\)</span>.</p></li>
+</ol>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/GET1004/tutorial2.md">GET1004/tutorial2.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

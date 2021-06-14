@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="Week 4" />
+  <title>MA2202S Tutorial 2</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">MA2202S Tutorial 2</h1><p class="author">Qi Ji</p>
+<p class="date">Week 4</p>
+</header>
+<article><h1 class="unnumbered" data-number id="tutorial-2a" class="unnumbered" data-number>Tutorial 2A</h1>
+<h1 data-number="1" id="show-addition-modulo-p-is-associative." data-number="1"><span class="header-section-number">1</span> Show addition modulo <span class="math inline">\(p\)</span> is associative.</h1>
+<p>Case-split every damn thing.</p>
+<h1 data-number="2" id="show-that-mathbbzpmathbbztimes-star-forms-an-abelian-group." data-number="2"><span class="header-section-number">2</span> Show that <span class="math inline">\(((\mathbb{Z}/p\mathbb{Z})^\times, \star)\)</span> forms an Abelian group.</h1>
+<blockquote>
+<p><span class="math inline">\(p\)</span> is prime, and <span class="math inline">\(a \star b := r\)</span> where <span class="math inline">\(r\)</span> is the remainder when <span class="math inline">\(ab\)</span> is divided by <span class="math inline">\(p\)</span>.</p>
+</blockquote>
+<dl>
+<dt>Closure</dt>
+<dd>By division algorithm <span class="math inline">\(r \leq p-1\)</span>. Claim that <span class="math inline">\(r \ne 0\)</span>, that is <span class="math inline">\(p \nmid ab\)</span>. For suppose not then <span class="math inline">\(p\mid a\)</span> (or <span class="math inline">\(p\mid b\)</span>) which implies <span class="math inline">\(p \leq a\)</span> which makes no sense.
+</dd>
+<dt>Commute</dt>
+<dd><span class="math inline">\(ab = ba\)</span> so <span class="math inline">\(r_{ab} = r_{ba}\)</span>.
+</dd>
+<dt>Assoc</dt>
+<dd>Goal is <span class="math inline">\((ab \mod p) c \mod p = a (bc \mod p) \mod p\)</span>. Probably easier to show that both are equal to <span class="math inline">\(abc \mod p\)</span>. Let <span class="math display">\[\begin{align*}
+ab &amp;= q p + r_{ab} \\
+bc &amp;= q'p + r_{bc} \\
+abc &amp;= q''p + r
+\end{align*}\]</span> Then we have <span class="math display">\[\begin{align*}
+abc
+&amp;= (qp + r_{ab})c \\
+&amp;= qpc + r_{ab}\,c \\
+&amp;= a(q'p + r_{bc}) \\
+&amp;= aq'p + a\,r_{bc}
+\end{align*}\]</span> By division algorithm <span class="math display">\[ a\,r_{bc} \equiv r_{ab} c \equiv r \pmod{p}. \]</span> which entails <span class="math inline">\(a \star (b\star c) = (a\star b) \star c = r_{abc}\)</span>.
+</dd>
+<dt>Identity</dt>
+<dd>Trivial verification that <span class="math inline">\(a \star 1 = 1 \star a = a\)</span>.
+</dd>
+<dt>Inverse</dt>
+<dd>For each <span class="math inline">\(a \in (\mathbb{Z}/p\mathbb{Z})^\times\)</span>, because <span class="math inline">\(a&lt;p\)</span> and <span class="math inline">\(p\)</span> prime, by Bézout’s identity, there exists <span class="math inline">\(x,y\in\mathbb{Z}\)</span> such that <span class="math display">\[ ax = 1 - py \]</span> by division algorithm let <span class="math inline">\(x = qp + b\)</span> for some <span class="math inline">\(q\in\mathbb{Z}, b\in(\mathbb{Z}/p\mathbb{Z})^\times\)</span>, note <span class="math inline">\(b\ne 0\)</span> otherwise substituting back into above equation yields <span class="math inline">\(p(aq + y) = 1\)</span>. Now <span class="math display">\[ ab = 1 - py - aqp \]</span> which means <span class="math inline">\(a\star b = r_{ab} = 1\)</span>.
+</dd>
+</dl>
+<h1 data-number="3" id="matrix-stuff" data-number="3"><span class="header-section-number">3</span> Matrix stuff</h1>
+<blockquote>
+<p><span class="math display">\[ G = \left\{\,  A \in M_n(\mathbb{R}): A A^\top = I, \det(A) = 1 \,\right\} \]</span> Show that <span class="math inline">\(G\)</span> under matrix multiplication is a group.</p>
+</blockquote>
+<p><strong>Lemma 3.0.</strong> <span class="math inline">\(G\)</span> under matrix multiplication is a magma.</p>
+<p><em>Proof.</em> For any <span class="math inline">\(A,B \in G\)</span>, we have <span class="math inline">\((AB)(AB)^\top = ABB^\top A^\top = AA^\top = I\)</span>. Additionally, by multiplicativity of <span class="math inline">\(\det\)</span>, <span class="math inline">\(\det(AB) = \det(A)\det(B) = 1\)</span>. <span class="math inline">\(\square\)</span></p>
+<p><strong>Lemma 3.1.</strong> <span class="math inline">\(G\)</span> under matrix multiplication is a semigroup.</p>
+<p><em>Proof.</em> Refer to MA1101R for a proof that matrix multiplication is associative. <span class="math inline">\(\square\)</span></p>
+<p><strong>Lemma 3.2.</strong> <span class="math inline">\(G\)</span> under matrix multiplication is a monoid.</p>
+<p><em>Proof.</em> It is known that <span class="math inline">\(I\)</span> is the identity under matrix multiplication. <span class="math inline">\(G\)</span> contains <span class="math inline">\(I\)</span>, for <span class="math inline">\(I I^\top = II = I\)</span> and <span class="math inline">\(\det(I) = 1\)</span>. <span class="math inline">\(\square\)</span></p>
+<p><strong>Almost done.</strong> <span class="math inline">\(G\)</span> under matrix multiplication is a group.</p>
+<p><em>Proof.</em> It remains to show existence of inverse. Let <span class="math inline">\(A\in G\)</span>, by characterising property of <span class="math inline">\(G\)</span>, we have <span class="math inline">\(A A^\top = I\)</span>, from MA1101R we also have <span class="math inline">\(A^\top A = I\)</span>, So we just need to show that <span class="math inline">\(A^\top \in G\)</span>.</p>
+<ul>
+<li><span class="math inline">\(A^\top A^{\top\top} = A^\top A = I\)</span>, check.</li>
+<li><span class="math inline">\(\det(A^\top) = \det(A) = 1\)</span>, check. <span class="math inline">\(\square\)</span></li>
+</ul>
+<h1 data-number="4" id="a-binary-group-is-abelian." data-number="4"><span class="header-section-number">4</span> A binary group is Abelian.</h1>
+<p>Let <span class="math inline">\(a,b\in G\)</span>. <span class="math display">\[\begin{align*}
+    e &amp;= (ab)(ab)   \\
+    e &amp;= abab   \\
+    a &amp;= bab    \\
+    ab &amp;= ba    \tag*{$\square$}
+\end{align*}\]</span></p>
+<h1 data-number="5" id="pigeonhole-principle." data-number="5"><span class="header-section-number">5</span> Pigeonhole principle.</h1>
+<blockquote>
+<p>Let <span class="math inline">\((G, *)\)</span> be a finite group. Show that for any <span class="math inline">\(x\in G\)</span>, there exists <span class="math inline">\(n \in\mathbb{N}\)</span> such that <span class="math inline">\(x^n = e\)</span>.</p>
+</blockquote>
+<p>Let <span class="math inline">\(x\in G\)</span> be arbitrary, define the set-theoretic map <span class="math inline">\(\varphi\)</span> as <span class="math display">\[\begin{align*}
+    \varphi: \mathbb{N}&amp;\to G \\
+    n &amp;\mapsto x^n
+\end{align*}\]</span> As <span class="math inline">\(G\)</span> is finite, by pigeonhole principle, there exists <span class="math inline">\(i, j\in\mathbb{N}\)</span>, <span class="math inline">\(i &lt; j\)</span> (WLOG) such that <span class="math display">\[\varphi(i) = x^i = x^j = \varphi(j).\]</span> Multiply by <span class="math inline">\(x^{-1}\)</span> <span class="math inline">\(i\)</span> times and we have <span class="math inline">\(e = x^{j-i}\)</span>. <span class="math inline">\(\square\)</span></p>
+<h1 data-number="6" id="ntimes-n-multiplication-table" data-number="6"><span class="header-section-number">6</span> <span class="math inline">\(n\times n\)</span> multiplication table</h1>
+<p>Let <span class="math inline">\(\left\lvert G \right\rvert = \left\{\, x_1, x_2, \dots, x_n \,\right\}\)</span>.</p>
+<h2 data-number="6.1" id="row" data-number="6.1"><span class="header-section-number">6.1</span> row</h2>
+<p>Fix a row <span class="math inline">\(i\)</span>, means we fix <span class="math inline">\(x_i * -\)</span>. To show that every element <span class="math inline">\(g \in G\)</span> occurs exactly once in the row of multiplication table, we show that for any <span class="math inline">\(g\in G\)</span>, there exists unique <span class="math inline">\(x_j \in G\)</span> such that <span class="math inline">\(x_i * x_j = g\)</span>. This is true because <span class="math inline">\(x_i^{-1}\)</span> is unique so we just set <span class="math inline">\(x_j := x_i^{-1}g\)</span>.</p>
+<p>Alternatively, the claim is equivalent to the assertion that the left-multiply map <span class="math display">\[a \mapsto x_i * a\]</span> is a permutation on the set of <span class="math inline">\(G\)</span>, because it is a operator on a finite set with an inverse, namely <span class="math inline">\(b \mapsto x_i^{-1} * b\)</span>.</p>
+<h2 data-number="6.2" id="column" data-number="6.2"><span class="header-section-number">6.2</span> column</h2>
+<p>is analogous.</p>
+<h1 data-number="7" id="farming" data-number="7"><span class="header-section-number">7</span> Farming</h1>
+<p>Too much work.</p>
+<h1 data-number="8" id="mathbbz-times-is-not-a-field." data-number="8"><span class="header-section-number">8</span> <span class="math inline">\((\mathbb{Z}, +, \times)\)</span> is <strong>not</strong> a field.</h1>
+<p>Lack of multiplicative inverse.</p>
+<hr />
+<h1 class="unnumbered" data-number id="tutorial-2b" class="unnumbered" data-number>Tutorial 2B</h1>
+<h1 data-number="9" id="mathbbzpmathbbz-is-a-field-under-addition-and-multiplication-mod-p." data-number="9"><span class="header-section-number">9</span> <span class="math inline">\(\mathbb{Z}/p\mathbb{Z}\)</span> is a field under addition and multiplication <span class="math inline">\(\mod p\)</span>.</h1>
+<h2>
+TODO!!!
+</h2>
+<h1 data-number="10" id="hamiltonian" data-number="10"><span class="header-section-number">10</span> Hamiltonian</h1>
+<p>Rewrite the definition more succinctly as <span class="math display">\[ \mathbb{H}= \left\{\,  \begin{pmatrix} a &amp; b \\ -\overline{ b } &amp; \overline{ a }\end{pmatrix} : a,b \in \mathbb{C} \,\right\}.\]</span></p>
+<h2 data-number="10.1" id="real-vector-space" data-number="10.1"><span class="header-section-number">10.1</span> Real vector space</h2>
+<p>We have <span class="math inline">\(\mathbb{H}\subseteq \mathbb{M}_2(\mathbb{C})\)</span>. The set of <span class="math inline">\(2\times 2\)</span> complex matrices already forms a complex vector space, which means it also forms a real vector space, for <span class="math inline">\(\mathbb{R}\)</span> is a subfield of <span class="math inline">\(\mathbb{C}\)</span>. By eyeballing from the definition inspect that <span class="math inline">\(\mathbb{H}\)</span> is indeed closed under <span class="math inline">\(+\)</span> and scalar multiplication. <span class="math inline">\(\square\)</span></p>
+<h2 data-number="10.2" id="mathbbhtimes-times-forms-a-non-abelian-group." data-number="10.2"><span class="header-section-number">10.2</span> <span class="math inline">\((\mathbb{H}^\times, \times)\)</span> forms a non-Abelian group.</h2>
+<dl>
+<dt>Closure.</dt>
+<dd>Let <span class="math inline">\(a,b,c,d\in\mathbb{C}\)</span>, we have <span class="math display">\[
+\begin{pmatrix}
+a &amp; b \\
+-\overline{ b } &amp; \overline{ a }
+\end{pmatrix}
+\begin{pmatrix}
+c &amp; d \\
+-\overline{ d } &amp; \overline{ c }
+\end{pmatrix}
+=
+\begin{pmatrix}
+ac - b\overline{ d } &amp; ad+b\overline{ c } \\
+-c\overline{ b }-\overline{ ad } &amp; \overline{ ac }-\overline{ b }d
+\end{pmatrix}
+\]</span> verify that RHS is in <span class="math inline">\(\mathbb{H}\)</span>.
+</dd>
+<dt>Associative.</dt>
+<dd>Follows from that of matrix multiplication.
+</dd>
+<dt>Identity.</dt>
+<dd>Trivial to see that <span class="math inline">\(I\in\mathbb{H}\)</span>.
+</dd>
+<dt>Existence of inverse.</dt>
+<dd>For any <span class="math inline">\(a,b\in\mathbb{C}\)</span>, let <span class="math display">\[A = \begin{pmatrix}
+a &amp; b \\
+-\overline{ b } &amp; \overline{ a }
+\end{pmatrix}\]</span> computing determinant, get <span class="math inline">\(\det(A) = a\overline{ a } + b\overline{ b } = \left\lvert a \right\rvert^2 + \left\lvert b \right\rvert^2\)</span>. Because the size is only <span class="math inline">\(2\times 2\)</span>, the inverse matrix of <span class="math inline">\(A\)</span> is eyeballable as <span class="math display">\[ A^{-1} = \frac{1}{\left\lvert a \right\rvert^2 + \left\lvert b \right\rvert^2} \begin{pmatrix}
+\overline{ a } &amp; \overline{ b } \\
+-b &amp; a
+\end{pmatrix} \]</span> observe that <span class="math inline">\(A^{-1} \in \mathbb{H}\)</span>.
+</dd>
+<dt>Not Abelian.</dt>
+<dd>Define <span class="math display">\[
+A = \begin{pmatrix} i &amp; i \\ i &amp; -i\end{pmatrix} \quad
+B = \begin{pmatrix} 0 &amp; 1+i \\ -1+i &amp; 0\end{pmatrix}
+\]</span> and we have <span class="math display">\[
+AB = \begin{pmatrix} -1-i &amp; -1+i \\ 1+i &amp; -1+i \end{pmatrix}
+\ne
+\begin{pmatrix} -1+i &amp; 1-i \\ -1-i &amp; -1-i \end{pmatrix}
+=BA
+\tag*{$\square$}\]</span>
+</dd>
+</dl>
+<h2 data-number="10.3" id="distributivity" data-number="10.3"><span class="header-section-number">10.3</span> Distributivity</h2>
+<p>Follows from matrix multiplication. Refer to MA1101R notes, as <span class="math inline">\(\mathbb{R}^n\)</span> proof in there generalises.</p>
+<h1 data-number="11" id="square-roots" data-number="11"><span class="header-section-number">11</span> Square roots…</h1>
+<blockquote>
+<p>Let <span class="math inline">\(G\)</span> be a finite group which for every <span class="math inline">\(x\in G\)</span>, there exists <span class="math inline">\(y\in G\)</span> such that <span class="math inline">\(x = y^2\)</span>. Prove that every element in <span class="math inline">\(G\)</span> has a unique square root in <span class="math inline">\(G\)</span>.</p>
+</blockquote>
+<p>Let <span class="math inline">\(G = \left\{\, x_1,\dots,x_n \,\right\}\)</span>. We consider the map <span class="math inline">\(\varphi\)</span> defined as <span class="math display">\[\begin{align*}
+    \varphi: G &amp;\to G\\
+    x_i &amp;\mapsto x_i^2
+\end{align*}\]</span> Suppose there exists a non-unique square root, say <span class="math inline">\(x,y,z\in G\)</span>, such that <span class="math inline">\(y\ne z\)</span> but <span class="math inline">\(\varphi(y) = \varphi(z) = x\)</span>. This means that <span class="math inline">\(\varphi\)</span> is not injective which implies <span class="math inline">\(\varphi\)</span> is not surjective (operator on finite set). So there exists an element <span class="math inline">\(x\in G\)</span> where for all <span class="math inline">\(x_i \in G\)</span>, <span class="math inline">\(\varphi(x_i) \ne x\)</span>. This contradicts assumption that every <span class="math inline">\(x\in G\)</span> has a square root. </p>
+<p>Alternatively consider the multiplication table of <span class="math inline">\(G\)</span>, the assertion “every element has a unique square root” is equivalent to the assertion that the diagonals of the multiplication table form a permutation of the elements in <span class="math inline">\(G\)</span>.</p>
+<h1 data-number="12" id="leftlvert-g-rightrvert-is-even-number-of-elements-in-g-of-order-2-is-odd." data-number="12"><span class="header-section-number">12</span> <span class="math inline">\(\left\lvert G \right\rvert\)</span> is even, number of elements in <span class="math inline">\(G\)</span> of order <span class="math inline">\(2\)</span> is odd.</h1>
+<p>Let <span class="math inline">\(n = \left\lvert G \right\rvert\)</span>. Consider <span class="math inline">\(G \smallsetminus\left\{\, e \,\right\}\)</span>, it has <span class="math inline">\(n-1\)</span> elements. Suppose for a contradiction that a even number of elements in <span class="math inline">\(G \smallsetminus\left\{\, e \,\right\}\)</span> are of order <span class="math inline">\(2\)</span>. Then we have an odd number of elements that are not inverses of themselves. This is a contradiction as each element has a unique inverse, and inverses can only come in pairs. </p>
+<h1 data-number="13" id="orbits" data-number="13"><span class="header-section-number">13</span> Orbits</h1>
+<blockquote>
+<p><span class="math inline">\(G\)</span> is a subset of <span class="math inline">\(\operatorname{End}(V)\)</span> that is a group under matrix multiplication. Let <span class="math inline">\(\mathbf{v} \in V\)</span> be a column vector. A <span class="math inline">\(G\)</span>-orbit of <span class="math inline">\(\mathbf{v}\)</span> is <span class="math display">\[ G\mathbf{v} = \left\{\, g\mathbf{v} \in V : g \in G \,\right\}. \]</span></p>
+</blockquote>
+<h2 data-number="13.1" id="if-mathbfw-in-gmathbfv-then-gmathbfw-gmathbfv." data-number="13.1"><span class="header-section-number">13.1</span> If <span class="math inline">\(\mathbf{w} \in G\mathbf{v}\)</span>, then <span class="math inline">\(G\mathbf{w} = G\mathbf{v}\)</span>.</h2>
+<p>Since <span class="math inline">\(\mathbf{w} \in G\mathbf{v}\)</span>, there exists <span class="math inline">\(h\in G\)</span> such that <span class="math inline">\(\mathbf{w} = h\mathbf{v}\)</span>. Take <span class="math inline">\(g\mathbf{w} \in G\mathbf{w}\)</span>, then <span class="math inline">\(g\mathbf{w} = gh\mathbf{v} \in G\mathbf{v}\)</span> for <span class="math inline">\(gh \in G\)</span> too. Similarly take <span class="math inline">\(g'\mathbf{v} \in G\mathbf{v}\)</span>, <span class="math inline">\(g'\mathbf{v} = g' h^{-1}\mathbf{w} \in G\mathbf{w}\)</span>. </p>
+<h2 data-number="13.2" id="show-that-g-orbits-are-disjointed-either-gmathbfw-gmathbfv-or-gmathbfv-cap-gmathbfw-emptyset." data-number="13.2"><span class="header-section-number">13.2</span> Show that <span class="math inline">\(G\)</span>-orbits are disjointed, either <span class="math inline">\(G\mathbf{w} = G\mathbf{v}\)</span> or <span class="math inline">\(G\mathbf{v} \cap G\mathbf{w} = \emptyset\)</span>.</h2>
+<p>By law of excluded middle, either <span class="math inline">\(\mathbf{w} \in G\mathbf{v}\)</span> or <span class="math inline">\(\mathbf{w} \notin G\mathbf{v}\)</span>. If former, we win by part 1. Otherwise, suppose for a contradiction <span class="math inline">\(G\mathbf{v} \cap G\mathbf{w} \ne \emptyset\)</span>, let <span class="math inline">\(\mathbf{u}\)</span> inhabit that set. Then there exists <span class="math inline">\(h, h' \in G\)</span> such that <span class="math inline">\(\mathbf{u} = h\mathbf{v} = h'\mathbf{w}\)</span>. Then we have <span class="math inline">\(\mathbf{w} = h'^{-1} h\mathbf{v}\)</span>, which contradicts fact that <span class="math inline">\(\mathbf{w} \notin G\mathbf{v}\)</span>. </p>
+<h2 data-number="13.3" id="every-vector-mathbfvin-v-belongs-to-some-g-orbit." data-number="13.3"><span class="header-section-number">13.3</span> Every vector <span class="math inline">\(\mathbf{v}\in V\)</span> belongs to some <span class="math inline">\(G\)</span>-orbit.</h2>
+<p>Take <span class="math inline">\(\mathbf{v}\in V\)</span>, we have <span class="math inline">\(\mathbf{v} = e\mathbf{v}\)</span> so <span class="math inline">\(\mathbf{v} \in G\mathbf{v}\)</span>. </p>
+<h2 data-number="13.4" id="orbits-form-a-partition." data-number="13.4"><span class="header-section-number">13.4</span> Orbits form a partition.</h2>
+<p>Easily follows from (ii) and (iii).</p>
+<h1 data-number="14" id="exact" data-number="14"><span class="header-section-number">14</span> Exact</h1>
+<blockquote>
+<p><span class="math display">\[ \left\{\, e \,\right\} \to K \xrightarrow{i} G \xrightarrow{\varphi} H \to \left\{\, e \,\right\} \]</span> If <span class="math inline">\((G,*)\)</span> is a group, show that <span class="math inline">\((H,\star)\)</span> is a group, then show that <span class="math inline">\((K,*)\)</span> is a group.</p>
+</blockquote>
+<p><strong><span class="math inline">\(\star\)</span> is closed.</strong> For any <span class="math inline">\(h_1, h_2 \in H\)</span>, choose <span class="math inline">\(g_1, g_2\)</span> such that <span class="math inline">\(h_i = \varphi(g_i)\)</span>, then <span class="math inline">\(h_1 \star h_2 = \varphi(g_1) \star \varphi(g_2) = \varphi(g_1 * g_2) \in H\)</span>.</p>
+<p><strong>Associative.</strong> Let <span class="math inline">\(h_1, h_2, h_3 \in H\)</span>, choose <span class="math inline">\(g_1, g_2, g_3\)</span> such that <span class="math inline">\(h_i = \varphi(g_i)\)</span>. <span class="math display">\[\begin{align*}
+    (h_1 \star h_2) \star h_3 &amp;= \varphi(g_1 * g_2)) \star \varphi(g_3) \\
+    &amp;= \varphi((g_1 * g_2) * g_3) \\
+    &amp;= \varphi(g_1 * (g_2 * g_3)) \\
+    &amp;= h_1 \star \varphi(g_2 * g_3) \\
+    &amp;= h_1 \star (h_2 \star h_3)
+\end{align*}\]</span></p>
+<p><strong>Identity and Inverse.</strong> Analogous argument shows that <span class="math inline">\(\varphi(e)\)</span> is actually identity in <span class="math inline">\(H\)</span>.</p>
+<h2 class="unnumbered" data-number id="k-is-a-group." class="unnumbered" data-number><span class="math inline">\(K\)</span> is a group.</h2>
+<p><strong>Closure.</strong> Let <span class="math inline">\(k, k' \in K\)</span>, we have <span class="math inline">\(\varphi(k) = \varphi(k') = \varphi(e)\)</span>, then <span class="math display">\[\begin{align*}
+    \varphi(k) \star \varphi(k') &amp;= \varphi(e) \star \varphi(e) \\
+    \varphi(kk') &amp;= \varphi(e)
+\end{align*}\]</span></p>
+<p><strong>Associativity</strong> follows.</p>
+<p><strong>Existence of identity.</strong> follows as <span class="math inline">\(\varphi(e) = \varphi(e)\)</span>.</p>
+<p><strong>Inverse.</strong> Take <span class="math inline">\(k \in K\)</span>, suffices to show that <span class="math inline">\(k^{-1} \in K\)</span>. <span class="math display">\[\begin{align*}
+    \varphi(kk^{-1}) &amp;= \varphi(e) \\
+    \varphi(e) \star \varphi(k^{-1}) &amp;= \varphi(e) \\
+    \varphi(k^{-1}) &amp;= \varphi(e)
+\end{align*}\]</span></p>
+<h1 data-number="15" id="linear-algebra" data-number="15"><span class="header-section-number">15</span> Linear algebra</h1>
+<p>Let <span class="math display">\[
+\varphi: \left(\mathbb{F}_{13}\right)^3 \xrightarrow{\ \simeq\ } \left(\mathbb{F}_{13}\right)^3
+\]</span> be a group isomorphism</p>
+<h2 data-number="15.1" id="consider-those-as-vector-spaces-show-that-varphi-is-a-linear-transformation.-invertible-is-free" data-number="15.1"><span class="header-section-number">15.1</span> Consider those as vector spaces, show that <span class="math inline">\(\varphi\)</span> is a linear transformation. (Invertible is free)</h2>
+<p>The operation on <span class="math inline">\((\mathbb{F}_{13})^3\)</span> is coordinate-wise addition due to the definition of a product group, therefore <span class="math inline">\(\varphi\)</span> preserving vector addition is also for free.</p>
+<p>Observe that field operations in <span class="math inline">\(\mathbb{F}_{13}\)</span> respects the law that <span class="math display">\[ ab = \underbrace{b + b + \dots + b}_{a \text{ times}} \]</span> then let <span class="math inline">\(v\in (\mathbb{F}_{13})^3, \alpha \in \mathbb{F}_{13}\)</span>, <span class="math display">\[\begin{align*}
+    \varphi(a v) &amp;= \varphi(\underbrace{v + v + \dots + v}_{a \text{ times}}) \\
+    &amp;= \underbrace{\varphi v + \varphi v + \dots + \varphi v}_{a \text{ times}} \\
+    &amp;= a\, \varphi v
+\end{align*}\]</span></p>
+<h2 data-number="15.2" id="counting-matrices" data-number="15.2"><span class="header-section-number">15.2</span> Counting matrices</h2>
+<p>(This feels like Tan Kai Meng’s MA2101S PYP)</p>
+<p>Following hint, to count number of invertible <span class="math inline">\(3\times 3\)</span> matrices, we just have to choose <span class="math inline">\(3\)</span> basis vectors. Let <span class="math display">\[A = \left(\begin{array}{c|c|c}
+v_1 &amp; v_2 &amp; v_3
+\end{array}\right)\]</span></p>
+<ul>
+<li>For <span class="math inline">\(v_1\)</span> choose anyone except zero vector, giving <span class="math inline">\(13^3 - 1\)</span> ways,</li>
+<li>Choose <span class="math inline">\(v_2\)</span> from anything except those in span of <span class="math inline">\(v_1\)</span>, giving <span class="math inline">\(13^3 - 13\)</span> ways,</li>
+<li>Choose <span class="math inline">\(v_3\)</span> from anything except those in spam of <span class="math inline">\(v_1\)</span> and <span class="math inline">\(v_2\)</span>, giving <span class="math inline">\(13^3 - 13^2\)</span> ways,</li>
+</ul>
+<p>multiply everything to get answer which is <span class="math inline">\(9726417792\)</span>.</p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA2202S/t2.md">MA2202S/t2.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

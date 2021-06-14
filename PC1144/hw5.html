@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji (A0167793L)" />
+  <meta name="dcterms.date" content="7th April 2021" />
+  <title>PC1144 Homework 5</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">PC1144 Homework 5</h1><p class="author">Qi Ji (A0167793L)</p>
+<p class="date">7th April 2021</p>
+</header>
+<article><h1 id="a">(a)</h1>
+<p>By conservation of energy-mass, the total energy released is <span class="math display">\[\begin{align*}
+    E &amp;= \left[M({}^{210}_{\phantom{2}84}\mathsf{Po}) - M({}^{206}_{\phantom{2}82}\mathsf{Pb}) - M({}^{4}_{2}\mathsf{He})\right]c^2 \\
+    &amp;= (209.9828736 - 205.9744653 - 4.002603254)uc^2 \\
+    &amp;= 0.005805046 uc^2 \\
+    &amp;= 5.407 \ \mathrm{MeV}
+\end{align*}\]</span></p>
+<p>For recoil, let <span class="math inline">\(M = M({}^{206}_{\phantom{2}82}\mathsf{Pb})\)</span> and <span class="math inline">\(m = M({}^{4}_{2}\mathsf{He})\)</span>, <span class="math display">\[\begin{align*}
+    \frac{M({}^{206}_{\phantom{2}82}\mathsf{Pb})) V^2}2 &amp;= \frac{M({}^{4}_{2}\mathsf{He}) E}{M({}^{206}_{\phantom{2}82}\mathsf{Pb}) + M({}^{4}_{2}\mathsf{He})} \\
+    V^2 &amp;= \frac{2 m E}{M(M + m)} \\
+        &amp;= 2 \frac{4.002603254}{205.9744653} \frac{0.005805046 c^2}{205.9744653 + 4.002603254} \\
+    V &amp;= 3.108 \times 10^5\ \mathrm{m}\,\mathrm{s}^{-1} 
+\end{align*}\]</span> the fraction of total energy is given by <span class="math display">\[ \frac{m}{M + m} = 0.019062097.\]</span></p>
+<h1 id="b">(b)</h1>
+<p>For <span class="math inline">\({}^{232}_{\phantom{2}90}\mathsf{Th}\)</span> to decay into <span class="math inline">\({}^{208}_{\phantom{2}82}\mathsf{Pb}\)</span>, it loses <span class="math inline">\(24\)</span> nucleons, so there are <span class="math inline">\(6\)</span> <span class="math inline">\(\alpha\)</span>-decays.</p>
+<p>If <span class="math inline">\({}^{232}_{\phantom{2}90}\mathsf{Th}\)</span> undergoes six <span class="math inline">\(\alpha\)</span>-decays, its atomic number would have been <span class="math inline">\(78\)</span>, so there are <span class="math inline">\(4\)</span> <span class="math inline">\(\beta\)</span>-decays.</p>
+<h1 id="c">(c)</h1>
+<p>Let <span class="math inline">\(N_1(t)\)</span> denote number of <span class="math inline">\({}^{210}_{\phantom{2}83}\mathsf{Bi}\)</span> atoms at time <span class="math inline">\(t\)</span>. Assuming one month is 30 days, we have <span class="math inline">\(2592000\)</span> seconds in a month.</p>
+<p>Initially, there are <span class="math display">\[ N_0 = N_1(0) = \frac{10^{-6}}{209.9841204 u} = 2.86790294 \times 10^{18} \]</span> many <span class="math inline">\({}^{210}_{\phantom{2}83}\mathsf{Bi}\)</span> atoms.</p>
+<p>So the number of <span class="math inline">\({}^{210}_{\phantom{2}83}\mathsf{Bi}\)</span> <strong>beta decays per second</strong> after one month is given by <span class="math display">\[\begin{align*}
+    N_1(t) &amp;= N_0 e^{-\lambda_1 t} \\
+    A_1(t) &amp;= \lambda N_1(t) \\
+           &amp;= \lambda N_0 e^{-\lambda_1 t} \\
+    A_1(2592000) &amp;= \lambda_1 N_0 e^{-\lambda_1 2592000} \\
+                 &amp;= 7.25\times 10^{10} \ \mathrm{Bq}.
+\end{align*}\]</span></p>
+<p>Let <span class="math inline">\(N_2(t)\)</span> denote number of <span class="math inline">\({}^{210}_{\phantom{2}84}\mathsf{Po}\)</span> atoms at time <span class="math inline">\(t\)</span>. <span class="math inline">\(N_2(t)\)</span> is governed by the differential equation <span class="math display">\[ \frac{dN_2(t)}{dt} = \lambda_1 N_1(t) - \lambda_2 N_2(t) \]</span> and we know that <span class="math inline">\(N_2(0) = 0\)</span>.</p>
+<p>Solving the DE, <span class="math display">\[\begin{align*}
+    \frac{dN_2(t)}{dt} &amp;= \lambda_1 N_0 e^{-\lambda_1 t} - \lambda_2 N_2(t) \\
+    e^{\lambda_2 t} \frac{dN_2(t)}{dt} + e^{\lambda_2 t} \lambda_2 N_2(t) &amp;= \lambda_1 N_0 e^{(\lambda_2-\lambda_1) t} \\
+    \frac{d}{dt}\left[ e^{\lambda_2 t} N_2(t) \right] &amp;= \lambda_1 N_0 e^{(\lambda_2-\lambda_1) t} \\
+    e^{\lambda_2 t} N_2(t) &amp;= \frac{\lambda_1 N_0}{\lambda_2 - \lambda_1} e^{(\lambda_2-\lambda_1) t} + C
+\end{align*}\]</span> substituting <span class="math inline">\(N_2(0) = 0\)</span> to find <span class="math inline">\(C\)</span>, we have <span class="math display">\[ C = -\frac{\lambda_1 N_0}{\lambda_2 - \lambda_1} \]</span> and we have the expression <span class="math display">\[\begin{align*}
+    e^{\lambda_2 t} N_2(t) &amp;= \frac{\lambda_1 N_0}{\lambda_2 - \lambda_1} \left( e^{(\lambda_2-\lambda_1) t} - 1 \right) \\
+    N_2(t) &amp;= \frac{\lambda_1 N_0}{\lambda_2 - \lambda_1} \left( e^{-\lambda_1 t} - e^{-\lambda_2 t} \right)
+\end{align*}\]</span> now we can find the number of <span class="math inline">\({}^{210}_{\phantom{2}84}\mathsf{Po}\)</span> <strong>alpha decays per second</strong> after one month, <span class="math display">\[\begin{align*}
+    A_2(t) &amp;= \lambda_2 N_2(t) \\
+           &amp;= \frac{\lambda_2 \lambda_1 N_0}{\lambda_2 - \lambda_1} \left( e^{-\lambda_1 t} - e^{-\lambda_2 t} \right) \\
+    A_2(2592000) &amp;= 1.46 \times 10^{11}\ \mathrm{Bq}.
+\end{align*}\]</span></p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/PC1144/hw5.md">PC1144/hw5.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-UK" xml:lang="en-UK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Qi Ji" />
+  <meta name="dcterms.date" content="20th September 2019" />
+  <title>MA5220 Homework 5</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+      q { quotes: "“" "”" "‘" "’"; }
+  </style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|PT+Sans|PT+Sans+Narrow:700">
+  <link rel="stylesheet" href="../css/pandoc.css" /><script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_CHTML-full"></script>
+</head>
+<body>
+<main role="main">
+<header>
+<h1 class="title">MA5220 Homework 5</h1><p class="author">Qi Ji</p>
+<p class="date">20th September 2019</p>
+</header>
+<article><h1 data-number="1" id="section" data-number="1"><span class="header-section-number">1</span> </h1>
+<blockquote>
+<p>Suppose <span class="math inline">\(X_1,X_2\)</span> are transitive sets and <span class="math inline">\(f:X_1\to X_2\)</span> is a bijection that satisfies <span class="math display">\[\left(\forall x,y\in X_1\right)\left(x\in y \iff f(x)\in f(y)\right).\]</span> Show that <span class="math inline">\(X_1 = X_2\)</span> and <span class="math inline">\(f\)</span> is the identity function on <span class="math inline">\(X_1\)</span>.</p>
+</blockquote>
+<p>Case when <span class="math inline">\(X_1 = X_2 = 0\)</span> is trivial, suppose <span class="math inline">\(X_1, X_2\)</span> are nonempty.</p>
+<p>We first show that <span class="math inline">\(0 \in X_1\)</span>, <span class="math inline">\(0 \in X_2\)</span> and <span class="math inline">\(f(0) = 0\)</span>. By foundation there exists <span class="math inline">\(x\in X_1\)</span> with <span class="math inline">\(x\cap X_1 = 0\)</span>, then as <span class="math inline">\(x\subseteq X_1\)</span> due to transitivity <span class="math inline">\(x \cap X_1 = x = 0\)</span>. Same argument shows <span class="math inline">\(0 \in X_2\)</span>. Now <span class="math inline">\(f(0) = 0\)</span>, because if <span class="math inline">\(f(0) \ne 0\)</span>, then let <span class="math inline">\(y \in f(0)\)</span> which by bijectivity means <span class="math inline">\(f^{-1}(y) \in 0\)</span> which can never happen.</p>
+<p>Suppose for all <span class="math inline">\(x\in X_1\)</span> with <span class="math inline">\(\operatorname{rank}(x) &lt; \alpha\)</span>, <span class="math inline">\(f(x) = x\)</span>. Let <span class="math inline">\(y\in X_1\)</span> with <span class="math inline">\(\operatorname{rank}(y) = \alpha\)</span>, we show that <span class="math inline">\(y = f(y)\)</span>. Let <span class="math inline">\(x\in y\)</span>, then as <span class="math inline">\(\operatorname{rank}(x) &lt; \operatorname{rank}(y) = \alpha\)</span> it follows that <span class="math inline">\(f(x) = x \in f(y)\)</span>. Suppose the inclusion is proper, that is <span class="math inline">\(y \subsetneq f(y)\)</span>, then let <span class="math inline">\(z \in f(y)\)</span> but <span class="math inline">\(z\notin y\)</span>, then <span class="math inline">\(f^{-1}(z) \in y\)</span> so <span class="math inline">\(\operatorname{rank}(f^{-1}(z) &lt; \alpha\)</span>, which means <span class="math inline">\(f(f^{-1}(z)) = z = f^{-1}(z)\)</span>, so <span class="math inline">\(z\in y\)</span> which contradicts.</p>
+<p>By letting the induction run vacuously past <span class="math inline">\(\operatorname{rank}(X_1)\)</span> we can see that <span class="math inline">\(f\)</span> is identity function, then bijectivity of <span class="math inline">\(f\)</span> gives us that <span class="math inline">\(X_1 = X_2\)</span>.</p>
+<h1 data-number="2" id="section-1" data-number="2"><span class="header-section-number">2</span> </h1>
+<blockquote>
+<p>Write a <span class="math inline">\(\Delta_0\)</span>-formula <span class="math inline">\(\phi(X,R)\)</span> equivalent (over BST) to “<span class="math inline">\((X,R)\)</span> is a linear ordering”.</p>
+</blockquote>
+<p>We use the result that <span class="math inline">\(z = \left\langle x,y\right\rangle\)</span> is equivalent to a <span class="math inline">\(\Delta_0\)</span> formula over BST (Lemma 11.7).</p>
+<p>“<span class="math inline">\(R\)</span> is a relation on <span class="math inline">\(X\)</span>” is equivalent to <span class="math display">\[\left(\forall r\in R\right)\left(\exists a\in X\right)\left(\exists b\in X\right)\left(r = \left\langle a,b\right\rangle\right) \]</span> “<span class="math inline">\((X,R)\)</span> is irreflexive” is equivalent to <span class="math display">\[\left(\forall x\in X\right)\left(\forall z\in R\right)\left(\lnot \left\langle x,x\right\rangle = z\right)\]</span> “<span class="math inline">\((X,R)\)</span> is a total ordering” is equivalent to <span class="math display">\[
+\left(\forall x\in X\right)\left(\forall y\in X\right)\left(\exists z\in R\right)\left(x = y \lor z = \left\langle x,y\right\rangle \lor z = \left\langle y,x\right\rangle\right)
+\]</span> “<span class="math inline">\((X,R)\)</span> is transitive” is equivalent to <span class="math display">\[
+\left(\forall x\in X\right)\left(\forall y\in X\right)\left(\forall z\in X\right)
+\left(
+\left(\exists a\in R\right)\left(a = \left\langle x,y\right\rangle\right) \land
+\left(\exists b\in R\right)\left(b = \left\langle y,z\right\rangle\right)
+\to \left(\exists c\in R\right)\left(c = \left\langle x,z\right\rangle\right)
+\right)
+\]</span> and “<span class="math inline">\((X,R)\)</span> is a linear ordering” is the conjunction of everything above, all of which are <span class="math inline">\(\Delta_0\)</span>.</p>
+<h1 data-number="3" id="section-2" data-number="3"><span class="header-section-number">3</span> </h1>
+<blockquote>
+<p>Let <span class="math inline">\(H_\kappa = \left\{x: \left\lvert\operatorname{trcl}(x)\right\rvert &lt;\kappa\right\}\)</span>.</p>
+<ol type="a">
+<li>For every infinite cardinal <span class="math inline">\(\kappa\)</span>, <span class="math inline">\(H_\kappa\)</span> is transitive.</li>
+</ol>
+</blockquote>
+<p>Let <span class="math inline">\(x\in H_\kappa\)</span>, then <span class="math inline">\(\left\lvert\operatorname{trcl}(x)\right\rvert &lt; \kappa\)</span>. Let <span class="math inline">\(y\in x\)</span> and we want to show that <span class="math inline">\(y\in H_\kappa\)</span>. Since <span class="math inline">\(y\in x \subseteq \operatorname{trcl}(x)\)</span> and <span class="math inline">\(\operatorname{trcl}(x)\)</span> is transitive <span class="math inline">\(y\subseteq\operatorname{trcl}(x)\)</span>, then by Lemma 9.6 <span class="math inline">\(\operatorname{trcl}(y)\subseteq\operatorname{trcl}(x)\)</span> which gives <span class="math inline">\(\left\lvert\operatorname{trcl}(y)\right\rvert &lt;\kappa\)</span> also.</p>
+<blockquote>
+<ol start="2" type="a">
+<li>For every infinite cardinal <span class="math inline">\(\kappa\)</span>, <span class="math inline">\(H_\kappa\cap\mathbf{ORD} = \kappa\)</span>.</li>
+</ol>
+</blockquote>
+<p>Let <span class="math inline">\(\alpha &lt; \kappa\)</span>, then as <span class="math inline">\(\alpha \in \mathbf{ORD}\)</span> and <span class="math inline">\(\alpha\)</span> is transitive <span class="math inline">\(\left\lvert\operatorname{trcl}(\alpha)\right\rvert = \left\lvert\alpha\right\rvert &lt; \kappa\)</span>, so <span class="math inline">\(\alpha \in H_\kappa\)</span>.</p>
+<p>Conversely let <span class="math inline">\(\alpha \in H_\kappa\)</span> be an ordinal, we want to show that <span class="math inline">\(\alpha &lt; \kappa\)</span>. This is also clear as <span class="math inline">\(\alpha = \operatorname{trcl}(\alpha)\)</span> and <span class="math inline">\(\kappa\)</span> is a cardinal.</p>
+<blockquote>
+<ol start="3" type="a">
+<li>For every infinite cardinal <span class="math inline">\(\kappa\)</span>, <span class="math inline">\(H_\kappa \subseteq V_\kappa\)</span>.</li>
+</ol>
+</blockquote>
+<p><strong>Observation.</strong> For all <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(V_\alpha\)</span> is transitive.</p>
+<p><span class="math inline">\(V_0 = 0\)</span> is trivially transitive. Suppose <span class="math inline">\(V_\alpha\)</span> is transitive, let <span class="math inline">\(x\in V_{\alpha+1}\)</span>, then <span class="math inline">\(x\subseteq V_\alpha\)</span>, so let <span class="math inline">\(y\in x\subseteq V_\alpha\)</span>, by transitivity of <span class="math inline">\(V_\alpha\)</span> <span class="math inline">\(y\subseteq V_\alpha\)</span> therefore <span class="math inline">\(y\in V_{\alpha+1}\)</span> which completes the proof for successor case. The limit case trivially follows from definition.</p>
+<p><strong>Observation.</strong> For all <span class="math inline">\(\alpha\)</span> for all <span class="math inline">\(x\)</span>, <span class="math inline">\(x\in V_{\alpha+1}\)</span> iff <span class="math inline">\(\operatorname{trcl}(x)\in V_{\alpha+1}\)</span>.</p>
+<p>Let <span class="math inline">\(x\subseteq V_\alpha\)</span>, use transitivity of <span class="math inline">\(V_\alpha\)</span> and Lemma 9.6 to get <span class="math inline">\(\operatorname{trcl}(x) \subseteq V_\alpha\)</span>. Conversely <span class="math inline">\(x\subseteq \operatorname{trcl}(x) \subseteq V_{\alpha}\)</span>. This result tells us that for all <span class="math inline">\(x\)</span>, <span class="math inline">\(\operatorname{rank}(x) = \operatorname{rank}(\operatorname{trcl}(x))\)</span>.</p>
+<p>Now let <span class="math inline">\(x\in H_\kappa\)</span>, it suffices to show <span class="math inline">\(\operatorname{rank}(\operatorname{trcl}(x)) &lt; \kappa\)</span>. Let <span class="math inline">\(t = \operatorname{trcl}(x)\)</span> and <span class="math inline">\(S = \left\{\operatorname{rank}(y): y\in t\right\}\)</span> which is a set of ordinals. Let <span class="math inline">\(\alpha = \min \mathbf{ORD}\setminus S\)</span>, then <span class="math inline">\(\alpha \subseteq S\)</span>. We claim that <span class="math inline">\(\alpha = S\)</span>, then <span class="math inline">\(\alpha = \operatorname{rank}(t) &lt; \kappa\)</span> and we will be done.</p>
+<p>To prove the claim suppose the inclusion is proper, let <span class="math inline">\(\beta &gt;\alpha\)</span> be minimum such that <span class="math inline">\(\beta\in S\)</span>, then <span class="math inline">\(\beta = \operatorname{rank}(y)\)</span> for some <span class="math inline">\(y \in t\)</span>, which means <span class="math display">\[ \beta = \sup_{z\in y} \left(\operatorname{rank}(z) + 1\right) \leq \alpha \]</span> by transitivity <span class="math inline">\(z\in t\)</span> so <span class="math inline">\(\operatorname{rank}(z) \in S\)</span>, and <span class="math inline">\(\operatorname{rank}(z) &lt; \operatorname{rank}(y) = \beta\)</span> which by our choice of <span class="math inline">\(\beta\)</span> means <span class="math inline">\(\operatorname{rank}(z) &lt; \alpha\)</span>, so the upper bound holds, this contradicts <span class="math inline">\(\beta &gt; \alpha\)</span>.</p>
+<blockquote>
+<ol start="4" type="a">
+<li>For every regular uncountable cardinal <span class="math inline">\(\kappa\)</span>, <span class="math inline">\(H_\kappa = V_\kappa\)</span> iff <span class="math inline">\(\kappa\)</span> is strongly inaccessible.</li>
+</ol>
+</blockquote>
+<p>Suppose <span class="math inline">\(\left(\exists \lambda&lt;\kappa\right)\left(2^\lambda \geq \kappa\right)\)</span>, Assume for simplicity that <span class="math inline">\(\lambda\)</span> is an infinite cardinal, then we know that <span class="math inline">\(\lambda \subseteq H_\lambda \subseteq V_\lambda\)</span>, then <span class="math inline">\(\left\lvert V_{\lambda+1}\right\rvert \geq 2^{\left\lvert V_\lambda\right\rvert} \geq 2^\lambda \geq \kappa\)</span>. Let <span class="math inline">\(y\subseteq V_{\lambda+1}\)</span> such that <span class="math inline">\(\left\lvert y\right\rvert = \kappa\)</span>, then <span class="math inline">\(y \in V_{\lambda+2} \subseteq V_\kappa\)</span>, but <span class="math inline">\(\left\lvert\operatorname{trcl}(y)\right\rvert \geq \left\lvert y\right\rvert \geq \kappa\)</span> which means <span class="math inline">\(y\notin H_\kappa\)</span>.</p>
+<p>Conversely suppose <span class="math inline">\(\left(\forall \lambda&lt;\kappa\right)\left(2^\lambda &lt; \kappa\right)\)</span>. First we induct on <span class="math inline">\(\kappa\)</span> to show that <span class="math inline">\(\left(\forall \alpha&lt;\kappa\right)\left(\beth_\alpha &lt;\kappa\right)\)</span>. The case when <span class="math inline">\(\alpha=0\)</span> trivially holds as we assume <span class="math inline">\(\kappa&gt;\beth_0=\omega\)</span>. Assume <span class="math inline">\(\beth_\alpha &lt; \kappa\)</span>, then <span class="math inline">\(\beth_{\alpha+1} = 2^{\beth_\alpha} &lt; \kappa\)</span> by strong inaccessibility. When <span class="math inline">\(\alpha\)</span> is a limit and result holds for all <span class="math inline">\(\beta&lt;\alpha\)</span>, <span class="math display">\[\left\lvert\beth_\alpha\right\rvert = \left\lvert\bigcup_{\beta&lt;\alpha} \beth_\beta\right\rvert &lt;\kappa \]</span> as each <span class="math inline">\(\beth_\beta &lt; \kappa\)</span>, <span class="math inline">\(\alpha &lt; \kappa\)</span> and <span class="math inline">\(\kappa\)</span> is regular.</p>
+<p>By part (c) we only need to show that <span class="math inline">\(V_\kappa\subseteq H_\kappa\)</span>. Let <span class="math inline">\(x\in V_\kappa\)</span>, then <span class="math inline">\(x\in V_\alpha\)</span> for some <span class="math inline">\(\alpha &lt; \kappa\)</span>. Since <span class="math inline">\(V_\alpha\)</span> is transitive, <span class="math inline">\(x\subseteq \operatorname{trcl}(x)\subseteq V_\alpha\)</span>, then <span class="math inline">\(\left\lvert\operatorname{trcl}(x)\right\rvert \leq \left\lvert V_\alpha\right\rvert \leq \beth_\alpha &lt; \kappa\)</span>. Where the inequality <span class="math inline">\(\left\lvert V_\alpha\right\rvert\leq \beth_\alpha\)</span> is a weak form of <span class="math inline">\(\left\lvert V_{\omega+\alpha}\right\rvert = \beth_\alpha\)</span>, which follows from induction.</p>
+</article>
+<hr />
+<footer>
+  Generated from
+  <a target="_blank" href="https://github.com/qjqqyy/m5th/blob/master/MA5220/homework5.md">MA5220/homework5.md</a>
+  with
+  <a href="http://github.com/jaspervdj/hakyll">hakyll</a>.
+</footer>
+</main>
+</body>
+</html>
